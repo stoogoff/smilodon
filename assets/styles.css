@@ -1,0 +1,9 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	@apply bg-white leading-normal text-gray-700;
+	font-family: 'Montserrat', sans-serif;
+}
