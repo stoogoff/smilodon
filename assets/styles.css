@@ -7,3 +7,109 @@ body {
 	@apply bg-white leading-normal text-gray-700;
 	font-family: 'Montserrat', sans-serif;
 }
+
+/* form inputs */
+.input {
+	@apply font-sans text-gray-600 text-sm relative bg-white rounded border border-gray-300 shadow outline-none w-full focus:outline-none focus:ring focus:ring-blue-600 p-3 placeholder-gray-300;
+}
+.input.warning {
+	@apply focus:ring-red-600 text-red-800 border-red-300;
+}
+.input.disabled {
+	@apply bg-gray-200;
+}
+
+/* labels and messages */
+.label {
+	@apply font-sans font-semibold text-xs uppercase inline-block mb-2 text-gray-500;
+}
+.label.warning {
+	@apply text-red-800;
+}
+.message {
+	@apply mt-2 text-sm text-gray-500;
+}
+.message.success {
+	@apply text-green-600;
+}
+.message.warning {
+	@apply text-red-800;
+}
+
+/* alerts */
+.alert {
+	@apply px-4 py-3 border rounded relative mb-4 flex;
+}
+.alert.success {
+	@apply bg-green-200 text-green-800 border-green-800;
+}
+.alert.primary {
+	@apply bg-blue-200 text-blue-800 border-blue-800;
+}
+.alert.secondary {
+	@apply bg-yellow-200 text-yellow-800 border-yellow-800;
+}
+.alert.warning {
+	@apply bg-red-200 text-red-800 border-red-800;
+}
+
+/* buttons */
+.btn {
+	@apply font-sans font-bold uppercase text-sm text-center;
+	@apply px-6 py-3 mr-1 mb-1;
+	@apply rounded shadow outline-none focus:outline-none ease-linear transition-all duration-150;
+	@apply bg-gray-400 text-gray-700 hover:text-white hover:bg-gray-600;
+}
+.btn.disabled {
+	@apply cursor-default;
+	@apply bg-gray-300 text-gray-400 shadow-none;
+	@apply hover:bg-gray-300 hover:text-gray-400 hover:shadow-none;
+}
+.btn.enabled {
+	@apply hover:shadow-lg cursor-pointer;
+}
+.btn.small {
+	@apply px-3 py-1 text-xs;
+}
+.btn.primary {
+	@apply bg-blue-600 text-blue-200 hover:bg-blue-800;
+}
+.btn.secondary {
+	@apply bg-yellow-600 text-yellow-200 hover:bg-yellow-800;
+}
+.btn.success {
+	@apply bg-green-600 text-green-200 hover:bg-green-800;
+}
+.btn.warning {
+	@apply bg-red-600 text-red-200 hover:bg-red-800;
+}
+.btn.outlined {
+	@apply bg-white border border-solid border-gray-700 hover:text-gray-900 hover:bg-gray-100;
+}
+
+/* outlined buttons */
+.btn.outlined.disabled {
+	@apply bg-gray-200 border-gray-400 text-gray-400 cursor-default;
+}
+
+.btn.outlined.primary {
+	@apply text-blue-600 border-blue-400 hover:bg-blue-200 hover:text-blue-800 hover:border-blue-800;
+}
+
+.btn.outlined.secondary {
+	@apply text-yellow-600 border-yellow-400 hover:bg-yellow-200 hover:text-yellow-800 hover:border-yellow-800;
+}
+
+.btn.outlined.success {
+	@apply text-green-600 border-green-400 hover:bg-green-200 hover:text-green-800 hover:border-green-800;
+}
+
+.btn.outlined.warning {
+	@apply text-red-600 border-red-400 hover:bg-red-200 hover:text-red-800 hover:border-red-800;
+}
+
+.btn-icon {
+	@apply border border-solid;
+	@apply font-bold uppercase p-2 rounded-full outline-none focus:outline-none mr-1 mb-1 shadow;
+	@apply ease-linear transition-all duration-150;
+}
