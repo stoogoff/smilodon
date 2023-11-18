@@ -6,6 +6,7 @@ Nuxt/Vue based MindMap.
 Entity:
 
 id: string
+icon: string
 title: string
 description: string
 properties: object

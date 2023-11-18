@@ -1,17 +1,18 @@
 <template>
 	<div>
 		<we-main-nav :menu-items="[]">Smilodon</we-main-nav>
-		<main class="main pt-16 px-2 pb-2">
+		<main class="main pt-16 px-2 pb-2 grid">
+			<div>sidebar</div>
 			<Nuxt />
 		</main>
-		<entity-editor
+		<entity-overlay
 			v-if="showPublish"
 			@close="showPublish = false"
 		/>
 		<we-icon-action
 			type="primary"
 			:icon="plusIcon"
-			class="fixed right-4 bottom-4"
+			class="fixed right-4 bottom-4 circle-icon"
 			@click="showPublish = true"
 		/>
 	</div>

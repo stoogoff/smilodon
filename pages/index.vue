@@ -1,12 +1,9 @@
 <template>
 	<div>
 		<h1>Entities</h1>
-		<ul>
-			<li v-for="entity in entities" :key="entity._id">
-				{{ entity.title }}
-				<we-button-action @click="deleteEntity(entity)" type="warning">Delete</we-button-action>
-			</li>
-		</ul>
+
+		<entity-table v-if="hasEntities" :entities="entities" />
+		<p v-else><em>No entities</em></p>
 	</div>
 </template>
 <script>
@@ -36,11 +33,10 @@ export default {
 		EventBus.$off(ENTITIES_UPDATED)
 	},
 
-	methods: {
-		deleteEntity(entity) {
-			this.$entities.delete(entity)
-			this.$fetch()
-		},
+	computed: {
+		hasEntities() {
+			return this.entities.length > 0
+		}
 	},
 }
 

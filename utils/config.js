@@ -6,6 +6,7 @@ export const DEFAULT_ENTITY = {
 	properties: {},
 	tags: [],
 	category: '',
+	icon: '',
 }
 
 export const DEFAULT_PROPERTY = {

@@ -14,7 +14,7 @@
 			@before-leave="start"
 			@after-leave="end"
 		>
-			<div class="select-dropdown border border-t-0 absolute z-50 w-96 shadow" v-show="active">
+			<div class="select-dropdown bg-white border border-t-0 absolute z-50 w-96 shadow-lg" v-show="active">
 				<div
 					v-for="(item, idx) in items"
 					:key="idx"
@@ -27,7 +27,7 @@
 					}"
 					tabindex="0"
 				>
-					{{ item }}
+					{{ display ? item[display] : item }}
 				</div>
 			</div>
 		</transition>
@@ -42,6 +42,10 @@ export default Vue.component('SelectInput', {
 		items: {
 			type: Array,
 			required: true,
+		},
+		display: {
+			type: String,
+			default: '',
 		},
 		label: {
 			type: String,
@@ -112,7 +116,8 @@ export default Vue.component('SelectInput', {
 <style scoped>
 
 .select-trigger {
-	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chevron-down</title><path d="M5.84,9.59L11.5,15.25L17.16,9.59L16.45,8.89L11.5,13.84L6.55,8.89L5.84,9.59Z" /></svg>') right center no-repeat;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><title>chevron-down</title><path d="M5.84,9.59L11.5,15.25L17.16,9.59L16.45,8.89L11.5,13.84L6.55,8.89L5.84,9.59Z" /></svg>') right center no-repeat;
+	background-size: 30px;
 }
 .select-item {
 	transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
