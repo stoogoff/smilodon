@@ -18,6 +18,17 @@ body {
 	@apply bg-gray-200;
 }
 
+/* tabs */
+.tab-panel {
+	@apply p-4;
+}
+.tab-item {
+	@apply hover:text-gray-600 hover:border-gray-300;
+}
+.tab-item.active {
+	@apply text-blue-600 border-blue-600;
+}
+
 /* labels and messages */
 .label {
 	@apply font-sans font-semibold text-xs uppercase inline-block mb-2 text-gray-500;

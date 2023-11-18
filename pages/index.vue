@@ -1,8 +1,11 @@
 <template>
 	<div>
-		<h1>Hello</h1>
+		<h1>Entities</h1>
 		<ul>
-			<li v-for="entity in entities" :key="entity._id">{{ entity.title }}</li>
+			<li v-for="entity in entities" :key="entity._id">
+				{{ entity.title }}
+				<we-button-action @click="deleteEntity(entity)" type="warning">Delete</we-button-action>
+			</li>
 		</ul>
 	</div>
 </template>
@@ -31,6 +34,13 @@ export default {
 
 	beforeDestroy() {
 		EventBus.$off(ENTITIES_UPDATED)
+	},
+
+	methods: {
+		deleteEntity(entity) {
+			this.$entities.delete(entity)
+			this.$fetch()
+		},
 	},
 }
 
