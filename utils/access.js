@@ -2,9 +2,10 @@
 import { createId } from 'we-ui/utils/string'
 
 export default class Access {
-	constructor(db, prefix) {
+	constructor(db, prefix, shape) {
 		this.db = db
 		this.prefix = prefix
+		this.shape = shape
 	}
 
 	async byId(id) {
@@ -34,6 +35,7 @@ export default class Access {
 		const id = createId()
 		const item = {
 			_id: this.prefix + id,
+			...this.shape,
 			...data,
 		}
 

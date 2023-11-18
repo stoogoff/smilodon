@@ -3,33 +3,37 @@
 
 Nuxt/Vue based MindMap.
 
-Entity:
+## Data
 
-id: string
-icon: string
-title: string
-description: string
-properties: object
-  [key]: Property
-category: string (Category id)
-tags: array of string
+### Entity
 
-Property
+- id: string
+- icon: string
+- title: string
+- description: string
+- properties: object
+  + [key]: Property
+- category: string (Category id)
+- tags: array of string
 
-id: string
-value: string / number / boolean
-type: string of [
-  Text (string),
-  Number (number),
-  Date (ISO8601 string),
-  Time (ISO8601 string),
-  DateTime (ISO8601 string),
-  True/False (boolean)
-]
+### Property
 
-Category
+- id: string
+- value: string / number / boolean
+- type: string of
+  + Text (string),
+  + Number (number),
+  + Date (ISO8601 string),
+  + Time (ISO8601 string),
+  + DateTime (ISO8601 string),
+  + True/False (boolean)
 
-id: string
-title: string
-parent: string (id of another category)
+### Category
 
+- id: string
+- title: string
+- parent: string (id of another category)
+
+# TODO
+
+- deleting a tag from an entity
