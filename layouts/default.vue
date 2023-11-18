@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<main-nav />
+		<we-main-nav :menu-items="[]">Smilodon</we-main-nav>
 		<main class="main pt-16 px-2 pb-2">
 			<Nuxt />
 		</main>
@@ -8,7 +8,7 @@
 			v-if="showPublish"
 			@close="showPublish = false"
 		/>
-		<icon-action
+		<we-icon-action
 			type="primary"
 			icon="plus"
 			class="fixed right-4 bottom-4"

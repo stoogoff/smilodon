@@ -4,6 +4,11 @@ export default {
 	// Target: https://go.nuxtjs.dev/config-target
 	target: 'server',
 
+	env: {
+		cdn: process.env.CDN_URL,
+		database: process.env.POUCH_DATABASE,
+	},
+
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		title: title(),
@@ -27,7 +32,9 @@ export default {
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
 	plugins: [
-		//'~/plugins/filters.js',
+		//'~/plugins/state.js',
+		{ src: '~/plugins/client.js', mode: 'client' },
+		//'~/plugins/filters.js'
 	],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,23 +49,19 @@ export default {
 	buildModules: [
 		// https://go.nuxtjs.dev/tailwindcss
 		'@nuxtjs/tailwindcss',
-		'@nuxtjs/google-fonts',
+		'we-ui/nuxt',
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
 	modules: [
-		'@nuxtjs/axios',
-		'@nuxt/image',
+		//'@nuxtjs/axios',
+		'@nuxt/content',
 	],
 
-	serverMiddleware: [
-		//'~/server/activitypub/activitypub.js',
-		//'~/server/feed/index.js',
-		//'~/server/api/index.js',
-	],
+	//serverMiddleware: [],
 
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
-	axios: {
+	/*axios: {
 		// Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
 		baseURL: process.env.API_URL,
 	},
@@ -79,12 +82,13 @@ export default {
 		cloudinary: {
 			baseURL: `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUDNAME}/image/upload/`
 		}
-	},
+	},*/
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {
 		cache: process.env.NODE_ENV !== 'production',
 		extractCSS: process.env.NODE_ENV === 'production' ? { ignoreOrder: true } : false,
 		optimizeCSS: process.env.NODE_ENV === 'production',
+		transpile: ['we-ui'],
 	},
 }

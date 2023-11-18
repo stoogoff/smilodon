@@ -1,0 +1,1402 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"no",
+				"nowrap"
+			],
+			[
+				"grid-",
+				"grid-template-columns"
+			],
+			[
+				"charac",
+				"characteristics"
+			],
+			[
+				"sk",
+				"skillIncreases"
+			],
+			[
+				"add",
+				"addAdvantage"
+			],
+			[
+				"remove",
+				"removeBackground"
+			],
+			[
+				"ChAt",
+				"ChAtMax"
+			],
+			[
+				"CHARC",
+				"CHARACTERISTIC_MAX"
+			],
+			[
+				"grid",
+				"grid-cols-2"
+			],
+			[
+				"to",
+				"toUpperCase"
+			],
+			[
+				"charact",
+				"characteristics"
+			],
+			[
+				"chara",
+				"characteristics"
+			],
+			[
+				"has",
+				"hasDivineHeritage"
+			],
+			[
+				"cha",
+				"characteristics"
+			],
+			[
+				"SELEC",
+				"SELECTED_BY_OTHER"
+			],
+			[
+				"SELE",
+				"SELECTED_BY_OTHER"
+			],
+			[
+				"char",
+				"characteristics"
+			],
+			[
+				"characte",
+				"characteristics"
+			],
+			[
+				"character",
+				"characteristics"
+			],
+			[
+				"CHA",
+				"CHARACTERISTIC_MAX"
+			],
+			[
+				"CHAR",
+				"CHARACTERISTICS"
+			],
+			[
+				"HER",
+				"HERITAGE_MORTAL"
+			],
+			[
+				"HERI",
+				"HERITAGE_MORTAL"
+			],
+			[
+				"acco",
+				"accordion-item"
+			],
+			[
+				"chevron",
+				"chevron-down"
+			],
+			[
+				"paren",
+				"parentSelection"
+			],
+			[
+				"heri",
+				"heritages"
+			],
+			[
+				"divini",
+				"divinities"
+			],
+			[
+				"show",
+				"showAllSkills"
+			],
+			[
+				"re",
+				"registerHelper\twarning"
+			],
+			[
+				"font-s",
+				"font-size\tproperty"
+			],
+			[
+				"text",
+				"text-transform\tproperty"
+			],
+			[
+				"min-",
+				"min-height"
+			],
+			[
+				"text-",
+				"text-transform"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"backgorun",
+				"background-color"
+			],
+			[
+				"bacg",
+				"background-color"
+			],
+			[
+				"column",
+				"column-count"
+			],
+			[
+				"colle",
+				"collections"
+			],
+			[
+				"backgou",
+				"background-color"
+			],
+			[
+				"tetx",
+				"text-center"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"meta",
+				"metadata"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"bakc",
+				"background-color"
+			],
+			[
+				"backgoru",
+				"background-color"
+			],
+			[
+				"box",
+				"box-medium"
+			],
+			[
+				"page",
+				"page-break-after"
+			],
+			[
+				"a",
+				"avoid"
+			],
+			[
+				"marign-",
+				"margin-top"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "assets/styles.css",
+			"settings":
+			{
+				"buffer_size": 2869,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					7,
+					2,
+					"right_delete",
+					null,
+					"AgAAAHMAAAAAAAAAcwAAAAAAAAAnAAAACWZvbnQtZmFtaWx5OiAnTW9udHNlcnJhdCcsIHNhbnMtc2VyaWY7cwAAAAAAAABzAAAAAAAAAAEAAAAK",
+					"AQAAAAAAAAABAAAAmgAAAAAAAABzAAAAAAAAAAAAAAAAAAAA"
+				]
+			]
+		},
+		{
+			"file": "components/PublishView.vue",
+			"settings":
+			{
+				"buffer_size": 1725,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					3,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAAA0AAAAAAAAADgAAAAAAAAAAAAAADgAAAAAAAAAPAAAAAAAAAAAAAAAPAAAAAAAAABAAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAADQAAAAAAAAANAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					7,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAADgEAAAAAAAAOQQAAAAAAAAAAAAAOQQAAAAAAAA6BAAAAAAAAAAAAAA6BAAAAAAAADsEAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOAQAAAAAAAA4BAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					10,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAANsDAAAAAAAA3AMAAAAAAAAAAAAA3AMAAAAAAADdAwAAAAAAAAAAAADdAwAAAAAAAN4DAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2wMAAAAAAADbAwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					13,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAACAEAAAAAAAAIQQAAAAAAAAAAAAAIQQAAAAAAAAiBAAAAAAAAAAAAAAiBAAAAAAAACMEAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAIAQAAAAAAAAgBAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					16,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAACEAAAAAAAAAIgAAAAAAAAAAAAAAIgAAAAAAAAAjAAAAAAAAAAAAAAAjAAAAAAAAACQAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAIQAAAAAAAAAhAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					25,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAAE0BAAAAAAAATgEAAAAAAAAAAAAATgEAAAAAAABPAQAAAAAAAAAAAABPAQAAAAAAAFABAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAATQEAAAAAAABNAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					27,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAAHkAAAAAAAAAegAAAAAAAAAAAAAAegAAAAAAAAB7AAAAAAAAAAAAAAB7AAAAAAAAAHwAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAeQAAAAAAAAB5AAAAAAAAAAAAAAAAAFtA"
+				],
+				[
+					30,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAAIABAAAAAAAAgQEAAAAAAAAAAAAAgQEAAAAAAACCAQAAAAAAAAAAAACCAQAAAAAAAIMBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgAEAAAAAAACAAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					34,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAANgBAAAAAAAA2QEAAAAAAAAAAAAA2QEAAAAAAADaAQAAAAAAAAAAAADaAQAAAAAAANsBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2AEAAAAAAADYAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					37,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAAC4CAAAAAAAALwIAAAAAAAAAAAAALwIAAAAAAAAwAgAAAAAAAAAAAAAwAgAAAAAAADECAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAALgIAAAAAAAAuAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					43,
+					1,
+					"paste",
+					null,
+					"AQAAAEUCAAAAAAAASAIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAARQIAAAAAAABFAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					47,
+					1,
+					"paste",
+					null,
+					"AQAAAKECAAAAAAAApAIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAoQIAAAAAAAChAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					51,
+					1,
+					"paste",
+					null,
+					"AQAAAPoCAAAAAAAA/QIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA+gIAAAAAAAD6AgAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "layouts/default.vue",
+			"settings":
+			{
+				"buffer_size": 465,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					3,
+					1,
+					"insert",
+					{
+						"characters": "we-"
+					},
+					"AwAAAKsAAAAAAAAArAAAAAAAAAAAAAAArAAAAAAAAACtAAAAAAAAAAAAAACtAAAAAAAAAK4AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqwAAAAAAAACrAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					7,
+					1,
+					"paste",
+					null,
+					"AgAAABQAAAAAAAAATQAAAAAAAAAAAAAATQAAAAAAAABNAAAAAAAAAAwAAAA8bWFpbi1uYXYgLz4",
+					"AQAAAAAAAAABAAAAIAAAAAAAAAAUAAAAAAAAAAAAAAAAAEhA"
+				],
+				[
+					10,
+					1,
+					"insert",
+					{
+						"characters": "Smilodon"
+					},
+					"CQAAADkAAAAAAAAAOgAAAAAAAAAAAAAAOgAAAAAAAAA6AAAAAAAAAAYAAABBZWdlYW46AAAAAAAAADsAAAAAAAAAAAAAADsAAAAAAAAAPAAAAAAAAAAAAAAAPAAAAAAAAAA9AAAAAAAAAAAAAAA9AAAAAAAAAD4AAAAAAAAAAAAAAD4AAAAAAAAAPwAAAAAAAAAAAAAAPwAAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAEEAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAPwAAAAAAAAA5AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					13,
+					1,
+					"left_delete",
+					null,
+					"AQAAAC4AAAAAAAAALgAAAAAAAAAJAAAAbWVudUl0ZW1z",
+					"AQAAAAAAAAABAAAALgAAAAAAAAA3AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					14,
+					1,
+					"insert",
+					{
+						"characters": "[]"
+					},
+					"AgAAAC4AAAAAAAAALwAAAAAAAAAAAAAALwAAAAAAAAAwAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAALgAAAAAAAAAuAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "components/LoadingSpinner.vue",
+			"settings":
+			{
+				"buffer_size": 592,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 130.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/stoo/Dev/smilodon",
+		"/Users/stoo/Dev/smilodon/assets",
+		"/Users/stoo/Dev/smilodon/components",
+		"/Users/stoo/Dev/smilodon/components/forms",
+		"/Users/stoo/Dev/smilodon/layouts",
+		"/Users/stoo/Dev/smilodon/pages",
+		"/Users/stoo/Dev/smilodon/utils"
+	],
+	"file_history":
+	[
+		"/Users/stoo/Dev/smilodon/plugins/client.js",
+		"/Users/stoo/Dev/smilodon/tailwind.config.js",
+		"/Users/stoo/Dev/smilodon/example.env",
+		"/Users/stoo/Dev/smilodon/.env",
+		"/Users/stoo/Dev/smilodon/nuxt.config.js",
+		"/Users/stoo/Dev/smilodon/package.json",
+		"/Users/stoo/Dev/smilodon/.editorconfig",
+		"/Users/stoo/Dev/aegean-app/nuxt.config.js",
+		"/Users/stoo/Dev/aegean-website/state/products.js",
+		"/Users/stoo/Dev/aegean-website/utils/config.js",
+		"/Users/stoo/Dev/aegean-website/.env",
+		"/Users/stoo/Dev/aegean-website/pages/downloads.vue",
+		"/Users/stoo/Dev/aegean-app/state/adversaries.js",
+		"/Users/stoo/Dev/aegean-website/server/api/api.js",
+		"/Users/stoo/Dev/aegean-website/server/api/index.js",
+		"/Users/stoo/Dev/aegean-app/.nuxt/utils.js",
+		"/Users/stoo/Dev/aegean-app/components/foundry/MuliSelectInput.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/inputs/MultiSelectInput.vue",
+		"/Users/stoo/Dev/aegean-app/components/foundry/text-input.js",
+		"/Users/stoo/Dev/aegean-foundry-vtt/module/helpers/config.js",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/common/ButtonAction.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/module/sheets/actor-sheet.js",
+		"/Users/stoo/Dev/aegean-foundry-vtt/module/sheets/sheet-view.js",
+		"/Users/stoo/Dev/aegean-website/pages/products/index.vue",
+		"/Users/stoo/Dev/aegean-website/nuxt.config.js",
+		"/Users/stoo/Dev/aegean-website/utils/meta.js",
+		"/Users/stoo/Dev/aegean-website/components/FooterSection.vue",
+		"/Users/stoo/Dev/aegean-app/.env",
+		"/Users/stoo/Dev/aegean-app/utils/meta.js",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/inputs/FormInput.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/inputs/SelectInput.vue",
+		"/Users/stoo/Dev/aegean-app/assets/styles.css",
+		"/Users/stoo/Dev/aegean-foundry-vtt/css/layout.css",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/inputs/BoxInput.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/common/TabGroup.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/inputs/SkillInput.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/parts/HeaderSection.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/parts/TalentPanel.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/common/TabPanel.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/parts/Background.vue",
+		"/Users/stoo/Dev/aegean-app/pages/index.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/parts/Equipment.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/parts/character.js",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/parts/Header.vue",
+		"/Users/stoo/Dev/aegean-app/pages/foundry.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/foundry.vue",
+		"/Users/stoo/Dev/aegean-app/components/foundry/SelectInput.vue",
+		"/Users/stoo/Dev/aegean-app/components/foundry/TabGroup.vue",
+		"/Users/stoo/Dev/aegean-app/components/foundry/TabPanel.vue",
+		"/Users/stoo/Dev/aegean-app/components/foundry/BoxInput.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/src/components/CharacterSheet.vue",
+		"/Users/stoo/Dev/aegean-app/components/foundry/SkillInput.vue",
+		"/Users/stoo/Dev/aegean-foundry-vtt/index.html",
+		"/Users/stoo/Dev/aegean-app/components/foundry/FormInput.vue",
+		"/Users/stoo/Dev/aegean-app/components/buttons/InfoButton.vue",
+		"/Users/stoo/Dev/aegean-app/utils/config.js",
+		"/Users/stoo/Dev/aegean-app/pages/characters/_characterId/skills.vue",
+		"/Users/stoo/Dev/aegean-app/components/system/CharacterProgress.vue",
+		"/Users/stoo/Dev/aegean-app/state/message.js",
+		"/Users/stoo/Dev/aegean-app/pages/characters/_characterId/fate.vue",
+		"/Users/stoo/Dev/aegean-app/components/system/AdversaryView.vue",
+		"/Users/stoo/Dev/aegean-app/mixins/WithCharacter.js",
+		"/Users/stoo/Dev/aegean-app/pages/characters/_characterId/careers.vue",
+		"/Users/stoo/Dev/aegean-app/pages/characters/_characterId/heritage.vue",
+		"/Users/stoo/Dev/aegean-app/pages/characters/_characterId/background.vue",
+		"/Users/stoo/Dev/aegean-app/utils/character/creator.js",
+		"/Users/stoo/Dev/aegean-app/pages/characters/_characterId/characteristics.vue",
+		"/Users/stoo/Dev/aegean-app/utils/assert.js",
+		"/Users/stoo/Dev/aegean-app/pages/characters/new.vue",
+		"/Users/stoo/Dev/aegean-app/pages/characters/_characterId/equipment.vue",
+		"/Users/stoo/Dev/aegean-app/pages/characters/_characterId/template.vue",
+		"/Users/stoo/Dev/aegean-app/pages/characters/_characterId/advantages.vue",
+		"/Users/stoo/Dev/aegean-app/state/character.js",
+		"/Users/stoo/Dev/aegean-app/utils/character/test.js",
+		"/Users/stoo/Dev/aegean-app/state/data.js",
+		"/Users/stoo/Dev/aegean-app/components/buttons/RadioAction.vue",
+		"/Users/stoo/Dev/aegean-app/components/FooterSection.vue",
+		"/Users/stoo/Dev/aegean-app/pages/characters/index.vue",
+		"/Users/stoo/Dev/aegean-app/node_modules/micromark/dist/tokenize/character-reference.js",
+		"/Users/stoo/Dev/aegean-app/static/data/equipment.json",
+		"/Users/stoo/Dev/aegean-app/utils/character.js",
+		"/Users/stoo/Dev/aegean-app/plugins/filters.js",
+		"/Users/stoo/Dev/aegean-app/components/accordion/AccordionGroup.vue",
+		"/Users/stoo/Dev/aegean-app/package.json",
+		"/Users/stoo/Dev/aegean-app/utils/number.js",
+		"/Users/stoo/Dev/aegean-app/components/system/StatBlock.vue",
+		"/Users/stoo/Dev/aegean-app/content/characters/skills.md",
+		"/Users/stoo/Dev/aegean-app/components/DefinitionTerm.vue",
+		"/Users/stoo/Dev/aegean-app/components/CardView.vue",
+		"/Users/stoo/Dev/aegean-app/components/buttons/StepButtons.vue",
+		"/Users/stoo/Dev/aegean-app/pages/adversaries/_id.vue",
+		"/Users/stoo/Dev/aegean-app/layouts/default.vue",
+		"/Users/stoo/Dev/aegean-app/layouts/no-footer.vue",
+		"/Users/stoo/Dev/aegean-app/components/ListFilter.vue",
+		"/Users/stoo/Dev/aegean-app/components/RenderMarkdown.vue",
+		"/Users/stoo/Dev/aegean-app/tests/unit/components/RenderMarkdown.spec.js",
+		"/Users/stoo/Dev/aegean-app/tests/unit/utils/db.spec.js",
+		"/Users/stoo/Dev/aegean-app/tests/unit/utils/list.spec.js",
+		"/Users/stoo/Dev/aegean-app/jest.config.js",
+		"/Users/stoo/Dev/aegean-app/components/MarkdownContent.vue",
+		"/Users/stoo/Dev/aegean-app/components/MessageView.vue",
+		"/Users/stoo/Dev/aegean-app/tests/unit/components/TagView.spec.js",
+		"/Users/stoo/Dev/aegean-app/components/TagView.vue",
+		"/Users/stoo/Dev/aegean-app/utils/list.js",
+		"/Users/stoo/Dev/aegean-app/tests/unit/utils/string.spec.js",
+		"/Users/stoo/Dev/aegean-app/tests/unit/utils/character.spec.js",
+		"/Users/stoo/Dev/aegean-app/tests/component/TagView.spec.js",
+		"/Users/stoo/Dev/aegean-app/content/characters/equipment.md",
+		"/Users/stoo/Dev/aegean-app/content/characters/fate.md",
+		"/Users/stoo/Dev/aegean-app/static/data/chargen/advantages.json",
+		"/Users/stoo/Dev/aegean-app/content/characters/advantages.md",
+		"/Users/stoo/Dev/aegean-app/utils/string.js",
+		"/Users/stoo/Dev/aegean-app/tailwind.config.js",
+		"/Users/stoo/Dev/aegean-app/static/data/talents.json",
+		"/Users/stoo/Dev/aegean-app/components/buttons/CheckboxAction.vue",
+		"/Users/stoo/Dev/aegean-app/components/buttons/RadioList.vue",
+		"/Users/stoo/Dev/aegean-app/static/data/chargen/careers.json",
+		"/Users/stoo/Dev/aegean-app/content/characters/careers.md",
+		"/Users/stoo/Dev/aegean-app/components/system/StatView.vue",
+		"/Users/stoo/Dev/aegean-app/static/data/chargen/characteristics.json",
+		"/Users/stoo/Dev/aegean-app/content/characters/characteristics.md",
+		"/Users/stoo/Dev/aegean-app/plugins/state.js",
+		"/Users/stoo/Dev/aegean-app/static/data/adversaries/all.json",
+		"/Users/stoo/Dev/aegean-app/pages/adversaries/index.vue",
+		"/Users/stoo/Dev/aegean-app/node_modules/async/all.js",
+		"/Users/stoo/Dev/aegean-app/static/data/adversaries/animals.json",
+		"/Users/stoo/Dev/aegean-app/static/data/abilities.json",
+		"/Users/stoo/Dev/aegean-app/static/data/properties.json"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 130.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"loading-spinner"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "assets/styles.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2869,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								115,
+								115
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "components/PublishView.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1725,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								797,
+								797
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 390.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "layouts/default.vue",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 465,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								48,
+								48
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "components/LoadingSpinner.vue",
+					"selected": true,
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 592,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/Vue Component.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 38.0
+	},
+	"input":
+	{
+		"height": 46.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 267.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/npm.sublime-build",
+	"project": "Smilodon.sublime-project",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"nuxt",
+				"aegean-app/nuxt.config.js"
+			],
+			[
+				"utils",
+				"aegean-app/.nuxt/utils.js"
+			],
+			[
+				".env",
+				"aegean-app/.env"
+			],
+			[
+				"meta",
+				"aegean-app/utils/meta.js"
+			],
+			[
+				"config",
+				"aegean-website/utils/config.js"
+			],
+			[
+				"footer",
+				"components/FooterSection.vue"
+			],
+			[
+				"info",
+				"components/buttons/InfoButton.vue"
+			],
+			[
+				"adversaryv",
+				"components/system/AdversaryView.vue"
+			],
+			[
+				"withc",
+				"mixins/WithCharacter.js"
+			],
+			[
+				"crea",
+				"utils/character/creator.js"
+			],
+			[
+				"radioac",
+				"components/buttons/RadioAction.vue"
+			],
+			[
+				"career",
+				"pages/characters/_characterId/careers.vue"
+			],
+			[
+				"charac",
+				"components/system/CharacterProgress.vue"
+			],
+			[
+				"foo",
+				"components/FooterSection.vue"
+			],
+			[
+				"charac creator",
+				"utils/character/creator.js"
+			],
+			[
+				"charac cre",
+				"node_modules/micromark/dist/tokenize/character-reference.js"
+			],
+			[
+				"character/cre",
+				"utils/character/creator.js"
+			],
+			[
+				"equip",
+				"pages/characters/_characterId/equipment.vue"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"data.js",
+				"state/data.js"
+			],
+			[
+				"accordion",
+				"components/accordion/AccordionGroup.vue"
+			],
+			[
+				"equipe",
+				"static/data/equipment.json"
+			],
+			[
+				"infobu",
+				"components/buttons/InfoButton.vue"
+			],
+			[
+				"defini",
+				"components/DefinitionTerm.vue"
+			],
+			[
+				"cardview",
+				"components/CardView.vue"
+			],
+			[
+				"confi",
+				"utils/config.js"
+			],
+			[
+				"defin",
+				"components/DefinitionTerm.vue"
+			],
+			[
+				"skills",
+				"pages/characters/_characterId/skills.vue"
+			],
+			[
+				"styl",
+				"assets/styles.css"
+			],
+			[
+				"advers",
+				"components/system/AdversaryView.vue"
+			],
+			[
+				"style",
+				"assets/styles.css"
+			],
+			[
+				"s",
+				"assets/styles.css"
+			],
+			[
+				"adversary",
+				"components/system/AdversaryView.vue"
+			],
+			[
+				"pac",
+				"package.json"
+			],
+			[
+				"jest",
+				"jest.config.js"
+			],
+			[
+				"config.",
+				"utils/config.js"
+			],
+			[
+				"defi",
+				"components/DefinitionTerm.vue"
+			],
+			[
+				"list",
+				"components/ListFilter.vue"
+			],
+			[
+				"talent",
+				"static/data/talents.json"
+			],
+			[
+				"statview",
+				"components/system/StatView.vue"
+			],
+			[
+				"markd",
+				"components/MarkdownContent.vue"
+			],
+			[
+				"listfil",
+				"components/ListFilter.vue"
+			],
+			[
+				"all.json",
+				"static/data/adversaries/all.json"
+			],
+			[
+				"all.",
+				"node_modules/async/all.js"
+			],
+			[
+				"markdown",
+				"components/MarkdownContent.vue"
+			],
+			[
+				"card",
+				"components/CardView.vue"
+			],
+			[
+				"tagvi",
+				"components/TagView.vue"
+			],
+			[
+				"icon",
+				"components/IconView.vue"
+			],
+			[
+				"nuxt.",
+				"nuxt.config.js"
+			],
+			[
+				"acco",
+				"components/accordion/AccordionItem.vue"
+			],
+			[
+				"background",
+				"components/system/BackgroundView.vue"
+			],
+			[
+				"acc",
+				"components/accordion/AccordionGroup.vue"
+			],
+			[
+				"accor",
+				"components/accordion/AccordionItem.vue"
+			],
+			[
+				"filter",
+				"plugins/filters.js"
+			],
+			[
+				"iconvie",
+				"components/IconView.vue"
+			],
+			[
+				".card",
+				"node_modules/.cache/babel-loader/d0cc8339acede1b5436da6f2e5eee818.json.gz"
+			],
+			[
+				"accord",
+				"components/accordion/AccordionGroup.vue"
+			],
+			[
+				"inde",
+				"pages/index.vue"
+			],
+			[
+				"accordio",
+				"components/accordion/AccordionItem.vue"
+			],
+			[
+				"tabgro",
+				"components/tabs/TabGroup.vue"
+			],
+			[
+				"divini",
+				"components/system/DivinityView.vue"
+			],
+			[
+				"check",
+				"components/forms/CheckBox.vue"
+			],
+			[
+				"iconvi",
+				"components/IconView.vue"
+			],
+			[
+				"RADIO",
+				"components/forms/RadioGroup.vue"
+			],
+			[
+				"backgr ",
+				"components/system/BackgroundView.vue"
+			],
+			[
+				"divine",
+				"components/system/DivinityView.vue"
+			],
+			[
+				"divin",
+				"static/data/chargen/divinities.json"
+			],
+			[
+				"data",
+				"state/data.js"
+			],
+			[
+				"conf",
+				"utils/config.js"
+			],
+			[
+				"radio",
+				"components/forms/RadioGroup.vue"
+			],
+			[
+				"mainn",
+				"components/nav/MainNav.vue"
+			],
+			[
+				"state/ima",
+				"state/image.js"
+			],
+			[
+				"chara",
+				"components/system/CharacterProgress.vue"
+			],
+			[
+				"divinit",
+				"static/data/chargen/divinities.json"
+			],
+			[
+				"herit",
+				"static/data/chargen/heritage.json"
+			],
+			[
+				"linkac",
+				"components/buttons/LinkAction.vue"
+			],
+			[
+				"string",
+				"utils/string.js"
+			],
+			[
+				"tonic",
+				"node_modules/pouchdb/tonic-example.js"
+			],
+			[
+				"firebase",
+				"plugins/firebase.js"
+			],
+			[
+				"background.js",
+				"static/data/chargen/background.json"
+			],
+			[
+				"renderma",
+				"components/RenderMarkdown.vue"
+			],
+			[
+				"compon progr",
+				"components/system/CharacterProgress.vue"
+			],
+			[
+				"progr",
+				"node_modules/webpack/lib/ProgressPlugin.js"
+			],
+			[
+				"chargen",
+				"state/chargen.js"
+			],
+			[
+				"adversaryvi",
+				"components/system/AdversaryView.vue"
+			],
+			[
+				"step",
+				"components/buttons/StepButtons.vue"
+			],
+			[
+				"adversar",
+				"components/system/AdversaryView.vue"
+			],
+			[
+				"STAT",
+				"components/system/StatBlock.vue"
+			],
+			[
+				"stat",
+				"components/system/StatBlock.vue"
+			],
+			[
+				"adver",
+				"components/system/AdversaryView.vue"
+			],
+			[
+				"textinp",
+				"components/forms/TextInput.vue"
+			],
+			[
+				"textin",
+				"components/forms/TextInput.vue"
+			],
+			[
+				"listfilter",
+				"components/forms/ListFilter.vue"
+			],
+			[
+				"statblo",
+				"components/system/StatBlock.vue"
+			],
+			[
+				"character",
+				"state/character.js"
+			],
+			[
+				"heritage.js",
+				"static/data/chargen/heritage.json"
+			],
+			[
+				"heritage.v",
+				"pages/characters/_characterId/heritage.vue"
+			],
+			[
+				"charge",
+				"state/chargen.js"
+			],
+			[
+				"assets/st",
+				"assets/styles.css"
+			],
+			[
+				"messageview",
+				"components/MessageView.vue"
+			],
+			[
+				"xanthi",
+				"src/setting/pregens/xanthippe-soldier.md"
+			],
+			[
+				"xiphos",
+				"src/setting/equipment/weapons/xiphos.md"
+			],
+			[
+				"makh",
+				"src/setting/equipment/weapons/makhaira.md"
+			],
+			[
+				"lore",
+				"src/rules/skills/lore.md"
+			],
+			[
+				"autom",
+				"src/setting/adversaries/monsters/automaton-spider.md"
+			],
+			[
+				"targets",
+				"build/targets.json"
+			],
+			[
+				"boar.md",
+				"src/setting/equipment/livestock/boar.md"
+			],
+			[
+				"blurb",
+				"src/quickstart/blurb.md"
+			],
+			[
+				"targe",
+				"build/targets.json"
+			],
+			[
+				"club",
+				"src/setting/equipment/weapons/club.md"
+			],
+			[
+				"xipho",
+				"src/setting/equipment/weapons/xiphos.md"
+			],
+			[
+				"targ",
+				"build/targets.json"
+			],
+			[
+				"resolve",
+				"src/rules/attributes/resolve.md"
+			],
+			[
+				"stun",
+				"src/rules/properties/stun.md"
+			],
+			[
+				"two ",
+				"src/rules/properties/two-handed.md"
+			],
+			[
+				"sava",
+				"src/rules/properties/savage.md"
+			],
+			[
+				"pierce",
+				"src/rules/properties/pierce.md"
+			],
+			[
+				"helm",
+				"src/setting/equipment/armour/helm.md"
+			],
+			[
+				"breast",
+				"src/setting/equipment/armour/breastplate.md"
+			],
+			[
+				"note",
+				"NOTES.md"
+			],
+			[
+				"goat",
+				"src/setting/equipment/livestock/goat.md"
+			],
+			[
+				"volle",
+				"src/rules/properties/volley.md"
+			],
+			[
+				"hoplon",
+				"src/setting/equipment/shields/hoplon.md"
+			],
+			[
+				"adven",
+				"src/setting/adventures/adventure-03.md"
+			],
+			[
+				"scars",
+				"src/rules/experience/scars.md"
+			],
+			[
+				"wounds",
+				"src/chapters/06-conflict/01-wounds-and-healing.md"
+			],
+			[
+				"honoured",
+				"src/rules/talents/honoured.md"
+			],
+			[
+				"resped",
+				"src/rules/talents/respected.md"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 333.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 600.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 278.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
