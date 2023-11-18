@@ -37,3 +37,4 @@ Nuxt/Vue based MindMap.
 # TODO
 
 - deleting a tag from an entity
+- entity needs to get category rather than display id

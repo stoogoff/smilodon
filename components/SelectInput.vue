@@ -6,7 +6,7 @@
 			@click="toggleActive"
 			@keypress.enter="toggleActive"
 			@keypress.space.prevent="toggleActive"
-		>{{ value }}&nbsp;</div>
+		>{{ display && value ? value[display] : value }}&nbsp;</div>
 		<transition
 			name="select"
 			@enter="start"
@@ -52,7 +52,7 @@ export default Vue.component('SelectInput', {
 			required: true,
 		},
 		value: {
-			type: [String, Number],
+			type: [String, Number, Object],
 			default: '',
 		},
 		message: {

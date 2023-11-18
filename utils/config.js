@@ -38,4 +38,5 @@ export const CATEGORY_ID_PREFIX = 'category:'
 
 // global events
 export const ENTITIES_UPDATED = 'entities-updated'
+export const CATEGORIES_UPDATED = 'categories-updated'
 

@@ -2,7 +2,7 @@
 	<div>
 		<we-main-nav :menu-items="[]">Smilodon</we-main-nav>
 		<main class="main pt-16 px-2 pb-2 grid">
-			<category-tree />
+			<category-panel />
 			<Nuxt />
 		</main>
 		<entity-overlay

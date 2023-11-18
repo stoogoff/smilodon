@@ -15,7 +15,7 @@
 			<we-tab-panel title="Metadata">
 				<select-input label="Icon" v-model="icon" :items="icons" />
 				<we-validate-field :value="category" :rules="rules.category" v-slot="{ error, message }">
-					<select-input label="Category" v-model="category" :items="['One', 'Two', 'Three']" :error="error" :message="message" />
+					<select-input label="Category" v-model="category" :items="categories" display="title" :error="error" :message="message" />
 				</we-validate-field>
 				<div class="flex">
 					<div class="flex-grow">
@@ -39,6 +39,7 @@
 
 import Vue from 'vue'
 import { required, validateBatch } from 'we-ui/utils/validators'
+import { sortByProperty } from 'we-ui/utils/list'
 import { EventBus } from '~/utils/event-bus'
 import { ENTITIES_UPDATED } from '~/utils/config'
 import { toTitleCase } from '~/utils/string'
@@ -51,8 +52,16 @@ export default Vue.component('EntityEditor', {
 		},
 	},
 
+	async fetch() {
+		const categories = await this.$categories.all()
+
+		this.categories = categories.sort(sortByProperty('title'))
+	},
+	fetchOnServer: false,
+
 	data() {
 		return {
+			categories: [],
 			title: '',
 			description: '',
 			category: '',
@@ -116,7 +125,7 @@ export default Vue.component('EntityEditor', {
 					...this.entity,
 					title: this.title,
 					description: this.description,
-					category: this.category,
+					category: this.category._id,
 					tags: this.tags,
 					icon: this.icon.toLowerCase(),
 				})
@@ -125,7 +134,7 @@ export default Vue.component('EntityEditor', {
 				newEntity = await this.$entities.create({
 					title: this.title,
 					description: this.description,
-					category: this.category,
+					category: this.category._id,
 					tags: this.tags,
 					icon: this.icon.toLowerCase(),
 				})
