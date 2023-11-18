@@ -22,7 +22,7 @@
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",
-    "we-ui": "https://github.com/stoogoff/nuxt-components#v1.0.2"
+    "we-ui": "https://github.com/stoogoff/nuxt-components#v1.0.7"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^5.3.3",
