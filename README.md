@@ -37,4 +37,7 @@ Nuxt/Vue based MindMap.
 # TODO
 
 - deleting a tag from an entity
-- entity needs to get category rather than display id
+- tags should be auto-sorted alphabetically
+- category doesn't get pre-filled when editing
+- entity table should be sortable
+- 

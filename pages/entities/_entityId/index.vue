@@ -21,7 +21,7 @@
 import WithEntity from '~/mixins/with-entity'
 
 export default {
-	name: 'EntityIndexPage',
+	name: 'EntityView',
 	mixins: [ WithEntity ],
 
 	methods: {

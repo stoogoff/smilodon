@@ -9,6 +9,7 @@ body {
 
 .main {
 	grid-template-columns: 300px auto;
+	gap: 2rem;
 }
 h1 {
 	@apply text-2xl font-bold;
@@ -16,7 +17,7 @@ h1 {
 h2 {
 	@apply text-xl font-bold;
 }
-a.link {
+.link {
 	@apply text-blue-600 underline hover:text-blue-400 hover:no-underline;
 }
 

@@ -18,6 +18,7 @@
 
 import Vue from 'vue'
 import { EventBus } from '~/utils/event-bus'
+import { ENTITIES_UPDATED } from '~/utils/config'
 import { close } from '~/utils/icons'
 
 export default Vue.component('EntityOverlay', {
@@ -28,7 +29,7 @@ export default Vue.component('EntityOverlay', {
 	},
 
 	methods: {
-		async save() {
+		async save(entity) {
 			EventBus.$emit(ENTITIES_UPDATED, entity)
 			this.$emit('close')
 		},

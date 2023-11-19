@@ -1,4 +1,11 @@
 
+// top nav menu items
+export const  MENU_ITEMS = [
+	{ title: 'Home', href: '/' },
+	{ title: 'Categories', href: '/categories' },
+	{ title: 'Entities', href: '/entities' },
+]
+
 // default data types
 export const DEFAULT_ENTITY = {
 	title: '',

@@ -1,17 +1,16 @@
 <template>
-	<div>
+	<section>
 		<h1>Entities</h1>
-
 		<entity-table v-if="hasEntities" :entities="entities" />
 		<p v-else><em>No entities</em></p>
-	</div>
+	</section>
 </template>
 <script>
 
 import WithEntities from '~/mixins/with-entities'
 
 export default {
-	name: 'Index',
+	name: 'EntitiesIndex',
 	mixins: [ WithEntities ],
 
 	async fetch() {

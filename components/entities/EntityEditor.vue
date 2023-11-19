@@ -5,18 +5,14 @@
 				<we-validate-field :value="title" :rules="rules.title" v-slot="{ error, message }">
 					<we-text-input label="Title" v-model="title" :error="error" :message="message" />
 				</we-validate-field>
-				<we-validate-field :value="description" :rules="rules.description" v-slot="{ error, message }">
-					<we-text-area label="Description" v-model="description" :error="error" :message="message" />
-				</we-validate-field>
+				<we-text-area label="Description" v-model="description" />
 			</we-tab-panel>
 			<we-tab-panel title="Properties">
 				<p>Properties</p>
 			</we-tab-panel>
 			<we-tab-panel title="Metadata">
 				<select-input label="Icon" v-model="icon" :items="icons" />
-				<we-validate-field :value="category" :rules="rules.category" v-slot="{ error, message }">
-					<select-input label="Category" v-model="category" :items="categories" display="title" :error="error" :message="message" />
-				</we-validate-field>
+				<select-input label="Category" v-model="category" :items="categories" display="title" />
 				<div class="flex">
 					<div class="flex-grow">
 						<we-text-input label="Tag" v-model="currentTag" />
@@ -38,10 +34,9 @@
 <script>
 
 import Vue from 'vue'
-import { required, validateBatch } from 'we-ui/utils/validators'
+import { required, validate } from 'we-ui/utils/validators'
 import { sortByProperty } from 'we-ui/utils/list'
 import { EventBus } from '~/utils/event-bus'
-import { ENTITIES_UPDATED } from '~/utils/config'
 import { toTitleCase } from '~/utils/string'
 
 export default Vue.component('EntityEditor', {
@@ -90,8 +85,6 @@ export default Vue.component('EntityEditor', {
 		rules() {
 			return {
 				title: [required()],
-				description: [required()],
-				category: [required()],
 			}
 		},
 
@@ -100,11 +93,7 @@ export default Vue.component('EntityEditor', {
 		},
 
 		canContinue() {
-			return validateBatch(this.rules, {
-				title: this.title,
-				description: this.description,
-				category: this.category,
-			})
+			return validate(this.rules.title, this.title)
 		},
 	},
 
@@ -140,7 +129,6 @@ export default Vue.component('EntityEditor', {
 				})
 			}
 
-			EventBus.$emit(ENTITIES_UPDATED, newEntity)
 			this.$emit('save', newEntity)
 		},
 	},

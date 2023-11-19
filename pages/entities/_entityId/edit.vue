@@ -10,7 +10,7 @@ import WithEntity from '~/mixins/with-entity'
 
 export default {
 	layout: 'no-action',
-	name: 'EntityEditPage',
+	name: 'EntityEdit',
 	mixins: [ WithEntity ],
 
 	methods: {

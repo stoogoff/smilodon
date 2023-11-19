@@ -16,7 +16,7 @@
 				</td>
 				<td>
 					<nuxt-link class="link" :to="`/entities/${ entity.slug }`">{{ entity.title }}</nuxt-link></td>
-				<td>{{ entity.category }}</td>
+				<td>{{ getCategoryTitle(entity.category) }}</td>
 				<td>
 					<tag-list :tags="entity.tags" />
 				</td>
@@ -42,11 +42,34 @@ export default Vue.component('EntityTable', {
 		},
 	},
 
+	async fetch() {
+		const categories = await this.$categories.all()
+		const idMap = {}
+
+		categories.forEach(category => idMap[category._id] = category)
+
+		this.categories = idMap
+	},
+	fetchOnServer: false,
+
+	data() {
+		return {
+			categories: {}
+		}
+	},
+
 	methods: {
 		deleteEntity(entity) {
 			this.$entities.delete(entity)
 			EventBus.$emit(ENTITIES_UPDATED)
 		},
+
+		getCategoryTitle(categoryId) {
+			if(!categoryId) return 'None'
+			if(!(categoryId in this.categories)) return 'Unknown'
+
+			return this.categories[categoryId].title
+		}
 	},
 })
 
