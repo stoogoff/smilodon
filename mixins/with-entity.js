@@ -9,7 +9,7 @@ export default {
 
 	data() {
 		return {
-			entities: null,
+			entity: null,
 		}
 	},
 }

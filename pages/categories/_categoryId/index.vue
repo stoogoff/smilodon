@@ -4,16 +4,12 @@
 		<div v-else>
 			<h1>Category: {{ category.title }}</h1>
 			<div>
-				<span @click="setViewToTable" class="cursor-pointer hover:bg-gray-200 p-1 rounded">
-					<we-icon-view class="inline-block w-5" :icon="tableIcon" />
-				</span>
-				<span @click="setViewToMap" class="cursor-pointer hover:bg-gray-200 p-1 rounded">
-					<we-icon-view class="inline-block w-5" :icon="earthIcon" />
-				</span>
+				<icon-button @click="setViewToTable" :icon="tableIcon" />
+				<icon-button @click="setViewToMap" :icon="earthIcon" />
 			</div>
 			<div v-if="hasEntities">
 				<entity-table v-if="showTable" :entities="entities" />
-				<p v-else>Show map here</p>
+				<entity-map v-else :category="category" />
 			</div>
 		</div>
 	</section>

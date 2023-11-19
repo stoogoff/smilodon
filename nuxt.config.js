@@ -35,6 +35,7 @@ export default {
 		//'~/plugins/state.js',
 		{ src: '~/plugins/client.js', mode: 'client' },
 		//'~/plugins/filters.js'
+		'~/plugins/mindmap.js',
 	],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
