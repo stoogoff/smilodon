@@ -1,13 +1,11 @@
 <template>
 	<li class="py-1">
-		<div class="flex cursor-pointer" @click="toggleOpen">
+		<div class="flex cursor-pointer hover:bg-gray-100" @click="toggleOpen">
 			<we-icon-view class="inline-block w-5 text-gray-600 mr-1" :icon="icon" />
-			<span class="flex-grow link" @click="viewCategory">{{ category.title }}</span>
+			<span class="flex-grow" @click.stop="viewCategory">{{ category.title }}</span>
 		</div>
 		<slide-down>
-			<ul class="ml-6" v-if="open">
-				<category-tree :parent="category._id" />
-			</ul>
+			<category-tree class="ml-6" v-if="open" :parent="category._id" />
 		</slide-down>
 	</li>
 </template>

@@ -6,12 +6,11 @@ export default db => {
 	const access = new Access(db, ENTITY_ID_PREFIX, DEFAULT_ENTITY)
 
 	access.allByCategory = async function(categoryId) {
-		const all = await this.all()
-
-		if(!categoryId.startsWith(CATEGORY_ID_PREFIX))
+		if(!categoryId.startsWith(CATEGORY_ID_PREFIX)) {
 			categoryId = CATEGORY_ID_PREFIX + categoryId
+		}
 
-		return all.filter(entity => entity.category === categoryId)
+		return await this.allByProperty('category', categoryId)
 	}
 
 	return access

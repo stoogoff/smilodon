@@ -5,12 +5,16 @@
 			:key="category._id"
 			:category="category"
 		/>
+		<entity-item
+			v-for="entity in entities"
+			:key="entity._id"
+			:entity="entity"
+		/>
 	</ul>	
 </template>
 <script>
 
 import Vue from 'vue'
-import { sortByProperty } from 'we-ui/utils/list'
 import { EventBus } from '~/utils/event-bus'
 import { CATEGORIES_UPDATED } from '~/utils/config'
 
@@ -23,15 +27,15 @@ export default Vue.component('CategoryTree', {
 	},
 
 	async fetch() {
-		const categories = await this.$categories.allWithParent(this.parent)
-
-		this.categories = categories.sort(sortByProperty('title'))
+		this.categories = await this.$categories.allWithParent(this.parent)
+		this.entities = await this.$entities.allByCategory(this.parent)
 	},
 	fetchOnServer: false,
 
 	data() {
 		return {
 			categories: [],
+			entities: [],
 		}
 	},
 

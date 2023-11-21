@@ -35,7 +35,6 @@
 
 import Vue from 'vue'
 import { required, validate } from 'we-ui/utils/validators'
-import { sortByProperty } from 'we-ui/utils/list'
 import { EventBus } from '~/utils/event-bus'
 import { toTitleCase } from '~/utils/string'
 
@@ -48,9 +47,7 @@ export default Vue.component('EntityEditor', {
 	},
 
 	async fetch() {
-		const categories = await this.$categories.all()
-
-		this.categories = categories.sort(sortByProperty('title'))
+		this.categories = await this.$categories.all()
 	},
 	fetchOnServer: false,
 
@@ -59,7 +56,7 @@ export default Vue.component('EntityEditor', {
 			categories: [],
 			title: '',
 			description: '',
-			category: '',
+			category: null,
 			currentTag: '',
 			tags: [],
 			icon: '',
@@ -67,11 +64,13 @@ export default Vue.component('EntityEditor', {
 		}
 	},
 
-	mounted() {
+	async mounted() {
 		if(this.entity) {
+			const category = this.entity.category ? await this.$categories.byId(this.entity.category) : null
+
 			this.title = this.entity.title || ''
 			this.description = this.entity.description || ''
-			this.category = this.entity.category || ''
+			this.category = category
 			this.tags = this.entity.tags || []
 			this.icon = this.entity.icon ? toTitleCase(this.entity.icon)  : ''
 		}

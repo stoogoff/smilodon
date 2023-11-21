@@ -1,4 +1,5 @@
 
+import { sortByProperty } from 'we-ui/utils/list'
 import { createId } from 'we-ui/utils/string'
 
 export default class Access {
@@ -29,6 +30,15 @@ export default class Access {
 		return response.rows
 			.filter(row => row.id.startsWith(this.prefix))
 			.map(row => ({ slug: row.id.replace(this.prefix, ''), ...row.doc }))
+			.sort(sortByProperty('title'))
+	}
+
+	async allByProperty(property, value) {
+		const all = await this.all()
+
+		return all
+			.filter(item => item[property] === value)
+			.sort(sortByProperty('title'))
 	}
 
 	async create(data) {
