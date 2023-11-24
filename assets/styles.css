@@ -43,11 +43,6 @@ h2 {
 	@apply text-blue-600 border-blue-600;
 }
 
-/* tags */
-.tag {
-	@apply inline-block px-2 py-1 mr-1 bg-gray-200 text-gray-800 rounded;
-}
-
 /* alert, label and message colours */
 .label.warning, .message.warning {
 	@apply text-red-800;

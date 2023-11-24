@@ -1,7 +1,10 @@
 <template>
 	<section>
 		<we-loading-spinner v-if="entity === null" />
-		<entity-editor v-else :entity="entity" @save="save" />
+		<div v-else>
+			<h1>Editing: {{ entity.title }}</h1>
+			<entity-editor :entity="entity" @save="save" />
+		</div>
 	</section>
 </template>
 <script>

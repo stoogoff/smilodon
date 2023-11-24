@@ -8,7 +8,14 @@
 				<we-text-area label="Description" v-model="description" />
 			</we-tab-panel>
 			<we-tab-panel title="Properties">
-				<p>Properties</p>
+				<p><em>Use the buttons below to add custom properties.</em></p>
+				<property-editor
+					v-for="(property, index) in properties"
+					:key="property.id"
+					:property="property"
+					@update="updateProperty"
+					@delete="deleteProperty" />
+				<we-button-action @click="addProperty">Add Property</we-button-action>
 			</we-tab-panel>
 			<we-tab-panel title="Metadata">
 				<select-input label="Icon" v-model="icon" :items="icons" />
@@ -22,7 +29,7 @@
 					</div>
 				</div>
 				<div>
-					<tag-view v-for="tag in tags" :key="tag" :tag="tag" />
+					<tag-list :tags="tags" :editable="true" @delete="deleteTag" />
 				</div>
 			</we-tab-panel>
 		</we-tab-group>
@@ -35,8 +42,10 @@
 
 import Vue from 'vue'
 import { required, validate } from 'we-ui/utils/validators'
+import { createId } from 'we-ui/utils/string'
 import { EventBus } from '~/utils/event-bus'
 import { toTitleCase } from '~/utils/string'
+import { DEFAULT_PROPERTY } from '~/utils/config'
 
 export default Vue.component('EntityEditor', {
 	props: {
@@ -60,6 +69,7 @@ export default Vue.component('EntityEditor', {
 			currentTag: '',
 			tags: [],
 			icon: '',
+			properties: [],
 			error: false,
 		}
 	},
@@ -72,6 +82,7 @@ export default Vue.component('EntityEditor', {
 			this.description = this.entity.description || ''
 			this.category = category
 			this.tags = this.entity.tags || []
+			this.properties = this.entity.properties || []
 			this.icon = this.entity.icon ? toTitleCase(this.entity.icon)  : ''
 		}
 	},
@@ -97,14 +108,42 @@ export default Vue.component('EntityEditor', {
 	},
 
 	methods: {
+		addProperty() {
+			this.properties = [
+				...this.properties,
+				{ id: createId(), ...DEFAULT_PROPERTY },
+			]
+		},
+
+		deleteProperty(id) {
+			this.properties =
+				this.properties.filter(prop => prop.id !== id)
+		},
+
+		updateProperty(property) {
+			const prop = this.properties.find(
+				({ id }) => property.id === id
+			)
+			if(!prop) return
+
+			prop.name = property.name
+			prop.type = property.type
+			prop.value = property.value
+		},
+
 		addTag() {
 			this.tags = [ ...this.tags, this.currentTag ]
 			this.currentTag = ''
 		},
 
+		deleteTag(tag, index) {
+			this.tags = this.tags.filter((tag, idx) => index !== idx)
+		},
+
 		async save() {
 			// TODO loading spinner
 			let newEntity
+			const category = this.category ? this.category._id : ''
 
 			// if the component has an entity save it
 			// otherwise create new
@@ -113,7 +152,8 @@ export default Vue.component('EntityEditor', {
 					...this.entity,
 					title: this.title,
 					description: this.description,
-					category: this.category._id,
+					category,
+					properties: this.properties,
 					tags: this.tags,
 					icon: this.icon.toLowerCase(),
 				})
@@ -122,7 +162,8 @@ export default Vue.component('EntityEditor', {
 				newEntity = await this.$entities.create({
 					title: this.title,
 					description: this.description,
-					category: this.category._id,
+					category,
+					properties: this.properties,
 					tags: this.tags,
 					icon: this.icon.toLowerCase(),
 				})

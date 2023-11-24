@@ -3,7 +3,8 @@
 		<tag-view
 			v-for="(tag, index) in tags"
 			:key="`${slugify(tag)}_${index}`"
-			:tag="tag" />
+			:tag="tag"
+			:editable="editable" @delete="deleteTag(tag, index)" />
 	</div>
 </template>
 <script>
@@ -17,12 +18,22 @@ export default Vue.component('TagList', {
 			type: Array,
 			required: true,
 		},
+		editable: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	methods: {
 		slugify(tag) {
 			return slugify(tag)
 		},
+
+		deleteTag(tag, index) {
+			if(!this.editable) return
+
+			this.$emit('delete', tag, index)
+		}
 	},
 })
 

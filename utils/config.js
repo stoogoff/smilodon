@@ -9,21 +9,29 @@ export const  MENU_ITEMS = [
 // default data types
 export const DEFAULT_ENTITY = {
 	title: '',
+	project: '',
 	description: '',
-	properties: {},
+	properties: [],
 	tags: [],
 	category: '',
 	icon: '',
 }
 
 export const DEFAULT_PROPERTY = {
+	name: '',
 	value: '',
 	type: '',
 }
 
 export const DEFAULT_CATEGORY = {
+	project: '',
 	title: '',
 	parent: '',
+}
+
+export const DEFAULT_PROJECT = {
+	title: '',
+	description: '',
 }
 
 export const PROPERTY_TYPES = [
@@ -42,8 +50,9 @@ export const PROPERTY_TYPES = [
 export const ENTITY_ID_PREFIX = 'entity:'
 export const PROPERTY_ID_PREFIX = 'property:'
 export const CATEGORY_ID_PREFIX = 'category:'
+export const PROJECT_ID_PREFIX = 'project:'
 
 // global events
 export const ENTITIES_UPDATED = 'entities-updated'
 export const CATEGORIES_UPDATED = 'categories-updated'
-
+export const PROJECTS_UPDATED = 'projects-updated'

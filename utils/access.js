@@ -42,7 +42,7 @@ export default class Access {
 	}
 
 	async create(data) {
-		const id = createId()
+		const id = createId(10)
 		const item = {
 			_id: this.prefix + id,
 			...this.shape,

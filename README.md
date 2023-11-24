@@ -36,7 +36,6 @@ Nuxt/Vue based MindMap.
 
 # TODO
 
-- deleting a tag from an entity
 - tags should be auto-sorted alphabetically
 - entity table should be sortable
 - 
