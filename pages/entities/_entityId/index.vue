@@ -6,8 +6,7 @@
 				<entity-icon v-if="entity.icon" :entity="entity" />
 				{{ entity.title }}
 			</h1>
-			<!-- TODO Markdown -->
-			<p>{{ entity.description }}</p>
+			<div v-html="entity.description" />
 			<ul>
 				<li
 					v-for="property in entity.properties"

@@ -22,6 +22,7 @@
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",
+    "vue2-editor": "^2.10.3",
     "we-ui": "https://github.com/stoogoff/nuxt-components#v1.0.7"
   },
   "devDependencies": {

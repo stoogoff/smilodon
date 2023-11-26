@@ -5,7 +5,10 @@
 				<we-validate-field :value="title" :rules="rules.title" v-slot="{ error, message }">
 					<we-text-input label="Title" v-model="title" :error="error" :message="message" />
 				</we-validate-field>
-				<we-text-area label="Description" v-model="description" />
+				<client-only>
+					<div class="font-sans font-semibold text-xs uppercase inline-block mb-2">Description</div>
+					<vue-editor v-model="description" :editor-toolbar="toolbar" />
+				</client-only>
 			</we-tab-panel>
 			<we-tab-panel title="Properties">
 				<p><em>Use the buttons below to add custom properties.</em></p>
@@ -45,7 +48,7 @@ import { required, validate } from 'we-ui/utils/validators'
 import { createId } from 'we-ui/utils/string'
 import { EventBus } from '~/utils/event-bus'
 import { toTitleCase } from '~/utils/string'
-import { DEFAULT_PROPERTY } from '~/utils/config'
+import { DEFAULT_PROPERTY, EDITOR_TOOLBAR } from '~/utils/config'
 
 export default Vue.component('EntityEditor', {
 	props: {
@@ -104,6 +107,10 @@ export default Vue.component('EntityEditor', {
 
 		canContinue() {
 			return validate(this.rules.title, this.title)
+		},
+
+		toolbar() {
+			return EDITOR_TOOLBAR
 		},
 	},
 
