@@ -1,34 +1,32 @@
 <template>
-	<div>
+	<section>
+		<h1>Create Project</h1>
+
 		<we-validate-field :value="title" :rules="rules.title" v-slot="{ error, message }">
 			<we-text-input label="Title" v-model="title" :error="error" :message="message" />
 		</we-validate-field>
-		<select-input label="Parent" v-model="parent" :items="categories" display="title" />
+		<client-only>
+			<div class="font-sans font-semibold text-xs uppercase inline-block mb-2">Description</div>
+			<vue-editor v-model="description" :editor-toolbar="toolbar" />
+		</client-only>
 		<we-button-group>
 			<we-button-action type="primary" block :disabled="!canSave" @click="save">Save</we-button-action>
 			<we-button-action block @click="cancel">Cancel</we-button-action>
 		</we-button-group>
-	</div>
+	</section>
 </template>
 <script>
 
-import Vue from 'vue'
-import { sortByProperty } from 'we-ui/utils/list'
 import { required, validate } from 'we-ui/utils/validators'
+import { EDITOR_TOOLBAR } from '~/utils/config'
 
-export default Vue.component('CategoryEditor', {
-	async fetch() {
-		const categories = await this.$categories.all()
-
-		this.categories = categories.sort(sortByProperty('title'))
-	},
-	fetchOnServer: false,
+export default {
+	name: 'CreateProject',
 
 	data() {
 		return {
 			title: '',
-			parent: '',
-			categories: [],
+			description: '',
 		}
 	},
 
@@ -39,29 +37,29 @@ export default Vue.component('CategoryEditor', {
 			}
 		},
 
+		toolbar() {
+			return EDITOR_TOOLBAR
+		},
+
 		canSave() {
-			return this.title !== '' && validate(this.rules.title, this.title)
+			return validate(this.rules.title, this.title)
 		},
 	},
 
 	methods: {
-		cancel() {
-			this.$emit('cancel')
-		},
-
 		async save() {
-			let newCategory
-
-			newCategory = await this.$categories.create({
+			const project = await this.$projects.create({
 				title: this.title,
-				parent: this.parent ? this.parent._id : '',
+				description: this.description,
 			})
 
-			this.$emit('save', newCategory)
+			this.$nuxt.context.redirect(`/projects/${project.slug}`)
+		},
 
-			await this.$fetch()
+		cancel() {
+			this.$nuxt.context.redirect('/projects')
 		},
 	},
-})
+}
 
 </script>

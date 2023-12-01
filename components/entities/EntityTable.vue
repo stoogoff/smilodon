@@ -31,7 +31,6 @@
 </template>
 <script>
 import Vue from 'vue'
-import { EventBus } from '~/utils/event-bus'
 import { ENTITIES_UPDATED } from '~/utils/config'
 
 export default Vue.component('EntityTable', {
@@ -61,7 +60,6 @@ export default Vue.component('EntityTable', {
 	methods: {
 		deleteEntity(entity) {
 			this.$entities.delete(entity)
-			EventBus.$emit(ENTITIES_UPDATED)
 		},
 
 		getCategoryTitle(categoryId) {

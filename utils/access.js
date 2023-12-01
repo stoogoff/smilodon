@@ -1,12 +1,14 @@
 
 import { sortByProperty } from 'we-ui/utils/list'
 import { createId } from 'we-ui/utils/string'
+import { EventBus } from '~/utils/event-bus'
 
 export default class Access {
-	constructor(db, prefix, shape) {
+	constructor(db, prefix, shape, event) {
 		this.db = db
 		this.prefix = prefix
 		this.shape = shape
+		this.event = event
 	}
 
 	async byId(id) {
@@ -20,7 +22,7 @@ export default class Access {
 	}
 
 	async all() {
-		// for some reason this returning all docs for me
+		// for some reason this is returning all docs for me
 		const response = await this.db.allDocs({
 			include_docs: true,
 			startKey: this.prefix,
@@ -53,14 +55,26 @@ export default class Access {
 
 		if(!response.ok) throw 'Create failed'
 
-		return await this.byId(id)
+		const created = await this.byId(id)
+
+		EventBus.$emit(this.event, created)
+
+		return created
 	}
 
 	async save(data) {
-		return await this.db.put(data)
+		const saved = await this.db.put(data)
+
+		EventBus.$emit(this.event, saved)
+
+		return saved
 	}
 
 	async delete(data) {
-		return await this.db.remove(data)
+		const deleted = await this.db.remove(data)
+
+		EventBus.$emit(this.event, deleted)
+
+		return deleted
 	}
 }

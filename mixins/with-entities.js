@@ -10,7 +10,7 @@ export default {
 	},
 
 	mounted() {
-		EventBus.$on(ENTITIES_UPDATED, this.$fetch)
+		EventBus.$on(ENTITIES_UPDATED, () => this.$fetch())
 	},
 
 	beforeDestroy() {

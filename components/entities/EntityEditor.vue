@@ -37,7 +37,7 @@
 			</we-tab-panel>
 		</we-tab-group>
 		<div class="fixed bottom-0 left-0 right-0 p-2">
-			<we-button-action type="primary" block :disabled="!canContinue" @click="save">Save</we-button-action>
+			<we-button-action type="primary" block :disabled="!canSave" @click="save">Save</we-button-action>
 		</div>
 	</div>
 </template>
@@ -46,9 +46,8 @@
 import Vue from 'vue'
 import { required, validate } from 'we-ui/utils/validators'
 import { createId } from 'we-ui/utils/string'
-import { EventBus } from '~/utils/event-bus'
 import { toTitleCase } from '~/utils/string'
-import { DEFAULT_PROPERTY, EDITOR_TOOLBAR } from '~/utils/config'
+import { DEFAULT_PROPERTY, EDITOR_TOOLBAR, PROJECT_ID_PREFIX } from '~/utils/config'
 
 export default Vue.component('EntityEditor', {
 	props: {
@@ -105,7 +104,7 @@ export default Vue.component('EntityEditor', {
 			return this.currentTag !== ''
 		},
 
-		canContinue() {
+		canSave() {
 			return validate(this.rules.title, this.title)
 		},
 
@@ -166,10 +165,13 @@ export default Vue.component('EntityEditor', {
 				})
 			}
 			else {
+				const { params } = this.$nuxt.context
+
 				newEntity = await this.$entities.create({
 					title: this.title,
 					description: this.description,
 					category,
+					project: `${PROJECT_ID_PREFIX}:${params.projectId}`,
 					properties: this.properties,
 					tags: this.tags,
 					icon: this.icon.toLowerCase(),

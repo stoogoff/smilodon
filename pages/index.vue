@@ -1,23 +1,16 @@
 <template>
 	<div>
-		<h1>Entities</h1>
+		<h1>Smilodon</h1>
 
-		<entity-table v-if="hasEntities" :entities="entities" />
-		<p v-else><em>No entities</em></p>
+		<p>General purpose welcome page</p>
+		<p>Could have some small dashboard links if the user has already been here</p>
 	</div>
 </template>
 <script>
 
-import WithEntities from '~/mixins/with-entities'
-
 export default {
 	name: 'Index',
-	mixins: [ WithEntities ],
-
-	async fetch() {
-		this.entities = await this.$entities.all()
-	},
-	fetchOnServer: false,
+	layout: 'site',
 }
 
 </script>
