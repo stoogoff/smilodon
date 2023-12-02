@@ -15,7 +15,7 @@
 					<entity-icon v-if="entity.icon" :entity="entity" />
 				</td>
 				<td>
-					<nuxt-link class="link" :to="`/entities/${ entity.slug }`">{{ entity.title }}</nuxt-link></td>
+					<nuxt-link class="link" :to="entity.slug">{{ entity.title }}</nuxt-link></td>
 				<td>{{ getCategoryTitle(entity.category) }}</td>
 				<td>
 					<tag-list :tags="entity.tags" />

@@ -53,7 +53,7 @@ export default {
 				description: this.description,
 			})
 
-			this.$nuxt.context.redirect(`/projects/${project.slug}`)
+			this.$nuxt.context.redirect(project.slug)
 		},
 
 		cancel() {

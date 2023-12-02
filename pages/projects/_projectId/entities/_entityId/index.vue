@@ -19,7 +19,7 @@
 				<h2>Tags</h2>
 				<tag-list :tags="entity.tags" />
 			</div>
-			<we-link-action type="primary" :to="`/entities/${entity.slug}/edit`">Edit</we-link-action>
+			<we-link-action type="primary" :to="`${ entity.slug }/edit`">Edit</we-link-action>
 			<we-button-action type="warning" @click="deleteEntity">Delete</we-button-action>
 		</div>
 	</section>
@@ -33,9 +33,11 @@ export default {
 	mixins: [ WithEntity ],
 
 	methods: {
-		deleteEntity() {
+		async deleteEntity() {
+			const project = await this.$projects.byId(this.entity.project)
+
 			this.$entities.delete(this.entity)
-			this.$nuxt.context.redirect('/')
+			this.$nuxt.$router.push(project.slug)
 		},
 	},
 }

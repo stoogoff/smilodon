@@ -39,8 +39,10 @@ export default Vue.component('CategoryItem', {
 			this.open = !this.open
 		},
 
-		viewCategory() {
-			this.$nuxt.$router.push(`/categories/${ this.category.slug }`)
+		async viewCategory() {
+			const project = await this.$projects.byId(this.category.project)
+
+			this.$nuxt.$router.push(this.category.slug)
 		},
 	},
 })

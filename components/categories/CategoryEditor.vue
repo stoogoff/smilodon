@@ -18,7 +18,8 @@ import { required, validate } from 'we-ui/utils/validators'
 
 export default Vue.component('CategoryEditor', {
 	async fetch() {
-		const categories = await this.$categories.all()
+		const { params } = this.$nuxt.context
+		const categories = await this.$categories.allByProject(params.projectId)
 
 		this.categories = categories.sort(sortByProperty('title'))
 	},
@@ -51,10 +52,13 @@ export default Vue.component('CategoryEditor', {
 
 		async save() {
 			let newCategory
+			const { params } = this.$nuxt.context
+			const project = await this.$projects.byId(params.projectId)
 
 			newCategory = await this.$categories.create({
 				title: this.title,
 				parent: this.parent ? this.parent._id : '',
+				project: project._id,
 			})
 
 			this.$emit('save', newCategory)

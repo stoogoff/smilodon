@@ -27,7 +27,9 @@ export default Vue.component('CategoryTree', {
 	},
 
 	async fetch() {
-		this.categories = await this.$categories.allWithParent(this.parent)
+		const { params } = this.$nuxt.context
+
+		this.categories = await this.$categories.allWithParent(params.projectId, this.parent)
 		this.entities = await this.$entities.allByCategory(this.parent)
 	},
 	fetchOnServer: false,

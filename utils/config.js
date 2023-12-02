@@ -3,8 +3,8 @@
 export const  MENU_ITEMS = [
 	{ title: 'Home', href: '/' },
 	{ title: 'Projects', href: '/projects' },
-	{ title: 'Categories', href: '/categories' },
-	{ title: 'Entities', href: '/entities' },
+	//{ title: 'Categories', href: '/categories' },
+	//{ title: 'Entities', href: '/entities' },
 ]
 
 // editor toolbar

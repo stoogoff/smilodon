@@ -1,7 +1,9 @@
 
 import { sortByProperty } from 'we-ui/utils/list'
 import { createId } from 'we-ui/utils/string'
+import { slugify } from '~/utils/string'
 import { EventBus } from '~/utils/event-bus'
+import { PROJECT_ID_PREFIX } from '~/utils/config'
 
 export default class Access {
 	constructor(db, prefix, shape, event) {
@@ -16,7 +18,7 @@ export default class Access {
 
 		const result = await this.db.get(id)
 
-		if(!result.slug) result.slug = result._id.replace(this.prefix, '')
+		if(!result.slug) result.slug = this.slugify(result)
 
 		return result
 	}
@@ -31,7 +33,7 @@ export default class Access {
 
 		return response.rows
 			.filter(row => row.id.startsWith(this.prefix))
-			.map(row => ({ slug: row.id.replace(this.prefix, ''), ...row.doc }))
+			.map(row => ({ slug: this.slugify(row.doc), ...row.doc }))
 			.sort(sortByProperty('title'))
 	}
 
@@ -43,8 +45,16 @@ export default class Access {
 			.sort(sortByProperty('title'))
 	}
 
+	async allByProject(projectId) {
+		if(!projectId.startsWith(PROJECT_ID_PREFIX)) {
+			projectId = PROJECT_ID_PREFIX + projectId
+		}
+
+		return await this.allByProperty('project', projectId)
+	}	
+
 	async create(data) {
-		const id = createId(10)
+		const id = data.title ? slugify(data.title) + '-' + createId(4) : createId(10)
 		const item = {
 			_id: this.prefix + id,
 			...this.shape,
@@ -76,5 +86,9 @@ export default class Access {
 		EventBus.$emit(this.event, deleted)
 
 		return deleted
+	}
+
+	slugify(item) {
+		return item._id.replace(this.prefix, '')
 	}
 }

@@ -14,7 +14,9 @@ export default {
 	mixins: [ WithEntities ],
 
 	async fetch() {
-		this.entities = await this.$entities.all()
+		const { params } = this.$nuxt.context
+
+		this.entities = await this.$entities.allByProject(params.projectId)
 	},
 	fetchOnServer: false,
 }

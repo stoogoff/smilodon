@@ -47,7 +47,7 @@ import Vue from 'vue'
 import { required, validate } from 'we-ui/utils/validators'
 import { createId } from 'we-ui/utils/string'
 import { toTitleCase } from '~/utils/string'
-import { DEFAULT_PROPERTY, EDITOR_TOOLBAR, PROJECT_ID_PREFIX } from '~/utils/config'
+import { DEFAULT_PROPERTY, EDITOR_TOOLBAR } from '~/utils/config'
 
 export default Vue.component('EntityEditor', {
 	props: {
@@ -166,12 +166,13 @@ export default Vue.component('EntityEditor', {
 			}
 			else {
 				const { params } = this.$nuxt.context
+				const project = await this.$projects.byId(params.projectId)
 
 				newEntity = await this.$entities.create({
 					title: this.title,
 					description: this.description,
 					category,
-					project: `${PROJECT_ID_PREFIX}:${params.projectId}`,
+					project: project._id,
 					properties: this.properties,
 					tags: this.tags,
 					icon: this.icon.toLowerCase(),

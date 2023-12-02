@@ -19,7 +19,7 @@ export default Vue.component('MainNav', {
 				.sort(sortByProperty('title'))
 				.map(({ title, slug }) => ({
 					title,
-					href: `/projects/${slug}`,
+					href: slug,
 				}))
 
 			this.menuItems = [ ...menuItems ]
