@@ -9,11 +9,11 @@
 					v-for="project in projects"
 					:key="project._id"
 				>
-					{{ project.title }}
+					<nuxt-link :to="project.slug">{{ project.title }}</nuxt-link>
 				</li>
 			</ul>
 		</div>
-		<we-button-action @click="createProject">Create Project</we-button-action>
+		<we-link-action to="/projects/create">Create Project</we-link-action>
 	</section>
 </template>
 <script>
@@ -36,12 +36,6 @@ export default {
 	computed: {
 		hasProjects() {
 			return this.projects.length > 0
-		},
-	},
-
-	methods: {
-		createProject() {
-			this.$nuxt.context.redirect('/projects/create')
 		},
 	},
 }

@@ -18,7 +18,7 @@ export default {
 
 	methods: {
 		save(entity) {
-			this.$nuxt.context.redirect(this.entity.slug)
+			this.$nuxt.$router.push(this.entity.slug)
 		},
 	},
 }

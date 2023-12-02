@@ -67,13 +67,21 @@ export default class Access {
 
 		const created = await this.byId(id)
 
+		if(!created.slug) created.slug = this.slugify(created)
+
 		EventBus.$emit(this.event, created)
 
 		return created
 	}
 
 	async save(data) {
-		const saved = await this.db.put(data)
+		const response = await this.db.put(data)
+
+		if(!response.ok) throw 'Save failed'
+
+		const saved = await this.byId(response.id)
+
+		if(!saved.slug) saved.slug = this.slugify(saved)
 
 		EventBus.$emit(this.event, saved)
 

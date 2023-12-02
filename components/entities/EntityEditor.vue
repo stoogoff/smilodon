@@ -5,10 +5,7 @@
 				<we-validate-field :value="title" :rules="rules.title" v-slot="{ error, message }">
 					<we-text-input label="Title" v-model="title" :error="error" :message="message" />
 				</we-validate-field>
-				<client-only>
-					<div class="font-sans font-semibold text-xs uppercase inline-block mb-2">Description</div>
-					<vue-editor v-model="description" :editor-toolbar="toolbar" />
-				</client-only>
+				<html-editor label="Description" v-model="description" />
 			</we-tab-panel>
 			<we-tab-panel title="Properties">
 				<p><em>Use the buttons below to add custom properties.</em></p>
@@ -58,7 +55,9 @@ export default Vue.component('EntityEditor', {
 	},
 
 	async fetch() {
-		this.categories = await this.$categories.all()
+		const { params } = this.$nuxt.context
+
+		this.categories = await this.$categories.allByProject(params.projectId)
 	},
 	fetchOnServer: false,
 
@@ -105,7 +104,7 @@ export default Vue.component('EntityEditor', {
 		},
 
 		canSave() {
-			return validate(this.rules.title, this.title)
+			return this.title !== '' && validate(this.rules.title, this.title)
 		},
 
 		toolbar() {
