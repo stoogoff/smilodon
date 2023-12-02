@@ -48,6 +48,12 @@ export default Vue.component('CategoryTree', {
 	beforeDestroy() {
 		EventBus.$off(CATEGORIES_UPDATED)
 	},
+
+	watch: {
+		$route(to, from) {
+			this.$fetch()
+		},
+	},
 })
 
 </script>
