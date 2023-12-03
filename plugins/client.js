@@ -12,6 +12,7 @@ import entityData from '~/static/seed/entities'
 export default ({ env }, inject) => {
 	const database = new PouchDB(env.database)
 
+	inject('db', database)
 	inject('entities', entity(database))
 	inject('categories', category(database))
 	inject('projects', project(database))
