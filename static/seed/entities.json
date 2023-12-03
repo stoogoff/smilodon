@@ -1,0 +1,110 @@
+[
+	{
+		"_id": "entity:seed-object-1",
+		"title": "Seed Entity 1",
+		"project": "project:seed-1",
+		"description": "Lorum ipsum dolor sic amet",
+		"properties": [
+			{
+				"name": "Volume",
+				"value": 1,
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"Monday"
+		],
+		"category": "category:seed-folder-1",
+		"icon": ""
+	},
+	{
+		"_id": "entity:seed-object-2",
+		"title": "Seed Entity 2",
+		"project": "project:seed-1",
+		"description": "Lorum ipsum dolor sic amet",
+		"properties": [
+			{
+				"name": "Volume",
+				"value": 2,
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"Tuesday"
+		],
+		"category": "category:seed-folder-1",
+		"icon": ""
+	},
+	{
+		"_id": "entity:seed-object-3",
+		"title": "Seed Entity 3",
+		"project": "project:seed-1",
+		"description": "Lorum ipsum dolor sic amet",
+		"properties": [
+			{
+				"name": "Volume",
+				"value": 3,
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"Monday"
+		],
+		"category": "category:seed-folder-2",
+		"icon": ""
+	},
+	{
+		"_id": "entity:seed-object-4",
+		"title": "Seed Entity 4",
+		"project": "project:seed-1",
+		"description": "Lorum ipsum dolor sic amet",
+		"properties": [
+			{
+				"name": "Volume",
+				"value": 4,
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"Tuesday"
+		],
+		"category": "category:seed-folder-2",
+		"icon": ""
+	},
+	{
+		"_id": "entity:seed-object-5",
+		"title": "Seed Entity 5",
+		"project": "project:seed-1",
+		"description": "Lorum ipsum dolor sic amet",
+		"properties": [
+			{
+				"name": "Volume",
+				"value": 5,
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"Monday"
+		],
+		"category": "category:seed-folder-3",
+		"icon": ""
+	},
+	{
+		"_id": "entity:seed-object-6",
+		"title": "Seed Entity 6",
+		"project": "project:seed-1",
+		"description": "Lorum ipsum dolor sic amet",
+		"properties": [
+			{
+				"name": "Volume",
+				"value": 6,
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"Tuesday"
+		],
+		"category": "category:seed-folder-3",
+		"icon": ""
+	}
+]

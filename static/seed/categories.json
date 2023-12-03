@@ -1,0 +1,20 @@
+[
+	{
+		"_id": "category:seed-folder-1",
+		"project": "project:seed-1",
+		"title": "Seed Folder 1",
+		"parent": ""
+	},
+	{
+		"_id": "category:seed-folder-2",
+		"project": "project:seed-1",
+		"title": "Seed Folder 2",
+		"parent": ""
+	},
+	{
+		"_id": "category:seed-folder-3",
+		"project": "project:seed-1",
+		"title": "Seed Folder 3",
+		"parent": "category:seed-folder-1"
+	}
+]
