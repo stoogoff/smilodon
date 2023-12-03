@@ -18,6 +18,8 @@
 </template>
 <script>
 
+import WithProjects from '~/mixins/with-projects'
+
 export default {
 	name: 'Projects',
 	layout: 'site',
@@ -26,18 +28,6 @@ export default {
 		this.projects = await this.$projects.all()
 	},
 	fetchOnServer: false,
-
-	data() {
-		return {
-			projects: [],
-		}
-	},
-
-	computed: {
-		hasProjects() {
-			return this.projects.length > 0
-		},
-	},
 }
 
 </script>
