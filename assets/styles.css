@@ -4,12 +4,13 @@
 @tailwind utilities;
 
 body {
-	@apply bg-white leading-normal text-gray-700;
+	@apply bg-gray-100 leading-normal text-gray-700;
 }
 
 .main {
 	grid-template-columns: 300px auto;
 	gap: 2rem;
+	@apply bg-white;
 }
 h1 {
 	@apply text-2xl font-bold;
@@ -19,6 +20,11 @@ h2 {
 }
 .link {
 	@apply text-blue-600 underline hover:text-blue-400 hover:no-underline;
+}
+
+/* nnavigation */
+.nav {
+	@apply bg-white shadow-md;
 }
 
 /* form inputs */
