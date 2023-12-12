@@ -1,15 +1,20 @@
 <template>
 	<div>
 
-		Columns
-		<ul>
-			<li v-for="column in mutableColumns" :key="`checkbox_${ column.key }`">
-				<we-check-box
-					:label="column.title"
-					:value="!column.hidden"
-					@input="toggleSelectedColumn(column)" />
-			</li>
-		</ul>
+		<popup-button y="top">
+			Columns <small>({{ activeColumns }} of {{ mutableColumns.length }})</small>
+			<template #popup>
+				<ul>
+					<li v-for="column in mutableColumns" :key="`checkbox_${ column.key }`">
+						<we-check-box
+							:label="column.title"
+							:value="!column.hidden"
+							:disabled="!canToggle(column)"
+							@input="toggleSelectedColumn(column)" />
+					</li>
+				</ul>
+			</template>
+		</popup-button>
 
 		<table class="w-full">
 			<thead>
@@ -89,6 +94,12 @@ export default Vue.component('FilteredTable', {
 		},
 	},
 
+	computed: {
+		activeColumns() {
+			return this.mutableColumns.filter(({ hidden }) => !hidden).length
+		},
+	},
+
 	methods: {
 		createMutableColumns() {
 			this.mutableColumns = this.columns.map(column => ({
@@ -101,6 +112,20 @@ export default Vue.component('FilteredTable', {
 
 		createMutableRecords() {
 			this.mutableRecords = [ ...this.records ]
+		},
+
+		canToggle(column) {
+			// can always toggle a hidden column
+			if(column.hidden) return true
+
+			const notHidden = this.mutableColumns.filter(({ hidden }) => !hidden)
+
+			// can always toggle if there's more than one selected
+			// or we've somehow deselected everything
+			if(notHidden.length > 1 || notHidden.length === 0) return true
+
+			// don't allow toggling if this is the last column available
+			return notHidden[0].key !== column.key
 		},
 
 		toggleSelectedColumn(column) {

@@ -38,6 +38,11 @@ h2 {
 	@apply bg-gray-200;
 }
 
+/* checkboxes */
+.checkbox.disabled {
+	@apply text-gray-500 cursor-default;
+}
+
 /* tabs */
 .tab-panel {
 	@apply p-4;
