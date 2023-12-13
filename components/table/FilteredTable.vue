@@ -1,26 +1,36 @@
 <template>
 	<div>
-
-		<popup-button y="top">
-			Columns <small>({{ activeColumns }} of {{ mutableColumns.length }})</small>
-			<template #popup>
-				<ul>
-					<li v-for="column in mutableColumns" :key="`checkbox_${ column.key }`">
-						<we-check-box
-							:label="column.title"
-							:value="!column.hidden"
-							:disabled="!canToggle(column)"
-							@input="toggleSelectedColumn(column)" />
-					</li>
-				</ul>
-			</template>
-		</popup-button>
+		<div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
+			<label for="table-search" class="sr-only">Search</label>
+			<div class="relative">
+				<div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+					<svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+					</svg>
+				</div>
+				<input v-model="search" type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search">
+			</div>
+			<popup-button y="top" x="right">
+				Columns <small class="inline-block pl-1">({{ activeColumns }} of {{ mutableColumns.length }})</small>
+				<template #popup>
+					<ul>
+						<li v-for="column in mutableColumns" :key="`checkbox_${ column.key }`">
+							<we-check-box
+								:label="column.title"
+								:value="!column.hidden"
+								:disabled="!canToggle(column)"
+								@input="toggleSelectedColumn(column)" />
+						</li>
+					</ul>
+				</template>
+			</popup-button>
+		</div>
 
 		<table class="w-full">
-			<thead>
-				<tr class="bg-gray-100 rounded">
+			<thead class="text-xs text-gray-700 uppercase bg-gray-50">
+				<tr>
 					<th
-						class="text-left cursor-pointer px-4 py-1"
+						class="text-left cursor-pointer px-6 py-3"
 						v-for="column in mutableColumns"
 						:key="`th_${ column.key }`"
 						v-if="!column.hidden"
@@ -46,7 +56,7 @@
 							v-for="column in mutableColumns"
 							:key="`td_${ column.key }`"
 							v-if="!column.hidden"
-							class="px-4 py-2"
+							class="px-6 py-4"
 						>
 							<nuxt-link class="link" :to="record[column.link]" v-if="column.link">
 								{{ record[column.property] }}
@@ -64,6 +74,7 @@
 import Vue from 'vue'
 import { createId } from 'we-ui/utils/string'
 import { sortByProperty } from 'we-ui/utils/list'
+import { searchObject } from '~/utils/string'
 
 export default Vue.component('FilteredTable', {
 	props: {
@@ -81,6 +92,7 @@ export default Vue.component('FilteredTable', {
 		return {
 			mutableColumns: [],
 			mutableRecords: [],
+			search: '',
 		}
 	},
 
@@ -90,6 +102,10 @@ export default Vue.component('FilteredTable', {
 		},
 
 		records() {
+			this.createMutableRecords()
+		},
+
+		search(text) {
 			this.createMutableRecords()
 		},
 	},
@@ -111,7 +127,12 @@ export default Vue.component('FilteredTable', {
 		},
 
 		createMutableRecords() {
-			this.mutableRecords = [ ...this.records ]
+			if(this.search === '') {
+				this.mutableRecords = [ ...this.records ]
+			}
+			else {
+				this.mutableRecords = [ ...this.records.filter(row => searchObject(row, this.search)) ]
+			}
 		},
 
 		canToggle(column) {

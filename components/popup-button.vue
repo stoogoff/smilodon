@@ -8,10 +8,17 @@
 		@focus="show"
 		@focusout="hide"
 		tabindex="0"
-	>
-		<we-button-action v-bind="$attrs" block :disabled="disabled" @click="toggle">
+>
+		<button
+			class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-blue-200 font-medium rounded-lg text-sm px-3 py-1.5"
+			type="button"
+			@click="toggle"
+		>
 			<slot />
-		</we-button-action>
+			<svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+				<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+			</svg>
+		</button>
 		<transition
 			enter-active-class="transition duration-300 ease-out transform"
 			enter-class="translate-y-3 scale-95 opacity-0"
