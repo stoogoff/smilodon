@@ -5,6 +5,15 @@
 		<p>General purpose welcome page</p>
 		<p>Could have some small dashboard links if the user has already been here</p>
 
+		<dui-button class="btn-secondary" @click="clicky">Button</dui-button>
+
+		<!-- div role="tablist" class="tabs tabs-bordered" -->
+		<dui-tab-group class="tabs-bordered">
+			<dui-tab-panel title="Tab 1">Tab content 1</dui-tab-panel>
+			<dui-tab-panel title="Tab 2">Tab content 2</dui-tab-panel>
+			<dui-tab-panel title="Tab 3">Tab content 3</dui-tab-panel>
+		</dui-tab-group>
+
 		<filtered-table :records="records" :columns="columns" />
 	</div>
 </template>
@@ -41,6 +50,12 @@ export default {
 			],
 			records: [],
 		}
+	},
+
+	methods: {
+		clicky() {
+			alert('clicky')
+		},
 	},
 }
 

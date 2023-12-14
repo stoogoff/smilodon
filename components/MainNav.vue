@@ -1,5 +1,25 @@
 <template>
-	<we-main-nav :menu-items="menuItems">Smilodon</we-main-nav>
+	<!-- we-main-nav :menu-items="menuItems">Smilodon</we-main-nav -->
+	<div class="navbar bg-base-100">
+		<div class="flex-1">
+			<a class="btn btn-ghost text-xl">Smilodon</a>
+		</div>
+		<div class="flex-none">
+			<ul class="menu menu-horizontal px-1">
+				<li v-for="(item, idx) in menuItems" :key="`menu_${ idx }`">
+					<details v-if="item.menuItems">
+						<summary>{{ item.title }}</summary>
+						<ul class="p-2 bg-base-100 rounded-t-none">
+							<li v-for="(subitem, jdx) in item.menuItems">
+								<nuxt-link :to="subitem.href">{{ subitem.title }}</nuxt-link>
+							</li>
+						</ul>
+					</details>
+					<nuxt-link v-else :to="item.href">{{ item.title }}</nuxt-link>
+				</li>
+			</ul>
+		</div>
+	</div>
 </template>
 <script>
 

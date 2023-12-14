@@ -2,15 +2,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/*
 body {
 	@apply bg-gray-100 leading-normal text-gray-700;
 }
-
+*/
 .main {
 	grid-template-columns: 300px auto;
 	gap: 2rem;
-	@apply bg-white;
 }
 h1 {
 	@apply text-2xl font-bold;
@@ -72,7 +71,7 @@ h2 {
 }
 
 /* buttons */
-.btn {
+/*.btn {
 	@apply px-4 py-2 normal-case font-normal;
 	@apply bg-gray-300 text-gray-800 hover:text-gray-900 hover:bg-white;
 	@apply border border-gray-400 hover:border-gray-900;
@@ -95,10 +94,10 @@ h2 {
 }
 .btn.outlined {
 	@apply bg-white border border-solid border-gray-700 hover:text-gray-900 hover:bg-gray-100;
-}
+}*/
 
 /* outlined buttons */
-.btn.outlined.disabled {
+/*.btn.outlined.disabled {
 	@apply bg-gray-200 border-gray-400 text-gray-400;
 }
 .btn.outlined.primary {
@@ -112,7 +111,7 @@ h2 {
 }
 .btn.outlined.warning {
 	@apply text-red-600 border-red-400 hover:bg-red-200 hover:text-red-800 hover:border-red-800;
-}
+}*/
 
 .btn-icon.circle-icon {
 	@apply border border-solid;
