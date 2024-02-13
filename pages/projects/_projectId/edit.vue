@@ -1,9 +1,9 @@
 <template>
 	<section>
 		<we-loading-spinner v-if="$fetchState.pending" />
-		<we-alert-view v-else-if="project === null" type="warning">
+		<d-alert v-else-if="project === null" warning>
 			Unable to load project.
-		</we-alert-view>
+		</d-alert>
 		<div v-else>
 			<h1>Edit: {{ project.title }}</h1>
 

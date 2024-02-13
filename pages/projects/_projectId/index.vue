@@ -1,13 +1,13 @@
 <template>
 	<section>
-		<we-loading-spinner v-if="$fetchState.pending" />
-		<we-alert-view v-else-if="project === null" type="warning">
+		<d-loading spinner lg v-if="$fetchState.pending" />
+		<d-alert v-else-if="project === null" error>
 			Unable to load project.
-		</we-alert-view>
+		</d-alert>
 		<div v-else>
 			<h1>{{ project.title }}</h1>
-			<we-link-action small :to="`${ project.slug }/edit`">Edit</we-link-action>
-			<we-button-action small @click="openDeleteModal">Delete</we-button-action>
+			<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">Edit</nuxt-link>
+			<d-button warning sm @click="openDeleteModal">Delete</d-button>
 			<we-tab-group>
 				<we-tab-panel title="Description">
 					<div v-html="project.description" />

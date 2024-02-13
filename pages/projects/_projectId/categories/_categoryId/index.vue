@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<we-loading-spinner v-if="category === null" />
+		<d-loading spinner lg v-if="category === null" />
 		<div v-else>
 			<h1>Category: {{ category.title }}</h1>
 			<div>

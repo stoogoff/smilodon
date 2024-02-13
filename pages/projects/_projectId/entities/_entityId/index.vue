@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<we-loading-spinner v-if="entity === null" />
+		<d-loading spinner lg v-if="entity === null" />
 		<div v-else>
 			<h1>
 				<entity-icon v-if="entity.icon" :entity="entity" />
@@ -19,8 +19,10 @@
 				<h2>Tags</h2>
 				<tag-list :tags="entity.tags" />
 			</div>
-			<we-link-action type="primary" :to="`${ entity.slug }/edit`">Edit</we-link-action>
-			<we-button-action type="warning" @click="deleteEntity">Delete</we-button-action>
+			<d-join horizontal>
+				<nuxt-link class="join-item btn btn-primary btn-sm" :to="`${ entity.slug }/edit`">Edit</nuxt-link>
+				<d-button class="join-item" error sm @click="deleteEntity">Delete</d-button>
+			</d-join>
 		</div>
 	</section>
 </template>

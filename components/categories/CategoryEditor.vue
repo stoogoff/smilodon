@@ -4,10 +4,10 @@
 			<we-text-input label="Title" v-model="title" :error="error" :message="message" />
 		</we-validate-field>
 		<select-input label="Parent" v-model="parent" :items="categories" display="title" />
-		<we-button-group>
-			<we-button-action type="primary" block :disabled="!canSave" @click="save">Save</we-button-action>
-			<we-button-action block @click="cancel">Cancel</we-button-action>
-		</we-button-group>
+		<d-join horizontal>
+			<d-button class="join-item" primary sm block :disabled="!canSave" @click="save">Save</d-button>
+			<d-button class="join-item" block sm @click="cancel">Cancel</d-button>
+		</d-join>
 	</div>
 </template>
 <script>

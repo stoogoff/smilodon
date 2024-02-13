@@ -5,16 +5,47 @@
 		<p>General purpose welcome page</p>
 		<p>Could have some small dashboard links if the user has already been here</p>
 
-		<dui-button class="btn-secondary" @click="clicky">Button</dui-button>
+		<d-button primary @click="clicky">Primary</d-button>
+		<d-button secondary @click="clicky">Secondary</d-button>
+		<d-button disabled @click="clicky">Disabled</d-button>
 
-		<!-- div role="tablist" class="tabs tabs-bordered" -->
-		<dui-tab-group class="tabs-bordered">
-			<dui-tab-panel title="Tab 1">Tab content 1</dui-tab-panel>
-			<dui-tab-panel title="Tab 2">Tab content 2</dui-tab-panel>
-			<dui-tab-panel title="Tab 3">Tab content 3</dui-tab-panel>
-		</dui-tab-group>
+		<d-accordion arrow group="group1">
+			<template #title>
+				One
+			</template>
+			<p>Hello group 1</p>
+		</d-accordion>
+		<d-accordion arrow group="group1">
+			<template #title>
+				Two
+			</template>
+			<p>Hola group 1</p>
+		</d-accordion>
 
-		<filtered-table :records="records" :columns="columns" />
+		<hr />
+
+		<d-accordion plus group="group2">
+			<template #title>
+				One
+			</template>
+			<p>Hello group 2</p>
+		</d-accordion>
+		<d-accordion plus group="group2">
+			<template #title>
+				Two
+			</template>
+			<p>Hola group 2</p>
+		</d-accordion>
+
+		<d-badge success lg>Hello</d-badge>
+		<d-tooltip primary title="Hello"><d-badge info md>Hello</d-badge></d-tooltip>
+
+		<d-toast start bottom><d-alert warning>Alert</d-alert></d-toast>
+		<d-tooltip accent title="This will load forever"><d-loading infinity /></d-tooltip>
+		<d-loading dots lg class="text-error" />
+		<d-progress accent :value="50" :max="100" class="w-56" />
+		<d-progress secondary class="w-56" />
+		<d-radial-progress :percent="35" class="bg-primary text-primary-content border-4 border-primary" />
 	</div>
 </template>
 <script>

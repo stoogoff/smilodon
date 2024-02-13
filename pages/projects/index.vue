@@ -13,7 +13,7 @@
 				</li>
 			</ul>
 		</div>
-		<we-link-action to="/projects/create">Create Project</we-link-action>
+		<nuxt-link class="d-button" to="/projects/create">Create Project</nuxt-link>
 	</section>
 </template>
 <script>

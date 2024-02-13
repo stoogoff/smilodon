@@ -15,7 +15,7 @@
 					:property="property"
 					@update="updateProperty"
 					@delete="deleteProperty" />
-				<we-button-action @click="addProperty">Add Property</we-button-action>
+				<d-button @click="addProperty">Add Property</d-button>
 			</we-tab-panel>
 			<we-tab-panel title="Metadata">
 				<select-input label="Icon" v-model="icon" :items="icons" />
@@ -25,7 +25,7 @@
 						<we-text-input label="Tag" v-model="currentTag" />
 					</div>
 					<div class="mt-12 ml-2">
-						<we-button-action @click="addTag" small :disabled="!canAddTag">Add</we-button-action>
+						<d-button @click="addTag" sm :disabled="!canAddTag">Add</d-button>
 					</div>
 				</div>
 				<div>
@@ -34,7 +34,7 @@
 			</we-tab-panel>
 		</we-tab-group>
 		<div class="fixed bottom-0 left-0 right-0 p-2">
-			<we-button-action type="primary" block :disabled="!canSave" @click="save">Save</we-button-action>
+			<d-button primary block :disabled="!canSave" @click="save">Save</d-button>
 		</div>
 	</div>
 </template>

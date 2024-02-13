@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<we-loading-spinner v-if="entity === null" />
+		<d-loading spinner lg v-if="entity === null" />
 		<div v-else>
 			<h1>Editing: {{ entity.title }}</h1>
 			<entity-editor :entity="entity" @save="save" />

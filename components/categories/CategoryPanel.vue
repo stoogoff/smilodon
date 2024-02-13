@@ -9,7 +9,7 @@
 		<h3 class="uppercase text-sm text-gray-400">Categories</h3>
 		<category-tree />
 		<category-editor v-if="showAddForm" @save="hideForm" @cancel="hideForm" />
-		<we-button-action v-else block @click="showForm">Add</we-button-action>
+		<d-button v-else block @click="showForm">Add</d-button>
 	</aside>
 </template>
 <script>
