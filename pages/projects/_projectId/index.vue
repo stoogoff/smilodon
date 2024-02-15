@@ -4,10 +4,12 @@
 		<d-alert v-else-if="project === null" error>
 			Unable to load project.
 		</d-alert>
-		<div v-else>
-			<h1>{{ project.title }}</h1>
-			<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">Edit</nuxt-link>
-			<d-button warning sm @click="openDeleteModal">Delete</d-button>
+		<d-card v-else class="bg-base-100 shadow">
+			<template #title>
+				<h1>{{ project.title }}</h1>
+				<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">Edit</nuxt-link>
+				<d-button outline error sm @click="openDeleteModal">Delete</d-button>
+			</template>
 			<we-tab-group>
 				<we-tab-panel title="Description">
 					<div v-html="project.description" />
@@ -17,7 +19,7 @@
 					<p v-else><em>No entities created.</em></p>
 				</we-tab-panel>
 			</we-tab-group>
-		</div>
+		</d-card>
 		<confirm-dialogue
 			v-if="showDeleteModal"
 			title="Delete"

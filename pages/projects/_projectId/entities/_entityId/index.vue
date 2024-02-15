@@ -1,11 +1,15 @@
 <template>
 	<section>
 		<d-loading spinner lg v-if="entity === null" />
-		<div v-else>
-			<h1>
-				<entity-icon v-if="entity.icon" :entity="entity" />
-				{{ entity.title }}
-			</h1>
+		<d-card v-else class="bg-base-100 shadow">
+			<template #title>
+				<h1>
+					<entity-icon v-if="entity.icon" :entity="entity" />
+					{{ entity.title }}
+				</h1>
+				<nuxt-link class="btn btn-primary btn-sm" :to="`${ entity.slug }/edit`">Edit</nuxt-link>
+				<d-button outline error sm @click="deleteEntity">Delete</d-button>
+			</template>
 			<div v-html="entity.description" />
 			<ul>
 				<li
@@ -19,11 +23,7 @@
 				<h2>Tags</h2>
 				<tag-list :tags="entity.tags" />
 			</div>
-			<d-join horizontal>
-				<nuxt-link class="join-item btn btn-primary btn-sm" :to="`${ entity.slug }/edit`">Edit</nuxt-link>
-				<d-button class="join-item" error sm @click="deleteEntity">Delete</d-button>
-			</d-join>
-		</div>
+		</d-card>
 	</section>
 </template>
 <script>

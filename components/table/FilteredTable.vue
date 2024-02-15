@@ -26,11 +26,11 @@
 			</popup-button>
 		</div>
 
-		<table class="w-full">
-			<thead class="text-xs text-gray-700 uppercase bg-gray-50">
+		<table class="table table-zebra">
+			<thead>
 				<tr>
 					<th
-						class="text-left cursor-pointer px-6 py-3"
+						class="cursor-pointer"
 						v-for="column in mutableColumns"
 						:key="`th_${ column.key }`"
 						v-if="!column.hidden"
@@ -49,14 +49,13 @@
 				<tr
 					v-for="record in mutableRecords"
 					:key="record._id"
-					class="border-b border-gray-300 last:border-0"
+					class="hover"
 				>
 					<slot name="row" v-bind:row="record">
 						<td
 							v-for="column in mutableColumns"
 							:key="`td_${ column.key }`"
 							v-if="!column.hidden"
-							class="px-6 py-4"
 						>
 							<nuxt-link class="link" :to="record[column.link]" v-if="column.link">
 								{{ record[column.property] }}

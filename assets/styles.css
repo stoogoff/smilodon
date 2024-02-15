@@ -2,11 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/*
-body {
-	@apply bg-gray-100 leading-normal text-gray-700;
+
+html, body {
+	@apply bg-gray-100 leading-normal text-gray-700 w-full h-full;
 }
-*/
+
 .main {
 	grid-template-columns: 300px auto;
 	gap: 2rem;

@@ -1,8 +1,10 @@
 <template>
 	<section>
 		<d-loading spinner lg v-if="category === null" />
-		<div v-else>
-			<h1>Category: {{ category.title }}</h1>
+		<d-card v-else class="bg-base-100 shadow">
+			<template #title>
+				<h1>Category: {{ category.title }}</h1>
+			</template>
 			<div>
 				<icon-button @click="setViewToTable" :icon="tableIcon" />
 				<icon-button @click="setViewToMap" :icon="earthIcon" />
@@ -11,7 +13,7 @@
 				<entity-table v-if="showTable" :entities="entities" />
 				<entity-map v-else :category="category" />
 			</div>
-		</div>
+		</d-card>
 	</section>
 </template>
 <script>
