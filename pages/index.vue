@@ -16,11 +16,48 @@
 			<p>Hello group 1</p>
 		</d-accordion>
 		<d-accordion arrow group="group1">
-			<template #title>
+			<template #title class="text-primary">
 				Two
 			</template>
 			<p>Hola group 1</p>
 		</d-accordion>
+
+		<hr />
+
+		<d-form-control label="Checkbox"><d-checkbox v-model="checkbox" primary /></d-form-control>
+		<d-form-control label="Greeting"><d-input v-model="text" bordered error placeholder="Hello" /></d-form-control>
+		<d-form-control label="Password"><d-input v-model="text" type="password" bordered placeholder="Password" /></d-form-control>
+		<d-form-control label="Number"><d-input v-model="text" type="number" bordered placeholder="Number" /></d-form-control>
+		<d-form-control label="Disabled"><d-input v-model="text" bordered info lg disabled placeholder="No" /></d-form-control>
+
+		<d-stats class="shadow m-4" vertical>
+			<d-stat>
+				<d-stat-title>Strength</d-stat-title>
+				<d-stat-value class="text-primary">{{ text }}</d-stat-value>
+				<d-stat-description>How strong you are</d-stat-description>
+			</d-stat>
+			<d-stat>
+				<d-stat-title>Intelligence</d-stat-title>
+				<d-stat-value class="text-secondary">{{ checkbox }}</d-stat-value>
+				<d-stat-description>How smart you are</d-stat-description>
+			</d-stat>
+		</d-stats>
+
+		<hr />
+
+		<ul>
+			<li><label><input type="radio" name="radio" value="Radio 1" v-model="radio"> Radio 1</label></li>
+			<li><label><input type="radio" name="radio" value="Radio 2" v-model="radio"> Radio 2</label></li>
+			<li><label><input type="radio" name="radio" value="Radio 3" v-model="radio"> Radio 3</label></li>
+			<li><h3>{{ radio }}</h3></li>
+		</ul>
+
+		<ul>
+			<li><d-form-control label="Radio 1"><d-radio name="radio2" content="Radio 1" v-model="radio" /></d-form-control></li>
+			<li><d-form-control label="Radio 2"><d-radio name="radio2" content="Radio 2" v-model="radio" /></d-form-control></li>
+			<li><d-form-control label="Radio 3"><d-radio name="radio2" content="Radio 3" v-model="radio" /></d-form-control></li>
+			<li><h3>{{ radio }}</h3></li>
+		</ul>
 
 		<hr />
 
@@ -80,6 +117,9 @@ export default {
 				{ title: 'Volume', property: 'Volume' },
 			],
 			records: [],
+			text: '',
+			checkbox: true,
+			radio: 'Radio 1',
 		}
 	},
 

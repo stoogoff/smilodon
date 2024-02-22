@@ -26,22 +26,6 @@ h2 {
 	@apply bg-white shadow-md;
 }
 
-/* form inputs */
-.input {
-	@apply font-sans text-gray-600 text-sm relative bg-white rounded border border-gray-300 shadow outline-none w-full focus:outline-none focus:ring focus:ring-blue-600 p-3 placeholder-gray-300;
-}
-.input.warning {
-	@apply focus:ring-red-600 text-red-800 border-red-300;
-}
-.input.disabled {
-	@apply bg-gray-200;
-}
-
-/* checkboxes */
-.checkbox.disabled {
-	@apply text-gray-500 cursor-default;
-}
-
 /* tabs */
 .tab-panel {
 	@apply p-4;
