@@ -92,6 +92,6 @@ export default {
 		cache: process.env.NODE_ENV !== 'production',
 		extractCSS: process.env.NODE_ENV === 'production' ? { ignoreOrder: true } : false,
 		optimizeCSS: process.env.NODE_ENV === 'production',
-		transpile: ['we-ui', 'vue-daisy-ui'],
+		transpile: ['vue-daisy-ui'],
 	},
 }

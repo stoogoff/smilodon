@@ -1,5 +1,5 @@
 <template>
-	<span class="inline-block w-5"><we-icon-view :icon="icon" /></span>
+	<d-icon :icon="icon" />
 </template>
 <script>
 import Vue from 'vue'

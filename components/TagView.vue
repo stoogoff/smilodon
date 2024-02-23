@@ -9,7 +9,7 @@
 			@click="deleteTag"
 			class="inline-block cursor-pointer border-l border-gray-400 text-gray-600 absolute right-1 w-5 h-5 hover:bg-gray-300 hover:text-gray-800 text-sm"
 		>
-			<we-icon-view class="inline-block" :icon="closeIcon" />
+			<d-icon :icon="closeIcon" />
 		</span>
 	</span>
 </template>

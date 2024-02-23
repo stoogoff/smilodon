@@ -1,9 +1,20 @@
 <template>
 	<div>
-		<we-validate-field :value="title" :rules="rules.title" v-slot="{ error, message }">
-			<we-text-input label="Title" v-model="title" :error="error" :message="message" />
-		</we-validate-field>
-		<select-input label="Parent" v-model="parent" :items="categories" display="title" />
+		<d-validator-control
+			label="Title"
+			:value="title"
+			:rules="rules.title"
+			v-slot="{ error }">
+			<d-input v-model="title" :error="error" />
+		</d-validator-control>
+		<d-form-control label="Parent">
+			<d-select
+				v-model="parent"
+				:items="categories"
+				id="_id"
+				placeholder="(none)"
+			/>
+		</d-form-control>
 		<d-join horizontal>
 			<d-button class="join-item" primary sm block :disabled="!canSave" @click="save">Save</d-button>
 			<d-button class="join-item" block sm @click="cancel">Cancel</d-button>
@@ -13,8 +24,8 @@
 <script>
 
 import Vue from 'vue'
-import { sortByProperty } from 'we-ui/utils/list'
-import { required, validate } from 'we-ui/utils/validators'
+import { sortByProperty } from 'vue-daisy-ui/utils/list'
+import { required, validate } from 'vue-daisy-ui/utils/validators'
 
 export default Vue.component('CategoryEditor', {
 	async fetch() {
@@ -28,7 +39,7 @@ export default Vue.component('CategoryEditor', {
 	data() {
 		return {
 			title: '',
-			parent: '',
+			parent: null,
 			categories: [],
 		}
 	},

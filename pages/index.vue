@@ -5,6 +5,17 @@
 		<p>General purpose welcome page</p>
 		<p>Could have some small dashboard links if the user has already been here</p>
 
+		<div class="bg-white py-2">
+			<d-tabs lifted>
+				<d-tab label="Tab 1" group="this" active />
+				<d-tab-content class="p-4">Tab content 1</d-tab-content>
+				<d-tab label="Tab 2" group="this" />
+				<d-tab-content class="p-4">Tab content 2</d-tab-content>
+				<d-tab label="Tab 3" group="this" />
+				<d-tab-content class="p-4">Tab content 3</d-tab-content>
+			</d-tabs>
+		</div>
+
 		<d-button primary @click="clicky">Primary</d-button>
 		<d-button secondary @click="clicky">Secondary</d-button>
 		<d-button disabled @click="clicky">Disabled</d-button>
@@ -24,8 +35,22 @@
 
 		<hr />
 
+		<d-form-control label="Select" :message="selectionTitle">
+			<d-select
+				v-model="selection"
+				:items="categories"
+				display="title"
+				id="_id" />
+		</d-form-control>
+
 		<d-form-control label="Checkbox"><d-checkbox v-model="checkbox" primary /></d-form-control>
-		<d-form-control label="Greeting"><d-input v-model="text" bordered error placeholder="Hello" /></d-form-control>
+		<d-validator-control
+			label="Greeting"
+			:value="text"
+			:rules="rules"v-slot="{ error }"
+		>
+			<d-input v-model="text" :error="error" bordered placeholder="Hello" />
+		</d-validator-control>
 		<d-form-control label="Password"><d-input v-model="text" type="password" bordered placeholder="Password" /></d-form-control>
 		<d-form-control label="Number"><d-input v-model="text" type="number" bordered placeholder="Number" /></d-form-control>
 		<d-form-control label="Disabled"><d-input v-model="text" bordered info lg disabled placeholder="No" /></d-form-control>
@@ -87,6 +112,8 @@
 </template>
 <script>
 
+import { required } from 'vue-daisy-ui/utils/validators'
+
 export default {
 	name: 'Index',
 	layout: 'site',
@@ -105,6 +132,9 @@ export default {
 			}
 		})
 
+		this.categories = await this.$categories.allByProject('seed-1')
+		this.selection = this.categories[0]
+
 		console.log(this.records)
 	},
 	fetchOnServer: false,
@@ -117,9 +147,20 @@ export default {
 				{ title: 'Volume', property: 'Volume' },
 			],
 			records: [],
+			categories: [],
 			text: '',
 			checkbox: true,
 			radio: 'Radio 1',
+			selection: null,
+		}
+	},
+
+	computed: {
+		rules() {
+			return [required()]
+		},
+		selectionTitle() {
+			return this.selection ? this.selection.title : ''
 		}
 	},
 

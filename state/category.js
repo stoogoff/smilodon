@@ -1,5 +1,5 @@
 
-import { sortByProperty } from 'we-ui/utils/list'
+import { sortByProperty } from 'vue-daisy-ui/utils/list'
 import {
 	DEFAULT_CATEGORY,
 	CATEGORY_ID_PREFIX,

@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<we-loading-spinner v-if="$fetchState.pending" />
+		<d-loading spinner lg v-if="$fetchState.pending" />
 		<d-alert v-else-if="project === null" warning>
 			Unable to load project.
 		</d-alert>

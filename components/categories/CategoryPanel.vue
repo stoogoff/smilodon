@@ -2,7 +2,7 @@
 	<aside>
 		<div v-if="project !== null">
 			<nuxt-link :to="project.slug">
-				<we-icon-view class="inline-block w-5" :icon="home" />
+				<d-icon :icon="home" />
 				{{ project.title }}
 			</nuxt-link>
 		</div>
@@ -15,7 +15,7 @@
 <script>
 
 import Vue from 'vue'
-import { required, validate } from 'we-ui/utils/validators'
+import { required, validate } from 'vue-daisy-ui/utils/validators'
 import { home } from '~/utils/icons'
 import { EventBus } from '~/utils/event-bus'
 import { PROJECTS_UPDATED } from '~/utils/config'

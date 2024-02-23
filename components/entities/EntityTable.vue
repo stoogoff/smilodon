@@ -3,7 +3,7 @@
 </template>
 <script>
 import Vue from 'vue'
-import { unique, sortByProperty } from 'we-ui/utils/list'
+import { unique, sortByProperty } from 'vue-daisy-ui/utils/list'
 import { ENTITIES_UPDATED } from '~/utils/config'
 import { notNull } from '~/utils/assert'
 import TagList from '~/components/TagList.vue'

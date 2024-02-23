@@ -1,13 +1,19 @@
 <template>
 	<div>
-		<we-tab-group>
-			<we-tab-panel title="Entity">
-				<we-validate-field :value="title" :rules="rules.title" v-slot="{ error, message }">
-					<we-text-input label="Title" v-model="title" :error="error" :message="message" />
-				</we-validate-field>
+		<d-tabs>
+			<d-tab label="Entity" group="entity-editor" active />
+			<d-tab-content>
+				<d-validator-control
+					label="Title"
+					:value="title"
+					:rules="rules.title"
+					v-slot="{ error }">
+					<d-input v-model="title" :error="error" />
+				</d-validator-control>
 				<html-editor label="Description" v-model="description" />
-			</we-tab-panel>
-			<we-tab-panel title="Properties">
+			</d-tab-content>
+			<d-tab label="Properties" group="entity-editor" />
+			<d-tab-content>
 				<p><em>Use the buttons below to add custom properties.</em></p>
 				<property-editor
 					v-for="(property, index) in properties"
@@ -16,13 +22,20 @@
 					@update="updateProperty"
 					@delete="deleteProperty" />
 				<d-button @click="addProperty">Add Property</d-button>
-			</we-tab-panel>
-			<we-tab-panel title="Metadata">
-				<select-input label="Icon" v-model="icon" :items="icons" />
-				<select-input label="Category" v-model="category" :items="categories" display="title" />
+			</d-tab-content>
+			<d-tab label="Metadata" group="entity-editor" />
+			<d-tab-content>
+				<d-form-control label="Icon">
+					<d-simple-select v-model="icon" :items="icons" placeholder="(none)" />
+				</d-form-control>
+				<d-form-control label="Category">
+					<d-select v-model="category" :items="categories" id="_id" />
+				</d-form-control>
 				<div class="flex">
 					<div class="flex-grow">
-						<we-text-input label="Tag" v-model="currentTag" />
+						<d-form-control label="Tag">
+							<d-input v-model="currentTag" />
+						</d-form-control>
 					</div>
 					<div class="mt-12 ml-2">
 						<d-button @click="addTag" sm :disabled="!canAddTag">Add</d-button>
@@ -31,8 +44,8 @@
 				<div>
 					<tag-list :tags="tags" :editable="true" @delete="deleteTag" />
 				</div>
-			</we-tab-panel>
-		</we-tab-group>
+			</d-tab-content>
+		</d-tabs>
 		<div class="fixed bottom-0 left-0 right-0 p-2">
 			<d-button primary block :disabled="!canSave" @click="save">Save</d-button>
 		</div>
@@ -41,8 +54,8 @@
 <script>
 
 import Vue from 'vue'
-import { required, validate } from 'we-ui/utils/validators'
-import { createId } from 'we-ui/utils/string'
+import { required, validate } from 'vue-daisy-ui/utils/validators'
+import { createId } from 'vue-daisy-ui/utils/string'
 import { toTitleCase } from '~/utils/string'
 import { DEFAULT_PROPERTY, EDITOR_TOOLBAR } from '~/utils/config'
 

@@ -1,8 +1,13 @@
 <template>
 	<div>
-		<we-validate-field :value="title" :rules="rules.title" v-slot="{ error, message }">
-			<we-text-input label="Title" v-model="title" :error="error" :message="message" />
-		</we-validate-field>
+		<d-validator-control
+			label="Title"
+			:value="title"
+			:rules="rules.title"
+			v-slot="{ error }"
+		>
+			<d-input v-model="title" :error="error" />
+		</d-validator-control>
 		<html-editor label="Description" v-model="description" />
 		<d-join horizontal>
 			<d-button class="join-item" primary block :disabled="!canSave" @click="save">Save</d-button>
@@ -13,7 +18,7 @@
 <script>
 
 import Vue from 'vue'
-import { required, validate } from 'we-ui/utils/validators'
+import { required, validate } from 'vue-daisy-ui/utils/validators'
 
 export default Vue.component('ProjectEditor', {
 	props: {

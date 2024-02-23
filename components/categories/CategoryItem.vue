@@ -1,7 +1,7 @@
 <template>
 	<li class="py-1">
 		<div class="flex cursor-pointer hover:bg-gray-100" @click="toggleOpen">
-			<we-icon-view class="inline-block w-5 text-gray-600 mr-1" :icon="icon" />
+			<d-icon class="text-gray-600 mr-1" :icon="icon" />
 			<span class="flex-grow" @click.stop="viewCategory">{{ category.title }}</span>
 		</div>
 		<slide-down>

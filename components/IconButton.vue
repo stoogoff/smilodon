@@ -1,6 +1,6 @@
 <template>
 	<span class="cursor-pointer hover:bg-gray-200 p-1 rounded" @click="$emit('click')">
-		<we-icon-view class="inline-block w-5" :icon="icon" />
+		<d-icon :icon="icon" />
 	</span>
 </template>
 <script>

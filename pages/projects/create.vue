@@ -7,7 +7,7 @@
 </template>
 <script>
 
-import { required, validate } from 'we-ui/utils/validators'
+import { required, validate } from 'vue-daisy-ui/utils/validators'
 import { EDITOR_TOOLBAR } from '~/utils/config'
 
 export default {

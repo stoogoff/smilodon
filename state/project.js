@@ -1,5 +1,5 @@
 
-import { sortByProperty } from 'we-ui/utils/list'
+import { sortByProperty } from 'vue-daisy-ui/utils/list'
 import { DEFAULT_PROJECT, PROJECT_ID_PREFIX, PROJECTS_UPDATED } from '~/utils/config'
 import Access from '~/utils/access'
 

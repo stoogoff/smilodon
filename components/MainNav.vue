@@ -25,7 +25,7 @@
 <script>
 
 import Vue from 'vue'
-import { sortByProperty } from 'we-ui/utils/list'
+import { sortByProperty } from 'vue-daisy-ui/utils/list'
 import { PROJECTS_UPDATED } from '~/utils/config'
 import { EventBus } from '~/utils/event-bus'
 

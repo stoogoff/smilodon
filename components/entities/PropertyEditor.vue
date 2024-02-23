@@ -1,14 +1,29 @@
 <template>
 	<div class="grid grid-cols-4 gap-1">
-		<we-validate-field :value="name" :rules="rules.name" v-slot="{ error, message }">
-			<we-text-input label="Name" v-model="name" :error="error" :message="message" @input="updateProperty" />
-		</we-validate-field>
-		<we-validate-field :value="type" :rules="rules.type" v-slot="{ error, message }">
-			<select-input label="Type" v-model="type" :items="propertyTypes" @input="updateProperty" />
-		</we-validate-field>
-		<we-validate-field :value="value" :rules="rules.value" v-slot="{ error, message }">
-			<we-text-input label="Value" v-model="value" :error="error" :message="message" @input="updateProperty" />
-		</we-validate-field>
+		<d-validator-control
+			label="Name"
+			:value="name"
+			:rules="rules.name"
+			v-slot="{ error }"
+		>
+			<d-input v-model="name" :error="error" @input="updateProperty" />
+		</d-validator-control>
+		<d-validator-control
+			label="Type"
+			:value="type"
+			:rules="rules.type"
+			v-slot="{ error }"
+		>
+			<d-simple-select v-model="type" :items="propertyTypes" @input="updateProperty" />
+		</d-validator-control>
+		<d-validator-control
+			label="Value"
+			:value="value"
+			:rules="rules.value"
+			v-slot="{ error }"
+		>
+			<d-input v-model="value" :error="error" @input="updateProperty" />
+		</d-validator-control>
 		<span>
 			<icon-button @click="deleteProperty" icon="delete" />
 		</span>
@@ -17,7 +32,7 @@
 <script>
 
 import Vue from 'vue'
-import { required, format } from 'we-ui/utils/validators'
+import { required, format } from 'vue-daisy-ui/utils/validators'
 import { PROPERTY_TYPES } from '~/utils/config'
 
 export default Vue.component('PropertyEditor', {

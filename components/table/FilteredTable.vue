@@ -72,8 +72,8 @@
 <script>
 
 import Vue from 'vue'
-import { createId } from 'we-ui/utils/string'
-import { sortByProperty } from 'we-ui/utils/list'
+import { createId } from 'vue-daisy-ui/utils/string'
+import { sortByProperty } from 'vue-daisy-ui/utils/list'
 import { searchObject } from '~/utils/string'
 
 export default Vue.component('FilteredTable', {

@@ -1,6 +1,6 @@
 
-import { sortByProperty } from 'we-ui/utils/list'
-import { createId } from 'we-ui/utils/string'
+import { sortByProperty } from 'vue-daisy-ui/utils/list'
+import { createId } from 'vue-daisy-ui/utils/string'
 import { slugify } from '~/utils/string'
 import { EventBus } from '~/utils/event-bus'
 import { PROJECT_ID_PREFIX } from '~/utils/config'

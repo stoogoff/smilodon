@@ -10,6 +10,7 @@ html, body {
 .main {
 	grid-template-columns: 300px auto;
 	gap: 2rem;
+	@apply pr-4;
 }
 h1 {
 	@apply text-2xl font-bold;
@@ -25,77 +26,6 @@ h2 {
 .nav {
 	@apply bg-white shadow-md;
 }
-
-/* tabs */
-.tab-panel {
-	@apply p-4;
-}
-.tab-item {
-	@apply hover:text-gray-600 hover:border-gray-300;
-}
-.tab-item.active {
-	@apply text-blue-600 border-blue-600;
-}
-
-/* alert, label and message colours */
-.label.warning, .message.warning {
-	@apply text-red-800;
-}
-.alert.success {
-	@apply bg-green-200 text-green-800 border-green-800;
-}
-.alert.primary {
-	@apply bg-blue-200 text-blue-800 border-blue-800;
-}
-.alert.secondary {
-	@apply bg-yellow-200 text-yellow-800 border-yellow-800;
-}
-.alert.warning {
-	@apply bg-red-200 text-red-800 border-red-800;
-}
-
-/* buttons */
-/*.btn {
-	@apply px-4 py-2 normal-case font-normal;
-	@apply bg-gray-300 text-gray-800 hover:text-gray-900 hover:bg-white;
-	@apply border border-gray-400 hover:border-gray-900;
-}
-.btn.disabled {
-	@apply bg-gray-400 text-gray-500 hover:bg-gray-400 hover:text-gray-500;
-	@apply border border-gray-400 hover:border-gray-400;
-}
-.btn.primary {
-	@apply bg-blue-600 text-white hover:bg-blue-700 border-blue-800 hover:border-blue-900;
-}
-.btn.secondary {
-	@apply bg-yellow-600 text-white hover:bg-yellow-800;
-}
-.btn.success {
-	@apply bg-green-600 text-white hover:bg-green-700 border-green-800 hover:border-green-900;
-}
-.btn.warning {
-	@apply bg-red-600 text-white hover:bg-red-700 border-red-800 hover:border-red-900;
-}
-.btn.outlined {
-	@apply bg-white border border-solid border-gray-700 hover:text-gray-900 hover:bg-gray-100;
-}*/
-
-/* outlined buttons */
-/*.btn.outlined.disabled {
-	@apply bg-gray-200 border-gray-400 text-gray-400;
-}
-.btn.outlined.primary {
-	@apply text-blue-600 border-blue-400 hover:bg-blue-200 hover:text-blue-800 hover:border-blue-800;
-}
-.btn.outlined.secondary {
-	@apply text-yellow-600 border-yellow-400 hover:bg-yellow-200 hover:text-yellow-800 hover:border-yellow-800;
-}
-.btn.outlined.success {
-	@apply text-green-600 border-green-400 hover:bg-green-200 hover:text-green-800 hover:border-green-800;
-}
-.btn.outlined.warning {
-	@apply text-red-600 border-red-400 hover:bg-red-200 hover:text-red-800 hover:border-red-800;
-}*/
 
 .btn-icon.circle-icon {
 	@apply border border-solid;

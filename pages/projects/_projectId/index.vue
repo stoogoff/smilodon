@@ -10,15 +10,17 @@
 				<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">Edit</nuxt-link>
 				<d-button outline error sm @click="openDeleteModal">Delete</d-button>
 			</template>
-			<we-tab-group>
-				<we-tab-panel title="Description">
+			<d-tabs bordered>
+				<d-tab label="Description" group="project-edit" active />
+				<d-tab-content>
 					<div v-html="project.description" />
-				</we-tab-panel>
-				<we-tab-panel title="Entities">
+				</d-tab-content>
+				<d-tab label="Entities" group="project-edit" />
+				<d-tab-content>
 					<entity-table v-if="hasEntities" :entities="entities" />
 					<p v-else><em>No entities created.</em></p>
-				</we-tab-panel>
-			</we-tab-group>
+				</d-tab-content>
+			</d-tabs>
 		</d-card>
 		<confirm-dialogue
 			v-if="showDeleteModal"
