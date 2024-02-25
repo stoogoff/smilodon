@@ -1,11 +1,11 @@
 <template>
-	<li class="py-1">
-		<div class="flex cursor-pointer hover:bg-gray-100" @click="toggleOpen">
-			<d-icon class="text-gray-600 mr-1" :icon="icon" />
-			<span class="flex-grow" @click.stop="viewCategory">{{ category.title }}</span>
+	<li>
+		<div @click="toggleOpen">
+			<d-icon :icon="icon" />
+			<span @click.stop="viewCategory">{{ category.title }}</span>
 		</div>
 		<slide-down>
-			<category-tree class="ml-6" v-if="open" :parent="category._id" />
+			<category-tree v-if="open" :parent="category._id" />
 		</slide-down>
 	</li>
 </template>

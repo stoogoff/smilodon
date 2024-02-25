@@ -1,7 +1,9 @@
 <template>
-	<li class="flex cursor-pointer hover:bg-gray-100">
-		<d-icon class="text-gray-600 mr-1" :icon="icon" />
-		<nuxt-link class="flex-grow" :to="entity.slug">{{ entity.title }}</nuxt-link>
+	<li>
+		<nuxt-link :to="entity.slug">
+			<d-icon :icon="icon" />
+			{{ entity.title }}
+		</nuxt-link>
 	</li>
 </template>
 <script>
@@ -20,7 +22,7 @@ export default Vue.component('EntityItem', {
 
 	computed: {
 		icon() {
-			return this.entity.icon ? getIcon(this.entity.icon) : fileDocument
+			return getIcon(this.entity.icon)
 		},
 	},
 })

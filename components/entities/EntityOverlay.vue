@@ -1,5 +1,5 @@
 <template>
-	<we-screen-slide>
+	<d-screen-slide>
 		<we-navbar>
 			<template #title>
 				Create Entity
@@ -12,7 +12,7 @@
 			</div>
 		</we-navbar>
 		<entity-editor @save="save" />
-	</we-screen-slide>
+	</d-screen-slide>
 </template>
 <script>
 

@@ -1,5 +1,11 @@
 <template>
-	<ul>
+	<ul class="menu menu-xs">
+		<li v-if="project">
+			<nuxt-link :to="project.slug">
+				<d-icon :icon="homeIcon" />
+				{{ project.title }}
+			</nuxt-link>
+		</li>
 		<category-item
 			v-for="category in categories"
 			:key="category._id"
@@ -17,6 +23,8 @@
 import Vue from 'vue'
 import { EventBus } from '~/utils/event-bus'
 import { CATEGORIES_UPDATED } from '~/utils/config'
+import { isEmptyString } from '~/utils/assert'
+import { home } from '~/utils/icons'
 
 export default Vue.component('CategoryTree', {
 	props: {
@@ -29,6 +37,10 @@ export default Vue.component('CategoryTree', {
 	async fetch() {
 		const { params } = this.$nuxt.context
 
+		if(isEmptyString(this.parent)) {
+			this.project = await this.$projects.byId(params.projectId)
+		}
+
 		this.categories = await this.$categories.allWithParent(params.projectId, this.parent)
 		this.entities = await this.$entities.allByCategory(this.parent)
 	},
@@ -36,6 +48,7 @@ export default Vue.component('CategoryTree', {
 
 	data() {
 		return {
+			project: null,
 			categories: [],
 			entities: [],
 		}
@@ -52,6 +65,12 @@ export default Vue.component('CategoryTree', {
 	watch: {
 		$route(to, from) {
 			this.$fetch()
+		},
+	},
+
+	computed: {
+		homeIcon() {
+			return home
 		},
 	},
 })

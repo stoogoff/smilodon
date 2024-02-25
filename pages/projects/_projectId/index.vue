@@ -4,24 +4,27 @@
 		<d-alert v-else-if="project === null" error>
 			Unable to load project.
 		</d-alert>
-		<d-card v-else class="bg-base-100 shadow">
-			<template #title>
-				<h1>{{ project.title }}</h1>
-				<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">Edit</nuxt-link>
-				<d-button outline error sm @click="openDeleteModal">Delete</d-button>
-			</template>
-			<d-tabs bordered>
-				<d-tab label="Description" group="project-edit" active />
-				<d-tab-content>
-					<div v-html="project.description" />
-				</d-tab-content>
-				<d-tab label="Entities" group="project-edit" />
-				<d-tab-content>
-					<entity-table v-if="hasEntities" :entities="entities" />
-					<p v-else><em>No entities created.</em></p>
-				</d-tab-content>
-			</d-tabs>
-		</d-card>
+		<div v-else>
+			<breadcrumb />
+			<d-card class="bg-base-100 shadow">
+				<template #title>
+					<h1>{{ project.title }}</h1>
+					<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">Edit</nuxt-link>
+					<d-button outline error sm @click="openDeleteModal">Delete</d-button>
+				</template>
+				<d-tabs bordered>
+					<d-tab label="Description" group="project-edit" active />
+					<d-tab-content>
+						<div v-html="project.description" />
+					</d-tab-content>
+					<d-tab label="Entities" group="project-edit" />
+					<d-tab-content>
+						<entity-table v-if="hasEntities" :entities="entities" />
+						<p v-else><em>No entities created.</em></p>
+					</d-tab-content>
+				</d-tabs>
+			</d-card>
+		</div>
 		<confirm-dialogue
 			v-if="showDeleteModal"
 			title="Delete"

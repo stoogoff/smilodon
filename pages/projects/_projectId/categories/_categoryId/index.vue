@@ -1,19 +1,22 @@
 <template>
 	<section>
 		<d-loading spinner lg v-if="category === null" />
-		<d-card v-else class="bg-base-100 shadow">
-			<template #title>
-				<h1>Category: {{ category.title }}</h1>
-			</template>
-			<div>
-				<icon-button @click="setViewToTable" :icon="tableIcon" />
-				<icon-button @click="setViewToMap" :icon="earthIcon" />
-			</div>
-			<div v-if="hasEntities">
-				<entity-table v-if="showTable" :entities="entities" />
-				<entity-map v-else :category="category" />
-			</div>
-		</d-card>
+		<div v-else>
+			<breadcrumb />
+			<d-card class="bg-base-100 shadow">
+				<template #title>
+					<h1>Category: {{ category.title }}</h1>
+				</template>
+				<div>
+					<icon-button @click="setViewToTable" :icon="tableIcon" />
+					<icon-button @click="setViewToMap" :icon="earthIcon" />
+				</div>
+				<div v-if="hasEntities">
+					<entity-table v-if="showTable" :entities="entities" />
+					<entity-map v-else :category="category" />
+				</div>
+			</d-card>
+		</div>
 	</section>
 </template>
 <script>
@@ -39,7 +42,7 @@ export default {
 	data() {
 		return {
 			category: null,
-			view: VIEW_TABLE
+			view: VIEW_TABLE,
 		}
 	},
 

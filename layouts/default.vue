@@ -9,12 +9,14 @@
 			v-if="showPublish"
 			@close="showPublish = false"
 		/>
-		<we-icon-action
-			type="primary"
-			:icon="plusIcon"
-			class="fixed right-4 bottom-4 circle-icon"
+		<d-button
+			class="fixed right-4 bottom-4"
+			primary
+			circle
 			@click="showPublish = true"
-		/>
+		>
+			<d-icon :icon="plusIcon" />
+		</d-button>
 	</div>
 </template>
 <script>
