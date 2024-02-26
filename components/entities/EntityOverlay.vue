@@ -1,16 +1,16 @@
 <template>
 	<d-screen-slide>
-		<we-navbar>
-			<template #title>
-				Create Entity
-			</template>
-			<template #buttons>
-				<we-nav-button icon="close" @click="$emit('close')" />
-			</template>
-			<div class="hidden md:flex md:flex-row md:ml-auto relative">
-				<nav-item :icon="closeIcon" @click="$emit('close')">Close</nav-item>
-			</div>
-		</we-navbar>
+		<d-navbar class="bg-primary">
+			<d-navbar-start>
+				<h1 class="text-md">Create Entity</h1>
+			</d-navbar-start>
+			<d-navbar-end>
+				<d-button @click="$emit('close')" sm>
+					<d-icon :icon="closeIcon" />
+					Close
+				</d-button>
+			</d-navbar-end>
+		</d-navbar>
 		<entity-editor @save="save" />
 	</d-screen-slide>
 </template>

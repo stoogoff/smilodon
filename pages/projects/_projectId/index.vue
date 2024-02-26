@@ -9,8 +9,14 @@
 			<d-card class="bg-base-100 shadow">
 				<template #title>
 					<h1>{{ project.title }}</h1>
-					<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">Edit</nuxt-link>
-					<d-button outline error sm @click="openDeleteModal">Delete</d-button>
+					<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">
+						<d-icon :icon="editIcon" />
+						Edit
+					</nuxt-link>
+					<d-button outline accent sm @click="openDeleteModal">
+						<d-icon :icon="trashIcon" />
+						Delete
+					</d-button>
 				</template>
 				<d-tabs bordered>
 					<d-tab label="Description" group="project-edit" active />
@@ -39,6 +45,7 @@
 <script>
 
 import WithEntities from '~/mixins/with-entities'
+import { trash, edit } from '~/utils/icons'
 
 export default {
 	name: 'ProjectView',
@@ -57,6 +64,15 @@ export default {
 			project: null,
 			showDeleteModal: false,
 		}
+	},
+
+	computed: {
+		trashIcon() {
+			return trash
+		},
+		editIcon() {
+			return edit
+		},
 	},
 
 	methods: {

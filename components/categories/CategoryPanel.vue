@@ -3,7 +3,7 @@
 		<h3 class="uppercase text-sm ml-4">Categories</h3>
 		<category-tree />
 		<category-editor v-if="showAddForm" @save="hideForm" @cancel="hideForm" />
-		<d-button v-else block @click="showForm">Add</d-button>
+		<d-button v-else primary outline block @click="showForm">Add</d-button>
 	</aside>
 </template>
 <script>

@@ -5,109 +5,47 @@
 		<p>General purpose welcome page</p>
 		<p>Could have some small dashboard links if the user has already been here</p>
 
-		<div class="bg-white py-2">
-			<d-tabs lifted>
-				<d-tab label="Tab 1" group="this" active />
-				<d-tab-content class="p-4">Tab content 1</d-tab-content>
-				<d-tab label="Tab 2" group="this" />
-				<d-tab-content class="p-4">Tab content 2</d-tab-content>
-				<d-tab label="Tab 3" group="this" />
-				<d-tab-content class="p-4">Tab content 3</d-tab-content>
-			</d-tabs>
+		<div class="m-4">
+			<d-alert class="my-4" info>Info</d-alert>
+			<d-alert class="my-4" success>Success</d-alert>
+			<d-alert class="my-4" warning>Warning</d-alert>
+			<d-alert class="my-4" error>Error</d-alert>
 		</div>
 
-		<d-button primary @click="clicky">Primary</d-button>
-		<d-button secondary @click="clicky">Secondary</d-button>
-		<d-button disabled @click="clicky">Disabled</d-button>
+		<div class="m-4">
+			<d-button info>Info</d-button>
+			<d-button success>Success</d-button>
+			<d-button warning>Warning</d-button>
+			<d-button error>Error</d-button>
+			<d-button outline info>Info</d-button>
+			<d-button outline success>Success</d-button>
+			<d-button outline warning>Warning</d-button>
+			<d-button outline error>Error</d-button>
+		</div>
 
-		<d-accordion arrow group="group1">
-			<template #title>
-				One
-			</template>
-			<p>Hello group 1</p>
-		</d-accordion>
-		<d-accordion arrow group="group1">
-			<template #title class="text-primary">
-				Two
-			</template>
-			<p>Hola group 1</p>
-		</d-accordion>
+		<div class="m-4">
+			<d-button primary>Primary</d-button>
+			<d-button secondary>Secondary</d-button>
+			<d-button accent>Accent</d-button>
+			<d-button neutral>Neutral</d-button>
+			<d-button outline primary>Primary</d-button>
+			<d-button outline secondary>Secondary</d-button>
+			<d-button outline accent>Accent</d-button>
+			<d-button outline neutral>Neutral</d-button>
+		</div>
 
-		<hr />
+		<div class="m-4">
+			<d-badge primary>Primary</d-badge>
+			<d-badge secondary>Secondary</d-badge>
+			<d-badge accent>Accent</d-badge>
+			<d-badge neutral>Neutral</d-badge>
+			<d-badge ghost>Ghost</d-badge>
+			<d-badge info>Info</d-badge>
+			<d-badge success>Success</d-badge>
+			<d-badge warning>Warning</d-badge>
+			<d-badge error>Error</d-badge>
+		</div>
 
-		<d-form-control label="Select" :message="selectionTitle">
-			<d-select
-				v-model="selection"
-				:items="categories"
-				display="title"
-				id="_id" />
-		</d-form-control>
-
-		<d-form-control label="Checkbox"><d-checkbox v-model="checkbox" primary /></d-form-control>
-		<d-validator-control
-			label="Greeting"
-			:value="text"
-			:rules="rules"v-slot="{ error }"
-		>
-			<d-input v-model="text" :error="error" bordered placeholder="Hello" />
-		</d-validator-control>
-		<d-form-control label="Password"><d-input v-model="text" type="password" bordered placeholder="Password" /></d-form-control>
-		<d-form-control label="Number"><d-input v-model="text" type="number" bordered placeholder="Number" /></d-form-control>
-		<d-form-control label="Disabled"><d-input v-model="text" bordered info lg disabled placeholder="No" /></d-form-control>
-
-		<d-stats class="shadow m-4" vertical>
-			<d-stat>
-				<d-stat-title>Strength</d-stat-title>
-				<d-stat-value class="text-primary">{{ text }}</d-stat-value>
-				<d-stat-description>How strong you are</d-stat-description>
-			</d-stat>
-			<d-stat>
-				<d-stat-title>Intelligence</d-stat-title>
-				<d-stat-value class="text-secondary">{{ checkbox }}</d-stat-value>
-				<d-stat-description>How smart you are</d-stat-description>
-			</d-stat>
-		</d-stats>
-
-		<hr />
-
-		<ul>
-			<li><label><input type="radio" name="radio" value="Radio 1" v-model="radio"> Radio 1</label></li>
-			<li><label><input type="radio" name="radio" value="Radio 2" v-model="radio"> Radio 2</label></li>
-			<li><label><input type="radio" name="radio" value="Radio 3" v-model="radio"> Radio 3</label></li>
-			<li><h3>{{ radio }}</h3></li>
-		</ul>
-
-		<ul>
-			<li><d-form-control label="Radio 1"><d-radio name="radio2" content="Radio 1" v-model="radio" /></d-form-control></li>
-			<li><d-form-control label="Radio 2"><d-radio name="radio2" content="Radio 2" v-model="radio" /></d-form-control></li>
-			<li><d-form-control label="Radio 3"><d-radio name="radio2" content="Radio 3" v-model="radio" /></d-form-control></li>
-			<li><h3>{{ radio }}</h3></li>
-		</ul>
-
-		<hr />
-
-		<d-accordion plus group="group2">
-			<template #title>
-				One
-			</template>
-			<p>Hello group 2</p>
-		</d-accordion>
-		<d-accordion plus group="group2">
-			<template #title>
-				Two
-			</template>
-			<p>Hola group 2</p>
-		</d-accordion>
-
-		<d-badge success lg>Hello</d-badge>
-		<d-tooltip primary title="Hello"><d-badge info md>Hello</d-badge></d-tooltip>
-
-		<d-toast start bottom><d-alert warning>Alert</d-alert></d-toast>
-		<d-tooltip accent title="This will load forever"><d-loading infinity /></d-tooltip>
-		<d-loading dots lg class="text-error" />
-		<d-progress accent :value="50" :max="100" class="w-56" />
-		<d-progress secondary class="w-56" />
-		<d-radial-progress :percent="35" class="bg-primary text-primary-content border-4 border-primary" />
 	</div>
 </template>
 <script>
@@ -152,6 +90,7 @@ export default {
 			checkbox: true,
 			radio: 'Radio 1',
 			selection: null,
+			swapper: true,
 		}
 	},
 

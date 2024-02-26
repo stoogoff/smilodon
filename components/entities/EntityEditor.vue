@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<d-tabs>
+	<div class="p-4">
+		<d-tabs bordered>
 			<d-tab label="Entity" group="entity-editor" active />
 			<d-tab-content>
 				<d-validator-control
@@ -8,7 +8,7 @@
 					:value="title"
 					:rules="rules.title"
 					v-slot="{ error }">
-					<d-input v-model="title" :error="error" />
+					<d-input v-model="title" :error="error" bordered />
 				</d-validator-control>
 				<html-editor label="Description" v-model="description" />
 			</d-tab-content>
@@ -26,15 +26,23 @@
 			<d-tab label="Metadata" group="entity-editor" />
 			<d-tab-content>
 				<d-form-control label="Icon">
-					<d-simple-select v-model="icon" :items="icons" placeholder="(none)" />
+					<d-simple-select
+						bordered
+						v-model="icon"
+						:items="icons"
+						placeholder="(none)" />
 				</d-form-control>
 				<d-form-control label="Category">
-					<d-select v-model="category" :items="categories" id="_id" />
+					<d-select
+						bordered
+						v-model="category"
+						:items="categories"
+						id="_id" />
 				</d-form-control>
 				<div class="flex">
 					<div class="flex-grow">
 						<d-form-control label="Tag">
-							<d-input v-model="currentTag" />
+							<d-input v-model="currentTag" bordered />
 						</d-form-control>
 					</div>
 					<div class="mt-12 ml-2">

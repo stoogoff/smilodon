@@ -10,7 +10,7 @@ html, body {
 .main {
 	grid-template-columns: 300px auto;
 	gap: 2rem;
-	@apply pr-4;
+	@apply pr-4 pt-8 pb-2;
 }
 h1 {
 	@apply text-2xl font-bold;
