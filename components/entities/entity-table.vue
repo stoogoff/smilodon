@@ -6,7 +6,6 @@ import Vue from 'vue'
 import { unique, sortByProperty } from 'vue-daisy-ui/utils/list'
 import { ENTITIES_UPDATED } from '~/utils/config'
 import { notNull } from '~/utils/assert'
-import TagList from '~/components/TagList.vue'
 
 export default Vue.component('EntityTable', {
 	props: {
