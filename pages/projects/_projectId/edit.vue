@@ -1,14 +1,13 @@
 <template>
 	<section>
-		<d-loading spinner lg v-if="$fetchState.pending" />
+		<loading-spinner v-if="$fetchState.pending" />
 		<d-alert v-else-if="project === null" warning>
 			Unable to load project.
 		</d-alert>
-		<div v-else>
-			<h1>Edit: {{ project.title }}</h1>
-
+		<d-card v-else class="bg-base-100 shadow">
+			<d-card-title class="border-b border-st-grey pb-2 mb-4 -mt-8">Edit: {{ project.title }}</d-card-title>
 			<project-editor :project="project" @save="save" @cancel="cancel" />
-		</div>
+		</d-card>
 	</section>
 </template>
 <script>

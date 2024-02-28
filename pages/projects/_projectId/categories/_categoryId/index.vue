@@ -1,15 +1,19 @@
 <template>
 	<section>
-		<d-loading spinner lg v-if="category === null" />
+		<loading-spinner v-if="category === null" />
 		<div v-else>
 			<breadcrumb />
 			<d-card class="bg-base-100 shadow">
-				<template #title>
-					<h1>Category: {{ category.title }}</h1>
-				</template>
+				<d-card-title>
+					Category: {{ category.title }}
+				</d-card-title>
 				<div>
-					<icon-button @click="setViewToTable" :icon="tableIcon" />
-					<icon-button @click="setViewToMap" :icon="earthIcon" />
+					<d-button sm @click="setViewToTable">
+						<icon-view icon="table" />
+					</d-button>
+					<d-button sm @click="setViewToMap">
+						<icon-view icon="earth" />
+					</d-button>
 				</div>
 				<div v-if="hasEntities">
 					<entity-table v-if="showTable" :entities="entities" />

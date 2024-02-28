@@ -6,7 +6,7 @@
 			</d-navbar-start>
 			<d-navbar-end>
 				<d-button @click="$emit('close')" sm>
-					<d-icon :icon="closeIcon" />
+					<icon-view icon="close" />
 					Close
 				</d-button>
 			</d-navbar-end>
@@ -18,15 +18,8 @@
 
 import Vue from 'vue'
 import { ENTITIES_UPDATED } from '~/utils/config'
-import { close } from '~/utils/icons'
 
 export default Vue.component('EntityOverlay', {
-	computed: {
-		closeIcon() {
-			return close
-		},
-	},
-
 	methods: {
 		async save(entity) {
 			this.$emit('close')

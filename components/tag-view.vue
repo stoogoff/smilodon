@@ -9,14 +9,13 @@
 			@click="deleteTag"
 			class="inline-block cursor-pointer border-l border-gray-400 text-gray-600 absolute right-1 w-5 h-5 hover:bg-gray-300 hover:text-gray-800 text-sm"
 		>
-			<d-icon :icon="closeIcon" />
+			<icon-view icon="close" />
 		</span>
 	</span>
 </template>
 <script>
 
 import Vue from 'vue'
-import { close } from '~/utils/icons'
 
 export default Vue.component('TagView', {
 	props: {
@@ -27,12 +26,6 @@ export default Vue.component('TagView', {
 		editable: {
 			type: Boolean,
 			default: false,
-		},
-	},
-
-	computed: {
-		closeIcon() {
-			return close
 		},
 	},
 

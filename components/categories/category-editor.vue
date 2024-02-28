@@ -15,10 +15,10 @@
 				placeholder="(none)"
 			/>
 		</d-form-control>
-		<d-join horizontal>
-			<d-button class="join-item" primary sm block :disabled="!canSave" @click="save">Save</d-button>
-			<d-button class="join-item" block sm @click="cancel">Cancel</d-button>
-		</d-join>
+		<div class="py-4 flex space-x-2 justify-end">
+			<d-button secondary sm @click="cancel">Cancel</d-button>
+			<d-button primary sm :disabled="!canSave" @click="save">Save</d-button>
+		</div>
 	</div>
 </template>
 <script>

@@ -25,7 +25,9 @@
 			<d-input v-model="value" :error="error" @input="updateProperty" />
 		</d-validator-control>
 		<span>
-			<icon-button @click="deleteProperty" icon="delete" />
+			<d-button @click="deleteProperty">
+				<icon-view icon="trash" />
+			</d-button>
 		</span>
 	</div>
 </template>

@@ -1,10 +1,12 @@
 <template>
 	<section>
-		<d-loading spinner lg v-if="entity === null" />
-		<div v-else>
-			<h1>Editing: {{ entity.title }}</h1>
+		<loading-spinner v-if="entity === null" />
+		<d-card v-else class="bg-base-100 shadow">
+			<d-card-title>
+				Editing: {{ entity.title }}
+			</d-card-title>
 			<entity-editor :entity="entity" @save="save" />
-		</div>
+		</d-card>
 	</section>
 </template>
 <script>

@@ -1,7 +1,7 @@
 <template>
 	<li>
 		<nuxt-link :to="entity.slug">
-			<d-icon :icon="icon" />
+			<entity-icon :entity="entity" />
 			{{ entity.title }}
 		</nuxt-link>
 	</li>
@@ -9,7 +9,6 @@
 <script>
 
 import Vue from 'vue'
-import { getIcon, fileDocument } from '~/utils/icons'
 import { PROJECT_ID_PREFIX } from '~/utils/config'
 
 export default Vue.component('EntityItem', {
@@ -17,12 +16,6 @@ export default Vue.component('EntityItem', {
 		entity: {
 			type: Object,
 			required: true,
-		},
-	},
-
-	computed: {
-		icon() {
-			return getIcon(this.entity.icon)
 		},
 	},
 })

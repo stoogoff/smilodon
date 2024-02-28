@@ -1,23 +1,23 @@
 <template>
 	<section>
-		<d-loading spinner lg v-if="$fetchState.pending" />
+		<loading-spinner v-if="$fetchState.pending" />
 		<d-alert v-else-if="project === null" error>
 			Unable to load project.
 		</d-alert>
 		<div v-else>
 			<breadcrumb />
 			<d-card class="bg-base-100 shadow">
-				<template #title>
-					<h1>{{ project.title }}</h1>
+				<d-card-title class="border-b border-st-grey pb-2 mb-4">{{ project.title }}</d-card-title>
+				<d-card-actions>
 					<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">
-						<d-icon :icon="editIcon" />
+						<icon-view icon="edit" />
 						Edit
 					</nuxt-link>
-					<d-button outline accent sm @click="openDeleteModal">
-						<d-icon :icon="trashIcon" />
+					<d-button outline error sm @click="openDeleteModal">
+						<icon-view icon="trash" />
 						Delete
 					</d-button>
-				</template>
+				</d-card-actions>
 				<d-tabs bordered>
 					<d-tab label="Description" group="project-edit" active />
 					<d-tab-content>
@@ -45,7 +45,6 @@
 <script>
 
 import WithEntities from '~/mixins/with-entities'
-import { trash, edit } from '~/utils/icons'
 
 export default {
 	name: 'ProjectView',
@@ -64,15 +63,6 @@ export default {
 			project: null,
 			showDeleteModal: false,
 		}
-	},
-
-	computed: {
-		trashIcon() {
-			return trash
-		},
-		editIcon() {
-			return edit
-		},
 	},
 
 	methods: {

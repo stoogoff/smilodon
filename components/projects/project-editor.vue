@@ -5,14 +5,15 @@
 			:value="title"
 			:rules="rules.title"
 			v-slot="{ error }"
+			class="py-4"
 		>
-			<d-input v-model="title" :error="error" />
+			<d-input bordered v-model="title" :error="error" />
 		</d-validator-control>
 		<html-editor label="Description" v-model="description" />
-		<d-join horizontal>
-			<d-button class="join-item" primary block :disabled="!canSave" @click="save">Save</d-button>
-			<d-button class="join-item" block @click="cancel">Cancel</d-button>
-		</d-join>
+		<div class="py-4 flex space-x-2 justify-end">
+			<d-button @click="cancel">Cancel</d-button>
+			<d-button primary :disabled="!canSave" @click="save">Save</d-button>
+		</div>
 	</div>
 </template>
 <script>

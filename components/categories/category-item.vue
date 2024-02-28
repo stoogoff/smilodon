@@ -1,7 +1,7 @@
 <template>
 	<li>
 		<div @click="toggleOpen">
-			<d-icon :icon="icon" />
+			<icon-view :icon="icon" />
 			<span @click.stop="viewCategory">{{ category.title }}</span>
 		</div>
 		<slide-down>
@@ -12,7 +12,6 @@
 <script>
 
 import Vue from 'vue'
-import { folder, folderOpen } from '~/utils/icons'
 
 export default Vue.component('CategoryItem', {
 	props: {
@@ -30,7 +29,7 @@ export default Vue.component('CategoryItem', {
 
 	computed: {
 		icon() {
-			return this.open ? folderOpen : folder
+			return this.open ? 'folderOpen' : 'folder'
 		},
 	},
 

@@ -15,13 +15,11 @@
 			circle
 			@click="showPublish = true"
 		>
-			<d-icon :icon="plusIcon" />
+			<icon-view icon="plus" />
 		</d-button>
 	</div>
 </template>
 <script>
-
-import { plus } from '~/utils/icons'
 
 export default {
 	name: 'DefaultLayout',
@@ -30,12 +28,6 @@ export default {
 		return {
 			showPublish: false,
 		}
-	},
-
-	computed: {
-		plusIcon() {
-			return plus
-		},
 	},
 }
 

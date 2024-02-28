@@ -1,23 +1,23 @@
 <template>
 	<section>
-		<d-loading spinner lg v-if="entity === null" />
+		<loading-spinner v-if="entity === null" />
 		<div v-else>
 			<breadcrumb />
 			<d-card class="bg-base-100 shadow">
-				<template #title>
-					<h1>
+				<d-card-title>
 						<entity-icon v-if="entity.icon" :entity="entity" />
 						{{ entity.title }}
-					</h1>
+				</d-card-title>
+				<d-card-actions>
 					<nuxt-link class="btn btn-primary btn-sm" :to="`${ entity.slug }/edit`">
-						<d-icon :icon="editIcon" />
+						<icon-view icon="edit" />
 						Edit
 					</nuxt-link>
-					<d-button outline accent sm @click="openDeleteModal">
-						<d-icon :icon="trashIcon" />
+					<d-button outline error sm @click="openDeleteModal">
+						<icon-view icon="trash" />
 						Delete
 					</d-button>
-				</template>
+				</d-card-actions>
 				<div v-html="entity.description" />
 				<ul>
 					<li
@@ -47,7 +47,6 @@
 <script>
 
 import WithEntity from '~/mixins/with-entity'
-import { trash, edit } from '~/utils/icons'
 
 export default {
 	name: 'EntityView',
@@ -57,15 +56,6 @@ export default {
 		return {
 			showDeleteModal: false,
 		}
-	},
-
-	computed: {
-		trashIcon() {
-			return trash
-		},
-		editIcon() {
-			return edit
-		},
 	},
 
 	methods: {

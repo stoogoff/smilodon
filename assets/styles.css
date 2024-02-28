@@ -3,14 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-	@apply bg-gray-100 leading-normal text-gray-700 w-full h-full;
+html, body, #__nuxt, #__layout, #__layout > div {
+	@apply bg-base-200 leading-normal text-st-black w-full h-full;
 }
 
 .main {
 	grid-template-columns: 300px auto;
 	gap: 2rem;
-	@apply pr-4 pt-8 pb-2;
+	@apply pr-4 pt-4 h-full;
 }
 h1 {
 	@apply text-2xl font-bold;
@@ -19,12 +19,7 @@ h2 {
 	@apply text-xl font-bold;
 }
 .link {
-	@apply text-blue-600 underline hover:text-blue-400 hover:no-underline;
-}
-
-/* nnavigation */
-.nav {
-	@apply bg-white shadow-md;
+	@apply text-st-blue-dark underline hover:text-st-blue hover:no-underline;
 }
 
 .btn-icon.circle-icon {

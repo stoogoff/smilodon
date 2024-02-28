@@ -1,5 +1,5 @@
 <template>
-	<d-modal :show-cancel="showCancel">
+	<d-modal :show-cancel="showCancel" @cancel="$emit('cancel')">
 		<h3 class="text-lg font-bold">{{ title }}</h3>
 		<slot />
 		<div class="modal-action">

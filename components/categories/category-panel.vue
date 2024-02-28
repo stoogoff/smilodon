@@ -1,9 +1,10 @@
 <template>
-	<aside>
-		<h3 class="uppercase text-sm ml-4">Categories</h3>
+	<aside class="p-4">
+		<h3 class="uppercase bold text-sm text-st-black-light mx-4">Project</h3>
 		<category-tree />
+		<d-divider></d-divider>
 		<category-editor v-if="showAddForm" @save="hideForm" @cancel="hideForm" />
-		<d-button v-else primary outline block @click="showForm">Add</d-button>
+		<d-button v-else primary sm outline block class="bg-st-grey-pale" @click="showForm">Create Category</d-button>
 	</aside>
 </template>
 <script>

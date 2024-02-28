@@ -27,11 +27,11 @@
 			</popup-button>
 		</div>
 
-		<table class="table table-zebra">
+		<table class="table">
 			<thead>
-				<tr>
+				<tr class="bg-st-black-light text-st-grey-pale">
 					<th
-						class="cursor-pointer"
+						class="cursor-pointer uppercase"
 						v-for="column in mutableColumns"
 						:key="`th_${ column.key }`"
 						v-if="!column.hidden"
@@ -50,7 +50,7 @@
 				<tr
 					v-for="record in mutableRecords"
 					:key="record._id"
-					class="hover"
+					class="hover:bg-st-yellow-pale"
 				>
 					<slot name="row" v-bind:row="record">
 						<td
