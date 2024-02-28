@@ -1,6 +1,6 @@
 <template>
 	<aside class="p-4">
-		<h3 class="uppercase bold text-sm text-st-black-light mx-4">Project</h3>
+		<h3 class="mx-4">Project</h3>
 		<category-tree />
 		<d-divider></d-divider>
 		<category-editor v-if="showAddForm" @save="hideForm" @cancel="hideForm" />

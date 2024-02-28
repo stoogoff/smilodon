@@ -9,6 +9,7 @@
 </template>
 <script>
 
+// TODO colour tags by popularity
 import Vue from 'vue'
 import { slugify } from '~/utils/string'
 

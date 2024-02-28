@@ -5,7 +5,7 @@
 			:value="title"
 			:rules="rules.title"
 			v-slot="{ error }">
-			<d-input v-model="title" :error="error" />
+			<d-input v-model="title" bordered :error="error" />
 		</d-validator-control>
 		<d-form-control label="Parent">
 			<d-select
@@ -13,11 +13,12 @@
 				:items="categories"
 				id="_id"
 				placeholder="(none)"
+				bordered
 			/>
 		</d-form-control>
 		<div class="py-4 flex space-x-2 justify-end">
-			<d-button secondary sm @click="cancel">Cancel</d-button>
-			<d-button primary sm :disabled="!canSave" @click="save">Save</d-button>
+			<d-button :sm="sm" secondary @click="cancel">Cancel</d-button>
+			<d-button :sm="sm" primary :disabled="!canSave" @click="save">Save</d-button>
 		</div>
 	</div>
 </template>
@@ -28,11 +29,26 @@ import { sortByProperty } from 'vue-daisy-ui/utils/list'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
 
 export default Vue.component('CategoryEditor', {
+	props: {
+		category: {
+			type: Object,
+			default: null,
+		},
+		sm: {
+			type: Boolean,
+			default: false,
+		},
+	},
+
 	async fetch() {
 		const { params } = this.$nuxt.context
 		const categories = await this.$categories.allByProject(params.projectId)
 
 		this.categories = categories.sort(sortByProperty('title'))
+
+		if(this.parentId) {
+			this.parent = await this.$categories.byId(this.parentId)
+		}
 	},
 	fetchOnServer: false,
 
@@ -40,7 +56,15 @@ export default Vue.component('CategoryEditor', {
 		return {
 			title: '',
 			parent: null,
+			parentId: null,
 			categories: [],
+		}
+	},
+
+	async mounted() {
+		if(this.category) {
+			this.title = this.category.title
+			this.parentId = this.category.parent
 		}
 	},
 
@@ -66,15 +90,23 @@ export default Vue.component('CategoryEditor', {
 			const { params } = this.$nuxt.context
 			const project = await this.$projects.byId(params.projectId)
 
-			newCategory = await this.$categories.create({
-				title: this.title,
-				parent: this.parent ? this.parent._id : '',
-				project: project._id,
-			})
+			if(this.category) {
+				newCategory = await this.$categories.save({
+					...this.category,
+					title: this.title,
+					parent: this.parent ? this.parent._id : '',
+					project: project._id,
+				})
+			}
+			else {
+				newCategory = await this.$categories.create({
+					title: this.title,
+					parent: this.parent ? this.parent._id : '',
+					project: project._id,
+				})
+			}
 
 			this.$emit('save', newCategory)
-
-			await this.$fetch()
 		},
 	},
 })

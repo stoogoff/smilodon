@@ -1,7 +1,7 @@
 <template>
 	<section>
 		<loading-spinner v-if="entity === null" />
-		<d-card v-else class="bg-base-100 shadow">
+		<d-card v-else>
 			<d-card-title>
 				Editing: {{ entity.title }}
 			</d-card-title>

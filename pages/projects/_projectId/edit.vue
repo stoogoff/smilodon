@@ -4,8 +4,8 @@
 		<d-alert v-else-if="project === null" warning>
 			Unable to load project.
 		</d-alert>
-		<d-card v-else class="bg-base-100 shadow">
-			<d-card-title class="border-b border-st-grey pb-2 mb-4 -mt-8">Edit: {{ project.title }}</d-card-title>
+		<d-card v-else>
+			<d-card-title>Edit: {{ project.title }}</d-card-title>
 			<project-editor :project="project" @save="save" @cancel="cancel" />
 		</d-card>
 	</section>

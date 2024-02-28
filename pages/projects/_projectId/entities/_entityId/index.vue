@@ -3,12 +3,12 @@
 		<loading-spinner v-if="entity === null" />
 		<div v-else>
 			<breadcrumb />
-			<d-card class="bg-base-100 shadow">
+			<d-card>
 				<d-card-title>
-						<entity-icon v-if="entity.icon" :entity="entity" />
-						{{ entity.title }}
+					<entity-icon :entity="entity" />
+					{{ entity.title }}
 				</d-card-title>
-				<d-card-actions>
+				<d-card-actions class="absolute top-6 right-8">
 					<nuxt-link class="btn btn-primary btn-sm" :to="`${ entity.slug }/edit`">
 						<icon-view icon="edit" />
 						Edit
@@ -18,19 +18,29 @@
 						Delete
 					</d-button>
 				</d-card-actions>
-				<div v-html="entity.description" />
-				<ul>
-					<li
-						v-for="property in entity.properties"
-						:key="property.id"
-					>
-						<strong>{{ property.name }}:</strong> {{ property.value }}
-					</li>
-				</ul>
-				<div>
-					<h2>Tags</h2>
-					<tag-list :tags="entity.tags" />
-				</div>
+				<d-tabs bordered>
+					<d-tab label="Description" group="entity-view" active />
+					<d-tab-content>
+						<div class="grid grid-cols-4">
+							<div class="col-span-3 border-r border-st-grey pr-4 mr-4" v-html="entity.description" />
+							<div>
+								<h3 class="mb-2">Tags</h3>
+								<tag-list :tags="entity.tags" />
+							</div>
+						</div>
+					</d-tab-content>
+					<d-tab label="Properties" group="entity-view" />
+					<d-tab-content>
+						<ul>
+							<li
+								v-for="property in entity.properties"
+								:key="property.id"
+							>
+								<strong>{{ property.name }}:</strong> {{ property.value }}
+							</li>
+						</ul>
+					</d-tab-content>
+				</d-tabs>
 			</d-card>
 		</div>
 		<confirm-dialogue

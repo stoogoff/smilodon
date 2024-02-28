@@ -6,9 +6,12 @@
 		</d-alert>
 		<div v-else>
 			<breadcrumb />
-			<d-card class="bg-base-100 shadow">
-				<d-card-title class="border-b border-st-grey pb-2 mb-4">{{ project.title }}</d-card-title>
-				<d-card-actions>
+			<d-card>
+				<d-card-title>
+					<icon-view icon="home" />
+					{{ project.title }}
+				</d-card-title>
+				<d-card-actions class="absolute top-6 right-8">
 					<nuxt-link class="btn btn-primary btn-sm" :to="`${ project.slug }/edit`">
 						<icon-view icon="edit" />
 						Edit
@@ -27,6 +30,10 @@
 					<d-tab-content>
 						<entity-table v-if="hasEntities" :entities="entities" />
 						<p v-else><em>No entities created.</em></p>
+					</d-tab-content>
+					<d-tab label="Network" group="project-edit" />
+					<d-tab-content>
+						<em class="text-st-black-pastel">coming soon</em>
 					</d-tab-content>
 				</d-tabs>
 			</d-card>

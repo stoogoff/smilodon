@@ -3,33 +3,47 @@
 		<loading-spinner v-if="category === null" />
 		<div v-else>
 			<breadcrumb />
-			<d-card class="bg-base-100 shadow">
+			<d-card>
 				<d-card-title>
-					Category: {{ category.title }}
+					<icon-view icon="folder" />
+					{{ category.title }}
 				</d-card-title>
-				<div>
-					<d-button sm @click="setViewToTable">
-						<icon-view icon="table" />
+				<d-card-actions class="absolute top-6 right-8">
+					<nuxt-link class="btn btn-primary btn-sm" :to="`${ category.slug }/edit`">
+						<icon-view icon="edit" />
+						Edit
+					</nuxt-link>
+					<d-button outline error sm @click="openDeleteModal">
+						<icon-view icon="trash" />
+						Delete
 					</d-button>
-					<d-button sm @click="setViewToMap">
-						<icon-view icon="earth" />
-					</d-button>
-				</div>
-				<div v-if="hasEntities">
-					<entity-table v-if="showTable" :entities="entities" />
-					<entity-map v-else :category="category" />
-				</div>
+				</d-card-actions>
+				<d-tabs bordered>
+					<d-tab label="Entities" group="category-view" active />
+					<d-tab-content>
+						<entity-table :entities="entities" />
+					</d-tab-content>
+					<d-tab label="Network" group="category-view" />
+					<d-tab-content>
+						<entity-map :category="category" />
+					</d-tab-content>
+				</d-tabs>
 			</d-card>
 		</div>
+		<confirm-dialogue
+			v-if="showDeleteModal"
+			title="Delete"
+			show-cancel
+			@cancel="closeDeleteModal"
+			@confirm="handleDelete"
+		>
+			<p>Deleting a category will also delete all entities in the category. Are you sure you want to continue?</p>
+		</confirm-dialogue>
 	</section>
 </template>
 <script>
 
 import WithEntities from '~/mixins/with-entities'
-import { table, earth } from '~/utils/icons'
-
-const VIEW_TABLE = 'table'
-const VIEW_MAP = 'map'
 
 export default {
 	name: 'CategoryView',
@@ -46,31 +60,23 @@ export default {
 	data() {
 		return {
 			category: null,
-			view: VIEW_TABLE,
+			showDeleteModal: false,
 		}
 	},
 
-	computed: {
-		showTable() {
-			return this.view === VIEW_TABLE
-		},
-
-		tableIcon() {
-			return table
-		},
-
-		earthIcon() {
-			return earth
-		},
-	},
-
 	methods: {
-		setViewToTable() {
-			this.view = VIEW_TABLE
+		closeDeleteModal() {
+			this.showDeleteModal = false
 		},
 
-		setViewToMap() {
-			this.view = VIEW_MAP
+		openDeleteModal() {
+			this.showDeleteModal = true
+		},
+
+		async handleDelete() {
+			// TODO delete this category
+			// TODO delete any nested child categories
+			// TODO delete any nested child entities
 		},
 	},
 }

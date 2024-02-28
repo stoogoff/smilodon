@@ -18,12 +18,22 @@ h1 {
 h2 {
 	@apply text-xl font-bold;
 }
+h3  {
+	@apply uppercase font-bold text-sm text-st-black-light;
+}
 .link {
 	@apply text-st-blue-dark underline hover:text-st-blue hover:no-underline;
 }
-
 .btn-icon.circle-icon {
 	@apply border border-solid;
 	@apply font-bold uppercase p-2 rounded-full outline-none focus:outline-none mr-1 mb-1 shadow;
 	@apply ease-linear transition-all duration-150;
+}
+
+/* component overrides */
+.card {
+	@apply bg-base-100 shadow;
+}
+.card-title {
+	@apply border-b border-st-grey pb-2 mb-4;
 }
