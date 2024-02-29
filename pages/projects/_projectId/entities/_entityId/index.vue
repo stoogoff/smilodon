@@ -78,11 +78,11 @@ export default {
 		},
 
 		async handleDelete() {
-			const project = await this.$projects.byId(this.entity.project)
+			const parent = await this.$categories.byId(this.entity.category)
 
 			this.$entities.delete(this.entity)
 			this.showDeleteModal = false
-			this.$nuxt.$router.push(project.slug)
+			this.$nuxt.$router.push(parent.slug)
 		},
 	},
 }

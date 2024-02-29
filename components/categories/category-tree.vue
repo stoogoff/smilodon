@@ -22,7 +22,7 @@
 
 import Vue from 'vue'
 import { EventBus } from '~/utils/event-bus'
-import { CATEGORIES_UPDATED } from '~/utils/config'
+import { CATEGORIES_UPDATED, ENTITIES_UPDATED } from '~/utils/config'
 import { isEmptyString } from '~/utils/assert'
 
 export default Vue.component('CategoryTree', {
@@ -55,10 +55,12 @@ export default Vue.component('CategoryTree', {
 
 	mounted() {
 		EventBus.$on(CATEGORIES_UPDATED, () => this.$fetch())
+		EventBus.$on(ENTITIES_UPDATED, () => this.$fetch())
 	},
 
 	beforeDestroy() {
 		EventBus.$off(CATEGORIES_UPDATED)
+		EventBus.$off(ENTITIES_UPDATED)
 	},
 
 	watch: {

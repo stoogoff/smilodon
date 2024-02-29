@@ -3,8 +3,16 @@
 		<h3 class="mx-4">Project</h3>
 		<category-tree />
 		<d-divider></d-divider>
-		<category-editor v-if="showAddForm" @save="hideForm" @cancel="hideForm" />
-		<d-button v-else primary sm outline block class="bg-st-grey-pale" @click="showForm">Create Category</d-button>
+		<category-editor v-if="showAddForm" @save="hideForm" @cancel="hideForm" sm />
+		<d-button
+			v-else
+			primary
+			sm
+			outline
+			block
+			class="bg-st-grey-pale"
+			@click="showForm"
+		>Create Category</d-button>
 	</aside>
 </template>
 <script>
