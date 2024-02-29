@@ -18,6 +18,23 @@ export default db => {
 		return categories.filter(item => item.parent === parent)
 	}
 
+	function allDeep(all, current) {
+		const categories = all.filter(item => item.parent === current._id)
+		let output = [...categories]
+
+		categories.forEach(category => {
+			output = [...output, ...allDeep(all, category)]
+		})
+
+		return output
+	}
+
+	access.allDeep =  async function(category) {
+		const all = await this.allByProject(category.project)
+
+		return allDeep(all, category).sort(sortByProperty('title'))
+	}
+
 	access.slugify = function(item) {
 		return `/projects/${ item.project.replace(PROJECT_ID_PREFIX, '') }/categories/${ item._id.replace(this.prefix, '') }`
 	}

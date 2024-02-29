@@ -81,6 +81,7 @@ export default {
 			const project = await this.$projects.byId(this.entity.project)
 
 			this.$entities.delete(this.entity)
+			this.showDeleteModal = false
 			this.$nuxt.$router.push(project.slug)
 		},
 	},

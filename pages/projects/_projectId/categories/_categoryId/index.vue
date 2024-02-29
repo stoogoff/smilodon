@@ -74,9 +74,20 @@ export default {
 		},
 
 		async handleDelete() {
-			// TODO delete this category
-			// TODO delete any nested child categories
-			// TODO delete any nested child entities
+			const project = await this.$projects.byId(this.category.project)
+			const categories = [ this.category, ...await this.$categories.allDeep(this.category) ]
+			const entities = (await Promise.all(categories.map(category =>
+				this.$entities.allByCategory(category._id)
+			))).flat()
+
+			const allToDelete = [
+				...categories,
+				...entities,
+			].map(item => ({ ...item, _deleted: true }))
+
+			this.$db.bulkDocs(allToDelete)
+			this.showDeleteModal = false
+			this.$nuxt.$router.push(project.slug)
 		},
 	},
 }
