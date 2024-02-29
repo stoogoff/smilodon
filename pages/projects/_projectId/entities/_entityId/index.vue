@@ -22,7 +22,7 @@
 					<d-tab label="Description" group="entity-view" active />
 					<d-tab-content>
 						<div class="grid grid-cols-4">
-							<div class="col-span-3 border-r border-st-grey pr-4 mr-4" v-html="entity.description" />
+							<markdown class="col-span-3 border-r border-st-grey pr-4 mr-4" :content="entity.description" />
 							<div>
 								<h3 class="mb-2">Tags</h3>
 								<tag-list :tags="entity.tags" />

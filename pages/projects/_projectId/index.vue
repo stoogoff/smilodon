@@ -24,7 +24,7 @@
 				<d-tabs bordered>
 					<d-tab label="Description" group="project-edit" active />
 					<d-tab-content>
-						<div v-html="project.description" />
+						<markdown :content="project.description" />
 					</d-tab-content>
 					<d-tab label="Entities" group="project-edit" />
 					<d-tab-content>

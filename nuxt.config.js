@@ -51,8 +51,7 @@ export default {
 	buildModules: [
 		// https://go.nuxtjs.dev/tailwindcss
 		'@nuxtjs/tailwindcss',
-		'we-ui/nuxt',
-		'vue-daisy-ui/nuxt'
+		'vue-daisy-ui/nuxt',
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
@@ -93,5 +92,13 @@ export default {
 		extractCSS: process.env.NODE_ENV === 'production' ? { ignoreOrder: true } : false,
 		optimizeCSS: process.env.NODE_ENV === 'production',
 		transpile: ['vue-daisy-ui'],
+		extend(config, isDev, isClient) {
+			config.resolve.extensions.push('.mjs')
+			config.module.rules.push({
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+			})
+		},
 	},
 }
