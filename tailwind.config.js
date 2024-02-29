@@ -35,6 +35,7 @@ module.exports = {
 	daisyui: {
 		themes: [{
 			storytella: {
+				// colours
 				'primary': BLUE.DEFAULT,
 				'primary-content': WHITE,
 				'secondary': GREY.DEFAULT,
@@ -46,7 +47,7 @@ module.exports = {
 				'base-200': GREY.light,
 				'base-300': BLACK.DEFAULT,
 				'base-content': BLACK.light,
-				'info': '#ACD6E0',
+				'info': BLUE.pale,
 				'info-content': BLUE.DEFAULT,
 				'success': GREEN.pale,
 				'success-content': GREEN.dark,
@@ -54,9 +55,12 @@ module.exports = {
 				'warning-content': YELLOW.dark,
 				'error': RED.DEFAULT,
 				'error-content': WHITE,
+
+				// border radius
+				'--rounded-box': '0.5rem',
+				'--rounded-btn': '0.2rem',
 			}
-		},
-		'winter', 'dracula'],
+		}],
 		darkTheme: 'storytella',
 	}
 }
