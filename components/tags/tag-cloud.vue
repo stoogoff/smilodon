@@ -7,7 +7,8 @@
 			:sm="isSmall(tag)"
 			:md="isMedium(tag)"
 			:lg="isLarge(tag)"
-			:neutral="!isMedium(tag) && !isLarge(tag)"
+			:ghost="isSmallest(tag)"
+			:neutral="!isSmallest(tag) && !isMedium(tag) && !isLarge(tag)"
 			:primary="isLargest(tag)"
 			:secondary="isMedium(tag)"
 			:info="isLarge(tag) && !isLargest(tag)"
@@ -18,7 +19,6 @@
 <script>
 
 import Vue from 'vue'
-import { sortByProperty } from 'vue-daisy-ui/utils/list'
 
 export default Vue.component('TagCloud', {
 	props: {
@@ -32,23 +32,17 @@ export default Vue.component('TagCloud', {
 		max() {
 			if(!this.tags || this.tags.length === 0) return 1
 
-			const max = this.tags.reduce((a, c) => Math.max(a, c.count), 0)
-			console.log('max=', max)
-			return max
+			return this.tags.reduce((a, c) => Math.max(a, c.count), 0)
 		},
 
 		min() {
 			if(!this.tags || this.tags.length === 0) return 0
 
-			const min = this.tags.reduce((a, c) => Math.min(a, c.count), this.max)
-			console.log('min=', min)
-			return min
+			return this.tags.reduce((a, c) => Math.min(a, c.count), this.max)
 		},
 
 		spread() {
-			const spread = (this.max - this.min) / 4
-			console.log('spread=', spread)
-			return spread
+			return (this.max - this.min) / 4
 		},
 	},
 

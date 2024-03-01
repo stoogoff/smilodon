@@ -36,6 +36,13 @@ export default db => {
 		})).sort(sortByProperty('title'))
 	}
 
+	access.connections = async function(entity) {
+		const entities = await this.allByProject(entity.project)
+
+		return entities.filter(({ tags }) =>
+			tags.filter(tag => entity.tags.includes(tag)).length > 0)
+	}
+
 	access.slugify = function(item) {
 		return `/projects/${ item.project.replace(PROJECT_ID_PREFIX, '') }/entities/${ item._id.replace(this.prefix, '') }`
 	}

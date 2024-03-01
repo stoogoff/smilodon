@@ -1,5 +1,5 @@
 <template>
-	<span
+	<d-badge
 		class="inline-block px-2 py-1 mr-1 bg-gray-200 text-gray-800 rounded relative text-sm"
 		:class="{ 'tag-editable': editable }"
 	>
@@ -11,7 +11,7 @@
 		>
 			<icon-view icon="close" />
 		</span>
-	</span>
+	</d-badge>
 </template>
 <script>
 

@@ -4,24 +4,19 @@
 			v-for="(tag, index) in tags"
 			:key="`${slugify(tag)}_${index}`"
 			:tag="tag"
-			:editable="editable" @delete="deleteTag(tag, index)" />
+			editable @delete="deleteTag(tag, index)" />
 	</div>
 </template>
 <script>
 
-// TODO colour tags by popularity
 import Vue from 'vue'
 import { slugify } from '~/utils/string'
 
-export default Vue.component('TagList', {
+export default Vue.component('TagEditor', {
 	props: {
 		tags: {
 			type: Array,
 			required: true,
-		},
-		editable: {
-			type: Boolean,
-			default: false,
 		},
 	},
 

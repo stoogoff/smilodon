@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				<div>
-					<tag-list :tags="tags" :editable="true" @delete="deleteTag" />
+					<tag-editor :tags="tags" @delete="deleteTag" />
 				</div>
 			</d-tab-content>
 		</d-tabs>

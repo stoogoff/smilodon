@@ -26,6 +26,21 @@
 							<div>
 								<h3 class="mb-2">Tags</h3>
 								<tag-list :tags="entity.tags" />
+								<h3 class="my-2">Connections</h3>
+								<table class="table">
+									<tbody>
+										<tr
+											v-for="link in linked"
+											:key="link._id"
+											class="hover:bg-st-yellow-pale">
+											<td>
+												<nuxt-link
+													class="link"
+													:to="link.slug">{{ link.title }}</nuxt-link>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</d-tab-content>
@@ -56,14 +71,21 @@
 </template>
 <script>
 
-import WithEntity from '~/mixins/with-entity'
-
 export default {
 	name: 'EntityView',
-	mixins: [ WithEntity ],
+
+	async fetch() {
+		const { params } = this.$nuxt.context
+
+		this.entity = await this.$entities.byId(params.entityId)
+		this.linked = await this.$entities.connections(this.entity)
+	},
+	fetchOnServer: false,
 
 	data() {
 		return {
+			entity: null,
+			linked: [],
 			showDeleteModal: false,
 		}
 	},
