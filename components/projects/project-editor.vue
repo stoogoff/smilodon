@@ -11,7 +11,7 @@
 		</d-validator-control>
 		<html-editor label="Description" v-model="description" />
 		<div class="py-4 flex space-x-2 justify-end">
-			<d-button @click="cancel">Cancel</d-button>
+			<d-button neutral @click="cancel">Cancel</d-button>
 			<d-button primary :disabled="!canSave" @click="save">Save</d-button>
 		</div>
 	</div>

@@ -30,7 +30,7 @@
 			}
 		],
 		"tags": [
-			"Tuesday"
+			"Monday", "Tuesday"
 		],
 		"category": "category:seed-folder-1",
 		"icon": ""
@@ -48,7 +48,7 @@
 			}
 		],
 		"tags": [
-			"Monday"
+			"Monday", "Tuesday", "Wednesday"
 		],
 		"category": "category:seed-folder-2",
 		"icon": ""
@@ -66,7 +66,7 @@
 			}
 		],
 		"tags": [
-			"Tuesday"
+			"Monday", "Tuesday", "Wednesday", "Thursday"
 		],
 		"category": "category:seed-folder-2",
 		"icon": ""
@@ -84,7 +84,7 @@
 			}
 		],
 		"tags": [
-			"Monday"
+			"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
 		],
 		"category": "category:seed-folder-3",
 		"icon": ""
@@ -102,7 +102,7 @@
 			}
 		],
 		"tags": [
-			"Tuesday"
+			"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 		],
 		"category": "category:seed-folder-3",
 		"icon": ""

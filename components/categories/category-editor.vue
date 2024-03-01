@@ -17,7 +17,7 @@
 			/>
 		</d-form-control>
 		<div class="py-4 flex space-x-2 justify-end">
-			<d-button :sm="sm" secondary @click="cancel">Cancel</d-button>
+			<d-button :sm="sm" neutral @click="cancel">Cancel</d-button>
 			<d-button :sm="sm" primary :disabled="!canSave" @click="save">Save</d-button>
 		</div>
 	</div>

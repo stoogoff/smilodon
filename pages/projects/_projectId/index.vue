@@ -24,7 +24,13 @@
 				<d-tabs bordered>
 					<d-tab label="Description" group="project-edit" active />
 					<d-tab-content>
-						<markdown :content="project.description" />
+						<div class="grid grid-cols-4">
+							<markdown class="col-span-3 border-r border-st-grey pr-4 mr-4" :content="project.description" />
+							<div>
+								<h3 class="mb-2">Tags</h3>
+								<tag-cloud :tags="tags" />
+							</div>
+						</div>
 					</d-tab-content>
 					<d-tab label="Entities" group="project-edit" />
 					<d-tab-content>
@@ -62,6 +68,10 @@ export default {
 
 		this.project = await this.$projects.byId(params.projectId)
 		this.entities = await this.$entities.allByProject(params.projectId)
+		this.tags = await this.$entities.tagsByProject(params.projectId)
+
+		console.log(this.tags.map(({ count }) => count))
+
 	},
 	fetchOnServer: false,
 
@@ -69,6 +79,7 @@ export default {
 		return {
 			project: null,
 			showDeleteModal: false,
+			tags: [],
 		}
 	},
 

@@ -3,7 +3,7 @@
 		<div class="label">
 			<span class="label-text">{{ label }}</span>
 		</div>
-		<div ref="editor" class="border border-st-grey-light" />
+		<div ref="editor" class="border border-st-grey-light prose" />
 	</label>
 </template>
 <script>
