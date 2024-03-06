@@ -62,3 +62,9 @@ h3  {
 .prose ul li p:last-child, .prose ol li p:last-child {
 	@apply mb-0;
 }
+.prose blockquote {
+	@apply italic my-4 p-2 pl-4 bg-st-grey-pastel border-l-2 border-st-grey;
+}
+.prose blockquote *:last-child {
+	@apply mb-0;
+}

@@ -3,7 +3,7 @@
 		<div class="label">
 			<span class="label-text">{{ label }}</span>
 		</div>
-		<slot>
+		<slot v-bind:editor="editor">
 			<div v-if="editor">
 				<d-join>
 					<command-action
@@ -34,6 +34,10 @@
 						:command="wrapIn(schema.nodes.ordered_list)"
 						icon="list-number" />
 				</d-join>
+				<command-action
+					:editor="editor"
+					:command="wrapIn(schema.nodes.blockquote)"
+					icon="format-blockquote" />
 			</div>
 		</slot>
 		<div ref="editor" class="textarea textarea-bordered relative prose" />
@@ -73,20 +77,18 @@ export default Vue.component('Editor', {
 	data() {
 		return {
 			lastValue: null,
-			state: null,
 			editor: null,
 		}
 	},
 
 	mounted() {
-		this.state = createState(this.value)
-
 		this.editor = new EditorView(this.$refs.editor, {
-			state: this.state,
+			state: createState(this.value),
 			dispatchTransaction: tx => {
-				this.state = this.state.apply(tx)
-				this.editor.updateState(this.state)
-				this.lastValue = defaultMarkdownSerializer.serialize(this.state.doc)
+				const newState = this.editor.state.apply(tx)
+
+				this.editor.updateState(newState)
+				this.lastValue = defaultMarkdownSerializer.serialize(newState.doc)
 				this.$emit('input', this.lastValue)
 			}
 		})
@@ -95,8 +97,7 @@ export default Vue.component('Editor', {
 	watch: {
 		value(newValue) {
 			if(newValue !== this.lastValue) {
-				this.state = createState(newValue)
-				this.editor.updateState(this.state)
+				this.editor.updateState(createState(newValue))
 			}
 		},
 	},
@@ -118,7 +119,9 @@ export default Vue.component('Editor', {
 
 </script>
 <style>
+
 .ProseMirror {
 	outline: none;
 }
+
 </style>

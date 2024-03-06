@@ -25,7 +25,7 @@ export default Vue.component('CommandAction', {
 
 	data() {
 		return {
-			active: true,
+			active: false,
 		}
 	},
 
@@ -37,7 +37,8 @@ export default Vue.component('CommandAction', {
 
 	methods: {
 		click() {
-			this.command((this.editor.state, this.editor.dispatch, this.editor))
+			this.editor.focus()
+			this.command(this.editor.state, this.editor.dispatch, this.editor)
 		},
 	},
 })
