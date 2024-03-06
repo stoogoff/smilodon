@@ -9,7 +9,7 @@
 		>
 			<d-input bordered v-model="title" :error="error" />
 		</d-validator-control>
-		<html-editor label="Description" v-model="description" />
+		<editor label="Description" v-model="description" />
 		<div class="py-4 flex space-x-2 justify-end">
 			<d-button neutral @click="cancel">Cancel</d-button>
 			<d-button primary :disabled="!canSave" @click="save">Save</d-button>

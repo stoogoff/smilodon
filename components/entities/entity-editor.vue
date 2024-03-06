@@ -10,7 +10,7 @@
 					v-slot="{ error }">
 					<d-input v-model="title" :error="error" bordered />
 				</d-validator-control>
-				<html-editor label="Description" v-model="description" />
+				<editor label="Description" v-model="description" />
 			</d-tab-content>
 			<d-tab label="Properties" group="entity-editor" />
 			<d-tab-content>
