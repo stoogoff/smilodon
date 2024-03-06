@@ -8,50 +8,57 @@
 				<d-join>
 					<command-action
 						class="join-item"
-						:command="editor.chain().focus().toggleBold().run"
+						:editor="editor"
+						:command="toggleMark(schema.marks.strong)"
 						icon="format-bold" />
 					<command-action
 						class="join-item"
-						:command="editor.chain().focus().toggleItalic().run"
+						:editor="editor"
+						:command="toggleMark(schema.marks.em)"
 						icon="format-italic" />
 					<command-action
 						class="join-item"
-						:command="editor.chain().focus().toggleCode().run"
+						:editor="editor"
+						:command="toggleMark(schema.marks.code)"
 						icon="format-code" />
 				</d-join>
 				<d-join>
 					<command-action
 						class="join-item"
-						:command="editor.chain().focus().toggleBulletList().run"
+						:editor="editor"
+						:command="wrapIn(schema.nodes.bullet_list)"
 						icon="list-bullet" />
 					<command-action
 						class="join-item"
-						:command="editor.chain().focus().toggleOrderedList().run"
-						icon="list-bullet" />
+						:editor="editor"
+						:command="wrapIn(schema.nodes.ordered_list)"
+						icon="list-number" />
 				</d-join>
 			</div>
 		</slot>
-		<!-- div ref="editor" class="textarea textarea-bordered relative prose" / -->
-		<client-only>
-			<editor-content
-				:editor="editor"
-				class="textarea textarea-bordered relative prose" />
-		</client-only>
+		<div ref="editor" class="textarea textarea-bordered relative prose" />
 		<pre>{{ value }}</pre>
 	</div>
 </template>
 <script>
 
 import Vue from 'vue'
-import { Editor, EditorContent } from '@tiptap/vue-2'
-import StarterKit from '@tiptap/starter-kit'
-import { Markdown } from 'tiptap-markdown'
+import { EditorState } from 'prosemirror-state'
+import { EditorView } from 'prosemirror-view'
+import {
+	schema,
+	defaultMarkdownParser,
+	defaultMarkdownSerializer,
+} from 'prosemirror-markdown'
+import { toggleMark, setBlockType, wrapIn } from'prosemirror-commands'
+import { exampleSetup } from 'prosemirror-example-setup'
+
+const createState = content => EditorState.create({
+	doc: defaultMarkdownParser.parse(content),
+	plugins: exampleSetup({ schema, menuBar: false }),
+})
 
 export default Vue.component('Editor', {
-	components: {
-		EditorContent,
-	},
-
 	props: {
 		label: {
 			type: String,
@@ -65,39 +72,47 @@ export default Vue.component('Editor', {
 
 	data() {
 		return {
+			lastValue: null,
+			state: null,
 			editor: null,
 		}
 	},
 
 	mounted() {
-		this.editor = new Editor({
-			content: this.value,
-			extensions: [
-				StarterKit,
-				/*Markdown/*.configure({
-					tightLists: true,
-					transformPastedText: true,
-					transformCopiedText: true,
-				})*/,
-			],
-			onUpdate: () => {
-				console.log({ ...this.editor.getJSON() })
-				this.$emit('input', this.editor.getHTML())
-				//this.$emit('input', this.editor.storage.markdown.getMarkdown())
-			},
-		})
-	},
+		this.state = createState(this.value)
 
-	beforeDestroy() {
-		this.editor.destroy()
+		this.editor = new EditorView(this.$refs.editor, {
+			state: this.state,
+			dispatchTransaction: tx => {
+				this.state = this.state.apply(tx)
+				this.editor.updateState(this.state)
+				this.lastValue = defaultMarkdownSerializer.serialize(this.state.doc)
+				this.$emit('input', this.lastValue)
+			}
+		})
 	},
 
 	watch: {
 		value(newValue) {
-			if(this.editor.getHTML() !== newValue) {
-				this.editor.commands.setContent(newValue)
+			if(newValue !== this.lastValue) {
+				this.state = createState(newValue)
+				this.editor.updateState(this.state)
 			}
-		}
+		},
+	},
+
+	computed: {
+		schema() {
+			return schema
+		},
+
+		toggleMark() {
+			return toggleMark
+		},
+
+		wrapIn() {
+			return wrapIn
+		},
 	},
 })
 

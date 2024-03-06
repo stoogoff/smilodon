@@ -9,6 +9,10 @@ import Vue from 'vue'
 
 export default Vue.component('CommandAction', {
 	props: {
+		editor: {
+			type: Object,
+			required: true,
+		},
 		command: {
 			type: Function,
 			required: true,
@@ -25,15 +29,15 @@ export default Vue.component('CommandAction', {
 		}
 	},
 
-	/*watch: {
-		'view.state'(newValue) {
-			this.active = this.command(this.view.state, null, this.view)
+	watch: {
+		'editor.state'(newValue) {
+			this.active = this.command(this.editor.state, null, this.editor)
 		},
-	},*/
+	},
 
 	methods: {
 		click() {
-			this.command()
+			this.command((this.editor.state, this.editor.dispatch, this.editor))
 		},
 	},
 })
