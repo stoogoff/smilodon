@@ -4,41 +4,55 @@
 			<span class="label-text">{{ label }}</span>
 		</div>
 		<slot v-bind:editor="editor">
-			<div v-if="editor">
+			<!-- div v-if="editor">
+				<d-dropdown>
+					<template #activator>
+						<div class="btn btn-sm w-52" role="button" tabindex="0">Text</div>
+					</template>
+					<ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 prose">
+						<li class="border-b" @click="command(setBlockType(schema.nodes.paragraph))"><span>Paragraph</span></li>
+						<li @click="command(setBlockType(schema.nodes.heading, { level: 1 }))"><h1 class="my-0">Heading 1</h1></li>
+						<li @click="command(setBlockType(schema.nodes.heading, { level: 2 }))"><h2 class="my-0">Heading 2</h2></li>
+						<li @click="command(setBlockType(schema.nodes.heading, { level: 3 }))"><h3 class="my-0">Heading 3</h3></li>
+						<li @click="command(setBlockType(schema.nodes.heading, { level: 4 }))"><h4 class="my-0">Heading 4</h4></li>
+						<li @click="command(setBlockType(schema.nodes.heading, { level: 5 }))"><h5 class="my-0">Heading 5</h5></li>
+						<li @click="command(setBlockType(schema.nodes.heading, { level: 6 }))"><h6 class="my-0">Heading 6</h6></li>
+					</ul>
+				</d-dropdown>
 				<d-join>
-					<command-action
+					<command-button
 						class="join-item"
 						:editor="editor"
 						:command="toggleMark(schema.marks.strong)"
 						icon="format-bold" />
-					<command-action
+					<command-button
 						class="join-item"
 						:editor="editor"
 						:command="toggleMark(schema.marks.em)"
 						icon="format-italic" />
-					<command-action
+					<command-button
 						class="join-item"
 						:editor="editor"
 						:command="toggleMark(schema.marks.code)"
 						icon="format-code" />
 				</d-join>
 				<d-join>
-					<command-action
+					<command-button
 						class="join-item"
 						:editor="editor"
 						:command="wrapIn(schema.nodes.bullet_list)"
 						icon="list-bullet" />
-					<command-action
+					<command-button
 						class="join-item"
 						:editor="editor"
 						:command="wrapIn(schema.nodes.ordered_list)"
 						icon="list-number" />
 				</d-join>
-				<command-action
+				<command-button
 					:editor="editor"
 					:command="wrapIn(schema.nodes.blockquote)"
 					icon="format-blockquote" />
-			</div>
+			</div -->
 		</slot>
 		<div ref="editor" class="textarea textarea-bordered relative prose" />
 		<pre>{{ value }}</pre>
@@ -56,6 +70,10 @@ import {
 } from 'prosemirror-markdown'
 import { toggleMark, setBlockType, wrapIn } from'prosemirror-commands'
 import { exampleSetup } from 'prosemirror-example-setup'
+
+
+import MarkdownEditor from './markdown-editor'
+
 
 const createState = content => EditorState.create({
 	doc: defaultMarkdownParser.parse(content),
@@ -82,23 +100,27 @@ export default Vue.component('Editor', {
 	},
 
 	mounted() {
-		this.editor = new EditorView(this.$refs.editor, {
-			state: createState(this.value),
-			dispatchTransaction: tx => {
-				const newState = this.editor.state.apply(tx)
-
-				this.editor.updateState(newState)
-				this.lastValue = defaultMarkdownSerializer.serialize(newState.doc)
-				this.$emit('input', this.lastValue)
+		this.editor = new MarkdownEditor(
+			this.$refs.editor,
+			content => {
+				this.lastValue = content
+				this.$emit('input', content)
 			}
-		})
+		)
 	},
 
 	watch: {
 		value(newValue) {
 			if(newValue !== this.lastValue) {
-				this.editor.updateState(createState(newValue))
+				this.editor.content = newValue
 			}
+		},
+	},
+
+	methods: {
+		command(cmd) {
+			//this.editor.focus()
+			//cmd(this.editor.state, this.editor.dispatch, this.editor)
 		},
 	},
 
@@ -114,6 +136,10 @@ export default Vue.component('Editor', {
 		wrapIn() {
 			return wrapIn
 		},
+
+		setBlockType() {
+			return setBlockType
+		},
 	},
 })
 
@@ -122,6 +148,10 @@ export default Vue.component('Editor', {
 
 .ProseMirror {
 	outline: none;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	-webkit-font-variant-ligatures: none;
+	font-variant-ligatures: none;
 }
 
 </style>

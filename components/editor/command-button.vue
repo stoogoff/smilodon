@@ -7,7 +7,7 @@
 
 import Vue from 'vue'
 
-export default Vue.component('CommandAction', {
+export default Vue.component('CommandButton', {
 	props: {
 		editor: {
 			type: Object,
