@@ -6,6 +6,7 @@
 <script>
 
 import Vue from 'vue'
+import { MARKS, NODES } from './markdown-editor'
 
 export default Vue.component('CommandButton', {
 	props: {
@@ -14,7 +15,7 @@ export default Vue.component('CommandButton', {
 			required: true,
 		},
 		command: {
-			type: Function,
+			type: String,
 			required: true,
 		},
 		icon: {
@@ -25,20 +26,34 @@ export default Vue.component('CommandButton', {
 
 	data() {
 		return {
-			active: false,
+			active: true,
 		}
 	},
 
-	watch: {
+	/*watch: {
 		'editor.state'(newValue) {
 			this.active = this.command(this.editor.state, null, this.editor)
 		},
-	},
+	},*/
 
 	methods: {
 		click() {
-			this.editor.focus()
-			this.command(this.editor.state, this.editor.dispatch, this.editor)
+			switch(this.command) {
+				case MARKS.CODE:
+				case MARKS.STRONG:
+				case MARKS.EM:
+					this.editor.toggle(this.command)
+					break
+
+				case NODES.LIST_BULLET:
+				case NODES.LIST_ORDERED:
+				case NODES.BLOCKQUOTE:
+					this.editor.wrap(this.command)
+					break
+
+				default:
+					this.editor.block(this.command)
+			}
 		},
 	},
 })
