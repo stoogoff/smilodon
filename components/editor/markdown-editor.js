@@ -9,35 +9,12 @@ import {
 import { toggleMark, setBlockType, wrapIn } from'prosemirror-commands'
 import { exampleSetup } from 'prosemirror-example-setup'
 import Emitter from './emitter'
+import { NODES, EVENTS } from './config'
 
 const createState = content => EditorState.create({
 	doc: defaultMarkdownParser.parse(content),
 	plugins: exampleSetup({ schema, menuBar: false }),
 })
-
-export const MARKS = {
-	STRONG: 'strong',
-	EM: 'em',
-	CODE: 'code',
-}
-
-export const NODES = {
-	PARAGRAPH: 'paragraph',
-	HEADING_1: 'heading_1',
-	HEADING_2: 'heading_2',
-	HEADING_3: 'heading_3',
-	HEADING_4: 'heading_4',
-	HEADING_5: 'heading_5',
-	HEADING_6: 'heading_6',
-	LIST_BULLET:'bullet_list',
-	LIST_ORDERED: 'ordered_list',
-	BLOCKQUOTE:  'blockquote',
-}
-
-export const EVENTS = {
-	CONTENT: 'content',
-	STATE: 'state,'
-}
 
 export default class MarkdownEditor extends Emitter {
 	constructor(node) {
@@ -108,9 +85,5 @@ export default class MarkdownEditor extends Emitter {
 	command(cmd) {
 		this.focus()
 		cmd(this.view.state, this.view.dispatch, this.view)
-	}
-
-	is(type) {
-		// return true if the nearest appropriate parent is of the supplied
 	}
 }

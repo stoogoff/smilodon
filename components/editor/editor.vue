@@ -1,10 +1,13 @@
 <template>
-	<div class="form-control">
-		<div class="label">
+	<div :class="{
+		'form-control': !fullScreen,
+		'full-screen': fullScreen,
+	}">
+		<div class="label" v-if="!fullScreen">
 			<span class="label-text">{{ label }}</span>
 		</div>
 		<slot v-bind:editor="editor">
-			<div v-if="editor">
+			<div v-if="editor" class="toolbar">
 				<block-list :editor="editor" />
 				<d-join>
 					<command-button
@@ -39,21 +42,22 @@
 					:editor="editor"
 					command="blockquote"
 					icon="format-blockquote" />
+				<d-button sm @click="fullScreen = false" v-if="fullScreen">
+					<icon-view icon="fullscreen-exit" />
+				</d-button>
+				<d-button sm @click="fullScreen = true" v-else>
+					<icon-view icon="fullscreen" />
+				</d-button>
 			</div>
 		</slot>
 		<div ref="editor" class="textarea textarea-bordered relative prose" />
-		<pre>{{ value }}</pre>
 	</div>
 </template>
 <script>
 
 import Vue from 'vue'
-import MarkdownEditor, { EVENTS } from './markdown-editor'
-
-const createState = content => EditorState.create({
-	doc: defaultMarkdownParser.parse(content),
-	plugins: exampleSetup({ schema, menuBar: false }),
-})
+import MarkdownEditor from './markdown-editor'
+import { EVENTS } from './config'
 
 export default Vue.component('Editor', {
 	props: {
@@ -72,6 +76,7 @@ export default Vue.component('Editor', {
 			lastValue: null,
 			editor: null,
 			updateRef: null,
+			fullScreen: false,
 		}
 	},
 
@@ -108,6 +113,13 @@ export default Vue.component('Editor', {
 	white-space: pre-wrap;
 	-webkit-font-variant-ligatures: none;
 	font-variant-ligatures: none;
+}
+
+.full-screen {
+	@apply fixed top-0 left-0 bottom-0 right-0 bg-st-grey z-[10] p-10;
+}
+.full-screen .textarea, .full-screen .toolbar {
+	@apply max-w-4xl mx-auto;
 }
 
 </style>

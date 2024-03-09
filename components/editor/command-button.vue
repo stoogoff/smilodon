@@ -6,7 +6,7 @@
 <script>
 
 import Vue from 'vue'
-import { MARKS, NODES } from './markdown-editor'
+import { MARKS, NODES } from './config'
 
 export default Vue.component('CommandButton', {
 	props: {
@@ -29,12 +29,6 @@ export default Vue.component('CommandButton', {
 			active: true,
 		}
 	},
-
-	/*watch: {
-		'editor.state'(newValue) {
-			this.active = this.command(this.editor.state, null, this.editor)
-		},
-	},*/
 
 	methods: {
 		click() {

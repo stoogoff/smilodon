@@ -18,7 +18,7 @@
 
 import Vue from 'vue'
 import { toTitleCase } from 'vue-daisy-ui/utils/string'
-import { NODES, EVENTS } from './markdown-editor'
+import { NODES, EVENTS } from './config'
 
 export default Vue.component('BlockList', {
 	props: {
