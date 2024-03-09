@@ -1,7 +1,7 @@
 <template>
 	<d-dropdown>
 		<template #activator>
-			<div class="btn btn-sm w-52 menu-dropdown-show" role="button" tabindex="0">Text</div>
+			<div class="btn btn-sm w-52 menu-dropdown-show" role="button" tabindex="0">{{ selection }}</div>
 		</template>
 		<ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 prose">
 			<li class="border-b" @click="editor.block('paragraph')"><span>Paragraph</span></li>
@@ -17,6 +17,8 @@
 <script>
 
 import Vue from 'vue'
+import { toTitleCase } from 'vue-daisy-ui/utils/string'
+import { NODES, EVENTS } from './markdown-editor'
 
 export default Vue.component('BlockList', {
 	props: {
@@ -25,6 +27,29 @@ export default Vue.component('BlockList', {
 			required: true,
 		},
 	},
+
+	data() {
+		return {
+			stateRef: null,
+			selection: 'Paragraph',
+		}
+	},
+
+	mounted() {
+		this.stateRef = this.editor.on(EVENTS.STATE, state => {
+			let name = state.selection.$anchor.parent.type.name
+
+			if(name !== NODES.PARAGRAPH) {
+				name = `${name} ${state.selection.$anchor.parent.attrs.level}`
+			}
+
+			this.selection = toTitleCase(name)
+		})
+	},
+
+	beforeDestroy() {
+		this.editor.off(EVENTS.STATE, this.stateRef)
+	}
 })
 
 </script>

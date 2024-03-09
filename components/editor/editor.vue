@@ -48,7 +48,7 @@
 <script>
 
 import Vue from 'vue'
-import MarkdownEditor from './markdown-editor'
+import MarkdownEditor, { EVENTS } from './markdown-editor'
 
 const createState = content => EditorState.create({
 	doc: defaultMarkdownParser.parse(content),
@@ -71,17 +71,23 @@ export default Vue.component('Editor', {
 		return {
 			lastValue: null,
 			editor: null,
+			updateRef: null,
 		}
 	},
 
 	mounted() {
-		this.editor = new MarkdownEditor(
-			this.$refs.editor,
-			content => {
+		this.editor = new MarkdownEditor(this.$refs.editor)
+		this.updateRef = this.editor.on(EVENTS.CONTENT, content => {
+			if(content !== this.lastValue) {
 				this.lastValue = content
 				this.$emit('input', content)
 			}
-		)
+		})
+	},
+
+	beforeDestroy() {
+		this.editor.off(EVENTS.CONTENT, this.updateRef)
+		this.editor.destroy()
 	},
 
 	watch: {

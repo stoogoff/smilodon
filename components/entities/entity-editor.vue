@@ -63,8 +63,7 @@
 
 import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
-import { createId } from 'vue-daisy-ui/utils/string'
-import { toTitleCase } from '~/utils/string'
+import { createId, toTitleCase } from 'vue-daisy-ui/utils/string'
 import { DEFAULT_PROPERTY, EDITOR_TOOLBAR } from '~/utils/config'
 
 export default Vue.component('EntityEditor', {

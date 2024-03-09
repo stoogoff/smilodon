@@ -5,8 +5,6 @@ export const markdown = content => marked(content || '', { smartypants: true })
 
 export const slugify = text => text.toLowerCase().trim().replace(/\s+/g, '-')
 
-export const toTitleCase = text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
-
 export const normalise = text => 
 	text.toString()
 		.normalize('NFD')

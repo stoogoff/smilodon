@@ -8,6 +8,7 @@ import {
 } from 'prosemirror-markdown'
 import { toggleMark, setBlockType, wrapIn } from'prosemirror-commands'
 import { exampleSetup } from 'prosemirror-example-setup'
+import Emitter from './emitter'
 
 const createState = content => EditorState.create({
 	doc: defaultMarkdownParser.parse(content),
@@ -33,8 +34,15 @@ export const NODES = {
 	BLOCKQUOTE:  'blockquote',
 }
 
-export default class MarkdownEditor {
-	constructor(node, onUpdate) {
+export const EVENTS = {
+	CONTENT: 'content',
+	STATE: 'state,'
+}
+
+export default class MarkdownEditor extends Emitter {
+	constructor(node) {
+		super()
+
 		this.view = new EditorView(node, {
 			state: createState(''),
 			dispatchTransaction: tx => {
@@ -42,7 +50,8 @@ export default class MarkdownEditor {
 
 				this.view.updateState(newState)
 
-				onUpdate(this.content)
+				this.emit(EVENTS.CONTENT, this.content)
+				this.emit(EVENTS.STATE, newState)
 			},
 		})
 	}
