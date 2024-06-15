@@ -24,7 +24,7 @@
 						<div class="grid grid-cols-4">
 							<markdown class="col-span-3 border-r border-st-grey pr-4 mr-4" :content="entity.description" />
 							<div>
-								<h3 class="mb-2">Tags</h3>
+								<h3 v-if="entity.tags.length > 0" class="mb-2">Tags</h3>
 								<tag-list :tags="entity.tags" />
 								<h3 class="my-2">Connections</h3>
 								<table class="table">
@@ -71,6 +71,8 @@
 </template>
 <script>
 
+import { notEmptyString } from '~/utils/assert'
+
 export default {
 	name: 'EntityView',
 
@@ -100,11 +102,13 @@ export default {
 		},
 
 		async handleDelete() {
-			const parent = await this.$categories.byId(this.entity.category)
+			const  next = notEmptyString(this.entity.category)
+				? await this.$categories.byId(this.entity.category)
+				: await this.$projects.byId(this.entity.project)
 
 			this.$entities.delete(this.entity)
 			this.showDeleteModal = false
-			this.$nuxt.$router.push(parent.slug)
+			this.$nuxt.$router.push(next.slug)
 		},
 	},
 }

@@ -55,10 +55,24 @@ export default Vue.component('CategoryTree', {
 	},
 
 	mounted() {
-		const content = this.tree[this.parent] || []
+		this.prepareTree()
+	},
 
-		this.categories = content.filter(item => item._id.startsWith(CATEGORY_ID_PREFIX))
-		this.entities = content.filter(item => item._id.startsWith(ENTITY_ID_PREFIX))
+	watch: {
+		tree(newValue) {
+			this.prepareTree()
+		},
+	},
+
+	methods: {
+		prepareTree() {
+			const content = this.tree[this.parent] || []
+
+			this.categories = content
+				.filter(item => item._id.startsWith(CATEGORY_ID_PREFIX))
+			this.entities = content
+				.filter(item => item._id.startsWith(ENTITY_ID_PREFIX))
+		},
 	},
 })
 

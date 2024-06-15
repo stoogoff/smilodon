@@ -39,8 +39,12 @@ export default db => {
 	access.connections = async function(entity) {
 		const entities = await this.allByProject(entity.project)
 
-		return entities.filter(({ tags }) =>
-			tags.filter(tag => entity.tags.includes(tag)).length > 0)
+		return entities
+			// not itself
+			.filter(({ _id }) => _id !== entity._id)
+			// has at least one matching tag or is in the category
+			.filter(({ category, tags }) => 
+				category === entity.category || tags.filter(tag => entity.tags.includes(tag)).length > 0)
 	}
 
 	access.slugify = function(item) {
