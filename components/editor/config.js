@@ -22,3 +22,5 @@ export const EVENTS = {
 	CONTENT: 'content',
 	STATE: 'state',
 }
+
+export default {}
