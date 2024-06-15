@@ -4,7 +4,7 @@
 <script>
 
 import Vue from 'vue'
-import { isNull } from '~/utils/assert'
+import { isNull, notEmptyString } from '~/utils/assert'
 import { getIcon, folder, home } from '~/utils/icons'
 
 export default Vue.component('Breadcrumb', {
@@ -20,7 +20,7 @@ export default Vue.component('Breadcrumb', {
 		if(!isNull(params.categoryId)) {
 			this.ancestors = await this.$categories.ancestors(params.categoryId)
 		}
-		else if(!isNull(this.entity)) {
+		else if(!isNull(this.entity) && notEmptyString(this.entity.category)) {
 			this.ancestors = await this.$categories.ancestors(this.entity.category)
 		}
 	},

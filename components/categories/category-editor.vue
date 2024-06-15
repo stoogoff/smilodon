@@ -34,6 +34,10 @@ export default Vue.component('CategoryEditor', {
 			type: Object,
 			default: null,
 		},
+		parent: {
+			type: Object,
+			default: null,
+		},
 		sm: {
 			type: Boolean,
 			default: false,
@@ -47,7 +51,7 @@ export default Vue.component('CategoryEditor', {
 		this.categories = categories.sort(sortByProperty('title'))
 
 		if(this.parentId) {
-			this.parent = await this.$categories.byId(this.parentId)
+			this.actualParent = await this.$categories.byId(this.parentId)
 		}
 	},
 	fetchOnServer: false,
@@ -55,7 +59,7 @@ export default Vue.component('CategoryEditor', {
 	data() {
 		return {
 			title: '',
-			parent: null,
+			actualParent: this.parent,
 			parentId: null,
 			categories: [],
 		}
@@ -94,14 +98,14 @@ export default Vue.component('CategoryEditor', {
 				newCategory = await this.$categories.save({
 					...this.category,
 					title: this.title,
-					parent: this.parent ? this.parent._id : '',
+					parent: this.actualParent ? this.actualParent._id : '',
 					project: project._id,
 				})
 			}
 			else {
 				newCategory = await this.$categories.create({
 					title: this.title,
-					parent: this.parent ? this.parent._id : '',
+					parent: this.actualParent ? this.actualParent._id : '',
 					project: project._id,
 				})
 			}

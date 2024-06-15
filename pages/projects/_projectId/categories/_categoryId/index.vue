@@ -25,7 +25,8 @@
 					</d-tab-content>
 					<d-tab label="Network" group="category-view" />
 					<d-tab-content>
-						<entity-map :category="category" />
+						<!-- entity-map :category="category" / -->
+						<em>Coming soon</em>
 					</d-tab-content>
 				</d-tabs>
 			</d-card>

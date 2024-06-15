@@ -10,6 +10,8 @@
 			v-for="category in categories"
 			:key="category._id"
 			:category="category"
+			:tree="tree"
+			:open-all="openAll"
 		/>
 		<entity-item
 			v-for="entity in entities"
@@ -22,51 +24,41 @@
 
 import Vue from 'vue'
 import { EventBus } from '~/utils/event-bus'
-import { CATEGORIES_UPDATED, ENTITIES_UPDATED } from '~/utils/config'
+import { ENTITY_ID_PREFIX, CATEGORY_ID_PREFIX } from '~/utils/config'
 import { isEmptyString } from '~/utils/assert'
 
 export default Vue.component('CategoryTree', {
 	props: {
+		project: {
+			type: Object,
+			default: null,
+		},
+		tree: {
+			type: Object,
+			default: {},
+		},
 		parent: {
 			type: String,
 			default: '',
 		},
+		openAll: {
+			type: Boolean,
+			default: false,
+		},
 	},
-
-	async fetch() {
-		const { params } = this.$nuxt.context
-
-		if(isEmptyString(this.parent)) {
-			this.project = await this.$projects.byId(params.projectId)
-		}
-
-		this.categories = await this.$categories.allWithParent(params.projectId, this.parent)
-		this.entities = await this.$entities.allByCategory(this.parent)
-	},
-	fetchOnServer: false,
 
 	data() {
 		return {
-			project: null,
 			categories: [],
 			entities: [],
 		}
 	},
 
 	mounted() {
-		EventBus.$on(CATEGORIES_UPDATED, () => this.$fetch())
-		EventBus.$on(ENTITIES_UPDATED, () => this.$fetch())
-	},
+		const content = this.tree[this.parent] || []
 
-	beforeDestroy() {
-		EventBus.$off(CATEGORIES_UPDATED)
-		EventBus.$off(ENTITIES_UPDATED)
-	},
-
-	watch: {
-		$route(to, from) {
-			this.$fetch()
-		},
+		this.categories = content.filter(item => item._id.startsWith(CATEGORY_ID_PREFIX))
+		this.entities = content.filter(item => item._id.startsWith(ENTITY_ID_PREFIX))
 	},
 })
 

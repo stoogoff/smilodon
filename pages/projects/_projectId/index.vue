@@ -69,9 +69,6 @@ export default {
 		this.project = await this.$projects.byId(params.projectId)
 		this.entities = await this.$entities.allByProject(params.projectId)
 		this.tags = await this.$entities.tagsByProject(params.projectId)
-
-		console.log(this.tags.map(({ count }) => count))
-
 	},
 	fetchOnServer: false,
 

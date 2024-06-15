@@ -5,7 +5,11 @@
 			<span @click.stop="viewCategory">{{ category.title }}</span>
 		</div>
 		<slide-down>
-			<category-tree v-if="open" :parent="category._id" />
+			<category-tree
+				:class="{ 'hidden': !open }"
+				:parent="category._id"
+				:open-all="openAll"
+				:tree="tree" />
 		</slide-down>
 	</li>
 </template>
@@ -19,11 +23,19 @@ export default Vue.component('CategoryItem', {
 			type: Object,
 			required: true,
 		},
+		tree: {
+			type: Object,
+			default: {},
+		},
+		openAll: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
 		return {
-			open: false,
+			open: this.openAll,
 		}
 	},
 
@@ -33,14 +45,18 @@ export default Vue.component('CategoryItem', {
 		},
 	},
 
+	watch: {
+		openAll(newValue) {
+			this.open = newValue
+		},
+	},
+
 	methods: {
 		toggleOpen() {
 			this.open = !this.open
 		},
 
 		async viewCategory() {
-			const project = await this.$projects.byId(this.category.project)
-
 			this.$nuxt.$router.push(this.category.slug)
 		},
 	},

@@ -1,11 +1,14 @@
 <template>
-	<div class="navbar bg-base-100 shadow">
+	<div class="navbar bg-base-100 shadow px-4 py-0">
 		<div class="flex-1">
-			<nuxt-link to="/" class="btn btn-ghost text-xl">Smilodon</nuxt-link>
+			<nuxt-link to="/" class="btn btn-ghost text-xl btn-sm">Smilodon</nuxt-link>
 		</div>
 		<div class="flex-none">
+			<nuxt-link to="/" tabindex="0" role="button" class="btn btn-ghost btn-sm">
+				Dashboard
+			</nuxt-link>
 			<div class="dropdown dropdown-end">
-				<div tabindex="0" role="button" class="btn btn-ghost">
+				<div tabindex="0" role="button" class="btn btn-ghost btn-sm">
 					Projects
 				</div>
 				<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
