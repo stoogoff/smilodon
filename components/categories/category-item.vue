@@ -6,9 +6,8 @@
 		</div>
 		<slide-down>
 			<category-tree
-				:class="{ 'hidden': !open }"
+				:class="{ 'hidden': !isOpen }"
 				:parent="category._id"
-				:open-all="openAll"
 				:tree="tree" />
 		</slide-down>
 	</li>
@@ -16,6 +15,7 @@
 <script>
 
 import Vue from 'vue'
+import TreeManager from '~/managers/tree-manager'
 
 export default Vue.component('CategoryItem', {
 	props: {
@@ -27,33 +27,21 @@ export default Vue.component('CategoryItem', {
 			type: Object,
 			default: {},
 		},
-		openAll: {
-			type: Boolean,
-			default: false,
-		},
-	},
-
-	data() {
-		return {
-			open: this.openAll,
-		}
 	},
 
 	computed: {
 		icon() {
-			return this.open ? 'folderOpen' : 'folder'
+			return this.isOpen ? 'folderOpen' : 'folder'
 		},
-	},
 
-	watch: {
-		openAll(newValue) {
-			this.open = newValue
+		isOpen() {
+			return TreeManager.isOpen(this.category._id)
 		},
 	},
 
 	methods: {
 		toggleOpen() {
-			this.open = !this.open
+			TreeManager.toggleOpen(this.category._id)
 		},
 
 		async viewCategory() {

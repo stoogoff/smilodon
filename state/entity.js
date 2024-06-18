@@ -9,10 +9,17 @@ import {
 import Access from '~/utils/access'
 import { sortByProperty } from 'vue-daisy-ui/utils/list'
 
-export default db => {
-	const access = new Access(db, ENTITY_ID_PREFIX, DEFAULT_ENTITY, ENTITIES_UPDATED)
+let _access
 
-	access.allByCategory = async function(categoryId) {
+// return the created instance
+export const entity = () => _access
+
+// create a database Access instance for entities and add specific methods
+export default db => {
+	_access = new Access(db, ENTITY_ID_PREFIX, DEFAULT_ENTITY, ENTITIES_UPDATED)
+
+	// return all entities for a given category
+	_access.allByCategory = async function(categoryId) {
 		if(!categoryId.startsWith(CATEGORY_ID_PREFIX)) {
 			categoryId = CATEGORY_ID_PREFIX + categoryId
 		}
@@ -20,7 +27,9 @@ export default db => {
 		return await this.allByProperty('category', categoryId)
 	}
 
-	access.tagsByProject = async function(projectId) {
+	// retrieve all tags from all entities in the given project
+	// count tag usage and return as an array of { title, count }
+	_access.tagsByProject = async function(projectId) {
 		const entities = await this.allByProject(projectId)
 		const tags = entities.flatMap(({ tags }) => tags)
 		const tagCount = {}
@@ -36,7 +45,10 @@ export default db => {
 		})).sort(sortByProperty('title'))
 	}
 
-	access.connections = async function(entity) {
+	// return all entities connected to this entity
+	// connected entities include in the same category
+	// or having one or more tag in common
+	_access.connections = async function(entity) {
 		const entities = await this.allByProject(entity.project)
 
 		return entities
@@ -47,9 +59,10 @@ export default db => {
 				category === entity.category || tags.filter(tag => entity.tags.includes(tag)).length > 0)
 	}
 
-	access.slugify = function(item) {
+	// override slugify
+	_access.slugify = function(item) {
 		return `/projects/${ item.project.replace(PROJECT_ID_PREFIX, '') }/entities/${ item._id.replace(this.prefix, '') }`
 	}
 
-	return access
+	return _access
 }

@@ -9,37 +9,36 @@ import {
 import Access from '~/utils/access'
 import { isNull, notEmptyString } from '~/utils/assert'
 
+let _access
+
+// return the created instance
+export const category = () => _access
+
+// create a database Access instance for categories and add specific methods
 export default db => {
-	const access = new Access(db, CATEGORY_ID_PREFIX, DEFAULT_CATEGORY, CATEGORIES_UPDATED)
+	_access = new Access(db, CATEGORY_ID_PREFIX, DEFAULT_CATEGORY, CATEGORIES_UPDATED)
 
-	access.allWithParent = async function(project, parent) {
-		const categories = await this.allByProject(project)
-
-		return categories.filter(item => item.parent === parent)
-	}
-
-	function allDeep(all, current) {
+	function descendants(all, current) {
 		const categories = all.filter(item => item.parent === current._id)
 		let output = [...categories]
 
 		categories.forEach(category => {
-			output = [...output, ...allDeep(all, category)]
+			output = [...output, ...descendants(all, category)]
 		})
 
 		return output
 	}
 
-	access.allDeep =  async function(category) {
+	// retrieve all descendant categories of the given category
+	_access.descendants = async function(category) {
 		const all = await this.allByProject(category.project)
 
-		return allDeep(all, category).sort(sortByProperty('title'))
+		return descendants(all, category).sort(sortByProperty('title'))
 	}
 
-	access.slugify = function(item) {
-		return `/projects/${ item.project.replace(PROJECT_ID_PREFIX, '') }/categories/${ item._id.replace(this.prefix, '') }`
-	}
-
-	access.ancestors = async function(id) {
+	// recursively retrieve the category with the supplied ID
+	// and all of its parent categories
+	_access.ancestors = async function(id) {
 		const root = await this.byId(id)
 
 		if(isNull(root)) return []
@@ -49,5 +48,10 @@ export default db => {
 			: [root]
 	}
 
-	return access
+	// override slugify
+	_access.slugify = function(item) {
+		return `/projects/${ item.project.replace(PROJECT_ID_PREFIX, '') }/categories/${ item._id.replace(this.prefix, '') }`
+	}
+
+	return _access
 }

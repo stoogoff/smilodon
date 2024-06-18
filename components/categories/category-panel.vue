@@ -13,11 +13,11 @@
 					sm
 					ghost
 					class="tooltip tooltip-bottom"
-					:data-tip="(openAll ? 'Close' : 'Open') + ' Categories'"
-					@click="toggleOpenAll"><icon-view :icon="openAll ? 'collapseAll' : 'expandAll'" /></d-button>
+					:data-tip="(isOpenAll ? 'Close' : 'Open') + ' Categories'"
+					@click="toggleOpenAll"><icon-view :icon="isOpenAll ? 'collapseAll' : 'expandAll'" /></d-button>
 			</div>
 		</div>
-		<category-tree :open-all="openAll" :project="project" :tree="treeData" />
+		<category-tree :project="project" :tree="treeData" />
 		<div v-if="showAddForm">
 			<d-divider></d-divider>
 			<category-editor @save="hideForm" @cancel="hideForm" :parent="currentCategory" sm />
@@ -28,6 +28,7 @@
 
 import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
+import TreeManager from '~/managers/tree-manager'
 import { home } from '~/utils/icons'
 import { EventBus } from '~/utils/event-bus'
 import {
@@ -41,25 +42,7 @@ export default Vue.component('CategoryPanel', {
 		const { params } = this.$nuxt.context
 
 		this.project = await this.$projects.byId(params.projectId)
-
-		const entities = await this.$entities.allByProject(params.projectId)
-		const categories = await this.$categories.allByProject(params.projectId)
-
-		const byParent = {}
-		const combine = property => {
-			return item => {
-				if(!(item[property] in byParent)) {
-					byParent[item[property]] = []
-				}
-
-				byParent[item[property]].push(item)
-			}
-		}
-
-		entities.forEach(combine('category'))
-		categories.forEach(combine('parent'))
-
-		this.treeData = byParent
+		this.treeData = await TreeManager.load(this.project._id)
 	},
 	fetchOnServer: false,
 
@@ -68,7 +51,7 @@ export default Vue.component('CategoryPanel', {
 			project: null,
 			treeData: {},
 			showAddForm: false,
-			openAll: false,
+			//openAll: false,
 			currentCategory: null,
 		}
 	},
@@ -95,6 +78,10 @@ export default Vue.component('CategoryPanel', {
 		home() {
 			return home
 		},
+
+		isOpenAll() {
+			return this.project ? TreeManager.isProjectOpen(this.project._id) : false
+		},
 	},
 
 	methods: {
@@ -118,8 +105,8 @@ export default Vue.component('CategoryPanel', {
 			this.currentCategory = null
 		},
 
-		toggleOpenAll() {
-			this.openAll = !this.openAll
+		async toggleOpenAll() {
+			await TreeManager.toggleAll(this.project._id)
 		},
 	},
 })

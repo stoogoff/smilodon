@@ -11,7 +11,6 @@
 			:key="category._id"
 			:category="category"
 			:tree="tree"
-			:open-all="openAll"
 		/>
 		<entity-item
 			v-for="entity in entities"
@@ -23,7 +22,7 @@
 <script>
 
 import Vue from 'vue'
-import { EventBus } from '~/utils/event-bus'
+import TreeManager from '~/managers/tree-manager'
 import { ENTITY_ID_PREFIX, CATEGORY_ID_PREFIX } from '~/utils/config'
 import { isEmptyString } from '~/utils/assert'
 
@@ -40,10 +39,6 @@ export default Vue.component('CategoryTree', {
 		parent: {
 			type: String,
 			default: '',
-		},
-		openAll: {
-			type: Boolean,
-			default: false,
 		},
 	},
 
@@ -68,10 +63,8 @@ export default Vue.component('CategoryTree', {
 		prepareTree() {
 			const content = this.tree[this.parent] || []
 
-			this.categories = content
-				.filter(item => item._id.startsWith(CATEGORY_ID_PREFIX))
-			this.entities = content
-				.filter(item => item._id.startsWith(ENTITY_ID_PREFIX))
+			this.categories = content.filter(item => item._id.startsWith(CATEGORY_ID_PREFIX))
+			this.entities = content.filter(item => item._id.startsWith(ENTITY_ID_PREFIX))
 		},
 	},
 })

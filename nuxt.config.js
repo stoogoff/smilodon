@@ -34,7 +34,7 @@ export default {
 	plugins: [
 		//'~/plugins/state.js',
 		{ src: '~/plugins/client.js', mode: 'client' },
-		{ src: '~/plugins/editor.js', mode: 'client' },
+		//{ src: '~/plugins/editor.js', mode: 'client' },
 		//'~/plugins/filters.js'
 		//'~/plugins/mindmap.js',
 	],

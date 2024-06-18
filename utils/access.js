@@ -5,14 +5,24 @@ import { slugify } from '~/utils/string'
 import { EventBus } from '~/utils/event-bus'
 import { PROJECT_ID_PREFIX } from '~/utils/config'
 
+// access PouchDb data only for objects with an id
+// which begins with the given prefix
 export default class Access {
 	constructor(db, prefix, shape, event) {
 		this.db = db
+
+		// id prefix
 		this.prefix = prefix
+
+		// the basic structure of the object with all required properties
 		this.shape = shape
+
+		// event to emit when an object is created, updated, or deleted
 		this.event = event
 	}
 
+	// return an object by its id with the Access object's prefix
+	// add a slug (i.e. url) as a property
 	async byId(id) {
 		if(!id.startsWith(this.prefix)) id = this.prefix + id
 
@@ -23,6 +33,7 @@ export default class Access {
 		return result
 	}
 
+	// retrieve all objects with the Access object's prefix
 	async all() {
 		// for some reason this is returning all docs for me
 		const response = await this.db.allDocs({
@@ -37,6 +48,7 @@ export default class Access {
 			.sort(sortByProperty('title'))
 	}
 
+	// call all and filter resulting objects with the property matching the value
 	async allByProperty(property, value) {
 		const all = await this.all()
 
@@ -45,6 +57,7 @@ export default class Access {
 			.sort(sortByProperty('title'))
 	}
 
+	// retrieve all objects with the prefix which belong to the given project
 	async allByProject(projectId) {
 		if(!projectId.startsWith(PROJECT_ID_PREFIX)) {
 			projectId = PROJECT_ID_PREFIX + projectId
@@ -53,6 +66,8 @@ export default class Access {
 		return await this.allByProperty('project', projectId)
 	}	
 
+	// create a new object by merging it with the default shape
+	// return the new object and emit the event
 	async create(data) {
 		const id = data.title ? slugify(data.title) + '-' + createId(4) : createId(10)
 		const item = {
@@ -63,7 +78,7 @@ export default class Access {
 
 		const response = await this.db.put(item)
 
-		if(!response.ok) throw 'Create failed'
+		if(!response.ok) throw new Error('Create failed')
 
 		const created = await this.byId(id)
 
@@ -74,10 +89,12 @@ export default class Access {
 		return created
 	}
 
+	// save an existing object
+	// return the updated object and emit the event
 	async save(data) {
 		const response = await this.db.put(data)
 
-		if(!response.ok) throw 'Save failed'
+		if(!response.ok) throw new Error('Save failed')
 
 		const saved = await this.byId(response.id)
 
@@ -88,6 +105,8 @@ export default class Access {
 		return saved
 	}
 
+	// delete an existing object
+	// return the delete object and emit the event
 	async delete(data) {
 		const deleted = await this.db.remove(data)
 
@@ -96,6 +115,7 @@ export default class Access {
 		return deleted
 	}
 
+	// default slug creator
 	slugify(item) {
 		return item._id.replace(this.prefix, '')
 	}

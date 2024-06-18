@@ -76,7 +76,7 @@ export default {
 
 		async handleDelete() {
 			const project = await this.$projects.byId(this.category.project)
-			const categories = [ this.category, ...await this.$categories.allDeep(this.category) ]
+			const categories = [ this.category, ...await this.$categories.descendants(this.category) ]
 			const entities = (await Promise.all(categories.map(category =>
 				this.$entities.allByCategory(category._id)
 			))).flat()
