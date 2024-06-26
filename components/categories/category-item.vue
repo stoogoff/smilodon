@@ -15,7 +15,7 @@
 <script>
 
 import Vue from 'vue'
-import TreeManager from '~/managers/tree-manager'
+import TreeManager from '~/managers/tree'
 
 export default Vue.component('CategoryItem', {
 	props: {

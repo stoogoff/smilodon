@@ -28,7 +28,7 @@
 
 import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
-import TreeManager from '~/managers/tree-manager'
+import TreeManager from '~/managers/tree'
 import { home } from '~/utils/icons'
 import { EventBus } from '~/utils/event-bus'
 import {

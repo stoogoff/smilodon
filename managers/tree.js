@@ -5,6 +5,7 @@ import { entity } from '~/state/entity'
 import { category } from '~/state/category'
 import { TREE_STATE, TREE_STATE_PROJECT } from '~/utils/config'
 import { local } from '~/utils/storage'
+import { throwIfNull } from '~/utils/assert'
 
 const state = Vue.observable({
 	tree: {},
@@ -23,6 +24,8 @@ export default {
 	// and return it as an object with the id as key
 	// and any child entities or categories as an array of values
 	async load(projectId) {
+		throwIfNull(projectId, 'projectId')
+
 		const entities = await entity().allByProject(projectId)
 		const categories = await category().allByProject(projectId)
 

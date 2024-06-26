@@ -16,6 +16,10 @@
 						<icon-view icon="edit" />
 						Edit
 					</nuxt-link>
+					<d-button outline sm @click="handleDownload">
+						<icon-view icon="download" />
+						Download
+					</d-button>
 					<d-button outline error sm @click="openDeleteModal">
 						<icon-view icon="trash" />
 						Delete
@@ -57,7 +61,9 @@
 </template>
 <script>
 
+import { download } from 'vue-daisy-ui/utils/file'
 import WithEntities from '~/mixins/with-entities'
+import ArchiveManager from '~/managers/archive'
 
 export default {
 	name: 'ProjectView',
@@ -101,6 +107,18 @@ export default {
 			this.$db.bulkDocs(allToDelete)
 			this.showDeleteModal = false
 			this.$nuxt.$router.push('/projects')
+		},
+
+		async handleDownload() {
+			try {
+				const archive = await ArchiveManager.create(this.project._id)
+
+				download(`${this.project.title}.zip`, archive)
+			}
+			catch(err) {
+				console.error(err)
+				// TODO app message for errors
+			}
 		},
 	},
 }

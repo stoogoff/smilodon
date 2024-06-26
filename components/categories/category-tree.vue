@@ -22,7 +22,7 @@
 <script>
 
 import Vue from 'vue'
-import TreeManager from '~/managers/tree-manager'
+import TreeManager from '~/managers/tree'
 import { ENTITY_ID_PREFIX, CATEGORY_ID_PREFIX } from '~/utils/config'
 import { isEmptyString } from '~/utils/assert'
 
