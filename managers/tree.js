@@ -23,7 +23,7 @@ export default {
 	// load all category and entity data for the project
 	// and return it as an object with the id as key
 	// and any child entities or categories as an array of values
-	async load(projectId) {
+	async loadForProject(projectId) {
 		throwIfNull(projectId, 'projectId')
 
 		const entities = await entity().allByProject(projectId)
@@ -42,6 +42,14 @@ export default {
 
 		entities.forEach(combine('category'))
 		categories.forEach(combine('parent'))
+
+		return byParent
+	},
+
+	// load tree data and store in state
+	// read open folder state from local storage
+	async load(projectId) {
+		const byParent = this.loadForProject(projectId)
 
 		state.tree[projectId] = byParent
 
