@@ -7,6 +7,9 @@
 			<nuxt-link to="/" tabindex="0" role="button" class="btn btn-ghost btn-sm">
 				Dashboard
 			</nuxt-link>
+			<nuxt-link to="/changes" tabindex="0" role="button" class="btn btn-ghost btn-sm">
+				Changes
+			</nuxt-link>
 			<div class="dropdown dropdown-end">
 				<div tabindex="0" role="button" class="btn btn-ghost btn-sm">
 					Projects

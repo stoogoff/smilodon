@@ -1,6 +1,7 @@
 
 import { sortByProperty } from 'vue-daisy-ui/utils/list'
 import { createId } from 'vue-daisy-ui/utils/string'
+import { isoDate } from '~/utils/date'
 import { slugify } from '~/utils/string'
 import { EventBus } from '~/utils/event-bus'
 import { PROJECT_ID_PREFIX } from '~/utils/config'
@@ -70,8 +71,11 @@ export default class Access {
 	// return the new object and emit the event
 	async create(data) {
 		const id = data.title ? slugify(data.title) + '-' + createId(4) : createId(10)
+		const date = isoDate()
 		const item = {
 			_id: this.prefix + id,
+			created: date,
+			modified: date,
 			...this.shape,
 			...data,
 		}
@@ -92,6 +96,8 @@ export default class Access {
 	// save an existing object
 	// return the updated object and emit the event
 	async save(data) {
+		data = { modified: isoDate(), ...data }
+
 		const response = await this.db.put(data)
 
 		if(!response.ok) throw new Error('Save failed')

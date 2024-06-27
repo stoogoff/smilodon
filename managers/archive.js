@@ -58,8 +58,7 @@ export default {
 
 		if(notEmptyString(header)) {
 			buffer.push('---')
-			buffer.push(header)
-			buffer.push('---\n')
+			buffer.push(header + '---\n')
 		}
 
 		if(obj.title)
