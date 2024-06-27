@@ -4,7 +4,7 @@ import YAML from 'yaml'
 
 import TreeManager from '~/managers/tree'
 import { project } from '~/state/project'
-import { notEmptyString, isEntity, isCategory } from '~/utils/assert'
+import { notNull, notEmptyString, isEntity, isCategory } from '~/utils/assert'
 
 export default {
 	// create a ZIP archive and return it
@@ -19,7 +19,14 @@ export default {
 
 			tree.forEach(leaf => {
 				if(isEntity(leaf)) {
-					folder.file(`${leaf.title}.md`, this.createMarkdownFile(leaf))
+					let filename = `${leaf.title}.md`
+					let count = 0
+
+					while(notNull(folder.file(filename))) {
+						filename = `${leaf.title} (${++count}).md`
+					}
+
+					folder.file(filename, this.createMarkdownFile(leaf))
 				}
 
 				if(isCategory(leaf)) {
