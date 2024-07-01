@@ -26,27 +26,29 @@
 							<div>
 								<h3 v-if="entity.tags.length > 0" class="mb-2">Tags</h3>
 								<tag-list :tags="entity.tags" />
-								<h3 class="my-2">Connections</h3>
-								<table class="table">
-									<tbody>
-										<tr
-											v-for="link in linked"
-											:key="link._id"
-											class="hover:bg-st-yellow-pale">
-											<td>
-												<nuxt-link
-													class="link"
-													:to="link.slug">{{ link.title }}</nuxt-link>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+								<div v-if="linked.length > 0">
+									<h3 class="my-2">Connections</h3>
+									<table class="table">
+										<tbody>
+											<tr
+												v-for="link in linked"
+												:key="link._id"
+												class="hover:bg-st-yellow-pale">
+												<td>
+													<nuxt-link
+														class="link"
+														:to="link.slug">{{ link.title }}</nuxt-link>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</d-tab-content>
 					<d-tab label="Properties" group="entity-view" />
 					<d-tab-content>
-						<ul>
+						<ul v-if="entity.properties.length">
 							<li
 								v-for="property in entity.properties"
 								:key="property.id"
@@ -54,6 +56,7 @@
 								<strong>{{ property.name }}:</strong> {{ property.value }}
 							</li>
 						</ul>
+						<p v-else><em>No properties set</em></p>
 					</d-tab-content>
 				</d-tabs>
 			</d-card>

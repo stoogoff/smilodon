@@ -29,7 +29,7 @@
 		>
 			<div
 				v-show="isVisible"
-				class="absolute pt-2 z-10 bg-white shadow"
+				class="absolute p-2 z-10 bg-white shadow"
 				:class="{
 					'w-64': !wide,
 					'w-96': wide,

@@ -3,7 +3,11 @@ import { marked } from 'marked'
 
 export const markdown = content => marked(content || '', { smartypants: true })
 
-export const slugify = text => text.toLowerCase().trim().replace(/\s+/g, '-')
+export const slugify = text => text
+	.toLowerCase()
+	.trim()
+	.replace(/^\W+/, '')
+	.replace(/\s+/g, '-')
 
 export const normalise = text => 
 	text.toString()

@@ -6,14 +6,14 @@
 			<Nuxt />
 		</main>
 		<entity-overlay
-			v-if="showPublish"
-			@close="showPublish = false"
+			v-if="addEntity"
+			@close="saveEntity"
 		/>
 		<d-button
 			class="fixed right-4 bottom-4"
 			primary
 			circle
-			@click="showPublish = true"
+			@click="addEntity = true"
 		>
 			<icon-view icon="plus" />
 		</d-button>
@@ -26,8 +26,17 @@ export default {
 
 	data() {
 		return {
-			showPublish: false,
+			addEntity: false,
 		}
+	},
+
+	methods: {
+		saveEntity(entity) {
+			this.addEntity = false
+
+			if(entity)
+				this.$router.push(entity.slug)
+		},
 	},
 }
 

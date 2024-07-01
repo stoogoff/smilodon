@@ -6,7 +6,7 @@
 			:rules="rules.name"
 			v-slot="{ error }"
 		>
-			<d-input v-model="name" :error="error" @input="updateProperty" />
+			<d-input v-model="name" bordered sm :error="error" @input="updateProperty" />
 		</d-validator-control>
 		<d-validator-control
 			label="Type"
@@ -14,7 +14,7 @@
 			:rules="rules.type"
 			v-slot="{ error }"
 		>
-			<d-simple-select v-model="type" :items="propertyTypes" @input="updateProperty" />
+			<d-simple-select v-model="type" bordered sm :items="propertyTypes" @input="updateProperty" />
 		</d-validator-control>
 		<d-validator-control
 			label="Value"
@@ -22,7 +22,7 @@
 			:rules="rules.value"
 			v-slot="{ error }"
 		>
-			<d-input v-model="value" :error="error" @input="updateProperty" />
+			<d-input v-model="value" bordered sm :error="error" @input="updateProperty" />
 		</d-validator-control>
 		<span>
 			<d-button @click="deleteProperty">

@@ -4,6 +4,7 @@
 <script>
 
 import Vue from 'vue'
+import { notIn } from '~/utils/assert'
 
 export default Vue.component('EntityMap', {
 	props: {
@@ -56,7 +57,7 @@ export default Vue.component('EntityMap', {
 		entities.forEach(entity => {
 			if(entity.tags && entity.tags.length) {
 				entity.tags.forEach(tag => {
-					if(!(tag in tags)) {
+					if(notIn(tag, tags)) {
 						tags[tag] = []
 					}
 
@@ -65,10 +66,7 @@ export default Vue.component('EntityMap', {
 			}
 		})
 
-		console.log(tags)
-
 		this.connections = connections
-
 	},
 	fetchOnServer: false,
 
@@ -76,7 +74,6 @@ export default Vue.component('EntityMap', {
 		return {
 			nodes: [],
 			connections: [],
-			//...DATA
 		}
 	},
 })

@@ -9,7 +9,7 @@
 		</d-validator-control>
 		<d-form-control label="Parent">
 			<d-select
-				v-model="parent"
+				v-model="actualParent"
 				:items="categories"
 				id="_id"
 				placeholder="(none)"

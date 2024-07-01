@@ -2,7 +2,7 @@
 	<li>
 		<nuxt-link :to="entity.slug">
 			<entity-icon :entity="entity" />
-			{{ entity.title }}
+			<span class="hover:link hover:link-primary">{{ entity.title }}</span>
 		</nuxt-link>
 	</li>
 </template>

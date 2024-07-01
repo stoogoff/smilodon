@@ -22,7 +22,7 @@ import { ENTITIES_UPDATED } from '~/utils/config'
 export default Vue.component('EntityOverlay', {
 	methods: {
 		async save(entity) {
-			this.$emit('close')
+			this.$emit('close', entity)
 		},
 	},
 })

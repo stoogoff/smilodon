@@ -5,7 +5,7 @@ import { entity } from '~/state/entity'
 import { category } from '~/state/category'
 import { TREE_STATE, TREE_STATE_PROJECT } from '~/utils/config'
 import { local } from '~/utils/storage'
-import { throwIfNull } from '~/utils/assert'
+import { notIn, throwIfNull } from '~/utils/assert'
 
 const state = Vue.observable({
 	tree: {},
@@ -32,7 +32,7 @@ export default {
 		const byParent = {}
 		const combine = property => {
 			return item => {
-				if(!(item[property] in byParent)) {
+				if(notIn(item[property], byParent)) {
 					byParent[item[property]] = []
 				}
 
@@ -49,7 +49,7 @@ export default {
 	// load tree data and store in state
 	// read open folder state from local storage
 	async load(projectId) {
-		const byParent = this.loadForProject(projectId)
+		const byParent = await this.loadForProject(projectId)
 
 		state.tree[projectId] = byParent
 
@@ -76,7 +76,7 @@ export default {
 
 	// open all categories for the project
 	async openAll(projectId) {
-		if(!(projectId in state.tree))
+		if(notIn(projectId, state.tree))
 			await this.load(projectId)
 
 		const tree = state.tree[projectId]
@@ -89,7 +89,7 @@ export default {
 
 	// close all categories for the project
 	async closeAll(projectId) {
-		if(!(projectId in state.tree))
+		if(notIn(projectId, state.tree))
 			await this.load(projectId)
 
 		const tree = state.tree[projectId]

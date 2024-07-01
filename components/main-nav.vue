@@ -4,7 +4,7 @@
 			<nuxt-link to="/" class="btn btn-ghost text-xl btn-sm">Smilodon</nuxt-link>
 		</div>
 		<div class="flex-none">
-			<nuxt-link to="/" tabindex="0" role="button" class="btn btn-ghost btn-sm">
+			<nuxt-link to="/projects" tabindex="0" role="button" class="btn btn-ghost btn-sm">
 				Dashboard
 			</nuxt-link>
 			<nuxt-link to="/changes" tabindex="0" role="button" class="btn btn-ghost btn-sm">

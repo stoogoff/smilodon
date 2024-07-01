@@ -77,7 +77,10 @@ export default Vue.component('EntityEditor', {
 	async fetch() {
 		const { params } = this.$nuxt.context
 
-		this.categories = await this.$categories.allByProject(params.projectId)
+		this.categories = [
+			{ _id: '', title: '(none)' },
+			...(await this.$categories.allByProject(params.projectId)),
+		]
 	},
 	fetchOnServer: false,
 

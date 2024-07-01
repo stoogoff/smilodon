@@ -4,7 +4,7 @@ import YAML from 'yaml'
 
 import TreeManager from '~/managers/tree'
 import { project } from '~/state/project'
-import { notNull, notEmptyString, isEntity, isCategory } from '~/utils/assert'
+import { notIn, notNull, notEmptyString, isEntity, isCategory } from '~/utils/assert'
 
 export default {
 	// create a ZIP archive and return it
@@ -13,7 +13,7 @@ export default {
 		const rootProject = await project().byId(projectId)
 
 		const recurseTree = (folder, current) => {
-			if(!(current in byParent)) return
+			if(notIn(current, byParent)) return
 
 			const tree = byParent[current]
 

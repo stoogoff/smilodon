@@ -4,7 +4,7 @@
 <script>
 
 import Vue from 'vue'
-import { isNull, notEmptyString } from '~/utils/assert'
+import { isNull, notNull, notEmptyString } from '~/utils/assert'
 import { getIcon, folder, home } from '~/utils/icons'
 
 export default Vue.component('Breadcrumb', {
@@ -13,14 +13,14 @@ export default Vue.component('Breadcrumb', {
 
 		this.project = await this.$projects.byId(params.projectId)
 
-		if(!isNull(params.entityId)) {
+		if(notNull(params.entityId)) {
 			this.entity = await this.$entities.byId(params.entityId)
 		}
 
-		if(!isNull(params.categoryId)) {
+		if(notNull(params.categoryId)) {
 			this.ancestors = await this.$categories.ancestors(params.categoryId)
 		}
-		else if(!isNull(this.entity) && notEmptyString(this.entity.category)) {
+		else if(notNull(this.entity) && notEmptyString(this.entity.category)) {
 			this.ancestors = await this.$categories.ancestors(this.entity.category)
 		}
 	},
@@ -51,7 +51,7 @@ export default Vue.component('Breadcrumb', {
 				})),
 			]
 
-			if(!isNull(this.entity)) {
+			if(notNull(this.entity)) {
 				output.push({
 					title: this.entity.title,
 					url: this.entity.slug,

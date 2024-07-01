@@ -2,7 +2,7 @@
 	<li>
 		<div @click="toggleOpen">
 			<icon-view :icon="icon" />
-			<span @click.stop="viewCategory">{{ category.title }}</span>
+			<span @click.stop="viewCategory" class="hover:link hover:link-primary">{{ category.title }}</span>
 		</div>
 		<slide-down>
 			<category-tree

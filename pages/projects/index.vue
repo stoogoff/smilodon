@@ -2,18 +2,19 @@
 	<section>
 		<h1>Projects</h1>
 		<p>This will allow for CRUD actions for projects</p>
+		<nuxt-link class="btn" to="/projects/create">Create Project</nuxt-link>
 
-		<div v-if="hasProjects">
-			<ul>
-				<li
-					v-for="project in projects"
-					:key="project._id"
-				>
-					<nuxt-link :to="project.slug">{{ project.title }}</nuxt-link>
-				</li>
-			</ul>
-		</div>
-		<nuxt-link class="d-button" to="/projects/create">Create Project</nuxt-link>
+		<d-card
+			v-for="project in projects"
+			:key="project._id"
+			class="mb-4"
+		>
+			<d-card-title>{{ project.title }}</d-card-title>
+			<markdown :content="project.description" />
+			<d-card-actions>
+				<nuxt-link class="btn btn-primary" :to="project.slug">View</nuxt-link>
+			</d-card-actions>
+		</d-card>
 	</section>
 </template>
 <script>
