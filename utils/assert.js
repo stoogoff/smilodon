@@ -18,7 +18,9 @@ export const throwIfNull = (value, name) => {
 		throw new Error(`Null or undefined value found for '${name}'`)
 }
 
-export const notIn = (property, obj) => !(property  in obj)
+export const notIn = (property, obj) => !(property in obj)
+
+export const isIn = (property, obj) => property in obj
 
 export const notEmptyString = value => notNull(value) && value !== ''
 

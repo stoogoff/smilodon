@@ -72,8 +72,9 @@
 <script>
 
 import Vue from 'vue'
-import { createId } from 'vue-daisy-ui/utils/string'
 import { sortByProperty } from 'vue-daisy-ui/utils/list'
+import Table from '~/managers/table'
+import { notNull } from '~/utils/assert'
 import { searchObject } from '~/utils/string'
 
 export default Vue.component('FilteredTable', {
@@ -90,6 +91,7 @@ export default Vue.component('FilteredTable', {
 
 	data() {
 		return {
+			id: location.pathname,
 			mutableColumns: [],
 			mutableRecords: [],
 			search: '',
@@ -118,12 +120,7 @@ export default Vue.component('FilteredTable', {
 
 	methods: {
 		createMutableColumns() {
-			this.mutableColumns = this.columns.map(column => ({
-				key: createId(),
-				hidden: false,
-				sort: null,
-				...column
-			}))
+			this.mutableColumns = Table.createColumns(this.id, this.columns)
 		},
 
 		createMutableRecords() {
@@ -132,6 +129,13 @@ export default Vue.component('FilteredTable', {
 			}
 			else {
 				this.mutableRecords = [ ...this.records.filter(row => searchObject(row, this.search)) ]
+			}
+
+			for(let i = 0, len = this.mutableColumns.length; i < len; ++i) {
+				if(notNull(this.mutableColumns[i].sort)) {
+					this.sortByColumn(this.mutableColumns[i])
+					break
+				}
 			}
 		},
 
@@ -151,11 +155,20 @@ export default Vue.component('FilteredTable', {
 
 		toggleSelectedColumn(column) {
 			column.hidden = !column.hidden
+
+			Table.saveColumnState(this.id, this.mutableColumns)
 		},
 
 		sortColumn(column) {
 			column.sort = column.sort === null ? true : !column.sort
+			this.mutableColumns.filter(col => col !== column).forEach(col => col.sort = null)
 
+			this.sortByColumn(column)
+
+			Table.saveColumnState(this.id, this.mutableColumns)
+		},
+
+		sortByColumn(column) {
 			let sorted = this.mutableRecords.sort(sortByProperty(column.property))
 
 			if(column.sort === false) sorted.reverse()
