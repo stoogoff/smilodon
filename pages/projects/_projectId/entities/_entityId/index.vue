@@ -18,6 +18,10 @@
 						Delete
 					</d-button>
 				</d-card-actions>
+				<d-alert warning v-if="hasUnsavedChanges">
+					<icon-view icon="alert" />
+					<div>This entity has unsaved changes. You can <nuxt-link class="link" :to="`${ entity.slug }/edit`">edit the entity</nuxt-link> or <span class="link" @click="discardChanges">discard the changes</span>.</div>
+				</d-alert>
 				<d-tabs bordered>
 					<d-tab label="Description" group="entity-view" active />
 					<d-tab-content>
@@ -105,6 +109,7 @@
 <script>
 
 import { notEmptyString } from '~/utils/assert'
+import { local } from '~/utils/storage'
 
 export default {
 	name: 'EntityView',
@@ -127,6 +132,12 @@ export default {
 		}
 	},
 
+	computed: {
+		hasUnsavedChanges() {
+			return this.entity ? local.has(this.entity._id) : false
+		},
+	},
+
 	methods: {
 		closeDeleteModal() {
 			this.showDeleteModal = false
@@ -142,6 +153,11 @@ export default {
 			if(!this.showCategories && link.isCategory && !link.isTag) return false
 
 			return true
+		},
+
+		discardChanges() {
+			local.remove(this.entity._id)
+			this.entity = { ...this.entity } // HACK force computed to update
 		},
 
 		async handleDelete() {

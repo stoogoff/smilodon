@@ -72,3 +72,4 @@ export const PROJECTS_UPDATED = 'projects-updated'
 // storage keys
 export const TREE_STATE = 'tree-state'
 export const TREE_STATE_PROJECT = 'tree-state-project'
+export const DEFAULT_ENTITY_ID = 'new-entity'

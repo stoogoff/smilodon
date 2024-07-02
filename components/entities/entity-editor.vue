@@ -64,9 +64,13 @@
 import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
 import { createId, toTitleCase } from 'vue-daisy-ui/utils/string'
-import { DEFAULT_PROPERTY, EDITOR_TOOLBAR } from '~/utils/config'
+import WithStore from '~/mixins/with-store'
+import { DEFAULT_PROPERTY, EDITOR_TOOLBAR, DEFAULT_ENTITY_ID } from '~/utils/config'
+import { local } from '~/utils/storage'
 
 export default Vue.component('EntityEditor', {
+	mixins: [ WithStore ],
+
 	props: {
 		entity: {
 			type: Object,
@@ -99,16 +103,28 @@ export default Vue.component('EntityEditor', {
 	},
 
 	async mounted() {
-		if(this.entity) {
-			const category = this.entity.category ? await this.$categories.byId(this.entity.category) : null
+		const ID = this.entity ? this.entity._id : DEFAULT_ENTITY_ID
 
-			this.title = this.entity.title || ''
-			this.description = this.entity.description || ''
-			this.category = category
-			this.tags = this.entity.tags || []
-			this.properties = this.entity.properties || []
-			this.icon = this.entity.icon ? toTitleCase(this.entity.icon)  : ''
+		if(local.has(ID)) {
+			const stored = local.get(ID)
+			await this.setStateFromEntity({
+				...stored,
+				_id: ID,
+				category: stored.category ? stored.category._id : ''
+			})
 		}
+		else if(this.entity) {
+			await this.setStateFromEntity(this.entity)
+		}
+
+		this.startSave(ID, [
+			'title',
+			'description',
+			'category',
+			'tags',
+			'properties',
+			'icon',
+		])
 	},
 
 	computed: {
@@ -136,6 +152,17 @@ export default Vue.component('EntityEditor', {
 	},
 
 	methods: {
+		async setStateFromEntity(entity) {
+			const category = entity.category ? await this.$categories.byId(entity.category) : null
+
+			this.title = entity.title || ''
+			this.description = entity.description || ''
+			this.category = category
+			this.tags = entity.tags || []
+			this.properties = entity.properties || []
+			this.icon = entity.icon ? toTitleCase(entity.icon)  : ''
+		},
+
 		addProperty() {
 			this.properties = [
 				...this.properties,
@@ -201,6 +228,7 @@ export default Vue.component('EntityEditor', {
 				})
 			}
 
+			this.clearData(this.entity ? this.entity._id : DEFAULT_ENTITY_ID)
 			this.$emit('save', newEntity)
 		},
 	},

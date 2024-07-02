@@ -51,12 +51,6 @@ Nuxt/Vue based MindMap.
 - tags should be auto-sorted alphabetically
 - connections table should be filterable by connection type
   + links (this is waiting on editor improvements)
-- editing entities should temp save to local store
-  + the whole JSON data should be saved by entity ID
-  + if it's a new entity with no ID use a temp one
-  + delete it on save
-  + if it exists on loading the editor use the local store data
-  + if it exists on viewing, flag it
 - editor needs a lot of work
   + bug with toggling state (e.g. list, blockquote)
   + needs to have a Markdown view mode as well as rich text

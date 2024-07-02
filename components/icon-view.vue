@@ -86,6 +86,10 @@ export default Vue.component('IconView', {
 				case 'fullscreen-exit':
 					return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M14,14H19V16H16V19H14V14M5,14H10V19H8V16H5V14M8,5H10V10H5V8H8V5M19,8V10H14V5H16V8H19Z" /></svg>'
 
+				// alerts and warnings
+				case 'alert':
+					return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z" /></svg>'
+
 				default:
 					return this.icon
 			}
