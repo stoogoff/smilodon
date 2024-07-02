@@ -27,17 +27,47 @@
 								<h3 v-if="entity.tags.length > 0" class="mb-2">Tags</h3>
 								<tag-list :tags="entity.tags" />
 								<div v-if="linked.length > 0">
-									<h3 class="my-2">Connections</h3>
+									<div class="grid grid-cols-2">
+										<h3 class="my-2">Connections</h3>
+										<popup-button y="top" x="right" class="justify-self-end">
+											Filter
+											<template #popup>
+												<ul>
+													<li>
+														<label>
+															<d-checkbox sm
+																:value="showTags"
+																@input="showTags = !showTags" />
+															Tags
+														</label>
+													</li>
+													<li>
+														<label>
+															<d-checkbox sm
+																:value="showCategories"
+																@input="showCategories = !showCategories" />
+															Categories
+														</label>
+													</li>
+												</ul>
+											</template>
+										</popup-button>
+									</div>
 									<table class="table">
 										<tbody>
 											<tr
 												v-for="link in linked"
 												:key="link._id"
+												v-if="canShowConnection(link)"
 												class="hover:bg-st-yellow-pale">
 												<td>
 													<nuxt-link
 														class="link"
 														:to="link.slug">{{ link.title }}</nuxt-link>
+												</td>
+												<td align="right">
+													<icon-view v-if="link.isTag" icon="tag" />
+													<icon-view v-if="link.isCategory" icon="folder" />
 												</td>
 											</tr>
 										</tbody>
@@ -92,6 +122,8 @@ export default {
 			entity: null,
 			linked: [],
 			showDeleteModal: false,
+			showTags: true,
+			showCategories: true,
 		}
 	},
 
@@ -102,6 +134,14 @@ export default {
 
 		openDeleteModal() {
 			this.showDeleteModal = true
+		},
+
+		canShowConnection(link) {
+			if(!this.showTags && !this.showCategories) return false
+			if(!this.showTags && link.isTag && !link.isCategory) return false
+			if(!this.showCategories && link.isCategory && !link.isTag) return false
+
+			return true
 		},
 
 		async handleDelete() {

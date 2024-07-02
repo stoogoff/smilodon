@@ -57,6 +57,13 @@ export default db => {
 			// has at least one matching tag or is in the category
 			.filter(({ category, tags }) => 
 				category === entity.category || tags.filter(tag => entity.tags.includes(tag)).length > 0)
+			// add the connection type to the entity
+			.map(ent => ({
+				...ent,
+				isLink: false,
+				isCategory: ent.category === entity.category,
+				isTag: ent.tags.filter(tag => entity.tags.includes(tag)).length > 0,
+			}))
 	}
 
 	// override slugify

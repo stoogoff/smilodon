@@ -50,9 +50,7 @@ Nuxt/Vue based MindMap.
 
 - tags should be auto-sorted alphabetically
 - connections table should be filterable by connection type
-  + tag
-  + category
-  + links
+  + links (this is waiting on editor improvements)
 - editing entities should temp save to local store
   + the whole JSON data should be saved by entity ID
   + if it's a new entity with no ID use a temp one
