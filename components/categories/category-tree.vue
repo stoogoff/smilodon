@@ -3,7 +3,7 @@
 		<li v-if="project">
 			<nuxt-link :to="project.slug">
 				<icon-view icon="home" />
-				{{ project.title }}
+				<span class="hover:link hover:link-primary">{{ project.title }}</span>
 			</nuxt-link>
 		</li>
 		<category-item

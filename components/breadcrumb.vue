@@ -5,7 +5,7 @@
 
 import Vue from 'vue'
 import { isNull, notNull, notEmptyString } from '~/utils/assert'
-import { getIcon, folder, home } from '~/utils/icons'
+import icons, { getIcon } from '~/utils/icons'
 
 export default Vue.component('Breadcrumb', {
 	async fetch() {
@@ -42,12 +42,12 @@ export default Vue.component('Breadcrumb', {
 				{
 					title: this.project.title,
 					url: this.project.slug,
-					icon: home,
+					icon: icons.home,
 				},
 				...this.ancestors.map(item => ({
 					title: item.title,
 					url: item.slug,
-					icon: folder,
+					icon: icons.folder,
 				})),
 			]
 

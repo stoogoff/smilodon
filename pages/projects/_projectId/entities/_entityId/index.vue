@@ -37,20 +37,12 @@
 											Filter
 											<template #popup>
 												<ul>
-													<li>
+													<li v-for="filter in connectionFilters" :key="filter.label">
 														<label>
 															<d-checkbox sm
-																:value="showTags"
-																@input="showTags = !showTags" />
-															Tags
-														</label>
-													</li>
-													<li>
-														<label>
-															<d-checkbox sm
-																:value="showCategories"
-																@input="showCategories = !showCategories" />
-															Categories
+																:value="filter.value"
+																@input="filter.toggle()" />
+															{{ filter.label }}
 														</label>
 													</li>
 												</ul>
@@ -60,9 +52,8 @@
 									<table class="table">
 										<tbody>
 											<tr
-												v-for="link in linked"
+												v-for="link in filteredLinks"
 												:key="link._id"
-												v-if="canShowConnection(link)"
 												class="hover:bg-st-yellow-pale">
 												<td>
 													<nuxt-link
@@ -70,8 +61,10 @@
 														:to="link.slug">{{ link.title }}</nuxt-link>
 												</td>
 												<td align="right">
-													<icon-view v-if="link.isTag" icon="tag" />
 													<icon-view v-if="link.isCategory" icon="folder" />
+													<icon-view v-if="link.isMention" icon="chat" />
+													<icon-view v-if="link.isLink" icon="link" />
+													<icon-view v-if="link.isTag" icon="tag" />
 												</td>
 											</tr>
 										</tbody>
@@ -119,6 +112,7 @@ export default {
 
 		this.entity = await this.$entities.byId(params.entityId)
 		this.linked = await this.$entities.connections(this.entity)
+		console.log(this.linked)
 	},
 	fetchOnServer: false,
 
@@ -127,14 +121,49 @@ export default {
 			entity: null,
 			linked: [],
 			showDeleteModal: false,
-			showTags: true,
 			showCategories: true,
+			showLinks: true,
+			showMentions: true,
+			showTags: true,
 		}
 	},
 
 	computed: {
 		hasUnsavedChanges() {
 			return this.entity ? local.has(this.entity._id) : false
+		},
+
+		connectionFilters() {
+			return [
+				{
+					label: 'Categories',
+					value: this.showCategories,
+					toggle: () => this.showCategories = !this.showCategories,
+				},
+				{
+					label: 'Links',
+					value: this.showLinks,
+					toggle: () => this.showLinks = !this.showLinks,
+				},
+				{
+					label: 'Mentions',
+					value: this.showMentions,
+					toggle: () => this.showMentions = !this.showMentions,
+				},
+				{
+					label: 'Tags',
+					value: this.showTags,
+					toggle: () => this.showTags = !this.showTags,
+				},
+			]
+		},
+
+		filteredLinks() {
+			return this.linked.filter(link =>
+				link.isCategory && this.showCategories ||
+				link.isLink && this.showLinks ||
+				link.isMention && this.showMentions ||
+				link.isTag && this.showTags)
 		},
 	},
 
@@ -145,14 +174,6 @@ export default {
 
 		openDeleteModal() {
 			this.showDeleteModal = true
-		},
-
-		canShowConnection(link) {
-			if(!this.showTags && !this.showCategories) return false
-			if(!this.showTags && link.isTag && !link.isCategory) return false
-			if(!this.showCategories && link.isCategory && !link.isTag) return false
-
-			return true
 		},
 
 		discardChanges() {
