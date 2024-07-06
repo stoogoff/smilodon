@@ -65,7 +65,13 @@ import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
 import { createId, toTitleCase } from 'vue-daisy-ui/utils/string'
 import WithStore from '~/mixins/with-store'
-import { DEFAULT_PROPERTY, EDITOR_TOOLBAR, DEFAULT_ENTITY_ID } from '~/utils/config'
+import {
+	DEFAULT_PROPERTY,
+	EDITOR_TOOLBAR,
+	DEFAULT_ENTITY_ID,
+	SHOW_MESSAGE,
+} from '~/utils/config'
+import { EventBus } from '~/utils/event-bus'
 import { local } from '~/utils/storage'
 
 export default Vue.component('EntityEditor', {
@@ -200,36 +206,42 @@ export default Vue.component('EntityEditor', {
 			let newEntity
 			const category = this.category ? this.category._id : ''
 
-			// if the component has an entity save it
-			// otherwise create new
-			if(this.entity) {
-				newEntity = await this.$entities.save({
-					...this.entity,
-					title: this.title,
-					description: this.description,
-					category,
-					properties: this.properties,
-					tags: this.tags,
-					icon: this.icon.toLowerCase(),
-				})
-			}
-			else {
-				const { params } = this.$nuxt.context
-				const project = await this.$projects.byId(params.projectId)
+			try {
+				// if the component has an entity save it
+				// otherwise create new
+				if(this.entity) {
+					newEntity = await this.$entities.save({
+						...this.entity,
+						title: this.title,
+						description: this.description,
+						category,
+						properties: this.properties,
+						tags: this.tags,
+						icon: this.icon.toLowerCase(),
+					})
+				}
+				else {
+					const { params } = this.$nuxt.context
+					const project = await this.$projects.byId(params.projectId)
 
-				newEntity = await this.$entities.create({
-					title: this.title,
-					description: this.description,
-					category,
-					project: project._id,
-					properties: this.properties,
-					tags: this.tags,
-					icon: this.icon.toLowerCase(),
-				})
-			}
+					newEntity = await this.$entities.create({
+						title: this.title,
+						description: this.description,
+						category,
+						project: project._id,
+						properties: this.properties,
+						tags: this.tags,
+						icon: this.icon.toLowerCase(),
+					})
+				}
 
-			this.clearData(this.entity ? this.entity._id : DEFAULT_ENTITY_ID)
-			this.$emit('save', newEntity)
+				this.clearData(this.entity ? this.entity._id : DEFAULT_ENTITY_ID)
+				this.$emit('save', newEntity)
+			}
+			catch(err) {
+				console.log(err)
+				EventBus.$emit(SHOW_MESSAGE, { type: 'error', text: 'Entity couldn’t be saved.' })
+			}
 		},
 	},
 })

@@ -5,6 +5,7 @@
 			<category-panel />
 			<Nuxt />
 		</main>
+		<message-toast />
 	</div>
 </template>
 <script>

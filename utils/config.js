@@ -68,6 +68,7 @@ export const PROJECT_ID_PREFIX = 'project:'
 export const ENTITIES_UPDATED = 'entities-updated'
 export const CATEGORIES_UPDATED = 'categories-updated'
 export const PROJECTS_UPDATED = 'projects-updated'
+export const SHOW_MESSAGE = 'show-message'
 
 // storage keys
 export const TREE_STATE = 'tree-state'

@@ -17,6 +17,7 @@
 		>
 			<icon-view icon="plus" />
 		</d-button>
+		<message-toast />
 	</div>
 </template>
 <script>
