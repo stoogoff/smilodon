@@ -116,7 +116,7 @@ export default Vue.component('Editor', {
 }
 
 .full-screen {
-	@apply fixed top-0 left-0 bottom-0 right-0 z-[10] p-10;
+	@apply fixed top-0 left-0 bottom-0 right-0 z-[10] p-10 bg-base-300;
 }
 .full-screen .textarea, .full-screen .toolbar {
 	@apply max-w-4xl mx-auto;

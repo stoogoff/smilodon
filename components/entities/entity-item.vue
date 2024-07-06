@@ -1,7 +1,7 @@
 <template>
-	<li>
+	<li :class="{ 'bg-base-300': isActive }">
 		<nuxt-link :to="entity.slug">
-			<entity-icon :entity="entity" />
+			<entity-icon :entity="entity" :class="{ 'text-primary': isActive }" />
 			<span class="hover:link hover:link-primary">{{ entity.title }}</span>
 		</nuxt-link>
 	</li>
@@ -16,6 +16,12 @@ export default Vue.component('EntityItem', {
 		entity: {
 			type: Object,
 			required: true,
+		},
+	},
+
+	computed: {
+		isActive() {
+			return this.$route.fullPath === this.entity.slug
 		},
 	},
 })

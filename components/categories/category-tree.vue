@@ -1,8 +1,8 @@
 <template>
 	<ul class="menu menu-xs">
-		<li v-if="project">
+		<li v-if="project" :class="{ 'bg-base-300': isActive }">
 			<nuxt-link :to="project.slug">
-				<icon-view icon="home" />
+				<icon-view icon="home" :class="{ 'text-primary': isActive }" />
 				<span class="hover:link hover:link-primary">{{ project.title }}</span>
 			</nuxt-link>
 		</li>
@@ -56,6 +56,12 @@ export default Vue.component('CategoryTree', {
 	watch: {
 		tree(newValue) {
 			this.prepareTree()
+		},
+	},
+
+	computed: {
+		isActive() {
+			return this.$route.fullPath === this.project.slug
 		},
 	},
 

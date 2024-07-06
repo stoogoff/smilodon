@@ -1,15 +1,13 @@
 <template>
 	<li>
-		<div @click="toggleOpen">
-			<icon-view :icon="icon" class="text-primary" />
+		<div @click="toggleOpen" :class="{ 'bg-base-300': isActive }">
+			<icon-view :icon="icon" :class="{ 'text-primary': isActive }" />
 			<span @click.stop="viewCategory" class="hover:link hover:link-primary">{{ category.title }}</span>
 		</div>
-		<slide-down>
-			<category-tree
-				:class="{ 'hidden': !isOpen }"
-				:parent="category._id"
-				:tree="tree" />
-		</slide-down>
+		<category-tree
+			:class="{ 'hidden': !isOpen }"
+			:parent="category._id"
+			:tree="tree" />
 	</li>
 </template>
 <script>
@@ -30,6 +28,10 @@ export default Vue.component('CategoryItem', {
 	},
 
 	computed: {
+		isActive() {
+			return this.$route.fullPath === this.category.slug
+		},
+
 		icon() {
 			return this.isOpen ? 'folderOpen' : 'folder'
 		},
