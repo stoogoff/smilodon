@@ -182,9 +182,8 @@ export default Vue.component('EntityEditor', {
 		},
 
 		updateProperty(property) {
-			const prop = this.properties.find(
-				({ id }) => property.id === id
-			)
+			const prop = this.properties.find(({ id }) => property.id === id)
+
 			if(!prop) return
 
 			prop.name = property.name
@@ -202,7 +201,6 @@ export default Vue.component('EntityEditor', {
 		},
 
 		async save() {
-			// TODO loading spinner
 			let newEntity
 			const category = this.category ? this.category._id : ''
 

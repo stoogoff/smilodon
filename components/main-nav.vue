@@ -41,11 +41,10 @@
 <script>
 
 import Vue from 'vue'
-import { toTitleCase } from 'vue-daisy-ui/utils/string'
 import { sortByProperty } from 'vue-daisy-ui/utils/list'
+import ThemeManager from '~/managers/theme'
 import { PROJECTS_UPDATED } from '~/utils/config'
 import { EventBus } from '~/utils/event-bus'
-import { local } from '~/utils/storage'
 
 export default Vue.component('MainNav', {
 	async fetch() {
@@ -65,14 +64,12 @@ export default Vue.component('MainNav', {
 	data() {
 		return {
 			menuItems: [],
-			selectedTheme: local.has('theme') ? local.get('theme') : 'Light',
+			selectedTheme: ThemeManager.currentTheme(),
 		}
 	},
 
 	mounted() {
 		EventBus.$on(PROJECTS_UPDATED, () => this.$fetch())
-
-		document.documentElement.setAttribute('data-theme', this.selectedTheme.toLowerCase())
 	},
 
 	beforeDestroy() {
@@ -81,48 +78,14 @@ export default Vue.component('MainNav', {
 
 	computed: {
 		themes() {
-			return [
-				'light',
-				'dark',
-				'cupcake',
-				'bumblebee',
-				'emerald',
-				'corporate',
-				'synthwave',
-				'retro',
-				'cyberpunk',
-				'valentine',
-				'halloween',
-				'garden',
-				'forest',
-				'aqua',
-				'lofi',
-				'pastel',
-				'fantasy',
-				'wireframe',
-				'black',
-				'luxury',
-				'dracula',
-				'cmyk',
-				'autumn',
-				'business',
-				'acid',
-				'lemonade',
-				'night',
-				'coffee',
-				'winter',
-				'dim',
-				'nord',
-				'sunset',
-			].map(s => toTitleCase(s)).sort()
-		}
+			return ThemeManager.allThemes()
+		},
 	},
 
 	methods: {
 		chooseTheme(theme) {
+			ThemeManager.setTheme(theme)
 			this.selectedTheme = theme
-			local.set('theme', theme)
-			document.documentElement.setAttribute('data-theme', theme.toLowerCase())
 		}
 	},
 })

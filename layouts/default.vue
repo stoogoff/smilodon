@@ -22,6 +22,8 @@
 </template>
 <script>
 
+import ThemeManager from '~/managers/theme'
+
 export default {
 	name: 'DefaultLayout',
 
@@ -29,6 +31,10 @@ export default {
 		return {
 			addEntity: false,
 		}
+	},
+
+	mounted() {
+		ThemeManager.loadTheme()
 	},
 
 	methods: {

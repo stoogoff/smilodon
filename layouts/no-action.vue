@@ -10,8 +10,14 @@
 </template>
 <script>
 
+import ThemeManager from '~/managers/theme'
+
 export default {
 	name: 'NoActionLayout',
+
+	mounted() {
+		ThemeManager.loadTheme()
+	},
 }
 
 </script>
