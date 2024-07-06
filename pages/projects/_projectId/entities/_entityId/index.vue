@@ -53,7 +53,7 @@
 										<tbody>
 											<tr
 												v-for="link in filteredLinks"
-												:key="link._id"
+												:key="`connections_${ link._id }`"
 												class="hover:bg-base-200">
 												<td>
 													<nuxt-link
@@ -112,7 +112,6 @@ export default {
 
 		this.entity = await this.$entities.byId(params.entityId)
 		this.linked = await this.$entities.connections(this.entity)
-		console.log(this.linked)
 	},
 	fetchOnServer: false,
 

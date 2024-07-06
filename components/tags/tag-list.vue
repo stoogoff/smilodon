@@ -2,7 +2,7 @@
 	<div>
 		<d-badge
 			v-for="tag in tags"
-			:key="tag"
+			:key="`tag_list_${ tag }`"
 			info
 		>{{ tag }}</d-badge>
 	</div>

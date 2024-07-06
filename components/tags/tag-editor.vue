@@ -2,7 +2,7 @@
 	<div>
 		<tag-view
 			v-for="(tag, index) in tags"
-			:key="`${slugify(tag)}_${index}`"
+			:key="`${ slugify(tag) }_${ index }`"
 			:tag="tag"
 			editable @delete="deleteTag(tag, index)" />
 	</div>

@@ -2,7 +2,7 @@
 	<div>
 		<d-badge
 			v-for="tag in tags"
-			:key="tag.title"
+			:key="`tag_cloud_${ tag.title }`"
 			:xs="isTiny(tag)"
 			:sm="isSmall(tag)"
 			:md="isMedium(tag)"

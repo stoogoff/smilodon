@@ -8,13 +8,13 @@
 		</li>
 		<category-item
 			v-for="category in categories"
-			:key="category._id"
+			:key="`category_tree_${ category._id }`"
 			:category="category"
 			:tree="tree"
 		/>
 		<entity-item
 			v-for="entity in entities"
-			:key="entity._id"
+			:key="`category_tree_${ entity._id }`"
 			:entity="entity"
 		/>
 	</ul>	

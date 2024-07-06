@@ -49,7 +49,7 @@
 			<tbody>
 				<tr
 					v-for="record in mutableRecords"
-					:key="record._id"
+					:key="`row_${ record._id }`"
 					class="hover:bg-base-200"
 				>
 					<slot name="row" v-bind:row="record">
