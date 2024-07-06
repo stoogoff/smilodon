@@ -26,7 +26,7 @@
 					<d-tab label="Description" group="entity-view" active />
 					<d-tab-content>
 						<div class="grid grid-cols-4">
-							<markdown class="col-span-3 border-r border-st-grey pr-4 mr-4" :content="entity.description" />
+							<markdown class="col-span-3 border-r pr-4 mr-4" :content="entity.description" />
 							<div>
 								<h3 v-if="entity.tags.length > 0" class="mb-2">Tags</h3>
 								<tag-list :tags="entity.tags" />
@@ -54,17 +54,17 @@
 											<tr
 												v-for="link in filteredLinks"
 												:key="link._id"
-												class="hover:bg-st-yellow-pale">
+												class="hover:bg-base-200">
 												<td>
 													<nuxt-link
-														class="link"
+														class="link hover:link-primary"
 														:to="link.slug">{{ link.title }}</nuxt-link>
 												</td>
 												<td align="right">
-													<icon-view v-if="link.isCategory" icon="folder" />
-													<icon-view v-if="link.isMention" icon="chat" />
-													<icon-view v-if="link.isLink" icon="link" />
-													<icon-view v-if="link.isTag" icon="tag" />
+													<icon-view v-if="link.isCategory" icon="folder" data-tip="Category" class="tooltip" :class="{ 'text-primary': showCategories }" />
+													<icon-view v-if="link.isMention" icon="chat" data-tip="Mention" class="tooltip" :class="{ 'text-primary': showMentions }" />
+													<icon-view v-if="link.isLink" icon="link" data-tip="Link" class="tooltip" :class="{ 'text-primary': showLinks }" />
+													<icon-view v-if="link.isTag" icon="tag" data-tip="Tag" class="tooltip" :class="{ 'text-primary': showTags }" />
 												</td>
 											</tr>
 										</tbody>

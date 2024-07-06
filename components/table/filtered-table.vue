@@ -29,9 +29,9 @@
 
 		<table class="table">
 			<thead>
-				<tr class="bg-st-black-light text-st-grey-pale">
+				<tr class="bg-base-200">
 					<th
-						class="cursor-pointer uppercase"
+						class="cursor-pointer uppercase hover:link-primary"
 						v-for="column in mutableColumns"
 						:key="`th_${ column.key }`"
 						v-if="!column.hidden"
@@ -50,7 +50,7 @@
 				<tr
 					v-for="record in mutableRecords"
 					:key="record._id"
-					class="hover:bg-st-yellow-pale"
+					class="hover:bg-base-200"
 				>
 					<slot name="row" v-bind:row="record">
 						<td
@@ -58,7 +58,7 @@
 							:key="`td_${ column.key }`"
 							v-if="!column.hidden"
 						>
-							<nuxt-link class="link" :to="record[column.link]" v-if="column.link">
+							<nuxt-link class="link hover:link-primary" :to="record[column.link]" v-if="column.link">
 								{{ record[column.property] }}
 							</nuxt-link>
 							<span v-else>{{ column.property in record ? record[column.property] : 'n/a' }}</span>

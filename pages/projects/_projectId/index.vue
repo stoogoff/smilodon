@@ -29,7 +29,7 @@
 					<d-tab label="Description" group="project-edit" active />
 					<d-tab-content>
 						<div class="grid grid-cols-4">
-							<markdown class="col-span-3 border-r border-st-grey pr-4 mr-4" :content="project.description" />
+							<markdown class="col-span-3 border-r pr-4 mr-4" :content="project.description" />
 							<div>
 								<h3 class="mb-2">Project Tags</h3>
 								<tag-cloud :tags="tags" />
@@ -43,7 +43,7 @@
 					</d-tab-content>
 					<d-tab label="Network" group="project-edit" />
 					<d-tab-content>
-						<em class="text-st-black-pastel">coming soon</em>
+						<em>coming soon</em>
 					</d-tab-content>
 				</d-tabs>
 			</d-card>

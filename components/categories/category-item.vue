@@ -1,7 +1,7 @@
 <template>
 	<li>
 		<div @click="toggleOpen">
-			<icon-view :icon="icon" />
+			<icon-view :icon="icon" class="text-primary" />
 			<span @click.stop="viewCategory" class="hover:link hover:link-primary">{{ category.title }}</span>
 		</div>
 		<slide-down>

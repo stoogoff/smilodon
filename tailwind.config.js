@@ -27,13 +27,13 @@ module.exports = {
 		'./node_modules/vue-daisy-ui/**/*.vue',
 	],
 	theme: {
-		extend: {
+		/*extend: {
 			colors: COLOUR_MAP,
-		},
+		},*/
 	},
 	plugins: [require('daisyui')],
 	daisyui: {
-		themes: [{
+		themes: [/*{
 			storytella: {
 				// colours
 				'primary': BLUE.DEFAULT,
@@ -61,7 +61,40 @@ module.exports = {
 				'--rounded-box': '0.5rem',
 				'--rounded-btn': '0.2rem',
 			}
-		}],
-		darkTheme: 'storytella',
+		},*/
+			'light',
+			'dark',
+			'cupcake',
+			'bumblebee',
+			'emerald',
+			'corporate',
+			'synthwave',
+			'retro',
+			'cyberpunk',
+			'valentine',
+			'halloween',
+			'garden',
+			'forest',
+			'aqua',
+			'lofi',
+			'pastel',
+			'fantasy',
+			'wireframe',
+			'black',
+			'luxury',
+			'dracula',
+			'cmyk',
+			'autumn',
+			'business',
+			'acid',
+			'lemonade',
+			'night',
+			'coffee',
+			'winter',
+			'dim',
+			'nord',
+			'sunset',
+		],
+		darkTheme: 'dark',
 	}
 }

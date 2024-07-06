@@ -14,36 +14,36 @@
 						class="join-item"
 						:editor="editor"
 						command="strong"
-						icon="format-bold" />
+						icon="formatBold" />
 					<command-button
 						class="join-item"
 						:editor="editor"
 						command="em"
-						icon="format-italic" />
+						icon="formatItalic" />
 					<command-button
 						class="join-item"
 						:editor="editor"
 						command="code"
-						icon="format-code" />
+						icon="formatCode" />
 				</d-join>
 				<d-join>
 					<command-button
 						class="join-item"
 						:editor="editor"
 						command="bullet_list"
-						icon="list-bullet" />
+						icon="listBullet" />
 					<command-button
 						class="join-item"
 						:editor="editor"
 						command="ordered_list"
-						icon="list-number" />
+						icon="listNumber" />
 				</d-join>
 				<command-button
 					:editor="editor"
 					command="blockquote"
-					icon="format-blockquote" />
+					icon="formatBlockquote" />
 				<d-button sm @click="fullScreen = false" v-if="fullScreen">
-					<icon-view icon="fullscreen-exit" />
+					<icon-view icon="fullscreenExit" />
 				</d-button>
 				<d-button sm @click="fullScreen = true" v-else>
 					<icon-view icon="fullscreen" />
@@ -116,7 +116,7 @@ export default Vue.component('Editor', {
 }
 
 .full-screen {
-	@apply fixed top-0 left-0 bottom-0 right-0 bg-st-grey z-[10] p-10;
+	@apply fixed top-0 left-0 bottom-0 right-0 z-[10] p-10;
 }
 .full-screen .textarea, .full-screen .toolbar {
 	@apply max-w-4xl mx-auto;
