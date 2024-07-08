@@ -23,14 +23,9 @@
 			<popup-button y="top" x="right">
 				Projects
 				<template #popup>
-					<ul tabindex="0">
-						<li v-for="(item, idx) in menuItems" :key="`menu_${ idx }`">
-							<nuxt-link :to="item.href">{{ item.title }}</nuxt-link>
-							<ul v-if="item.menuItems">
-								<li v-for="(subitem, jdx) in item.menuItems">
-									<nuxt-link :to="subitem.href">{{ subitem.title }}</nuxt-link>
-								</li>
-							</ul>
+					<ul>
+						<li v-for="(item, idx) in menuItems" :key="`menu_${ idx }`" @click="$router.push(item.href)">
+							<span>{{ item.title }}</span>
 						</li>
 					</ul>
 				</template>
