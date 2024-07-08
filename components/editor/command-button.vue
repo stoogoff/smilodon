@@ -1,5 +1,5 @@
 <template>
-	<d-button sm @click="click" :disabled="!active">
+	<d-button sm @click="click" :disabled="!active" :neutral="highlight">
 		<icon-view :icon="icon" />
 	</d-button>
 </template>
@@ -22,6 +22,10 @@ export default Vue.component('CommandButton', {
 			type: String,
 			required: true,
 		},
+		highlight: {
+			type: Boolean,
+			default: false,
+		}
 	},
 
 	data() {

@@ -6,10 +6,10 @@ import {
 	defaultMarkdownParser,
 	defaultMarkdownSerializer,
 } from 'prosemirror-markdown'
-import { toggleMark, setBlockType, wrapIn } from'prosemirror-commands'
+import { toggleMark, setBlockType, wrapIn, lift } from'prosemirror-commands'
 import { exampleSetup } from 'prosemirror-example-setup'
 import Emitter from './emitter'
-import { NODES, EVENTS } from './config'
+import { MARKS, NODES, EVENTS } from './config'
 
 const createState = content => EditorState.create({
 	doc: defaultMarkdownParser.parse(content),
@@ -41,6 +41,68 @@ export default class MarkdownEditor extends Emitter {
 		this.view.updateState(createState(content))
 	}
 
+	selectedMarks() {
+		const selection = this.view.state.selection
+		let marks = []
+
+		if(selection.empty) {
+			marks = selection.$from.marks().map(m => m.type.name)
+		}
+		else {
+			const set = new Set()
+
+			selection.$head.marks().forEach(m => set.add(m.type.name))
+			selection.$anchor.marks().forEach(m => set.add(m.type.name))
+
+			marks = Array.from(set)
+		}
+
+		const result = {
+			[MARKS.EM]: false,
+			[MARKS.STRONG]: false,
+			[MARKS.CODE]: false,
+		}
+
+		for(let i = 0, len = marks.length; i < len; ++i) {
+			result[marks[i]] = true
+		}
+
+		return result
+	}
+
+	selectedNode() {
+		const selection = this.view.state.selection
+		let depth = selection.$anchor.depth
+
+		const result = {
+			[NODES.BLOCKQUOTE]: false,
+			[NODES.LIST_BULLET]: false,
+			[NODES.LIST_ORDERED]: false,
+		}
+
+		do {
+			const node = selection.$anchor.node(depth)
+
+			if(node.type.name === NODES.BLOCKQUOTE) {
+					result[NODES.BLOCKQUOTE] = true
+					break
+			}
+
+			if(node.type.name === NODES.LIST_BULLET) {
+					result[NODES.LIST_BULLET] = true
+					break
+			}
+
+			if(node.type.name === NODES.LIST_ORDERED) {
+					result[NODES.LIST_ORDERED] = true
+					break
+			}
+
+		} while(depth-- > 0)
+
+		return result
+	}
+
 	focus() {
 		this.view.focus()
 	}
@@ -54,7 +116,15 @@ export default class MarkdownEditor extends Emitter {
 	}
 
 	wrap(node) {
-		this.command(wrapIn(schema.nodes[node]))
+		const nodes = this.selectedNode()
+
+		if(nodes[node]) {
+			this.focus()
+			lift(this.view.state, this.view.dispatch)
+		}
+		else {
+			this.command(wrapIn(schema.nodes[node]))
+		}
 	}
 
 	block(node) {

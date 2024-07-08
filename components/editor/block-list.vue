@@ -1,7 +1,12 @@
 <template>
-	<d-dropdown>
+	<d-dropdown class="-top-1">
 		<template #activator>
-			<div class="btn btn-sm w-52 menu-dropdown-show" role="button" tabindex="0">{{ selection }}</div>
+			<button class="btn btn-sm menu-dropdown-show" role="button" tabindex="0">
+				{{ selection }}
+				<svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+				</svg>
+			</button>
 		</template>
 		<ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 prose">
 			<li class="border-b" @click="editor.block('paragraph')"><span>Paragraph</span></li>
@@ -12,7 +17,7 @@
 			<li @click="editor.block('heading_5')"><h5>Heading 5</h5></li>
 			<li @click="editor.block('heading_6')"><h6>Heading 6</h6></li>
 		</ul>
-	</d-dropdown>	
+	</d-dropdown>
 </template>
 <script>
 

@@ -14,34 +14,40 @@
 						class="join-item"
 						:editor="editor"
 						command="strong"
-						icon="formatBold" />
+						icon="formatBold"
+						:highlight="isBold" />
 					<command-button
 						class="join-item"
 						:editor="editor"
 						command="em"
-						icon="formatItalic" />
+						icon="formatItalic"
+						:highlight="isItalic" />
 					<command-button
 						class="join-item"
 						:editor="editor"
 						command="code"
-						icon="formatCode" />
+						icon="formatCode"
+						:highlight="isCode" />
 				</d-join>
 				<d-join>
 					<command-button
 						class="join-item"
 						:editor="editor"
 						command="bullet_list"
-						icon="listBullet" />
+						icon="listBullet"
+						:highlight="isBulletList" />
 					<command-button
 						class="join-item"
 						:editor="editor"
 						command="ordered_list"
-						icon="listNumber" />
+						icon="listNumber"
+						:highlight="isOrderedList" />
 				</d-join>
 				<command-button
 					:editor="editor"
 					command="blockquote"
-					icon="formatBlockquote" />
+					icon="formatBlockquote"
+					:highlight="isBlockquote" />
 				<d-button sm @click="fullScreen = false" v-if="fullScreen">
 					<icon-view icon="fullscreenExit" />
 				</d-button>
@@ -57,7 +63,7 @@
 
 import Vue from 'vue'
 import MarkdownEditor from './markdown-editor'
-import { EVENTS } from './config'
+import { NODES, MARKS, EVENTS } from './config'
 
 export default Vue.component('Editor', {
 	props: {
@@ -75,23 +81,49 @@ export default Vue.component('Editor', {
 		return {
 			lastValue: null,
 			editor: null,
-			updateRef: null,
+			contentRef: null,
+			stateRef: null,
 			fullScreen: false,
+
+			isBold: false,
+			isItalic: false,
+			isCode: false,
+
+			isBulletList: false,
+			isOrderedList: false,
+			isBlockquote: false,
 		}
 	},
 
 	mounted() {
 		this.editor = new MarkdownEditor(this.$refs.editor)
-		this.updateRef = this.editor.on(EVENTS.CONTENT, content => {
+		this.contentRef = this.editor.on(EVENTS.CONTENT, content => {
 			if(content !== this.lastValue) {
 				this.lastValue = content
 				this.$emit('input', content)
 			}
 		})
+
+		this.stateRef = this.editor.on(EVENTS.STATE, state => {
+			// inline state
+			let marks = this.editor.selectedMarks()
+
+			this.isBold = marks[MARKS.STRONG]
+			this.isItalic = marks[MARKS.EM]
+			this.isCode = marks[MARKS.CODE]
+
+			// block level state
+			let node = this.editor.selectedNode()
+
+			this.isBlockquote = node[NODES.BLOCKQUOTE]
+			this.isBulletList = node[NODES.LIST_BULLET]
+			this.isOrderedList = node[NODES.LIST_ORDERED]
+		})
 	},
 
 	beforeDestroy() {
-		this.editor.off(EVENTS.CONTENT, this.updateRef)
+		this.editor.off(EVENTS.CONTENT, this.contentRef)
+		this.editor.off(EVENTS.STATE, this.stateRef)
 		this.editor.destroy()
 	},
 
