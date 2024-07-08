@@ -57,6 +57,7 @@
 			</div>
 		</slot>
 		<div ref="editor" class="textarea textarea-bordered relative prose" />
+		<small>Words: {{ wordCount }}</small>
 	</div>
 </template>
 <script>
@@ -132,6 +133,12 @@ export default Vue.component('Editor', {
 			if(newValue !== this.lastValue) {
 				this.editor.content = newValue
 			}
+		},
+	},
+
+	computed: {
+		wordCount() {
+			return this.value.replace(/\W/g, ' ').split(/\s+/).length
 		},
 	},
 })
