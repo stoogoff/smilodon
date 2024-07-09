@@ -1,12 +1,12 @@
 <template>
-	<icon-view :icon="entity.icon || 'fileDocument'" />
+	<icon-view :icon="element.icon || 'fileDocument'" />
 </template>
 <script>
 import Vue from 'vue'
 
-export default Vue.component('EntityIcon', {
+export default Vue.component('ElementIcon', {
 	props: {
-		entity: {
+		element: {
 			type: Object,
 			required: true,
 		},

@@ -19,13 +19,13 @@
 					</d-button>
 				</d-card-actions>
 				<d-tabs bordered>
-					<d-tab label="Entities" group="category-view" active />
+					<d-tab label="Elements" group="category-view" active />
 					<d-tab-content>
-						<entity-table :entities="entities" />
+						<element-table :elements="elements" />
 					</d-tab-content>
 					<d-tab label="Network" group="category-view" />
 					<d-tab-content>
-						<!-- entity-map :category="category" / -->
+						<!-- element-map :category="category" / -->
 						<em>Coming soon</em>
 					</d-tab-content>
 				</d-tabs>
@@ -38,22 +38,22 @@
 			@cancel="closeDeleteModal"
 			@confirm="handleDelete"
 		>
-			<p>Deleting a category will also delete all entities in the category. Are you sure you want to continue?</p>
+			<p>Deleting a category will also delete all elements in the category. Are you sure you want to continue?</p>
 		</confirm-dialogue>
 	</section>
 </template>
 <script>
 
-import WithEntities from '~/mixins/with-entities'
+import WithElements from '~/mixins/with-elements'
 
 export default {
 	name: 'CategoryView',
-	mixins: [ WithEntities ],
+	mixins: [ WithElements ],
 
 	async fetch() {
 		const { params } = this.$nuxt.context
 
-		this.entities = await this.$entities.allByCategory(params.categoryId)
+		this.elements = await this.$elements.allByCategory(params.categoryId)
 		this.category = await this.$categories.byId(params.categoryId)
 	},
 	fetchOnServer: false,
@@ -77,13 +77,13 @@ export default {
 		async handleDelete() {
 			const project = await this.$projects.byId(this.category.project)
 			const categories = [ this.category, ...await this.$categories.descendants(this.category) ]
-			const entities = (await Promise.all(categories.map(category =>
-				this.$entities.allByCategory(category._id)
+			const elements = (await Promise.all(categories.map(category =>
+				this.$elements.allByCategory(category._id)
 			))).flat()
 
 			const allToDelete = [
 				...categories,
-				...entities,
+				...elements,
 			].map(item => ({ ...item, _deleted: true }))
 
 			this.$db.bulkDocs(allToDelete)

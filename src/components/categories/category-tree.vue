@@ -12,10 +12,10 @@
 			:category="category"
 			:tree="tree"
 		/>
-		<entity-item
-			v-for="entity in entities"
-			:key="`category_tree_${ entity._id }`"
-			:entity="entity"
+		<element-item
+			v-for="element in elements"
+			:key="`category_tree_${ element._id }`"
+			:element="element"
 		/>
 	</ul>	
 </template>
@@ -23,7 +23,7 @@
 
 import Vue from 'vue'
 import TreeManager from '~/managers/tree'
-import { ENTITY_ID_PREFIX, CATEGORY_ID_PREFIX } from '~/utils/config'
+import { ELEMENT_ID_PREFIX, CATEGORY_ID_PREFIX } from '~/utils/config'
 import { isEmptyString } from '~/utils/assert'
 
 export default Vue.component('CategoryTree', {
@@ -45,7 +45,7 @@ export default Vue.component('CategoryTree', {
 	data() {
 		return {
 			categories: [],
-			entities: [],
+			elements: [],
 		}
 	},
 
@@ -70,7 +70,7 @@ export default Vue.component('CategoryTree', {
 			const content = this.tree[this.parent] || []
 
 			this.categories = content.filter(item => item._id.startsWith(CATEGORY_ID_PREFIX))
-			this.entities = content.filter(item => item._id.startsWith(ENTITY_ID_PREFIX))
+			this.elements = content.filter(item => item._id.startsWith(ELEMENT_ID_PREFIX))
 		},
 	},
 })

@@ -1,8 +1,8 @@
 
 import {
-	DEFAULT_ENTITY,
-	ENTITY_ID_PREFIX,
-	ENTITIES_UPDATED,
+	DEFAULT_ELEMENT,
+	ELEMENT_ID_PREFIX,
+	ELEMENTS_UPDATED,
 	CATEGORY_ID_PREFIX,
 	PROJECT_ID_PREFIX,
 } from '~/utils/config'
@@ -12,11 +12,11 @@ import { sortByProperty } from 'vue-daisy-ui/utils/list'
 let _access
 
 // return the created instance
-export const entity = () => _access
+export const element = () => _access
 
 // create a database Access instance for entities and add specific methods
 export default db => {
-	_access = new Access(db, ENTITY_ID_PREFIX, DEFAULT_ENTITY, ENTITIES_UPDATED)
+	_access = new Access(db, ELEMENT_ID_PREFIX, DEFAULT_ELEMENT, ELEMENTS_UPDATED)
 
 	// return all entities for a given category
 	_access.allByCategory = async function(categoryId) {
@@ -45,22 +45,22 @@ export default db => {
 		})).sort(sortByProperty('title'))
 	}
 
-	// return all entities connected to this entity
+	// return all entities connected to this element
 	// connected entities include in the same category
 	// or having one or more tag in common
-	_access.connections = async function(entity) {
-		const entities = await this.allByProject(entity.project)
+	_access.connections = async function(element) {
+		const entities = await this.allByProject(element.project)
 
 		return entities
 			// not itself
-			.filter(({ _id }) => _id !== entity._id)
-			// add the connection type to the entity
+			.filter(({ _id }) => _id !== element._id)
+			// add the connection type to the element
 			.map(ent => ({
 				...ent,
 				isLink: false,
-				isMention: entity.description.includes(ent.title),
-				isCategory: ent.category === entity.category,
-				isTag: ent.tags.filter(tag => entity.tags.includes(tag)).length > 0,
+				isMention: element.description.includes(ent.title),
+				isCategory: ent.category === element.category,
+				isTag: ent.tags.filter(tag => element.tags.includes(tag)).length > 0,
 			}))
 			// has at least one matching tag or is in the category
 			.filter(({ isLink, isMention, isCategory, isTag }) => 
@@ -69,7 +69,7 @@ export default db => {
 
 	// override slugify
 	_access.slugify = function(item) {
-		return `/projects/${ item.project.replace(PROJECT_ID_PREFIX, '') }/entities/${ item._id.replace(this.prefix, '') }`
+		return `/projects/${ item.project.replace(PROJECT_ID_PREFIX, '') }/elements/${ item._id.replace(this.prefix, '') }`
 	}
 
 	return _access

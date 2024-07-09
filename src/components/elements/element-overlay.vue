@@ -2,7 +2,7 @@
 	<d-screen-slide>
 		<d-navbar class="bg-primary">
 			<d-navbar-start>
-				<h1 class="text-md">Create Entity</h1>
+				<h1 class="text-md">Create Element</h1>
 			</d-navbar-start>
 			<d-navbar-end>
 				<d-button @click="$emit('close')" sm>
@@ -11,18 +11,18 @@
 				</d-button>
 			</d-navbar-end>
 		</d-navbar>
-		<entity-editor @save="save" />
+		<element-editor @save="save" />
 	</d-screen-slide>
 </template>
 <script>
 
 import Vue from 'vue'
-import { ENTITIES_UPDATED } from '~/utils/config'
+import { ELEMENTS_UPDATED } from '~/utils/config'
 
-export default Vue.component('EntityOverlay', {
+export default Vue.component('ElementOverlay', {
 	methods: {
-		async save(entity) {
-			this.$emit('close', entity)
+		async save(element) {
+			this.$emit('close', element)
 		},
 	},
 })

@@ -4,12 +4,12 @@
 <script>
 import Vue from 'vue'
 import { unique, sortByProperty } from 'vue-daisy-ui/utils/list'
-import { ENTITIES_UPDATED } from '~/utils/config'
+import { ELEMENTS_UPDATED } from '~/utils/config'
 import { notNull } from '~/utils/assert'
 
-export default Vue.component('EntityTable', {
+export default Vue.component('ElementTable', {
 	props: {
-		entities: {
+		elements: {
 			type: Array,
 			required: true,
 		},
@@ -22,9 +22,9 @@ export default Vue.component('EntityTable', {
 
 		categories.forEach(category => idMap[category._id] = category)
 
-		// map entities to records
-		if(this.entities) {
-			this.records = this.entities.map(row => {
+		// map elements to records
+		if(this.elements) {
+			this.records = this.elements.map(row => {
 				const properties = {}
 
 				row.properties.forEach(prop => properties[prop.name] = prop.value)

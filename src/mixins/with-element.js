@@ -3,13 +3,13 @@ export default {
 	async fetch() {
 		const { params } = this.$nuxt.context
 
-		this.entity = await this.$entities.byId(params.entityId)
+		this.element = await this.$elements.byId(params.elementId)
 	},
 	fetchOnServer: false,
 
 	data() {
 		return {
-			entity: null,
+			element: null,
 		}
 	},
 }

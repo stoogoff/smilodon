@@ -36,10 +36,10 @@
 							</div>
 						</div>
 					</d-tab-content>
-					<d-tab label="Entities" group="project-edit" />
+					<d-tab label="Elements" group="project-edit" />
 					<d-tab-content>
-						<entity-table v-if="hasEntities" :entities="entities" />
-						<p v-else><em>No entities created.</em></p>
+						<element-table v-if="hasElements" :elements="elements" />
+						<p v-else><em>No elements created.</em></p>
 					</d-tab-content>
 					<d-tab label="Network" group="project-edit" />
 					<d-tab-content>
@@ -55,26 +55,26 @@
 			@cancel="closeDeleteModal"
 			@confirm="handleDelete"
 		>
-			<p>Deleting a project will also delete all categories and entities in the project. Are you sure you want to continue?</p>
+			<p>Deleting a project will also delete all categories and elements in the project. Are you sure you want to continue?</p>
 		</confirm-dialogue>
 	</section>
 </template>
 <script>
 
 import { download } from 'vue-daisy-ui/utils/file'
-import WithEntities from '~/mixins/with-entities'
+import WithElements from '~/mixins/with-elements'
 import ArchiveManager from '~/managers/archive'
 
 export default {
 	name: 'ProjectView',
-	mixins: [ WithEntities ],
+	mixins: [ WithElements ],
 
 	async fetch() {
 		const { params } = this.$nuxt.context
 
 		this.project = await this.$projects.byId(params.projectId)
-		this.entities = await this.$entities.allByProject(params.projectId)
-		this.tags = await this.$entities.tagsByProject(params.projectId)
+		this.elements = await this.$elements.allByProject(params.projectId)
+		this.tags = await this.$elements.tagsByProject(params.projectId)
 	},
 	fetchOnServer: false,
 
@@ -97,11 +97,11 @@ export default {
 
 		async handleDelete() {
 			const categories = await this.$categories.allByProject(this.project._id)
-			const entities = await this.$entities.allByProject(this.project._id)
+			const elements = await this.$elements.allByProject(this.project._id)
 			const allToDelete = [
 				this.project,
 				...categories,
-				...entities,
+				...elements,
 			].map(item => ({ ...item, _deleted: true }))
 
 			this.$db.bulkDocs(allToDelete)

@@ -29,11 +29,12 @@
 import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
 import TreeManager from '~/managers/tree'
+import { isIn } from '~/utils/assert'
 import { EventBus } from '~/utils/event-bus'
 import {
 	PROJECTS_UPDATED,
 	CATEGORIES_UPDATED,
-	ENTITIES_UPDATED
+	ELEMENTS_UPDATED
 } from '~/utils/config'
 
 export default Vue.component('CategoryPanel', {
@@ -57,13 +58,13 @@ export default Vue.component('CategoryPanel', {
 	mounted() {
 		EventBus.$on(PROJECTS_UPDATED, () => this.$fetch())
 		EventBus.$on(CATEGORIES_UPDATED, () => this.$fetch())
-		EventBus.$on(ENTITIES_UPDATED, () => this.$fetch())
+		EventBus.$on(ELEMENTS_UPDATED, () => this.$fetch())
 	},
 
 	beforeDestroy() {
 		EventBus.$off(PROJECTS_UPDATED)
 		EventBus.$off(CATEGORIES_UPDATED)
-		EventBus.$off(ENTITIES_UPDATED)
+		EventBus.$off(ELEMENTS_UPDATED)
 	},
 
 	watch: {
@@ -80,14 +81,14 @@ export default Vue.component('CategoryPanel', {
 
 	methods: {
 		async showForm() {
-			if('categoryId' in this.$route.params) {
+			if(isIn('categoryId', this.$route.params)) {
 				this.currentCategory = await this.$categories.byId(this.$route.params.categoryId)
 			}
-			else if('entityId' in this.$route.params) {
-				const entity = await this.$entities.byId(this.$route.params.entityId)
+			else if(isIn('elementId', this.$route.params)) {
+				const element = await this.$elements.byId(this.$route.params.elementId)
 
-				if(entity) {
-					this.currentCategory = await this.$categories.byId(entity.category)
+				if(element) {
+					this.currentCategory = await this.$categories.byId(element.category)
 				}
 			}
 

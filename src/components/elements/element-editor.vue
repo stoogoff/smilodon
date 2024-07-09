@@ -1,7 +1,7 @@
 <template>
 	<div class="p-4">
 		<d-tabs bordered>
-			<d-tab label="Entity" group="entity-editor" active />
+			<d-tab label="Element" group="element-editor" active />
 			<d-tab-content>
 				<d-validator-control
 					label="Title"
@@ -12,7 +12,7 @@
 				</d-validator-control>
 				<editor label="Description" v-model="description" />
 			</d-tab-content>
-			<d-tab label="Properties" group="entity-editor" />
+			<d-tab label="Properties" group="element-editor" />
 			<d-tab-content>
 				<p><em>Use the buttons below to add custom properties.</em></p>
 				<property-editor
@@ -23,7 +23,7 @@
 					@delete="deleteProperty" />
 				<d-button @click="addProperty">Add Property</d-button>
 			</d-tab-content>
-			<d-tab label="Metadata" group="entity-editor" />
+			<d-tab label="Metadata" group="element-editor" />
 			<d-tab-content>
 				<d-form-control label="Icon">
 					<d-simple-select
@@ -68,17 +68,17 @@ import WithStore from '~/mixins/with-store'
 import {
 	DEFAULT_PROPERTY,
 	EDITOR_TOOLBAR,
-	DEFAULT_ENTITY_ID,
+	DEFAULT_ELEMENT_ID,
 	SHOW_MESSAGE,
 } from '~/utils/config'
 import { EventBus } from '~/utils/event-bus'
 import { local } from '~/utils/storage'
 
-export default Vue.component('EntityEditor', {
+export default Vue.component('ElementEditor', {
 	mixins: [ WithStore ],
 
 	props: {
-		entity: {
+		element: {
 			type: Object,
 			default: null,
 		},
@@ -109,18 +109,18 @@ export default Vue.component('EntityEditor', {
 	},
 
 	async mounted() {
-		const ID = this.entity ? this.entity._id : DEFAULT_ENTITY_ID
+		const ID = this.element ? this.element._id : DEFAULT_ELEMENT_ID
 
 		if(local.has(ID)) {
 			const stored = local.get(ID)
-			await this.setStateFromEntity({
+			await this.setStateFromElement({
 				...stored,
 				_id: ID,
 				category: stored.category ? stored.category._id : ''
 			})
 		}
-		else if(this.entity) {
-			await this.setStateFromEntity(this.entity)
+		else if(this.element) {
+			await this.setStateFromElement(this.element)
 		}
 
 		this.startSave(ID, [
@@ -158,15 +158,15 @@ export default Vue.component('EntityEditor', {
 	},
 
 	methods: {
-		async setStateFromEntity(entity) {
-			const category = entity.category ? await this.$categories.byId(entity.category) : null
+		async setStateFromElement(element) {
+			const category = element.category ? await this.$categories.byId(element.category) : null
 
-			this.title = entity.title || ''
-			this.description = entity.description || ''
+			this.title = element.title || ''
+			this.description = element.description || ''
 			this.category = category
-			this.tags = entity.tags || []
-			this.properties = entity.properties || []
-			this.icon = entity.icon ? toTitleCase(entity.icon)  : ''
+			this.tags = element.tags || []
+			this.properties = element.properties || []
+			this.icon = element.icon ? toTitleCase(element.icon)  : ''
 		},
 
 		addProperty() {
@@ -201,15 +201,15 @@ export default Vue.component('EntityEditor', {
 		},
 
 		async save() {
-			let newEntity
+			let newElement
 			const category = this.category ? this.category._id : ''
 
 			try {
-				// if the component has an entity save it
+				// if the component has an element save it
 				// otherwise create new
-				if(this.entity) {
-					newEntity = await this.$entities.save({
-						...this.entity,
+				if(this.element) {
+					newElement = await this.$elements.save({
+						...this.element,
 						title: this.title,
 						description: this.description,
 						category,
@@ -222,7 +222,7 @@ export default Vue.component('EntityEditor', {
 					const { params } = this.$nuxt.context
 					const project = await this.$projects.byId(params.projectId)
 
-					newEntity = await this.$entities.create({
+					newElement = await this.$elements.create({
 						title: this.title,
 						description: this.description,
 						category,
@@ -233,12 +233,12 @@ export default Vue.component('EntityEditor', {
 					})
 				}
 
-				this.clearData(this.entity ? this.entity._id : DEFAULT_ENTITY_ID)
-				this.$emit('save', newEntity)
+				this.clearData(this.element ? this.element._id : DEFAULT_ELEMENT_ID)
+				this.$emit('save', newElement)
 			}
 			catch(err) {
 				console.log(err)
-				EventBus.$emit(SHOW_MESSAGE, { type: 'error', text: 'Entity couldn’t be saved.' })
+				EventBus.$emit(SHOW_MESSAGE, { type: 'error', text: 'Element couldn’t be saved.' })
 			}
 		},
 	},

@@ -4,7 +4,7 @@ import YAML from 'yaml'
 
 import TreeManager from '~/managers/tree'
 import { project } from '~/state/project'
-import { notIn, notNull, notEmptyString, isEntity, isCategory } from '~/utils/assert'
+import { notIn, notNull, notEmptyString, isElement, isCategory } from '~/utils/assert'
 
 export default {
 	// create a ZIP archive and return it
@@ -18,7 +18,7 @@ export default {
 			const tree = byParent[current]
 
 			tree.forEach(leaf => {
-				if(isEntity(leaf)) {
+				if(isElement(leaf)) {
 					let filename = `${leaf.title}.md`
 					let count = 0
 

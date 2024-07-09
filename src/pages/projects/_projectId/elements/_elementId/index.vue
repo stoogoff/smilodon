@@ -1,15 +1,15 @@
 <template>
 	<section>
-		<loading-spinner v-if="entity === null" />
+		<loading-spinner v-if="element === null" />
 		<div v-else>
 			<breadcrumb />
 			<d-card>
 				<d-card-title>
-					<entity-icon :entity="entity" />
-					{{ entity.title }}
+					<element-icon :element="element" />
+					{{ element.title }}
 				</d-card-title>
 				<d-card-actions class="absolute top-6 right-8">
-					<nuxt-link class="btn btn-primary btn-sm" :to="`${ entity.slug }/edit`">
+					<nuxt-link class="btn btn-primary btn-sm" :to="`${ element.slug }/edit`">
 						<icon-view icon="edit" />
 						Edit
 					</nuxt-link>
@@ -20,16 +20,16 @@
 				</d-card-actions>
 				<d-alert warning v-if="hasUnsavedChanges">
 					<icon-view icon="alert" />
-					<div>This entity has unsaved changes. You can <nuxt-link class="link" :to="`${ entity.slug }/edit`">edit the entity</nuxt-link> or <span class="link" @click="discardChanges">discard the changes</span>.</div>
+					<div>This element has unsaved changes. You can <nuxt-link class="link" :to="`${ element.slug }/edit`">edit the element</nuxt-link> or <span class="link" @click="discardChanges">discard the changes</span>.</div>
 				</d-alert>
 				<d-tabs bordered>
-					<d-tab label="Description" group="entity-view" active />
+					<d-tab label="Description" group="element-view" active />
 					<d-tab-content>
 						<div class="grid grid-cols-4">
-							<markdown class="col-span-3 border-r pr-4 mr-4" :content="entity.description" />
+							<markdown class="col-span-3 border-r pr-4 mr-4" :content="element.description" />
 							<div>
-								<h3 v-if="entity.tags.length > 0" class="mb-2">Tags</h3>
-								<tag-list :tags="entity.tags" />
+								<h3 v-if="element.tags.length > 0" class="mb-2">Tags</h3>
+								<tag-list :tags="element.tags" />
 								<div v-if="linked.length > 0">
 									<div class="grid grid-cols-2">
 										<h3 class="my-2">Connections</h3>
@@ -73,11 +73,11 @@
 							</div>
 						</div>
 					</d-tab-content>
-					<d-tab label="Properties" group="entity-view" />
+					<d-tab label="Properties" group="element-view" />
 					<d-tab-content>
-						<ul v-if="entity.properties.length">
+						<ul v-if="element.properties.length">
 							<li
-								v-for="property in entity.properties"
+								v-for="property in element.properties"
 								:key="property.id"
 							>
 								<strong>{{ property.name }}:</strong> {{ property.value }}
@@ -95,7 +95,7 @@
 			@cancel="closeDeleteModal"
 			@confirm="handleDelete"
 		>
-			<p>Are you sure you want to delete this entity and all its properties?</p>
+			<p>Are you sure you want to delete this element and all its properties?</p>
 		</confirm-dialogue>
 	</section>
 </template>
@@ -105,19 +105,19 @@ import { notEmptyString } from '~/utils/assert'
 import { local } from '~/utils/storage'
 
 export default {
-	name: 'EntityView',
+	name: 'ElementView',
 
 	async fetch() {
 		const { params } = this.$nuxt.context
 
-		this.entity = await this.$entities.byId(params.entityId)
-		this.linked = await this.$entities.connections(this.entity)
+		this.element = await this.$elements.byId(params.elementId)
+		this.linked = await this.$elements.connections(this.element)
 	},
 	fetchOnServer: false,
 
 	data() {
 		return {
-			entity: null,
+			element: null,
 			linked: [],
 			showDeleteModal: false,
 			showCategories: true,
@@ -129,7 +129,7 @@ export default {
 
 	computed: {
 		hasUnsavedChanges() {
-			return this.entity ? local.has(this.entity._id) : false
+			return this.element ? local.has(this.element._id) : false
 		},
 
 		connectionFilters() {
@@ -176,16 +176,16 @@ export default {
 		},
 
 		discardChanges() {
-			local.remove(this.entity._id)
-			this.entity = { ...this.entity } // HACK force computed to update
+			local.remove(this.element._id)
+			this.element = { ...this.element } // HACK force computed to update
 		},
 
 		async handleDelete() {
-			const  next = notEmptyString(this.entity.category)
-				? await this.$categories.byId(this.entity.category)
-				: await this.$projects.byId(this.entity.project)
+			const  next = notEmptyString(this.element.category)
+				? await this.$categories.byId(this.element.category)
+				: await this.$projects.byId(this.element.project)
 
-			this.$entities.delete(this.entity)
+			this.$elements.delete(this.element)
 			this.showDeleteModal = false
 			this.$nuxt.$router.push(next.slug)
 		},

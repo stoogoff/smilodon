@@ -1,8 +1,8 @@
 <template>
 	<li :class="{ 'bg-base-300': isActive }">
-		<nuxt-link :to="entity.slug">
-			<entity-icon :entity="entity" :class="{ 'text-primary': isActive }" />
-			<span class="hover:link hover:link-primary">{{ entity.title }}</span>
+		<nuxt-link :to="element.slug">
+			<element-icon :element="element" :class="{ 'text-primary': isActive }" />
+			<span class="hover:link hover:link-primary">{{ element.title }}</span>
 			<icon-view icon="alert" class="text-error" v-if="hasUnsavedChanges" />
 		</nuxt-link>
 	</li>
@@ -13,9 +13,9 @@ import Vue from 'vue'
 import { PROJECT_ID_PREFIX } from '~/utils/config'
 import { local } from '~/utils/storage'
 
-export default Vue.component('EntityItem', {
+export default Vue.component('ElementItem', {
 	props: {
-		entity: {
+		element: {
 			type: Object,
 			required: true,
 		},
@@ -23,11 +23,11 @@ export default Vue.component('EntityItem', {
 
 	computed: {
 		isActive() {
-			return this.$route.fullPath === this.entity.slug
+			return this.$route.fullPath === this.element.slug
 		},
 
 		hasUnsavedChanges() {
-			return this.entity ? local.has(this.entity._id) : false
+			return this.element ? local.has(this.element._id) : false
 		},
 	},
 })

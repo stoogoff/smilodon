@@ -19,7 +19,7 @@ export const EDITOR_TOOLBAR = [
 ]
 
 // default data types
-export const DEFAULT_ENTITY = {
+export const DEFAULT_ELEMENT = {
 	title: '',
 	project: '',
 	description: '',
@@ -59,13 +59,13 @@ export const PROPERTY_TYPES = [
 ]
 
 // default ids
-export const ENTITY_ID_PREFIX = 'entity:'
+export const ELEMENT_ID_PREFIX = 'element:'
 export const PROPERTY_ID_PREFIX = 'property:'
 export const CATEGORY_ID_PREFIX = 'category:'
 export const PROJECT_ID_PREFIX = 'project:'
 
 // global events
-export const ENTITIES_UPDATED = 'entities-updated'
+export const ELEMENTS_UPDATED = 'entities-updated'
 export const CATEGORIES_UPDATED = 'categories-updated'
 export const PROJECTS_UPDATED = 'projects-updated'
 export const SHOW_MESSAGE = 'show-message'
@@ -73,5 +73,5 @@ export const SHOW_MESSAGE = 'show-message'
 // storage keys
 export const TREE_STATE = 'tree-state'
 export const TREE_STATE_PROJECT = 'tree-state-project'
-export const DEFAULT_ENTITY_ID = 'new-entity'
+export const DEFAULT_ELEMENT_ID = 'new-element'
 export const THEME = 'theme'

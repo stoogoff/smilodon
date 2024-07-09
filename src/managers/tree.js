@@ -1,7 +1,7 @@
 
 import Vue from 'vue'
 import uniq from 'lodash/uniq'
-import { entity } from '~/state/entity'
+import { element } from '~/state/element'
 import { category } from '~/state/category'
 import { TREE_STATE, TREE_STATE_PROJECT } from '~/utils/config'
 import { local } from '~/utils/storage'
@@ -20,13 +20,13 @@ const updateStorage = () => {
 }
 
 export default {
-	// load all category and entity data for the project
+	// load all category and element data for the project
 	// and return it as an object with the id as key
 	// and any child entities or categories as an array of values
 	async loadForProject(projectId) {
 		throwIfNull(projectId, 'projectId')
 
-		const entities = await entity().allByProject(projectId)
+		const entities = await element().allByProject(projectId)
 		const categories = await category().allByProject(projectId)
 
 		const byParent = {}

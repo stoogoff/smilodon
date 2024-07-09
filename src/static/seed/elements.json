@@ -1,7 +1,7 @@
 [
 	{
-		"_id": "entity:seed-object-1",
-		"title": "Seed Entity 1",
+		"_id": "element:seed-object-1",
+		"title": "Seed Element 1",
 		"project": "project:seed-1",
 		"description": "Lorum ipsum dolor sic amet",
 		"properties": [
@@ -18,8 +18,8 @@
 		"icon": ""
 	},
 	{
-		"_id": "entity:seed-object-2",
-		"title": "Seed Entity 2",
+		"_id": "element:seed-object-2",
+		"title": "Seed Element 2",
 		"project": "project:seed-1",
 		"description": "Lorum ipsum dolor sic amet",
 		"properties": [
@@ -36,8 +36,8 @@
 		"icon": ""
 	},
 	{
-		"_id": "entity:seed-object-3",
-		"title": "Seed Entity 3",
+		"_id": "element:seed-object-3",
+		"title": "Seed Element 3",
 		"project": "project:seed-1",
 		"description": "Lorum ipsum dolor sic amet",
 		"properties": [
@@ -54,8 +54,8 @@
 		"icon": ""
 	},
 	{
-		"_id": "entity:seed-object-4",
-		"title": "Seed Entity 4",
+		"_id": "element:seed-object-4",
+		"title": "Seed Element 4",
 		"project": "project:seed-1",
 		"description": "Lorum ipsum dolor sic amet",
 		"properties": [
@@ -72,8 +72,8 @@
 		"icon": ""
 	},
 	{
-		"_id": "entity:seed-object-5",
-		"title": "Seed Entity 5",
+		"_id": "element:seed-object-5",
+		"title": "Seed Element 5",
 		"project": "project:seed-1",
 		"description": "Lorum ipsum dolor sic amet",
 		"properties": [
@@ -90,8 +90,8 @@
 		"icon": ""
 	},
 	{
-		"_id": "entity:seed-object-6",
-		"title": "Seed Entity 6",
+		"_id": "element:seed-object-6",
+		"title": "Seed Element 6",
 		"project": "project:seed-1",
 		"description": "Lorum ipsum dolor sic amet",
 		"properties": [

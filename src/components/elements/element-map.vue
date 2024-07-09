@@ -6,7 +6,7 @@
 import Vue from 'vue'
 import { notIn } from '~/utils/assert'
 
-export default Vue.component('EntityMap', {
+export default Vue.component('ElementMap', {
 	props: {
 		category: {
 			type: Object,
@@ -21,7 +21,7 @@ export default Vue.component('EntityMap', {
 		// TODO generate links between entities based on tags
 		console.log(this.category)
 		// get all entities that belong to this category and convert to nodes
-		const entities = await this.$entities.allByCategory(this.category._id)
+		const entities = await this.$elements.allByCategory(this.category._id)
 
 		const RADIUS = 200
 		const LEN = entities.length
@@ -37,7 +37,7 @@ export default Vue.component('EntityMap', {
 				text: title,
 				fx: RADIUS * Math.cos(2 * Math.PI * index / LEN),
 				fy: RADIUS * Math.sin(2 * Math.PI * index / LEN),
-				category: 'entity',
+				category: 'element',
 			}))
 		]
 
@@ -54,14 +54,14 @@ export default Vue.component('EntityMap', {
 		// add links between nodes based on tags
 		const tags = {}
 
-		entities.forEach(entity => {
-			if(entity.tags && entity.tags.length) {
-				entity.tags.forEach(tag => {
+		entities.forEach(element => {
+			if(element.tags && element.tags.length) {
+				element.tags.forEach(tag => {
 					if(notIn(tag, tags)) {
 						tags[tag] = []
 					}
 
-					tags[tag].push(entity.title)
+					tags[tag].push(element.title)
 				})
 			}
 		})

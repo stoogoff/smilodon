@@ -13,22 +13,22 @@ export default Vue.component('Breadcrumb', {
 
 		this.project = await this.$projects.byId(params.projectId)
 
-		if(notNull(params.entityId)) {
-			this.entity = await this.$entities.byId(params.entityId)
+		if(notNull(params.elementId)) {
+			this.element = await this.$elements.byId(params.elementId)
 		}
 
 		if(notNull(params.categoryId)) {
 			this.ancestors = await this.$categories.ancestors(params.categoryId)
 		}
-		else if(notNull(this.entity) && notEmptyString(this.entity.category)) {
-			this.ancestors = await this.$categories.ancestors(this.entity.category)
+		else if(notNull(this.element) && notEmptyString(this.element.category)) {
+			this.ancestors = await this.$categories.ancestors(this.element.category)
 		}
 	},
 	fetchOnServer: false,
 
 	data() {
 		return {
-			entity: null,
+			element: null,
 			project: null,
 			ancestors: [],
 		}
@@ -51,11 +51,11 @@ export default Vue.component('Breadcrumb', {
 				})),
 			]
 
-			if(notNull(this.entity)) {
+			if(notNull(this.element)) {
 				output.push({
-					title: this.entity.title,
-					url: this.entity.slug,
-					icon: getIcon(this.entity.icon),
+					title: this.element.title,
+					url: this.element.slug,
+					icon: getIcon(this.element.icon),
 				})
 			}
 

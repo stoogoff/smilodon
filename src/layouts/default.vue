@@ -5,15 +5,15 @@
 			<category-panel />
 			<Nuxt />
 		</main>
-		<entity-overlay
-			v-if="addEntity"
-			@close="saveEntity"
+		<element-overlay
+			v-if="addElement"
+			@close="saveElement"
 		/>
 		<d-button
 			class="fixed right-4 bottom-4"
 			primary
 			circle
-			@click="addEntity = true"
+			@click="addElement = true"
 		>
 			<icon-view icon="plus" />
 		</d-button>
@@ -29,7 +29,7 @@ export default {
 
 	data() {
 		return {
-			addEntity: false,
+			addElement: false,
 		}
 	},
 
@@ -38,11 +38,11 @@ export default {
 	},
 
 	methods: {
-		saveEntity(entity) {
-			this.addEntity = false
+		saveElement(element) {
+			this.addElement = false
 
-			if(entity)
-				this.$router.push(entity.slug)
+			if(element)
+				this.$router.push(element.slug)
 		},
 	},
 }
