@@ -138,7 +138,7 @@ export default Vue.component('Editor', {
 
 	computed: {
 		wordCount() {
-			return this.value.replace(/\W/g, ' ').split(/\s+/).length
+			return this.value === '' ? 0 : this.value.replace(/\W/g, ' ').split(/\s+/).length
 		},
 	},
 })
