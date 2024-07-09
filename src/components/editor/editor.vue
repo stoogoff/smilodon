@@ -33,6 +33,22 @@
 					<command-button
 						class="join-item"
 						:editor="editor"
+						command="link"
+						icon="link"
+						:highlight="false"
+						disabled />
+					<command-button
+						class="join-item"
+						:editor="editor"
+						command="unlink"
+						icon="unlink"
+						:highlight="false"
+						disabled />
+				</d-join>
+				<d-join>
+					<command-button
+						class="join-item"
+						:editor="editor"
 						command="bullet_list"
 						icon="listBullet"
 						:highlight="isBulletList" />

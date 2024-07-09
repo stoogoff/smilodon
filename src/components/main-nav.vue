@@ -1,7 +1,7 @@
 <template>
 	<div class="navbar bg-base-100 shadow px-4 py-0">
 		<div class="flex-1">
-			<nuxt-link to="/" class="btn btn-ghost text-xl btn-sm">Smilodon</nuxt-link>
+			<nuxt-link to="/" class="btn btn-ghost text-xl btn-sm">Primordium</nuxt-link>
 		</div>
 		<div class="flex-none">
 			<nuxt-link to="/projects" tabindex="0" role="button" class="btn btn-ghost btn-sm">
