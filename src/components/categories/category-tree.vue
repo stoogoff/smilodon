@@ -22,9 +22,9 @@
 <script>
 
 import Vue from 'vue'
+import { isEmptyString } from 'vue-daisy-ui/utils/assert'
 import TreeManager from '~/managers/tree'
 import { ELEMENT_ID_PREFIX, CATEGORY_ID_PREFIX } from '~/utils/config'
-import { isEmptyString } from '~/utils/assert'
 
 export default Vue.component('CategoryTree', {
 	props: {

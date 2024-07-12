@@ -72,10 +72,10 @@
 <script>
 
 import Vue from 'vue'
+import { notNull } from 'vue-daisy-ui/utils/assert'
 import { sortByProperty } from 'vue-daisy-ui/utils/list'
+import { searchObject } from 'vue-daisy-ui/utils/string'
 import Table from '~/managers/table'
-import { notNull } from '~/utils/assert'
-import { searchObject } from '~/utils/string'
 
 export default Vue.component('FilteredTable', {
 	props: {

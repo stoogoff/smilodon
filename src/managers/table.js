@@ -1,8 +1,8 @@
 
 import Vue from 'vue'
+import { isIn, notIn, throwIfNull } from 'vue-daisy-ui/utils/assert'
+import { local } from 'vue-daisy-ui/utils/storage'
 import { createId } from 'vue-daisy-ui/utils/string'
-import { local } from '~/utils/storage'
-import { isIn, notIn, throwIfNull } from '~/utils/assert'
 
 const state = Vue.observable({
 	columns: {},

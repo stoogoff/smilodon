@@ -10,8 +10,8 @@
 <script>
 
 import Vue from 'vue'
+import { local } from 'vue-daisy-ui/utils/storage'
 import { PROJECT_ID_PREFIX } from '~/utils/config'
-import { local } from '~/utils/storage'
 
 export default Vue.component('ElementItem', {
 	props: {

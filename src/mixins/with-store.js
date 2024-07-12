@@ -1,6 +1,6 @@
 
-import { notNull } from '~/utils/assert'
-import { local } from '~/utils/storage'
+import { notNull } from 'vue-daisy-ui/utils/assert'
+import { local } from 'vue-daisy-ui/utils/storage'
 
 export default {
 	data() {

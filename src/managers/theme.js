@@ -1,8 +1,8 @@
 
 import Vue from 'vue'
+import { local } from 'vue-daisy-ui/utils/storage'
 import { toTitleCase } from 'vue-daisy-ui/utils/string'
 import { THEME } from '~/utils/config'
-import { local } from '~/utils/storage'
 
 export default {
 	allThemes() {

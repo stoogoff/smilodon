@@ -1,8 +1,7 @@
 
 import { sortByProperty } from 'vue-daisy-ui/utils/list'
-import { createId } from 'vue-daisy-ui/utils/string'
-import { isoDate } from '~/utils/date'
-import { slugify } from '~/utils/string'
+import { createId, slugify } from 'vue-daisy-ui/utils/string'
+import { isoDate } from 'vue-daisy-ui/utils/date'
 import { EventBus } from '~/utils/event-bus'
 import { PROJECT_ID_PREFIX } from '~/utils/config'
 

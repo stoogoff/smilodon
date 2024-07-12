@@ -2,9 +2,10 @@
 import JSZip from 'jszip'
 import YAML from 'yaml'
 
+import { notIn, notNull, notEmptyString } from 'vue-daisy-ui/utils/assert'
 import TreeManager from '~/managers/tree'
 import { project } from '~/state/project'
-import { notIn, notNull, notEmptyString, isElement, isCategory } from '~/utils/assert'
+import { isElement, isCategory } from '~/utils/assert'
 
 export default {
 	// create a ZIP archive and return it

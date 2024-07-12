@@ -4,7 +4,7 @@
 <script>
 
 import Vue from 'vue'
-import { isNull, notNull, notEmptyString } from '~/utils/assert'
+import { isNull, notNull, notEmptyString } from 'vue-daisy-ui/utils/assert'
 import icons, { getIcon } from '~/utils/icons'
 
 export default Vue.component('Breadcrumb', {

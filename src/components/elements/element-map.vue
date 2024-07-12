@@ -4,7 +4,7 @@
 <script>
 
 import Vue from 'vue'
-import { notIn } from '~/utils/assert'
+import { notIn } from 'vue-daisy-ui/utils/assert'
 
 export default Vue.component('ElementMap', {
 	props: {

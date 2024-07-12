@@ -64,6 +64,7 @@
 import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
 import { createId, toTitleCase } from 'vue-daisy-ui/utils/string'
+import { local } from 'vue-daisy-ui/utils/storage'
 import WithStore from '~/mixins/with-store'
 import {
 	DEFAULT_PROPERTY,
@@ -72,7 +73,6 @@ import {
 	SHOW_MESSAGE,
 } from '~/utils/config'
 import { EventBus } from '~/utils/event-bus'
-import { local } from '~/utils/storage'
 
 export default Vue.component('ElementEditor', {
 	mixins: [ WithStore ],

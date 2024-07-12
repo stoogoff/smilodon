@@ -1,5 +1,6 @@
 
 import { sortByProperty } from 'vue-daisy-ui/utils/list'
+import { isNull, notEmptyString } from 'vue-daisy-ui/utils/assert'
 import {
 	DEFAULT_CATEGORY,
 	CATEGORY_ID_PREFIX,
@@ -7,7 +8,6 @@ import {
 	PROJECT_ID_PREFIX,
 } from '~/utils/config'
 import Access from '~/utils/access'
-import { isNull, notEmptyString } from '~/utils/assert'
 
 let _access
 

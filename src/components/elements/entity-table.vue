@@ -3,9 +3,9 @@
 </template>
 <script>
 import Vue from 'vue'
+import { notNull } from 'vue-daisy-ui/utils/assert'
 import { unique, sortByProperty } from 'vue-daisy-ui/utils/list'
 import { ELEMENTS_UPDATED } from '~/utils/config'
-import { notNull } from '~/utils/assert'
 
 export default Vue.component('ElementTable', {
 	props: {

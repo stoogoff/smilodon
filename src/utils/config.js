@@ -65,7 +65,7 @@ export const CATEGORY_ID_PREFIX = 'category:'
 export const PROJECT_ID_PREFIX = 'project:'
 
 // global events
-export const ELEMENTS_UPDATED = 'entities-updated'
+export const ELEMENTS_UPDATED = 'elements-updated'
 export const CATEGORIES_UPDATED = 'categories-updated'
 export const PROJECTS_UPDATED = 'projects-updated'
 export const SHOW_MESSAGE = 'show-message'

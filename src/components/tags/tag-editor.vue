@@ -10,7 +10,7 @@
 <script>
 
 import Vue from 'vue'
-import { slugify } from '~/utils/string'
+import { slugify } from 'vue-daisy-ui/utils/string'
 
 export default Vue.component('TagEditor', {
 	props: {

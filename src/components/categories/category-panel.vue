@@ -27,9 +27,9 @@
 <script>
 
 import Vue from 'vue'
+import { isIn } from 'vue-daisy-ui/utils/assert'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
 import TreeManager from '~/managers/tree'
-import { isIn } from '~/utils/assert'
 import { EventBus } from '~/utils/event-bus'
 import {
 	PROJECTS_UPDATED,

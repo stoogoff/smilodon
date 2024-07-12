@@ -101,8 +101,8 @@
 </template>
 <script>
 
-import { notEmptyString } from '~/utils/assert'
-import { local } from '~/utils/storage'
+import { notEmptyString } from 'vue-daisy-ui/utils/assert'
+import { local } from 'vue-daisy-ui/utils/storage'
 
 export default {
 	name: 'ElementView',

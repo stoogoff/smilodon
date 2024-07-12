@@ -53,9 +53,8 @@ Nuxt/Vue based MindMap.
   + links (this is waiting on editor improvements)
   + properties with matching names and values
 - editor needs a lot of work
-  + bug with toggling state (e.g. list, blockquote)
   + needs to have a Markdown view mode as well as rich text
-  + should be able to link to other elements
+  + should be able to link to other elements (and element properties)
 - uploading content to import directly
   + this needs to include uploading a project from a zip folder in the format used for backups
   + single markdown / text file should open the element editor prefilling the description
