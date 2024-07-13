@@ -3,8 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #__nuxt, #__layout, #__layout > div {
-	@apply bg-base-200 leading-normal w-full h-full;
+
+html {
+	@apply bg-base-200 h-full;
+}
+body {
+	@apply bg-base-200 leading-normal w-full min-h-full;
 }
 
 .main {

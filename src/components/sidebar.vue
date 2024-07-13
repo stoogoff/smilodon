@@ -11,22 +11,14 @@
 						</d-tooltip>
 					</label>
 				</li>
-				<li class="border-b">
-					<nuxt-link to="/projects" class="flex pr-0">
-						<span class="flex-1">Dashboard</span>
-						<d-tooltip title="Dashboard" right>
-							<icon-view class="flex-initial flex-end" icon="dashboard" lg />
-						</d-tooltip>
-					</nuxt-link>
-				</li>
-				<li v-for="project in projects" :key="project._id">
-					<nuxt-link :to="project.slug" class="flex pr-0">
-						<span class="flex-1">{{ project.title }}</span>
-						<d-tooltip :title="project.title" right>
-							<icon-view class="flex-initial flex-end" icon="dashboard" lg />
-						</d-tooltip>
-					</nuxt-link>
-				</li>
+				<sidebar-item to="/projects" title="Dashboard" icon="dashboard" class="border-b" />
+				<sidebar-item v-for="project in projects"
+					:key="project._id"
+					:to="project.slug"
+					:title="project.title"
+					icon="home"
+				/>
+				<sidebar-item to="/projects/create" title="Create Project" icon="plus" class="border-t" />
 				<li>
 					<nuxt-link to="/changes">
 						Changes

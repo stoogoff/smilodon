@@ -1,9 +1,9 @@
 <template>
-	<section>
+	<d-card>
 		<h1>Create Project</h1>
 
 		<project-editor @save="save" @cancel="cancel" />
-	</section>
+	</d-card>
 </template>
 <script>
 
