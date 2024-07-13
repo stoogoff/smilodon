@@ -12,7 +12,7 @@ import { EDITOR_TOOLBAR } from '~/utils/config'
 
 export default {
 	name: 'CreateProject',
-	layout: 'site',
+	layout: 'no-project',
 
 	methods: {
 		save(project) {

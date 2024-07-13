@@ -1,10 +1,12 @@
 <template>
 	<div>
-		<main-nav />
-		<main class="main grid">
-			<category-panel />
-			<Nuxt />
-		</main>
+		<app-nav />
+		<sidebar>
+			<main class="main grid ml-10">
+				<category-panel />
+				<Nuxt />
+			</main>
+		</sidebar>
 		<element-overlay
 			v-if="addElement"
 			@close="saveElement"

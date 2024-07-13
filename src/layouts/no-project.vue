@@ -2,8 +2,7 @@
 	<div>
 		<app-nav />
 		<sidebar>
-			<main class="main grid ml-10">
-				<category-panel />
+			<main class="main ml-24 mr-10">
 				<Nuxt />
 			</main>
 		</sidebar>
@@ -15,7 +14,7 @@
 import ThemeManager from '~/managers/theme'
 
 export default {
-	name: 'NoActionLayout',
+	name: 'NoProjectLayout',
 
 	mounted() {
 		ThemeManager.loadTheme()

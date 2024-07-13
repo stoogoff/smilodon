@@ -1,5 +1,5 @@
 <template>
-	<d-icon :icon="iconActual" />
+	<d-icon :icon="iconActual" :sm="sm" :lg="lg" :x-lg="xLg" />
 </template>
 <script>
 
@@ -11,6 +11,18 @@ export default Vue.component('IconView', {
 		icon: {
 			type: String,
 			required: true,
+		},
+		sm: {
+			type: Boolean,
+			default: false,
+		},
+		lg: {
+			type: Boolean,
+			default: false,
+		},
+		xLg: {
+			type: Boolean,
+			default: false,
 		},
 	},
 

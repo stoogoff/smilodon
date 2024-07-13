@@ -23,7 +23,7 @@ import WithProjects from '~/mixins/with-projects'
 
 export default {
 	name: 'Projects',
-	layout: 'site',
+	layout: 'no-project',
 	mixins: [ WithProjects ],
 
 	async fetch() {
