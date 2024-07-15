@@ -64,11 +64,10 @@
 import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
 import { createId, toTitleCase } from 'vue-daisy-ui/utils/string'
-import { local } from 'vue-daisy-ui/utils/storage'
+import DiffManager from '~/managers/diff'
 import WithStore from '~/mixins/with-store'
 import {
 	DEFAULT_PROPERTY,
-	EDITOR_TOOLBAR,
 	DEFAULT_ELEMENT_ID,
 	SHOW_MESSAGE,
 } from '~/utils/config'
@@ -111,8 +110,8 @@ export default Vue.component('ElementEditor', {
 	async mounted() {
 		const ID = this.element ? this.element._id : DEFAULT_ELEMENT_ID
 
-		if(local.has(ID)) {
-			const stored = local.get(ID)
+		if(DiffManager.hasDiff(ID)) {
+			const stored = DiffManager.getDiff(ID)
 			await this.setStateFromElement({
 				...stored,
 				_id: ID,
@@ -150,10 +149,6 @@ export default Vue.component('ElementEditor', {
 
 		canSave() {
 			return this.title !== '' && validate(this.rules.title, this.title)
-		},
-
-		toolbar() {
-			return EDITOR_TOOLBAR
 		},
 	},
 

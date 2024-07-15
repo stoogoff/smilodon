@@ -7,7 +7,6 @@ import {
 	notEmptyString,
 	notIn,
 	notNull,
-	throwIfNull,
 } from 'vue-daisy-ui/utils/assert'
 import { createId, slugify } from 'vue-daisy-ui/utils/string'
 import TreeManager from '~/managers/tree'
@@ -74,8 +73,9 @@ export default {
 		})
 
 		const files = await Promise.all(entries.map(async entry => {
-			if(entry.dir)
+			if(entry.dir) {
 				return Promise.resolve(entry)
+			}
 
 			const content = await entry.async('string')
 
@@ -84,16 +84,14 @@ export default {
 
 		const root = files.find(({ name }) => name.endsWith('project.md'))
 		const elements = []
-		const categories = {}
-
-		throwIfNull(root, 'root', 'Unable to find project file.')
+		const categories = []
 
 		files.forEach(file => {
 			// ignore the project file
 			if(file === root) return
 
 			// remove project name from start of path and split on path separator
-			const name = file.name.replace(new RegExp(`^${ root.content.title }/`), '')
+			const name = file.name.substring(file.name.indexOf('/') + 1) 
 			const parts = name.substring(0, name.length - 1).split('/')
 
 			if(isEmptyArray(parts) || isEmptyString(parts[0])) return
@@ -102,8 +100,7 @@ export default {
 			if(!file.dir) {
 				elements.push({
 					...file.content,
-					project: root.content._id,
-					category: parts.length > 1 ? categories[parts[parts.length - 2]]._id : '',
+					category: parts.length > 1 ? parts[parts.length - 2] : '',
 				})
 
 				return
@@ -112,22 +109,16 @@ export default {
 			// handle categories
 			const title = parts[parts.length - 1]
 
-			categories[title] = {
-				_id: CATEGORY_ID_PREFIX + slugify(title) + '-' + createId(4),
+			categories.push({
 				title,
-				project: root.content._id,
-				parent: parts.length > 1 ? categories[parts[parts.length - 2]]._id : '',
-			}
+				parent: parts.length > 1 ? parts[parts.length - 2] : '',
+			})
 		})
 
-		const bulk = [ root.content, ...Object.values(categories), ...elements ].map(item => {
-			delete item._rev
-
-			return item
-		})
-
-		await project().db.bulkDocs(bulk)
-
-		return root.content
+		return {
+			project: notNull(root) ? root.content : { title: file.name.substring(0, file.name.lastIndexOf('.')) },
+			categories: Object.values(categories),
+			elements
+		}
 	},
 }

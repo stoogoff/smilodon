@@ -102,7 +102,7 @@
 <script>
 
 import { notEmptyString } from 'vue-daisy-ui/utils/assert'
-import { local } from 'vue-daisy-ui/utils/storage'
+import DiffManager from '~/managers/diff'
 
 export default {
 	name: 'ElementView',
@@ -129,7 +129,7 @@ export default {
 
 	computed: {
 		hasUnsavedChanges() {
-			return this.element ? local.has(this.element._id) : false
+			return this.element ? DiffManager.hasDiff(this.element._id) : false
 		},
 
 		connectionFilters() {
@@ -176,7 +176,7 @@ export default {
 		},
 
 		discardChanges() {
-			local.remove(this.element._id)
+			DiffManager.removeDiff(this.element._id)
 			this.element = { ...this.element } // HACK force computed to update
 		},
 

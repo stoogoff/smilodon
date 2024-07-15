@@ -1,6 +1,6 @@
 
 import { notNull } from 'vue-daisy-ui/utils/assert'
-import { local } from 'vue-daisy-ui/utils/storage'
+import DiffManager from '~/managers/diff'
 
 export default {
 	data() {
@@ -26,7 +26,7 @@ export default {
 				const hash = JSON.stringify(obj)
 
 				if(this.lastSaved != hash) {
-					local.set(id, obj)
+					DiffManager.storeDiff(id, obj)
 					this.lastSaved = hash
 				}
 			}, this.interval)
@@ -52,7 +52,7 @@ export default {
 		// clear the data
 		clearData(id) {
 			this.stopSave()
-			local.remove(id)
+			DiffManager.removeDiff(id)
 		},
 	},
 }

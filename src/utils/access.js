@@ -1,4 +1,5 @@
 
+import { isNull } from 'vue-daisy-ui/utils/assert'
 import { sortByProperty } from 'vue-daisy-ui/utils/list'
 import { createId, slugify } from 'vue-daisy-ui/utils/string'
 import { isoDate } from 'vue-daisy-ui/utils/date'
@@ -26,11 +27,16 @@ export default class Access {
 	async byId(id) {
 		if(!id.startsWith(this.prefix)) id = this.prefix + id
 
-		const result = await this.db.get(id)
+		try {
+			const result = await this.db.get(id)
 
-		if(!result.slug) result.slug = this.slugify(result)
+			if(!result.slug) result.slug = this.slugify(result)
 
-		return result
+			return result
+		}
+		catch {
+			return null
+		}
 	}
 
 	// retrieve all objects with the Access object's prefix

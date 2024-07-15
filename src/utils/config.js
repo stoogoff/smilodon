@@ -7,17 +7,6 @@ export const  MENU_ITEMS = [
 	//{ title: 'Entities', href: '/entities' },
 ]
 
-// editor toolbar
-export const EDITOR_TOOLBAR = [
-	[{ 'header': [false, 1, 2, 3, 4, 5, 6 ] }],
-	['bold', 'italic', 'underline', 'strike'],
-	['blockquote', 'code-block'],
-	[{ list: 'ordered' }, { list: 'bullet' }],
-	[{ indent: '-1' }, { indent: '+1' }],
-	[{ 'script': 'sub'}, { 'script': 'super' }],  
-	['link']
-]
-
 // default data types
 export const DEFAULT_ELEMENT = {
 	title: '',
