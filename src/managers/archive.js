@@ -4,16 +4,15 @@ import JSZip from 'jszip'
 import {
 	isEmptyArray,
 	isEmptyString,
-	notEmptyString,
 	notIn,
 	notNull,
 } from 'vue-daisy-ui/utils/assert'
-import { createId, slugify } from 'vue-daisy-ui/utils/string'
 import TreeManager from '~/managers/tree'
 import { project } from '~/state/project'
 import { isElement, isCategory } from '~/utils/assert'
-import { CATEGORY_ID_PREFIX } from '~/utils/config'
-import { createFile, parseFile } from '~/utils/file'
+import { createFile, parseFile, fileExtension } from '~/utils/file'
+
+const PROJECT_FILE_NAME = '_project.md'
 
 export default {
 	// create a ZIP archive and return it
@@ -49,7 +48,7 @@ export default {
 		const archive = new JSZip()
 		const root = archive.folder(rootProject.title)
 
-		root.file(`project.md`, createFile(rootProject))
+		root.file(PROJECT_FILE_NAME, createFile(rootProject))
 
 		recurseTree(root, '')
 
@@ -64,13 +63,20 @@ export default {
 
 		// push all entries into an array
 		zip.forEach((path, entry) => {
-			// skip Mac files
-			if(path.startsWith('__MACOSX') || path.includes('.DS_Store')) {
+			// skip Mac files and non-Markdown files
+			const ext = fileExtension(path)
+
+			if(path.startsWith('__MACOSX') || path.includes('.DS_Store') || (ext !== null && ext !== '.md')) {
 				return
 			}
 
 			entries.push(entry)
 		})
+
+		// the zip isn't really a backup file
+		if(entries.length === 0) {
+			throw new Error('No Markdown files found in zip.')
+		}
 
 		const files = await Promise.all(entries.map(async entry => {
 			if(entry.dir) {
@@ -82,7 +88,7 @@ export default {
 			return Promise.resolve({ ...entry, content: parseFile(content) })
 		}))
 
-		const root = files.find(({ name }) => name.endsWith('project.md'))
+		const root = files.find(({ name }) => name.endsWith(PROJECT_FILE_NAME))
 		const elements = []
 		const categories = []
 
@@ -106,19 +112,17 @@ export default {
 				return
 			}
 
-			// handle categories
-			const title = parts[parts.length - 1]
-
+			// create categories
 			categories.push({
-				title,
+				title: parts[parts.length - 1],
 				parent: parts.length > 1 ? parts[parts.length - 2] : '',
 			})
 		})
 
 		return {
 			project: notNull(root) ? root.content : { title: file.name.substring(0, file.name.lastIndexOf('.')) },
-			categories: Object.values(categories),
-			elements
+			categories,
+			elements,
 		}
 	},
 }

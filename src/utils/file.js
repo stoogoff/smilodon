@@ -1,5 +1,6 @@
 
 import YAML from 'yaml'
+import { isEmptyString } from 'vue-daisy-ui/utils/assert'
 
 // remove and parse the YAML header and return as an object
 export const parseFile = content => {
@@ -33,4 +34,11 @@ export const createFile = (obj, ignore) => {
 		buffer.push(`${obj.description}\n`)
 
 	return buffer.join('\n')
+}
+
+export const fileExtension = path => {
+	if(isEmptyString(path)) return null
+	if(path.indexOf('.') === -1) return null
+
+	return path.substring(path.lastIndexOf('.'))
 }
