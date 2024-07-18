@@ -14,6 +14,18 @@ let _access
 // return the created instance
 export const category = () => _access
 
+// recursively retrieve the category with the supplied ID
+// and all of its parent categories
+export const ancestors = (id, idMap) =>  {
+	const root = idMap[id]
+
+	if(isNull(root)) return []
+
+	return notEmptyString(root.parent)
+		? [ ...(ancestors(root.parent, idMap)), root]
+		: [root]
+}
+
 // create a database Access instance for categories and add specific methods
 export default db => {
 	_access = new Access(db, CATEGORY_ID_PREFIX, DEFAULT_CATEGORY, CATEGORIES_UPDATED)
@@ -46,6 +58,13 @@ export default db => {
 		return notEmptyString(root.parent)
 			? [ ...(await this.ancestors(root.parent)), root]
 			: [root]
+	}
+
+	// get the path of the category by its id
+	_access.getPath = async function(id) {
+		const ancestors = await this.ancestors(id)
+
+		return ancestors.map(({ title }) => title).join('/')
 	}
 
 	// override slugify

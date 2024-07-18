@@ -1,6 +1,6 @@
 
 import YAML from 'yaml'
-import { isEmptyString } from 'vue-daisy-ui/utils/assert'
+import { isEmptyString, notEmptyString } from 'vue-daisy-ui/utils/assert'
 
 // remove and parse the YAML header and return as an object
 export const parseFile = content => {

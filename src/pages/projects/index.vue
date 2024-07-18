@@ -51,7 +51,7 @@ export default {
 				try {
 					const data = await ArchiveManager.extract(files[0])
 
-					BackupManager.restore(data)
+					await BackupManager.restore(data)
 
 					EventBus.$emit(ELEMENTS_UPDATED)
 					EventBus.$emit(CATEGORIES_UPDATED)
@@ -62,6 +62,7 @@ export default {
 					})
 				}
 				catch(err) {
+					console.error(err)
 					EventBus.$emit(SHOW_MESSAGE, { type: 'error', text: err.message })
 				}
 			}

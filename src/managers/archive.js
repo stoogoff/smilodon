@@ -102,11 +102,14 @@ export default {
 
 			if(isEmptyArray(parts) || isEmptyString(parts[0])) return
 
+			const title = parts.pop()
+			const path = parts.join('/')
+
 			// handle elements
 			if(!file.dir) {
 				elements.push({
 					...file.content,
-					category: parts.length > 1 ? parts[parts.length - 2] : '',
+					category: path,
 				})
 
 				return
@@ -114,8 +117,8 @@ export default {
 
 			// create categories
 			categories.push({
-				title: parts[parts.length - 1],
-				parent: parts.length > 1 ? parts[parts.length - 2] : '',
+				title,
+				parent: path,
 			})
 		})
 
