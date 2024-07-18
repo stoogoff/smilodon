@@ -1,5 +1,6 @@
 
 import isEqual from 'lodash/isEqual'
+import trim from 'lodash/trim'
 import { notEmptyString, isIn, isNull, notIn, notNull } from 'vue-daisy-ui/utils/assert'
 import { map } from 'vue-daisy-ui/utils/list'
 import DiffManager from '~/managers/diff'
@@ -68,11 +69,9 @@ export default {
 		// update all categories to st the path
 		existingCategories.forEach(cat => cat.path = ancestors(cat._id, categoryIdMap).map(({ title }) => title).join('/'))
 
-		existingCategories.forEach(cat => console.log({ ...cat }))
-
 		// loop through new categories and IF THEY DON'T EXIST create them
 		// convert to a path => id map
-		const categoryPathIdMap = await this._createOrUpdateCategories(categories, projectId, map(existingCategories, '_id', 'path'))
+		const categoryPathIdMap = await this._createOrUpdateCategories(categories, projectId, map(existingCategories, 'path', '_id'))
 
 		// make a note of element id => element
 		// load all elements for the project
@@ -88,21 +87,18 @@ export default {
 				elm.category = isIn(elm.category, categoryPathIdMap) ? categoryPathIdMap[elm.category] : ''
 			}
 
+			// if it doesn't exist create it
 			if(notIn(elm._id, elementIdObjectMap)) {
 				return element().save(elm)
 			}
+			// if it exists (id is in the map) save it as a diff
+			// TODO this considers everything not equal
 			else if(!isEqual(elm, elementIdObjectMap[elm._id])) {
-				DiffManager.storeDiff(elm._id, elm)
+				//DiffManager.storeDiff(elm._id, elm)
 			}
 
 			return Promise.resolve()
 		}))
-
-
-		// for ease, convert to a id => element map
-		// loop through new elements
-		// if it exists (id is in the map) save it as a diff
-		// if it doesn't exist create it
 	},
 
 	async _createOrUpdateCategories(categories, projectId, categoryPathIdMap = {}) {
@@ -111,7 +107,7 @@ export default {
 		// a nested category should never appear before its parent
 		for(let i = 0, len = categories.length; i < len; ++i) {
 			const cat = this._prepare(categories[i], projectId)
-			const currentPath = [cat.parent, cat.title].join('/')
+			const currentPath = trim([cat.parent, cat.title].join('/'), '/')
 
 			if(isIn(currentPath, categoryPathIdMap)) {
 				continue
