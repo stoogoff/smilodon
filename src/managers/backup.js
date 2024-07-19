@@ -9,20 +9,13 @@ import { project } from '~/state/project'
 
 export default {
 	async restore(data) {
-		console.log('restore', data)
-		// TODO this will return a project which needs to be saved
-		// 1. if the project DOES exist it's more involved. It needs to diff element and, if different it needs to save it to local storage for the user to address
-		// AND on that note, the auto-save stuff needs to show a diff of the content so the
-		// user can make an  informed decision on what to do
+		// 1. if the project DOES exist diff elements and, if different it needs to save it to local storage for the user to address
 		// 2. if a project with the extracted project id doesn't exist, just save it
-		// 3. if the project.md file isn't available it should notify the user and let them create a new one (OR automatically create the new one and let them modify as they need to)
+		// 3. if the project.md file isn't available it saves a new project
 		if(notNull(data.project._id)) {
-			console.log(data.project)
 			const existing = await project().byId(data.project._id)
-			console.log('existing', existing)
 
 			if(notNull(existing)) {
-				console.log('option 1')
 				// option 1 - project exists so save new stuff and store a diff for existing stuff
 				await this._saveAndDiffProjectData(existing._id, data.categories, data.elements)
 			}
@@ -35,6 +28,9 @@ export default {
 		}
 		else {
 			// option 3 - no project so create a new one
+			// TODO - this needs to remove _id properties and call create instead of save
+			// otherwise it will attempt to move existing files into the new project
+			// could this actually be a beneficial solution to not having a project file??
 			const newProject = await project().create(data.project)
 
 			await this._saveProjectData(newProject._id, data.categories, data.elements)
@@ -91,10 +87,7 @@ export default {
 				return element().save(elm)
 			}
 			// if it exists (id is in the map) save it as a diff
-			// TODO this considers everything not equal
-			// possibly because _rev is deleted
-			// need to do an entity specific compare
-			else if(!DiffManager.compareEqual(elm, elementIdObjectMap[elm._id])) {
+			else if(!DiffManager.equal(elm, elementIdObjectMap[elm._id], ['slug'])) {
 				DiffManager.storeDiff(elm._id, elm)
 			}
 

@@ -19,7 +19,7 @@ export default {
 		local.remove(id)
 	},
 
-	equal(left, right) {
+	equal(left, right, ignore = []) {
 		const objectSort = (a, b) => {
 			a = JSON.stringify(a)
 			b = JSON.stringify(b)
@@ -35,7 +35,9 @@ export default {
 
 			// get all properties of both objects and remove any properties starting with _
 			// this gets rid of _id and _rev from the comparison
-			const keys = uniq([ ...Object.keys(a), ...Object.keys(b)]).filter(key => !key.startsWith('_'))
+			const keys = uniq([ ...Object.keys(a), ...Object.keys(b)])
+				.filter(key => !key.startsWith('_'))
+				.filter(key => !ignore.includes(key))
 			let matches = 0
 
 			for(let i = 0, ilen = keys.length; i < ilen; ++i) {
