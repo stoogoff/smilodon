@@ -1,5 +1,4 @@
 
-import isEqual from 'lodash/isEqual'
 import trim from 'lodash/trim'
 import { notEmptyString, isIn, isNull, notIn, notNull } from 'vue-daisy-ui/utils/assert'
 import { map } from 'vue-daisy-ui/utils/list'
@@ -93,8 +92,10 @@ export default {
 			}
 			// if it exists (id is in the map) save it as a diff
 			// TODO this considers everything not equal
-			else if(!isEqual(elm, elementIdObjectMap[elm._id])) {
-				//DiffManager.storeDiff(elm._id, elm)
+			// possibly because _rev is deleted
+			// need to do an entity specific compare
+			else if(!DiffManager.compareEqual(elm, elementIdObjectMap[elm._id])) {
+				DiffManager.storeDiff(elm._id, elm)
 			}
 
 			return Promise.resolve()
