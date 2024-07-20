@@ -10,9 +10,8 @@ import {
 import TreeManager from '~/managers/tree'
 import { project } from '~/state/project'
 import { isElement, isCategory } from '~/utils/assert'
+import { PROJECT_FILE_NAME } from '~/utils/config'
 import { createFile, parseFile, fileExtension } from '~/utils/file'
-
-const PROJECT_FILE_NAME = '_project.md'
 
 export default {
 	// create a ZIP archive and return it

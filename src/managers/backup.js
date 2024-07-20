@@ -11,7 +11,10 @@ export default {
 	async restore(data) {
 		// 1. if the project DOES exist diff elements and, if different it needs to save it to local storage for the user to address
 		// 2. if a project with the extracted project id doesn't exist, just save it
-		// 3. if the project.md file isn't available it saves a new project
+		// 3. if the default project file isn't available it saves a new project
+		// TODO - the different save methods may be better handled by separate classes
+		// (possibly in a shallow hierarchy) which can be instantiated here rather than
+		// having different options passed about
 		if(notNull(data.project._id)) {
 			const existing = await project().byId(data.project._id)
 
@@ -28,30 +31,30 @@ export default {
 		}
 		else {
 			// option 3 - no project so create a new one
-			// TODO - this needs to remove _id properties and call create instead of save
-			// otherwise it will attempt to move existing files into the new project
-			// could this actually be a beneficial solution to not having a project file??
+			// TODO - would this be better if it tried to infer the project from an existing element?
+			// it could try to load an element from the db and, if it exists, use the element's
+			// project as a base. It would need to go through all elements and try to load them...
 			const newProject = await project().create(data.project)
 
-			await this._saveProjectData(newProject._id, data.categories, data.elements)
+			await this._saveProjectData(newProject._id, data.categories, data.elements, true)
 		}
 	},
 
 	// save the given categories and elements with the supplied project id
-	async _saveProjectData(projectId, categories, elements) {
+	async _saveProjectData(projectId, categories, elements, createElements = false) {
 		// make a note of category title => id
 		const categoryPathIdMap = await this._createOrUpdateCategories(categories, projectId)
 
 		// save all elements with no concern for order
 		await Promise.all(elements.map(async elm => {
-			elm = this._prepare(elm, projectId)
+			elm = this._prepare(elm, projectId, createElements)
 
 			// get the category by its title, if the element has one
 			if(notEmptyString(elm.category)) {
 				elm.category = isIn(elm.category, categoryPathIdMap) ? categoryPathIdMap[elm.category] : ''
 			}
 
-			return element().save(elm)
+			return createElements ? element().create(elm) : element().save(elm)
 		}))
 	},
 
@@ -86,6 +89,7 @@ export default {
 			if(notIn(elm._id, elementIdObjectMap)) {
 				return element().save(elm)
 			}
+
 			// if it exists (id is in the map) save it as a diff
 			else if(!DiffManager.equal(elm, elementIdObjectMap[elm._id], ['slug'])) {
 				DiffManager.storeDiff(elm._id, elm)
@@ -103,6 +107,7 @@ export default {
 			const cat = this._prepare(categories[i], projectId)
 			const currentPath = trim([cat.parent, cat.title].join('/'), '/')
 
+			// this category exists already, ignore it
 			if(isIn(currentPath, categoryPathIdMap)) {
 				continue
 			}
@@ -124,9 +129,12 @@ export default {
 
 	// prepare an object for creation by removing its _id and _rev properties
 	// if a project id is passed, set that
-	_prepare(obj, projectId) {
-		//delete obj._id
+	_prepare(obj, projectId, deleteId = false) {
 		delete obj._rev
+
+		if(deleteId) {
+			delete obj._id
+		}
 
 		if(notNull(projectId)) {
 			obj.project = projectId
