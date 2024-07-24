@@ -7,6 +7,7 @@ module.exports = {
 	transform: {
 		'^.+\\.js$': 'babel-jest',
 	},
+	transformIgnorePatterns: ['/node_modules/(?!(yaml)/)'],
 	collectCoverage: false,
 	collectCoverageFrom: [],
 	testEnvironment: 'jsdom',
