@@ -1,5 +1,5 @@
 <template>
-	<div class="grid grid-cols-4 gap-1">
+	<div class="grid grid-cols-4 gap-2 border-b pt-1 pb-2">
 		<d-validator-control
 			label="Name"
 			:value="name"
@@ -25,7 +25,7 @@
 			<d-input v-model="value" bordered sm :error="error" @input="updateProperty" />
 		</d-validator-control>
 		<span>
-			<d-button @click="deleteProperty">
+			<d-button @click="deleteProperty" sm ghost class="mt-9">
 				<icon-view icon="trash" />
 			</d-button>
 		</span>

@@ -21,7 +21,7 @@
 					:property="property"
 					@update="updateProperty"
 					@delete="deleteProperty" />
-				<d-button @click="addProperty">Add Property</d-button>
+				<d-button @click="addProperty" sm class="mt-2">Add Property</d-button>
 			</d-tab-content>
 			<d-tab label="Metadata" group="element-editor" />
 			<d-tab-content>

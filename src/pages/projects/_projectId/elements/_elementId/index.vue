@@ -58,13 +58,17 @@
 												<td>
 													<nuxt-link
 														class="link hover:link-primary"
-														:to="link.slug">{{ link.title }}</nuxt-link>
+														:to="link.slug">
+														{{ link.title }}
+														<small v-if="link.hasMatchingProperty">({{ link.matchingProperties[0].name }}: {{ link.matchingProperties[0].value }})</small>
+													</nuxt-link>
 												</td>
 												<td align="right">
 													<icon-view v-if="link.isCategory" icon="folder" data-tip="Category" class="tooltip" :class="{ 'text-primary': showCategories }" />
 													<icon-view v-if="link.isMention" icon="chat" data-tip="Mention" class="tooltip" :class="{ 'text-primary': showMentions }" />
 													<icon-view v-if="link.isLink" icon="link" data-tip="Link" class="tooltip" :class="{ 'text-primary': showLinks }" />
 													<icon-view v-if="link.isTag" icon="tag" data-tip="Tag" class="tooltip" :class="{ 'text-primary': showTags }" />
+													<icon-view v-if="link.hasMatchingProperty" icon="property" data-tip="Property" class="tooltip" :class="{ 'text-primary': showProperties }" />
 												</td>
 											</tr>
 										</tbody>
@@ -75,14 +79,16 @@
 					</d-tab-content>
 					<d-tab label="Properties" group="element-view" />
 					<d-tab-content>
-						<ul v-if="element.properties.length">
-							<li
+						<dl v-if="element.properties.length" class="w-60">
+							<div
 								v-for="property in element.properties"
-								:key="property.id"
+								class="grid grid-cols-2 gap-2 border-b last:border-b-0 py-1"
+								:key="`dl_${property.id}`"
 							>
-								<strong>{{ property.name }}:</strong> {{ property.value }}
-							</li>
-						</ul>
+								<dt class="font-bold">{{ property.name }}:</dt>
+								<dd>{{ property.value }}</dd>
+							</div>
+						</dl>
 						<p v-else><em>No properties set</em></p>
 					</d-tab-content>
 				</d-tabs>
@@ -124,6 +130,7 @@ export default {
 			showLinks: true,
 			showMentions: true,
 			showTags: true,
+			showProperties: true,
 		}
 	},
 
@@ -150,6 +157,11 @@ export default {
 					toggle: () => this.showMentions = !this.showMentions,
 				},
 				{
+					label: 'Properties',
+					value: this.showProperties,
+					toggle: () => this.showProperties = !this.showProperties,
+				},
+				{
 					label: 'Tags',
 					value: this.showTags,
 					toggle: () => this.showTags = !this.showTags,
@@ -162,6 +174,7 @@ export default {
 				link.isCategory && this.showCategories ||
 				link.isLink && this.showLinks ||
 				link.isMention && this.showMentions ||
+				link.hasMatchingProperty && this.showProperties ||
 				link.isTag && this.showTags)
 		},
 	},

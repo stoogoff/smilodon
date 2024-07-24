@@ -1,4 +1,6 @@
 
+import intersectionWith from 'lodash/intersectionWith'
+import { sortByProperty } from 'vue-daisy-ui/utils/list'
 import {
 	DEFAULT_ELEMENT,
 	ELEMENT_ID_PREFIX,
@@ -7,7 +9,6 @@ import {
 	PROJECT_ID_PREFIX,
 } from '~/utils/config'
 import Access from '~/utils/access'
-import { sortByProperty } from 'vue-daisy-ui/utils/list'
 
 let _access
 
@@ -55,16 +56,26 @@ export default db => {
 			// not itself
 			.filter(({ _id }) => _id !== element._id)
 			// add the connection type to the element
-			.map(ent => ({
-				...ent,
-				isLink: false,
-				isMention: element.description.includes(ent.title),
-				isCategory: ent.category === element.category,
-				isTag: ent.tags.filter(tag => element.tags.includes(tag)).length > 0,
-			}))
+			.map(ent => {
+				const matchingProperties = intersectionWith(element.properties, ent.properties, (a, b) => a.name === b.name && a.value == b.value)
+
+				return {
+					...ent,
+					isLink: false,
+					// element contains this element's title in its description
+					isMention: element.description.includes(ent.title),
+					// elements belong to the same  category
+					isCategory: ent.category === element.category,
+					// elements have a matching tag
+					isTag: ent.tags.filter(tag => element.tags.includes(tag)).length > 0,
+					// elements have a property with the same name and value
+					hasMatchingProperty: matchingProperties.length > 0,
+					matchingProperties,
+				}
+			})
 			// has at least one matching tag or is in the category
-			.filter(({ isLink, isMention, isCategory, isTag }) => 
-				isLink || isMention || isCategory || isTag)
+			.filter(({ isLink, isMention, isCategory, isTag, hasMatchingProperty }) => 
+				isLink || isMention || isCategory || isTag || hasMatchingProperty)
 	}
 
 	// override slugify

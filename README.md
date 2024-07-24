@@ -51,15 +51,18 @@ Nuxt/Vue based MindMap.
 - tags should be auto-sorted alphabetically
 - connections table should be filterable by connection type
   + links (this is waiting on editor improvements)
-  + properties with matching names and values
 - editor needs a lot of work
   + needs to have a Markdown view mode as well as rich text
   + should be able to link to other elements (and element properties)
 - uploading content to import directly
   + this needs to include uploading a project from a zip folder in the format used for backups
+    * this works but the no project file version could be improved
   + single markdown / text file should open the element editor prefilling the description
     * if this has YAML headers in the download format it should parse those as well
   + CSV / spreadhseet import?
 - handle errors in saving data
-
+- property editor:
+  + calendar should be used for date stuff
+  + checkbox / toggle should be used for boolean
+  + what to do about images?
 
