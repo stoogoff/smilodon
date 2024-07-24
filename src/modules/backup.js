@@ -2,9 +2,9 @@
 import { notNull, throwIfNull } from 'vue-daisy-ui/utils/assert'
 import { project } from '~/state/project'
 
-import RestoreNew from '~/managers/restore/restore-new'
-import RestoreExisting from '~/managers/restore/restore-existing'
-import RestoreEmpty from '~/managers/restore/restore-empty'
+import RestoreNew from './restore/restore-new'
+import RestoreExisting from './restore/restore-existing'
+import RestoreEmpty from './restore/restore-empty'
 
 export default {
 	async restore(data) {

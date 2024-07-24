@@ -24,8 +24,8 @@
 <script>
 
 import { notEmptyArray, notEmptyString, notNull } from 'vue-daisy-ui/utils/assert'
-import ArchiveManager from '~/managers/archive'
-import BackupManager from '~/managers/backup'
+import Archive from '~/modules/archive'
+import Backup from '~/modules/backup'
 import WithProjects from '~/mixins/with-projects'
 import { EventBus } from '~/utils/event-bus'
 import {
@@ -49,9 +49,9 @@ export default {
 		async extractFiles(files) {
 			if(notEmptyArray(files)) {
 				try {
-					const data = await ArchiveManager.extract(files[0])
+					const data = await Archive.extract(files[0])
 
-					await BackupManager.restore(data)
+					await Backup.restore(data)
 
 					EventBus.$emit(ELEMENTS_UPDATED)
 					EventBus.$emit(CATEGORIES_UPDATED)

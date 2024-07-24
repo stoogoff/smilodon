@@ -12,13 +12,13 @@
 </template>
 <script>
 
-import ThemeManager from '~/managers/theme'
+import Theme from '~/modules/theme'
 
 export default {
 	name: 'NoActionLayout',
 
 	mounted() {
-		ThemeManager.loadTheme()
+		Theme.loadTheme()
 	},
 }
 

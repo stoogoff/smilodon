@@ -1,7 +1,7 @@
 
 import { notEmptyString, isIn, notIn } from 'vue-daisy-ui/utils/assert'
 import { map } from 'vue-daisy-ui/utils/list'
-import DiffManager from '~/managers/diff'
+import Diff from '~/modules/diff'
 import { category, ancestors } from '~/state/category'
 import { element } from '~/state/element'
 import RestoreNew from './restore-new'
@@ -41,8 +41,8 @@ export default class RestoreExisting extends RestoreNew {
 				return this._saveElement(elm)
 			}
 			// if it exists (id is in the map) and it different to the existing, save it as a diff
-			else if(!DiffManager.equal(elm, elementIdObjectMap[elm._id], ['slug'])) {
-				DiffManager.storeDiff(elm._id, elm)
+			else if(!Diff.equal(elm, elementIdObjectMap[elm._id], ['slug'])) {
+				Diff.storeDiff(elm._id, elm)
 			}
 
 			return Promise.resolve()

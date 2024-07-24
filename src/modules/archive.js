@@ -7,7 +7,7 @@ import {
 	notIn,
 	notNull,
 } from 'vue-daisy-ui/utils/assert'
-import TreeManager from '~/managers/tree'
+import Tree from '~/modules/tree'
 import { project } from '~/state/project'
 import { isElement, isCategory } from '~/utils/assert'
 import { PROJECT_FILE_NAME } from '~/utils/config'
@@ -16,7 +16,7 @@ import { createFile, parseFile, fileExtension } from '~/utils/file'
 export default {
 	// create a ZIP archive and return it
 	async create(projectId) {
-		const byParent = await TreeManager.loadForProject(projectId)
+		const byParent = await Tree.loadForProject(projectId)
 		const rootProject = await project().byId(projectId)
 
 		const recurseTree = (folder, current) => {

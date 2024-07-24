@@ -13,7 +13,7 @@
 <script>
 
 import Vue from 'vue'
-import TreeManager from '~/managers/tree'
+import Tree from '~/modules/tree'
 
 export default Vue.component('CategoryItem', {
 	props: {
@@ -37,13 +37,13 @@ export default Vue.component('CategoryItem', {
 		},
 
 		isOpen() {
-			return TreeManager.isOpen(this.category._id)
+			return Tree.isOpen(this.category._id)
 		},
 	},
 
 	methods: {
 		toggleOpen() {
-			TreeManager.toggleOpen(this.category._id)
+			Tree.toggleOpen(this.category._id)
 		},
 
 		async viewCategory() {

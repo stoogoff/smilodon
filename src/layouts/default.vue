@@ -24,7 +24,7 @@
 </template>
 <script>
 
-import ThemeManager from '~/managers/theme'
+import Theme from '~/modules/theme'
 
 export default {
 	name: 'DefaultLayout',
@@ -36,7 +36,7 @@ export default {
 	},
 
 	mounted() {
-		ThemeManager.loadTheme()
+		Theme.loadTheme()
 	},
 
 	methods: {

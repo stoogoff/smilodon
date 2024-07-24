@@ -11,13 +11,13 @@
 </template>
 <script>
 
-import ThemeManager from '~/managers/theme'
+import Theme from '~/modules/theme'
 
 export default {
 	name: 'NoProjectLayout',
 
 	mounted() {
-		ThemeManager.loadTheme()
+		Theme.loadTheme()
 	},
 }
 

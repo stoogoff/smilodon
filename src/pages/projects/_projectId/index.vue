@@ -63,7 +63,7 @@
 
 import { download } from 'vue-daisy-ui/utils/file'
 import WithElements from '~/mixins/with-elements'
-import ArchiveManager from '~/managers/archive'
+import Archive from '~/modules/archive'
 
 export default {
 	name: 'ProjectView',
@@ -111,7 +111,7 @@ export default {
 
 		async handleDownload() {
 			try {
-				const archive = await ArchiveManager.create(this.project._id)
+				const archive = await Archive.create(this.project._id)
 
 				download(`${this.project.title}.zip`, archive)
 			}

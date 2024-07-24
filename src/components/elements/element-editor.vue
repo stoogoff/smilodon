@@ -64,7 +64,7 @@
 import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
 import { createId, toTitleCase } from 'vue-daisy-ui/utils/string'
-import DiffManager from '~/managers/diff'
+import Diff from '~/modules/diff'
 import WithStore from '~/mixins/with-store'
 import {
 	DEFAULT_PROPERTY,
@@ -110,8 +110,8 @@ export default Vue.component('ElementEditor', {
 	async mounted() {
 		const ID = this.element ? this.element._id : DEFAULT_ELEMENT_ID
 
-		if(DiffManager.hasDiff(ID)) {
-			const stored = DiffManager.getDiff(ID)
+		if(Diff.hasDiff(ID)) {
+			const stored = Diff.getDiff(ID)
 			await this.setStateFromElement({
 				...stored,
 				_id: ID,

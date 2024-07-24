@@ -7,7 +7,7 @@
 </template>
 <script>
 
-import DiffManager from '~/managers/diff'
+import Diff from '~/modules/diff'
 
 export default {
 	name: 'Index',
@@ -29,12 +29,12 @@ export default {
 		// has different array of objects
 		const g = { name: 'John', age: 23, _id: 1, data: { hello: 'world' }, arr: [1, 2, 3], props: [ { type: 'number' }, { type: 'number' } ]}
 
-		console.log('a === b', DiffManager.equal(a, b))
-		console.log('a === c', DiffManager.equal(a, c))
-		console.log('a === d', DiffManager.equal(a, d))
-		console.log('a === e', DiffManager.equal(a, e))
-		console.log('a === f', DiffManager.equal(a, f))
-		console.log('a === g', DiffManager.equal(a, g))
+		console.log('a === b', Diff.equal(a, b))
+		console.log('a === c', Diff.equal(a, c))
+		console.log('a === d', Diff.equal(a, d))
+		console.log('a === e', Diff.equal(a, e))
+		console.log('a === f', Diff.equal(a, f))
+		console.log('a === g', Diff.equal(a, g))
 	}
 }
 

@@ -20,24 +20,24 @@
 <script>
 
 import Vue from 'vue'
-import ThemeManager from '~/managers/theme'
+import Theme from '~/modules/theme'
 
 export default Vue.component('AppNav', {
 	data() {
 		return {
-			selectedTheme: ThemeManager.currentTheme(),
+			selectedTheme: Theme.currentTheme(),
 		}
 	},
 
 	computed: {
 		themes() {
-			return ThemeManager.allThemes()
+			return Theme.allThemes()
 		},
 	},
 
 	methods: {
 		chooseTheme(theme) {
-			ThemeManager.setTheme(theme)
+			Theme.setTheme(theme)
 			this.selectedTheme = theme
 		}
 	},

@@ -29,7 +29,7 @@
 import Vue from 'vue'
 import { isIn } from 'vue-daisy-ui/utils/assert'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
-import TreeManager from '~/managers/tree'
+import Tree from '~/modules/tree'
 import { EventBus } from '~/utils/event-bus'
 import {
 	PROJECTS_UPDATED,
@@ -42,7 +42,7 @@ export default Vue.component('CategoryPanel', {
 		const { params } = this.$nuxt.context
 
 		this.project = await this.$projects.byId(params.projectId)
-		this.treeData = await TreeManager.load(this.project._id)
+		this.treeData = await Tree.load(this.project._id)
 	},
 	fetchOnServer: false,
 
@@ -75,7 +75,7 @@ export default Vue.component('CategoryPanel', {
 
 	computed: {
 		isOpenAll() {
-			return this.project ? TreeManager.isProjectOpen(this.project._id) : false
+			return this.project ? Tree.isProjectOpen(this.project._id) : false
 		},
 	},
 
@@ -101,7 +101,7 @@ export default Vue.component('CategoryPanel', {
 		},
 
 		async toggleOpenAll() {
-			await TreeManager.toggleAll(this.project._id)
+			await Tree.toggleAll(this.project._id)
 		},
 	},
 })
