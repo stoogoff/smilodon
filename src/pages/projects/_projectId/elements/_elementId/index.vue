@@ -64,11 +64,11 @@
 													</nuxt-link>
 												</td>
 												<td align="right">
-													<icon-view v-if="link.isCategory" icon="folder" data-tip="Category" class="tooltip" :class="{ 'text-primary': showCategories }" />
-													<icon-view v-if="link.isMention" icon="chat" data-tip="Mention" class="tooltip" :class="{ 'text-primary': showMentions }" />
-													<icon-view v-if="link.isLink" icon="link" data-tip="Link" class="tooltip" :class="{ 'text-primary': showLinks }" />
-													<icon-view v-if="link.isTag" icon="tag" data-tip="Tag" class="tooltip" :class="{ 'text-primary': showTags }" />
-													<icon-view v-if="link.hasMatchingProperty" icon="property" data-tip="Property" class="tooltip" :class="{ 'text-primary': showProperties }" />
+													<icon-view v-if="link.isCategory" icon="folder" data-tip="Category" class="tooltip" :class="{ 'text-primary': showCategories, 'opacity-30': !showCategories }" />
+													<icon-view v-if="link.isMention" icon="chat" data-tip="Mention" class="tooltip" :class="{ 'text-primary': showMentions, 'opacity-30': !showMentions }" />
+													<icon-view v-if="link.isLink" icon="link" data-tip="Link" class="tooltip" :class="{ 'text-primary': showLinks, 'opacity-30': !showLinks }" />
+													<icon-view v-if="link.isTag" icon="tag" data-tip="Tag" class="tooltip" :class="{ 'text-primary': showTags, 'opacity-30': !showTags }" />
+													<icon-view v-if="link.hasMatchingProperty" icon="property" data-tip="Property" class="tooltip" :class="{ 'text-primary': showProperties, 'opacity-30': !showProperties }" />
 												</td>
 											</tr>
 										</tbody>
