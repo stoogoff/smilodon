@@ -2,19 +2,21 @@
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import {
-	schema,
 	defaultMarkdownParser,
 	defaultMarkdownSerializer,
 } from 'prosemirror-markdown'
 import { toggleMark, setBlockType, wrapIn, lift } from'prosemirror-commands'
 import { exampleSetup } from 'prosemirror-example-setup'
-import Emitter from './emitter'
 import { MARKS, NODES, EVENTS } from './config'
+import Emitter from './emitter'
+import schema from './schema'
 
 const createState = content => EditorState.create({
 	doc: defaultMarkdownParser.parse(content),
 	plugins: exampleSetup({ schema, menuBar: false }),
 })
+
+console.log(schema)
 
 export default class MarkdownEditor extends Emitter {
 	constructor(node) {
@@ -60,6 +62,18 @@ export default class MarkdownEditor extends Emitter {
 
 			marks = Array.from(set)
 		}
+
+		// $head and $anchor behave slightly differently for links
+		// compared to other marks (e.g. strong, em)
+		// if a word is bolded (e.g. *bold*) the cursor point before the b doesn't have a mark
+		// but the cursor point after the d does
+		// if a word is linked (e.g. [link]) the cursor point before the l doesn't have a mark
+		// and nor does the cursor point after the k
+		// so selecting whole word which is the sole bold range will register as bolded in the editor
+		// but selecting a whole word which is the sole linked range won't
+		console.log('$head', selection.$head.marks().map(m => m.type.name))
+		console.log('$anchor', selection.$anchor.marks().map(m => m.type.name))
+		console.log('marks', marks)
 
 		const result = {
 			[MARKS.EM]: false,
