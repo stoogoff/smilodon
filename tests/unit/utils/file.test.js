@@ -1,7 +1,91 @@
 
-import { fileExtension } from '~/utils/file'
+import { parseFile, fileExtension } from '~/utils/file'
 
 describe('utils/file', () => {
+	describe('parseFile', () => {
+		it('returns an object with a title and description', () => {
+			const input = `---
+title: Lorem ipsum
+---
+
+Dolor sic amet
+`
+			const output = parseFile(input)
+
+			expect(output.title).toEqual('Lorem ipsum')
+			expect(output.description).toEqual('Dolor sic amet\n')
+		})
+
+		it('returns removes the title from the description', () => {
+			const input = `---
+title: Lorem ipsum
+---
+
+# Lorem ipsum
+
+Dolor sic amet
+`
+			const output = parseFile(input)
+
+			expect(output.title).toEqual('Lorem ipsum')
+			expect(output.description).toEqual('Dolor sic amet\n')
+		})
+
+		it('leaves the title in the description if it does not match the property', () => {
+			const input = `---
+title: Lorem ipsum
+---
+
+# Tempes Motus
+
+Dolor sic amet
+`
+			const output = parseFile(input)
+
+			expect(output.title).toEqual('Lorem ipsum')
+			expect(output.description).toEqual('# Tempes Motus\n\nDolor sic amet\n')
+		})
+
+		it('leaves the title in the description if it is not an h1', () => {
+			const input = `---
+title: Lorem ipsum
+---
+
+## Lorem ipsum
+
+Dolor sic amet
+`
+			const output = parseFile(input)
+
+			expect(output.title).toEqual('Lorem ipsum')
+			expect(output.description).toEqual('## Lorem ipsum\n\nDolor sic amet\n')
+		})
+
+		it('returns an object with a description if no header is present', () => {
+			const input = 'Lorem ipsum'
+			const output = parseFile(input)
+
+			expect(output.description).toEqual(input)
+		})
+
+		it('returns an object with other properties', () => {
+			const input = `---
+title: Lorem ipsum
+planet: Earth
+numbers: [1, 2, 3]
+---
+
+# Lorem ipsum
+
+Dolor sic amet
+`
+			const output = parseFile(input)
+
+			expect(output.planet).toEqual('Earth')
+			expect(output.numbers).toEqual([1, 2, 3])
+		})
+	})
+
 	describe('fileExtension', () => {
 		it('returns the extension part of a file path', () => {
 			const result = fileExtension('path/file.ext')

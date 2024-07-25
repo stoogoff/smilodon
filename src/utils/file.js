@@ -4,10 +4,13 @@ import { isEmptyString, notEmptyString } from 'vue-daisy-ui/utils/assert'
 
 // remove and parse the YAML header and return as an object
 export const parseFile = content => {
+	if(content.indexOf('---') === -1)
+		return { description: content }
+
 	const [empty, header, description] = content.split('---')
 	const properties = YAML.parse(header)
 
-	return { ...properties, description: description.replace(`\n\n# ${ properties.title }\n\n`, '') }
+	return { ...properties, description: description.replace(`\n\n# ${ properties.title }\n\n`, '').trimStart() }
 }
 
 // create a Markdown file with a YAML header
