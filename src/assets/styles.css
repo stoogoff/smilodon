@@ -72,3 +72,6 @@ h3  {
 .prose blockquote *:last-child {
 	@apply mb-0;
 }
+.prose a {
+	@apply text-primary underline hover:no-underline;
+}

@@ -3,6 +3,7 @@ export const MARKS = {
 	STRONG: 'strong',
 	EM: 'em',
 	CODE: 'code',
+	LINK: 'link',
 }
 
 export const NODES = {

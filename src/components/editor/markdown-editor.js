@@ -41,8 +41,12 @@ export default class MarkdownEditor extends Emitter {
 		this.view.updateState(createState(content))
 	}
 
+	get selection() {
+		return this.view.state.selection
+	}
+
 	selectedMarks() {
-		const selection = this.view.state.selection
+		const selection = this.selection
 		let marks = []
 
 		if(selection.empty) {
@@ -61,6 +65,7 @@ export default class MarkdownEditor extends Emitter {
 			[MARKS.EM]: false,
 			[MARKS.STRONG]: false,
 			[MARKS.CODE]: false,
+			[MARKS.LINK]: false,
 		}
 
 		for(let i = 0, len = marks.length; i < len; ++i) {
@@ -71,7 +76,7 @@ export default class MarkdownEditor extends Emitter {
 	}
 
 	selectedNode() {
-		const selection = this.view.state.selection
+		const selection = this.selection
 		let depth = selection.$anchor.depth
 
 		const result = {
@@ -111,8 +116,8 @@ export default class MarkdownEditor extends Emitter {
 		this.view.destroy()
 	}
 
-	toggle(mark) {
-		this.command(toggleMark(schema.marks[mark]))
+	toggle(mark, attrs) {
+		this.command(toggleMark(schema.marks[mark], attrs))
 	}
 
 	wrap(node) {

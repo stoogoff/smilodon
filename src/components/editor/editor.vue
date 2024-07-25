@@ -29,22 +29,10 @@
 						icon="formatCode"
 						:highlight="isCode" />
 				</d-join>
-				<d-join>
-					<command-button
-						class="join-item"
-						:editor="editor"
-						command="link"
-						icon="link"
-						:highlight="false"
-						disabled />
-					<command-button
-						class="join-item"
-						:editor="editor"
-						command="unlink"
-						icon="unlink"
-						:highlight="false"
-						disabled />
-				</d-join>
+				<link-buttons
+					:editor="editor"
+					:highlight="isLink"
+					:disabled="!canLink" />
 				<d-join>
 					<command-button
 						class="join-item"
@@ -105,6 +93,8 @@ export default Vue.component('Editor', {
 			isBold: false,
 			isItalic: false,
 			isCode: false,
+			isLink: false,
+			canLink: false,
 
 			isBulletList: false,
 			isOrderedList: false,
@@ -128,6 +118,8 @@ export default Vue.component('Editor', {
 			this.isBold = marks[MARKS.STRONG]
 			this.isItalic = marks[MARKS.EM]
 			this.isCode = marks[MARKS.CODE]
+			this.isLink = marks[MARKS.LINK]
+			this.canLink = !this.isLink && !this.editor.selection.empty
 
 			// block level state
 			let node = this.editor.selectedNode()

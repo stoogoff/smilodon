@@ -38,6 +38,7 @@ export default Vue.component('CommandButton', {
 				case MARKS.CODE:
 				case MARKS.STRONG:
 				case MARKS.EM:
+				case MARKS.LINK:
 					this.editor.toggle(this.command)
 					break
 
