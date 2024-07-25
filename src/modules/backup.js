@@ -1,6 +1,6 @@
 
 import { notNull, throwIfNull } from 'vue-daisy-ui/utils/assert'
-import { project } from '~/state/project'
+import { project } from '~/modules/db/project'
 
 import RestoreNew from './restore/restore-new'
 import RestoreExisting from './restore/restore-existing'

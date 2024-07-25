@@ -1,8 +1,8 @@
 
 import trim from 'lodash/trim'
 import { notEmptyString, isIn, isNull, notIn, notNull } from 'vue-daisy-ui/utils/assert'
-import { category } from '~/state/category'
-import { element } from '~/state/element'
+import { category } from '~/modules/db/category'
+import { element } from '~/modules/db/element'
 
 export default class RestoreNew {
 	constructor(projectId, categories, elements) {

@@ -2,8 +2,8 @@
 import { notEmptyString, isIn, notIn } from 'vue-daisy-ui/utils/assert'
 import { map } from 'vue-daisy-ui/utils/list'
 import Diff from '~/modules/diff'
-import { category, ancestors } from '~/state/category'
-import { element } from '~/state/element'
+import { category, ancestors } from '~/modules/db/category'
+import { element } from '~/modules/db/element'
 import RestoreNew from './restore-new'
 
 export default class RestoreExisting extends RestoreNew {

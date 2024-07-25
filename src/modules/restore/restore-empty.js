@@ -1,5 +1,5 @@
 
-import { element } from '~/state/element'
+import { element } from '~/modules/db/element'
 import RestoreNew from './restore-new'
 
 export default class RestoreEmpty extends RestoreNew  {

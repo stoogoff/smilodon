@@ -1,8 +1,6 @@
 
 import { fileExtension } from '~/utils/file'
 
-//jest.mock('YAML')
-
 describe('utils/file', () => {
 	describe('fileExtension', () => {
 		it('returns the extension part of a file path', () => {

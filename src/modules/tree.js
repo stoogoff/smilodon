@@ -3,8 +3,8 @@ import Vue from 'vue'
 import uniq from 'lodash/uniq'
 import { notIn, throwIfNull } from 'vue-daisy-ui/utils/assert'
 import { local } from 'vue-daisy-ui/utils/storage'
-import { element } from '~/state/element'
-import { category } from '~/state/category'
+import { element } from '~/modules/db/element'
+import { category } from '~/modules/db/category'
 import { TREE_STATE, TREE_STATE_PROJECT } from '~/utils/config'
 
 const state = Vue.observable({

@@ -8,7 +8,7 @@ import {
 	CATEGORY_ID_PREFIX,
 	PROJECT_ID_PREFIX,
 } from '~/utils/config'
-import Access from '~/utils/access'
+import Access from './access'
 
 let _access
 

@@ -7,7 +7,7 @@ import {
 	CATEGORIES_UPDATED,
 	PROJECT_ID_PREFIX,
 } from '~/utils/config'
-import Access from '~/utils/access'
+import Access from './access'
 
 let _access
 
@@ -55,9 +55,7 @@ export default db => {
 
 		if(isNull(root)) return []
 
-		return notEmptyString(root.parent)
-			? [ ...(await this.ancestors(root.parent)), root]
-			: [root]
+		return notEmptyString(root.parent) ? [ ...(await this.ancestors(root.parent)), root] : [root]
 	}
 
 	// get the path of the category by its id

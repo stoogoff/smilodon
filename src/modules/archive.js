@@ -8,7 +8,7 @@ import {
 	notNull,
 } from 'vue-daisy-ui/utils/assert'
 import Tree from '~/modules/tree'
-import { project } from '~/state/project'
+import { project } from '~/modules/db/project'
 import { isElement, isCategory } from '~/utils/assert'
 import { PROJECT_FILE_NAME } from '~/utils/config'
 import { createFile, parseFile, fileExtension } from '~/utils/file'

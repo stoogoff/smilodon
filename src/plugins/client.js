@@ -1,8 +1,8 @@
 
 import PouchDB from 'pouchdb'
-import element from '~/state/element'
-import category from '~/state/category'
-import project from '~/state/project'
+import element from '~/modules/db/element'
+import category from '~/modules/db/category'
+import project from '~/modules/db/project'
 
 // seed data
 import projectData from '~/static/seed/projects'
