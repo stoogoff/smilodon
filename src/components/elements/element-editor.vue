@@ -11,6 +11,7 @@
 					<d-input v-model="title" :error="error" bordered />
 				</d-validator-control>
 				<editor label="Description" v-model="description" />
+				<d-textarea class="w-full h-64" bordered v-model="description" />
 			</d-tab-content>
 			<d-tab label="Properties" group="element-editor" />
 			<d-tab-content>

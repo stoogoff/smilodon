@@ -29,10 +29,9 @@
 						icon="formatCode"
 						:highlight="isCode" />
 				</d-join>
-				<link-buttons
+				<link-button
 					:editor="editor"
-					:highlight="isLink"
-					:disabled="!canLink" />
+					:disabled="!isLink" />
 				<d-join>
 					<command-button
 						class="join-item"
@@ -53,15 +52,21 @@
 					icon="formatBlockquote"
 					:highlight="isBlockquote" />
 				<d-button sm @click="fullScreen = false" v-if="fullScreen">
-					<icon-view icon="fullscreenExit" />
+					<d-tooltip title="Exit full screen">
+						<icon-view icon="fullscreenExit" />
+					</d-tooltip>
 				</d-button>
 				<d-button sm @click="fullScreen = true" v-else>
-					<icon-view icon="fullscreen" />
+					<d-tooltip title="Enter full screen">
+						<icon-view icon="fullscreen" />
+					</d-tooltip>
 				</d-button>
 			</div>
 		</slot>
 		<div ref="editor" class="textarea textarea-bordered relative prose" />
-		<small>Words: {{ wordCount }}</small>
+		<div class="toolbar">
+			<small>Words: {{ wordCount }}</small>
+		</div>
 	</div>
 </template>
 <script>
@@ -94,7 +99,6 @@ export default Vue.component('Editor', {
 			isItalic: false,
 			isCode: false,
 			isLink: false,
-			canLink: false,
 
 			isBulletList: false,
 			isOrderedList: false,
@@ -118,8 +122,7 @@ export default Vue.component('Editor', {
 			this.isBold = marks[MARKS.STRONG]
 			this.isItalic = marks[MARKS.EM]
 			this.isCode = marks[MARKS.CODE]
-			this.isLink = marks[MARKS.LINK]
-			this.canLink = !this.isLink && !this.editor.selection.empty
+			this.isLink = marks[MARKS.LINK] || !this.editor.selection.empty
 
 			// block level state
 			let node = this.editor.selectedNode()

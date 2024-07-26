@@ -2,6 +2,7 @@
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import {
+	schema,
 	defaultMarkdownParser,
 	defaultMarkdownSerializer,
 } from 'prosemirror-markdown'
@@ -9,14 +10,11 @@ import { toggleMark, setBlockType, wrapIn, lift } from'prosemirror-commands'
 import { exampleSetup } from 'prosemirror-example-setup'
 import { MARKS, NODES, EVENTS } from './config'
 import Emitter from './emitter'
-import schema from './schema'
 
 const createState = content => EditorState.create({
 	doc: defaultMarkdownParser.parse(content),
 	plugins: exampleSetup({ schema, menuBar: false }),
 })
-
-console.log(schema)
 
 export default class MarkdownEditor extends Emitter {
 	constructor(node) {
@@ -43,6 +41,10 @@ export default class MarkdownEditor extends Emitter {
 		this.view.updateState(createState(content))
 	}
 
+	get state() {
+		return this.view.state
+	}
+
 	get selection() {
 		return this.view.state.selection
 	}
@@ -62,18 +64,6 @@ export default class MarkdownEditor extends Emitter {
 
 			marks = Array.from(set)
 		}
-
-		// $head and $anchor behave slightly differently for links
-		// compared to other marks (e.g. strong, em)
-		// if a word is bolded (e.g. *bold*) the cursor point before the b doesn't have a mark
-		// but the cursor point after the d does
-		// if a word is linked (e.g. [link]) the cursor point before the l doesn't have a mark
-		// and nor does the cursor point after the k
-		// so selecting whole word which is the sole bold range will register as bolded in the editor
-		// but selecting a whole word which is the sole linked range won't
-		console.log('$head', selection.$head.marks().map(m => m.type.name))
-		console.log('$anchor', selection.$anchor.marks().map(m => m.type.name))
-		console.log('marks', marks)
 
 		const result = {
 			[MARKS.EM]: false,
@@ -131,7 +121,7 @@ export default class MarkdownEditor extends Emitter {
 	}
 
 	toggle(mark, attrs) {
-		this.command(toggleMark(schema.marks[mark], attrs))
+		return this.command(toggleMark(schema.marks[mark], attrs))
 	}
 
 	wrap(node) {
@@ -139,40 +129,34 @@ export default class MarkdownEditor extends Emitter {
 
 		if(nodes[node]) {
 			this.focus()
-			lift(this.view.state, this.view.dispatch)
+			return lift(this.view.state, this.view.dispatch)
 		}
 		else {
-			this.command(wrapIn(schema.nodes[node]))
+			return this.command(wrapIn(schema.nodes[node]))
 		}
 	}
 
 	block(node) {
 		switch(node) {
 			case NODES.HEADING_1:
-				this.command(setBlockType(schema.nodes.heading, { level: 1 }))
-				break
+				return this.command(setBlockType(schema.nodes.heading, { level: 1 }))
 			case NODES.HEADING_2:
-				this.command(setBlockType(schema.nodes.heading, { level: 2 }))
-				break
+				return this.command(setBlockType(schema.nodes.heading, { level: 2 }))
 			case NODES.HEADING_3:
-				this.command(setBlockType(schema.nodes.heading, { level: 3 }))
-				break
+				return this.command(setBlockType(schema.nodes.heading, { level: 3 }))
 			case NODES.HEADING_4:
-				this.command(setBlockType(schema.nodes.heading, { level: 4 }))
-				break
+				return this.command(setBlockType(schema.nodes.heading, { level: 4 }))
 			case NODES.HEADING_5:
-				this.command(setBlockType(schema.nodes.heading, { level: 5 }))
-				break
+				return this.command(setBlockType(schema.nodes.heading, { level: 5 }))
 			case NODES.HEADING_6:
-				this.command(setBlockType(schema.nodes.heading, { level: 6 }))
-				break
+				return this.command(setBlockType(schema.nodes.heading, { level: 6 }))
 			default:
-				this.command(setBlockType(schema.nodes[node]))
+				return this.command(setBlockType(schema.nodes[node]))
 		}
 	}
 
 	command(cmd) {
 		this.focus()
-		cmd(this.view.state, this.view.dispatch, this.view)
+		return cmd(this.view.state, this.view.dispatch, this.view)
 	}
 }
