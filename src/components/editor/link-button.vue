@@ -5,7 +5,7 @@
 				<icon-view icon="link" />
 			</d-tooltip>
 		</d-button>
-		<d-card v-show="showLinkModal" compact class="link-modal w-96 absolute z-10" ref="modal">
+		<d-card v-if="showLinkModal" compact class="link-modal w-96 absolute z-10" ref="modal">
 			<div class="flex gap-2">
 				<div class="flex-1">
 					<d-validator-control
@@ -19,10 +19,13 @@
 				</div>
 				<div class="flex-initial">
 					<d-button sm ghost class="mt-9" @click="createLink">
-						<icon-view icon="edit" sm />
+						<icon-view icon="edit" />
+					</d-button>
+					<d-button sm ghost class="mt-9" @click="removeLink"><!-- should only display if editing -->
+						<icon-view icon="unlink" />
 					</d-button>
 					<d-button sm ghost class="mt-9" @click="closeLinkModal">
-						<icon-view icon="close" sm />
+						<icon-view icon="close" />
 					</d-button>
 				</div>
 			</div>
@@ -85,7 +88,7 @@ export default Vue.component('LinkButton', {
 
 	methods: {
 		closeLinkModal() {
-			this.url = '' // TODO this causes the form to error, messages need to be reset
+			this.url = ''
 			this.showLinkModal = false
 			this.editingData = null
 		},
@@ -93,6 +96,7 @@ export default Vue.component('LinkButton', {
 		openLinkModal() {
 			this.editingData = null
 			this.suppressClose = true
+			this.url = ''
 
 			const { $anchor } = this.editor.selection
 			const node = $anchor.doc.nodeAt($anchor.pos)
@@ -101,7 +105,6 @@ export default Vue.component('LinkButton', {
 
 			// the selection is on a link, set data needed for update
 			if(linkMarks.length > 0) {
-
 				this.url = linkMarks[0].attrs.href || ''
 				this.editingData = {
 					// start position of the link node
@@ -132,6 +135,18 @@ export default Vue.component('LinkButton', {
 					$el.style.left = (left - (elBox.right - offsetBox.right - 5)) + 'px'
 				}
 			})
+		},
+
+		removeLink() {
+			if(notNull(this.editingData)) {
+				const mark = this.editingData.markType.create({ href: this.url })
+				const tr = this.editor.state.tr
+
+				tr.removeMark(this.editingData.from, this.editingData.to, mark)
+				this.editor.view.dispatch(tr)
+			}
+
+			this.closeLinkModal()
 		},
 
 		createLink() {
