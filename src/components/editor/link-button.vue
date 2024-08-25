@@ -5,30 +5,46 @@
 				<icon-view icon="link" />
 			</d-tooltip>
 		</d-button>
-		<d-card v-if="showLinkModal" compact class="link-modal w-96 absolute z-10" ref="modal">
+		<d-card v-if="showLinkModal" compact class="link-modal w-96 absolute z-10 shadow-lg shadow-black" ref="modal">
+			<div class="card-actions justify-end">
+				<d-button sm ghost @click="closeLinkModal">
+					<icon-view icon="close" />
+				</d-button>
+			</div>
 			<div class="flex gap-2">
 				<div class="flex-1">
-					<d-validator-control
-						label="URL"
+					<label class="input input-bordered flex items-center gap-2">
+						<icon-view icon="search" />
+						<input type="text" v-model="url" class="grow" placeholder="Search" />
+					</label>
+
+					<!-- d-validator-control
+						label="Search"
 						:value="url"
 						:rules="rules.url"
 						v-slot="{ error }"
 					>
 						<d-input v-model="url" bordered sm :error="error" />
-					</d-validator-control>
+					</d-validator-control -->
 				</div>
 				<div class="flex-initial">
-					<d-button sm ghost class="mt-9" @click="createLink">
+					<!-- d-button ghost @click="createLink">
 						<icon-view icon="edit" />
-					</d-button>
-					<d-button sm ghost class="mt-9" @click="removeLink"><!-- should only display if editing -->
+					</d-button -->
+					<d-button v-if="isEditing" sm ghost class="mt-9" @click="removeLink">
 						<icon-view icon="unlink" />
-					</d-button>
-					<d-button sm ghost class="mt-9" @click="closeLinkModal">
-						<icon-view icon="close" />
 					</d-button>
 				</div>
 			</div>
+			<!-- TODO this needs to scroll -->
+			<ul class="menu p-0">
+				<li v-for="link in links" :key="link.url">
+					<a @click="createLink(link.url)">
+						<icon-view :icon="link.icon" />
+						{{ link.text }}
+					</a>
+				</li>
+			</ul>
 		</d-card>
 	</span>
 </template>
@@ -38,6 +54,8 @@ import Vue from 'vue'
 import { required } from 'vue-daisy-ui/utils/validators'
 import { notNull } from 'vue-daisy-ui/utils/assert'
 import { MARKS } from './config'
+
+// TODO editing is going to need to work differently
 
 export default Vue.component('LinkButton', {
 	props: {
@@ -53,12 +71,16 @@ export default Vue.component('LinkButton', {
 			type: Boolean,
 			default: false,
 		},
+		linkSearch: {
+			type: Function,
+			default: search => [],
+		},
 	},
 
 	data() {
 		return {
 			showLinkModal: false,
-			url: '',
+			url: '', // this should be searchTerm
 			editingData: null,
 			suppressClose: false,
 		}
@@ -79,11 +101,25 @@ export default Vue.component('LinkButton', {
 	},
 
 	computed: {
+		// is this still used?
 		rules() {
 			return {
 				url: [required()],
 			}
-		}
+		},
+
+		isEditing() {
+			return notNull(this.editingData)
+		},
+
+		links() {
+			// TODO may need to debounce
+			// TODO needs to handle actual URLs as well
+			console.log(this.url)
+			const result = this.linkSearch(this.url)
+			console.log('search result', result)
+			return result
+		},
 	},
 
 	methods: {
@@ -149,9 +185,9 @@ export default Vue.component('LinkButton', {
 			this.closeLinkModal()
 		},
 
-		createLink() {
+		createLink(href) {
 			const attrs = {
-				href: this.url
+				href, //this.url // url is  probably not going to be used like this
 			}
 
 			if(notNull(this.editingData)) {

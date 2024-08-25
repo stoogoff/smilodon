@@ -10,7 +10,7 @@
 					v-slot="{ error }">
 					<d-input v-model="title" :error="error" bordered />
 				</d-validator-control>
-				<editor label="Description" v-model="description" />
+				<editor label="Description" v-model="description" :link-search="searchElements" />
 				<d-textarea class="w-full h-64" bordered v-model="description" />
 			</d-tab-content>
 			<d-tab label="Properties" group="element-editor" />
@@ -64,7 +64,7 @@
 
 import Vue from 'vue'
 import { required, validate } from 'vue-daisy-ui/utils/validators'
-import { createId, toTitleCase } from 'vue-daisy-ui/utils/string'
+import { createId, toTitleCase, search } from 'vue-daisy-ui/utils/string'
 import Diff from '~/modules/diff'
 import WithStore from '~/mixins/with-store'
 import {
@@ -91,12 +91,15 @@ export default Vue.component('ElementEditor', {
 			{ _id: '', title: '(none)' },
 			...(await this.$categories.allByProject(params.projectId)),
 		]
+
+		this.elements = await this.$elements.allByProject(params.projectId)
 	},
 	fetchOnServer: false,
 
 	data() {
 		return {
 			categories: [],
+			elements: [],
 			title: '',
 			description: '',
 			category: null,
@@ -154,6 +157,17 @@ export default Vue.component('ElementEditor', {
 	},
 
 	methods: {
+		searchElements(searchText) {
+			// TODO maybe want to include searching description, tags, etc.
+			return this.elements
+				.filter(link => search(link.title, searchText))
+				.map(el => ({
+					icon: el.icon,
+					url: el.slug,
+					text: el.title,
+				}))
+		},
+
 		async setStateFromElement(element) {
 			const category = element.category ? await this.$categories.byId(element.category) : null
 
@@ -162,7 +176,7 @@ export default Vue.component('ElementEditor', {
 			this.category = category
 			this.tags = element.tags || []
 			this.properties = element.properties || []
-			this.icon = element.icon ? toTitleCase(element.icon)  : ''
+			this.icon = element.icon ? toTitleCase(element.icon) : ''
 		},
 
 		addProperty() {

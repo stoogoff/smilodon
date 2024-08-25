@@ -31,7 +31,8 @@
 				</d-join>
 				<link-button
 					:editor="editor"
-					:disabled="!isLink" />
+					:disabled="!isLink"
+					:link-search="linkSearch" />
 				<d-join>
 					<command-button
 						class="join-item"
@@ -84,6 +85,10 @@ export default Vue.component('Editor', {
 		value: {
 			type: String,
 			required: true,
+		},
+		linkSearch: {
+			type: Function,
+			default: search => [],
 		},
 	},
 
