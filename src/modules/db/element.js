@@ -61,7 +61,8 @@ export default db => {
 
 				return {
 					...ent,
-					isLink: false,
+					// element contains this element's slug in its description
+					isLink: element.description.includes(ent.slug),
 					// element contains this element's title in its description
 					isMention: element.description.includes(ent.title),
 					// elements belong to the same  category
@@ -73,7 +74,7 @@ export default db => {
 					matchingProperties,
 				}
 			})
-			// has at least one matching tag or is in the category
+			// has at least one matching field or is in the category
 			.filter(({ isLink, isMention, isCategory, isTag, hasMatchingProperty }) => 
 				isLink || isMention || isCategory || isTag || hasMatchingProperty)
 	}
