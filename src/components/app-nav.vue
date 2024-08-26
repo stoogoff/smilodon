@@ -7,11 +7,13 @@
 			<popup-button y="top" x="right">
 				{{ selectedTheme }}
 				<template #popup>
-					<ul>
-						<li v-for="theme in themes" :key="theme" @click="chooseTheme(theme)">
-							<span class="link">{{ theme }}</span>
-						</li>
-					</ul>
+					<div class="h-96 overflow-y-auto">
+						<ul>
+							<li v-for="theme in themes" :key="theme" @click="chooseTheme(theme)">
+								<span class="link">{{ theme }}</span>
+							</li>
+						</ul>
+					</div>
 				</template>
 			</popup-button>
 		</div>

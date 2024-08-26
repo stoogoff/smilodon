@@ -58,13 +58,15 @@ export default db => {
 			// add the connection type to the element
 			.map(ent => {
 				const matchingProperties = intersectionWith(element.properties, ent.properties, (a, b) => a.name === b.name && a.value == b.value)
+				// match the title but not in the format used for a link title
+				const matcher = new RegExp('[^"]' + ent.title + '[^"][^)]', 'g')
 
 				return {
 					...ent,
 					// element contains this element's slug in its description
 					isLink: element.description.includes(ent.slug),
 					// element contains this element's title in its description
-					isMention: element.description.includes(ent.title),
+					isMention: element.description.match(matcher),
 					// elements belong to the same  category
 					isCategory: ent.category === element.category,
 					// elements have a matching tag

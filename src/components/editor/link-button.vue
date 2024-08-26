@@ -15,7 +15,7 @@
 				<div class="flex-1">
 					<label class="input input-bordered flex items-center gap-2">
 						<icon-view icon="search" />
-						<input type="text" v-model="url" class="grow" placeholder="Search" />
+						<input type="text" v-model="searchTerm" class="grow" placeholder="Search" />
 					</label>
 
 					<!-- d-validator-control
@@ -36,15 +36,16 @@
 					</d-button>
 				</div>
 			</div>
-			<!-- TODO this needs to scroll -->
-			<ul class="menu p-0">
-				<li v-for="link in links" :key="link.url">
-					<a @click="createLink(link.url)">
-						<icon-view :icon="link.icon" />
-						{{ link.text }}
-					</a>
-				</li>
-			</ul>
+			<div class="h-28 overflow-y-auto">
+				<ul class="menu p-0">
+					<li v-for="link in links" :key="link.url">
+						<a @click="createLink(link)">
+							<icon-view :icon="link.icon" />
+							{{ link.text }}
+						</a>
+					</li>
+				</ul>
+			</div>
 		</d-card>
 	</span>
 </template>
@@ -80,7 +81,7 @@ export default Vue.component('LinkButton', {
 	data() {
 		return {
 			showLinkModal: false,
-			url: '', // this should be searchTerm
+			searchTerm: '',
 			editingData: null,
 			suppressClose: false,
 		}
@@ -115,8 +116,8 @@ export default Vue.component('LinkButton', {
 		links() {
 			// TODO may need to debounce
 			// TODO needs to handle actual URLs as well
-			console.log(this.url)
-			const result = this.linkSearch(this.url)
+			console.log(this.searchTerm)
+			const result = this.linkSearch(this.searchTerm)
 			console.log('search result', result)
 			return result
 		},
@@ -124,7 +125,7 @@ export default Vue.component('LinkButton', {
 
 	methods: {
 		closeLinkModal() {
-			this.url = ''
+			this.searchTerm = ''
 			this.showLinkModal = false
 			this.editingData = null
 		},
@@ -132,7 +133,7 @@ export default Vue.component('LinkButton', {
 		openLinkModal() {
 			this.editingData = null
 			this.suppressClose = true
-			this.url = ''
+			this.searchTerm = ''
 
 			const { $anchor } = this.editor.selection
 			const node = $anchor.doc.nodeAt($anchor.pos)
@@ -141,7 +142,7 @@ export default Vue.component('LinkButton', {
 
 			// the selection is on a link, set data needed for update
 			if(linkMarks.length > 0) {
-				this.url = linkMarks[0].attrs.href || ''
+				this.searchTerm = linkMarks[0].attrs.href || ''
 				this.editingData = {
 					// start position of the link node
 					from: nodeStart,
@@ -175,7 +176,7 @@ export default Vue.component('LinkButton', {
 
 		removeLink() {
 			if(notNull(this.editingData)) {
-				const mark = this.editingData.markType.create({ href: this.url })
+				const mark = this.editingData.markType.create({ href: this.searchTerm })
 				const tr = this.editor.state.tr
 
 				tr.removeMark(this.editingData.from, this.editingData.to, mark)
@@ -185,9 +186,10 @@ export default Vue.component('LinkButton', {
 			this.closeLinkModal()
 		},
 
-		createLink(href) {
+		createLink(link) {
 			const attrs = {
-				href, //this.url // url is  probably not going to be used like this
+				href: link.url,
+				title: link.text,
 			}
 
 			if(notNull(this.editingData)) {
