@@ -52,9 +52,11 @@
 <script>
 
 import Vue from 'vue'
+import { TextSelection } from 'prosemirror-state'
 import { required } from 'vue-daisy-ui/utils/validators'
 import { notNull } from 'vue-daisy-ui/utils/assert'
 import { MARKS } from './config'
+import { isVagueUrl, hasProtocol } from '~/utils/string'
 
 // TODO editing is going to need to work differently
 
@@ -115,10 +117,26 @@ export default Vue.component('LinkButton', {
 
 		links() {
 			// TODO may need to debounce
-			// TODO needs to handle actual URLs as well
-			console.log(this.searchTerm)
 			const result = this.linkSearch(this.searchTerm)
-			console.log('search result', result)
+
+			// if searchTerm vaguely looks like a URL add it to the list
+			if(hasProtocol(this.searchTerm) && URL.canParse(this.searchTerm)) {
+				const url = new URL(this.searchTerm)
+
+				result.push({
+					text: url.hostname,
+					url: this.searchTerm,
+					icon: 'web',
+				})
+			}
+			else if(isVagueUrl(this.searchTerm)) {
+				result.push({
+					text: this.searchTerm,
+					url: `https://${this.searchTerm}`,
+					icon: 'web',
+				})
+			}
+
 			return result
 		},
 	},
@@ -150,6 +168,9 @@ export default Vue.component('LinkButton', {
 					to: nodeStart + node.nodeSize,
 					// the type of mark to be created
 					markType: linkMarks[0].type,
+					// current mark attributes
+					href: linkMarks[0].attrs.href,
+					title: linkMarks[0].attrs.title,
 				}
 			}
 
@@ -176,10 +197,16 @@ export default Vue.component('LinkButton', {
 
 		removeLink() {
 			if(notNull(this.editingData)) {
-				const mark = this.editingData.markType.create({ href: this.searchTerm })
+				const mark = this.editingData.markType.create({
+					href: this.editingData.href,
+					title: this.editingData.title,
+				})
 				const tr = this.editor.state.tr
+				const { from, to } = this.editingData
 
-				tr.removeMark(this.editingData.from, this.editingData.to, mark)
+				tr
+					.removeMark(from, to, mark)
+					.setSelection(TextSelection.create(tr.doc, from))
 				this.editor.view.dispatch(tr)
 			}
 
