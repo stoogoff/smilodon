@@ -6,46 +6,49 @@
 			</d-tooltip>
 		</d-button>
 		<d-card v-if="showLinkModal" compact class="link-modal w-96 absolute z-10 shadow-lg shadow-black" ref="modal">
-			<div class="card-actions justify-end">
-				<d-button sm ghost @click="closeLinkModal">
-					<icon-view icon="close" />
-				</d-button>
-			</div>
-			<div class="flex gap-2">
-				<div class="flex-1">
-					<label class="input input-bordered flex items-center gap-2">
-						<icon-view icon="search" />
-						<input type="text" v-model="searchTerm" class="grow" placeholder="Search" />
-					</label>
-
-					<!-- d-validator-control
-						label="Search"
-						:value="url"
-						:rules="rules.url"
-						v-slot="{ error }"
-					>
-						<d-input v-model="url" bordered sm :error="error" />
-					</d-validator-control -->
+			<template v-if="isEditing">
+				<div class="flex">
+					<div class="flex-grow">
+						<a :href="this.editingData.href" class="link text-primary text-lg" target="_blank">{{ this.editingData.title }}</a>
+					</div>
+					<div class="flex-initial">
+						<d-button v-if="isEditing" sm ghost @click="removeLink">
+							<icon-view icon="unlink" />
+						</d-button>
+					</div>
+					<div class="flex-initial">
+						<d-button sm ghost @click="closeLinkModal">
+							<icon-view icon="close" />
+						</d-button>
+					</div>
 				</div>
-				<div class="flex-initial">
-					<!-- d-button ghost @click="createLink">
-						<icon-view icon="edit" />
-					</d-button -->
-					<d-button v-if="isEditing" sm ghost class="mt-9" @click="removeLink">
-						<icon-view icon="unlink" />
-					</d-button>
+				<div>{{ this.editingData.href }}</div>
+			</template>
+			<template v-else>
+				<div class="flex gap-2">
+					<div class="flex-grow">
+						<label class="input input-bordered flex items-center gap-2">
+							<icon-view icon="search" />
+							<input type="text" v-model="searchTerm" class="grow" placeholder="Search" />
+						</label>
+					</div>
+					<div class="flex-initial">
+						<d-button sm ghost class="mt-2" @click="closeLinkModal">
+							<icon-view icon="close" />
+						</d-button>
+					</div>
 				</div>
-			</div>
-			<div class="h-28 overflow-y-auto">
-				<ul class="menu p-0">
-					<li v-for="link in links" :key="link.url">
-						<a @click="createLink(link)">
-							<icon-view :icon="link.icon" />
-							{{ link.text }}
-						</a>
-					</li>
-				</ul>
-			</div>
+				<div class="h-28 overflow-y-auto">
+					<ul class="menu p-0">
+						<li v-for="link in links" :key="link.url">
+							<a @click="createLink(link)">
+								<icon-view :icon="link.icon" />
+								{{ link.text }}
+							</a>
+						</li>
+					</ul>
+				</div>
+			</template>
 		</d-card>
 	</span>
 </template>
@@ -53,10 +56,9 @@
 
 import Vue from 'vue'
 import { TextSelection } from 'prosemirror-state'
-import { required } from 'vue-daisy-ui/utils/validators'
 import { notNull } from 'vue-daisy-ui/utils/assert'
+import { isVagueUrl, hasProtocol } from 'vue-daisy-ui/utils/string'
 import { MARKS } from './config'
-import { isVagueUrl, hasProtocol } from '~/utils/string'
 
 // TODO editing is going to need to work differently
 
@@ -104,19 +106,12 @@ export default Vue.component('LinkButton', {
 	},
 
 	computed: {
-		// is this still used?
-		rules() {
-			return {
-				url: [required()],
-			}
-		},
-
 		isEditing() {
 			return notNull(this.editingData)
 		},
 
 		links() {
-			// TODO may need to debounce
+			// TODO may need to debounce or at least handle async responses
 			const result = this.linkSearch(this.searchTerm)
 
 			// if searchTerm vaguely looks like a URL add it to the list
@@ -144,14 +139,15 @@ export default Vue.component('LinkButton', {
 	methods: {
 		closeLinkModal() {
 			this.searchTerm = ''
-			this.showLinkModal = false
 			this.editingData = null
+			this.showLinkModal = false
 		},
 
 		openLinkModal() {
-			this.editingData = null
-			this.suppressClose = true
 			this.searchTerm = ''
+			this.editingData = null
+			this.showLinkModal = true
+			this.suppressClose = true
 
 			const { $anchor } = this.editor.selection
 			const node = $anchor.doc.nodeAt($anchor.pos)
@@ -160,7 +156,6 @@ export default Vue.component('LinkButton', {
 
 			// the selection is on a link, set data needed for update
 			if(linkMarks.length > 0) {
-				this.searchTerm = linkMarks[0].attrs.href || ''
 				this.editingData = {
 					// start position of the link node
 					from: nodeStart,
@@ -173,8 +168,6 @@ export default Vue.component('LinkButton', {
 					title: linkMarks[0].attrs.title,
 				}
 			}
-
-			this.showLinkModal = true
 
 			Vue.nextTick(() => {
 				// set the position of the modal
@@ -201,12 +194,12 @@ export default Vue.component('LinkButton', {
 					href: this.editingData.href,
 					title: this.editingData.title,
 				})
-				const tr = this.editor.state.tr
+				const { tr } = this.editor.state
 				const { from, to } = this.editingData
 
 				tr
 					.removeMark(from, to, mark)
-					.setSelection(TextSelection.create(tr.doc, from))
+					.setSelection(TextSelection.create(tr.doc, from)) // BUG this doesn't set the selection, it selects the entire paragraph
 				this.editor.view.dispatch(tr)
 			}
 
