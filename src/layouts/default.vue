@@ -9,7 +9,8 @@
 		</sidebar>
 		<element-overlay
 			v-if="addElement"
-			@close="saveElement"
+			@save="saveElement"
+			@cancel="closeElementEditor"
 		/>
 		<d-button
 			class="fixed right-4 bottom-4"
@@ -40,6 +41,10 @@ export default {
 	},
 
 	methods: {
+		closeElementEditor() {
+			this.addElement = false
+		},
+
 		saveElement(element) {
 			this.addElement = false
 

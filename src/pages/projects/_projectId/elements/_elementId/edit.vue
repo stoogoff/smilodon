@@ -5,7 +5,7 @@
 			<d-card-title>
 				Editing: {{ element.title }}
 			</d-card-title>
-			<element-editor :element="element" @save="save" />
+			<element-editor :element="element" @save="redirect" @cancel="redirect" />
 		</d-card>
 	</section>
 </template>
@@ -19,7 +19,7 @@ export default {
 	mixins: [ WithElement ],
 
 	methods: {
-		save(element) {
+		redirect(element) {
 			this.$nuxt.$router.push(this.element.slug)
 		},
 	},

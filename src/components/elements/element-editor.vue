@@ -55,8 +55,11 @@
 				</div>
 			</d-tab-content>
 		</d-tabs>
-		<div class="fixed bottom-0 left-0 right-0 p-2">
-			<d-button primary block :disabled="!canSave" @click="save">Save</d-button>
+		<div
+			:class="overlay ? 'fixed bottom-0 left-0 right-0 p-2' : ''"
+			class="py-4 grid grid-cols-2 space-x-2">
+			<d-button neutral @click="$emit('cancel')">Cancel</d-button>
+			<d-button primary :disabled="!canSave" @click="save">Save</d-button>
 		</div>
 	</div>
 </template>
@@ -81,6 +84,10 @@ export default Vue.component('ElementEditor', {
 		element: {
 			type: Object,
 			default: null,
+		},
+		overlay: {
+			type: Boolean,
+			default: false,
 		},
 	},
 

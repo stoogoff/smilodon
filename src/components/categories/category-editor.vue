@@ -16,8 +16,8 @@
 				bordered
 			/>
 		</d-form-control>
-		<div class="py-4 flex space-x-2 justify-end">
-			<d-button :sm="sm" neutral @click="cancel">Cancel</d-button>
+		<div class="py-4 grid grid-cols-2 space-x-2">
+			<d-button :sm="sm" neutral @click="$emit('cancel')">Cancel</d-button>
 			<d-button :sm="sm" primary :disabled="!canSave" @click="save">Save</d-button>
 		</div>
 	</div>
@@ -85,10 +85,6 @@ export default Vue.component('CategoryEditor', {
 	},
 
 	methods: {
-		cancel() {
-			this.$emit('cancel')
-		},
-
 		async save() {
 			let newCategory
 			const { params } = this.$nuxt.context

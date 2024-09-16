@@ -49,11 +49,9 @@ Nuxt/Vue based MindMap.
 # TODO
 
 - tags should be auto-sorted alphabetically
-- connections table should be filterable by connection type
-  + links (this is waiting on editor improvements)
 - editor needs a lot of work
   + needs to have a Markdown view mode as well as rich text
-  + should be able to link to other elements (and element properties)
+  + link panel isn't quite right
 - uploading content to import directly
   + this needs to include uploading a project from a zip folder in the format used for backups
     * this works but the no project file version could be improved
@@ -65,4 +63,3 @@ Nuxt/Vue based MindMap.
   + calendar should be used for date stuff
   + checkbox / toggle should be used for boolean
   + what to do about images?
-

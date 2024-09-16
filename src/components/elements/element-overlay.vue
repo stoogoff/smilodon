@@ -5,13 +5,13 @@
 				<h1 class="text-md">Create Element</h1>
 			</d-navbar-start>
 			<d-navbar-end>
-				<d-button @click="$emit('close')" sm>
+				<d-button sm @click="$emit('cancel')">
 					<icon-view icon="close" />
 					Close
 				</d-button>
 			</d-navbar-end>
 		</d-navbar>
-		<element-editor @save="save" />
+		<element-editor overlay @save="save" @cancel="$emit('cancel')" />
 	</d-screen-slide>
 </template>
 <script>
@@ -21,8 +21,8 @@ import { ELEMENTS_UPDATED } from '~/utils/config'
 
 export default Vue.component('ElementOverlay', {
 	methods: {
-		async save(element) {
-			this.$emit('close', element)
+		save(element) {
+			this.$emit('save', element)
 		},
 	},
 })

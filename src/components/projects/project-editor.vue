@@ -10,8 +10,8 @@
 			<d-input bordered v-model="title" :error="error" />
 		</d-validator-control>
 		<editor label="Description" v-model="description" v-slot="{ editor }" />
-		<div class="py-4 flex space-x-2 justify-end">
-			<d-button neutral @click="cancel">Cancel</d-button>
+		<div class="py-4 grid grid-cols-2 space-x-2">
+			<d-button neutral @click="$emit('cancel')">Cancel</d-button>
 			<d-button primary :disabled="!canSave" @click="save">Save</d-button>
 		</div>
 	</div>
@@ -74,10 +74,6 @@ export default Vue.component('ProjectEditor', {
 			}
 
 			this.$emit('save', newProject)
-		},
-
-		cancel() {
-			this.$emit('cancel')
 		},
 	},
 })
