@@ -43,7 +43,7 @@
 					</d-tab-content>
 					<d-tab label="Network" group="project-edit" />
 					<d-tab-content>
-						<em>coming soon</em>
+						<network-view />
 					</d-tab-content>
 				</d-tabs>
 			</d-card>
