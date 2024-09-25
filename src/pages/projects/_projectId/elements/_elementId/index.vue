@@ -1,6 +1,9 @@
 <template>
 	<section>
-		<loading-spinner v-if="element === null" />
+		<loading-spinner v-if="$fetchState.pending" />
+		<d-alert v-else-if="element === null" error>
+			Unable to load element.
+		</d-alert>
 		<div v-else>
 			<breadcrumb />
 			<d-card>
@@ -50,10 +53,11 @@
 					</d-tab-content>
 					<d-tab label="Network" group="element-view" />
 					<d-tab-content>
-						<network-view />
+						<p>See below...</p>
 					</d-tab-content>
 				</d-tabs>
 			</d-card>
+			<network-view :element="element" />
 		</div>
 		<confirm-dialogue
 			v-if="showDeleteModal"
