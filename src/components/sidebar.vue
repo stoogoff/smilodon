@@ -19,11 +19,6 @@
 					icon="home"
 				/>
 				<sidebar-item to="/projects/create" title="Create Project" icon="plus" class="border-t" />
-				<li>
-					<nuxt-link to="/changes">
-						Changes
-					</nuxt-link>
-				</li>
 			</ul>
 		</template>
 	</d-drawer>

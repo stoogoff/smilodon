@@ -5,9 +5,9 @@
 		</div>
 		<div class="flex-none">
 			<popup-button y="top" x="right">
-				{{ selectedTheme }}
+				Theme: {{ selectedTheme }}
 				<template #popup>
-					<div class="h-96 overflow-y-auto">
+					<div class="h-56 overflow-y-auto">
 						<ul>
 							<li v-for="theme in themes" :key="theme" @click="chooseTheme(theme)">
 								<span class="link">{{ theme }}</span>

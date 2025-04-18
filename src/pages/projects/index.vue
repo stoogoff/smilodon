@@ -1,24 +1,28 @@
 <template>
 	<section>
 		<h1>Projects</h1>
-		<p>This will allow for CRUD actions for projects</p>
-		<nuxt-link class="btn" to="/projects/create">Create Project</nuxt-link>
+		<div class="py-4">
+			<p>This will allow for CRUD actions for projects</p>
+			<nuxt-link class="btn btn-primary" to="/projects/create">Create Project</nuxt-link>
+		</div>
 
 		<d-drop-zone @input="extractFiles" :accept="['application/zip']">
 			Drag a zip file or click to upload one.
 		</d-drop-zone>
 
-		<d-card
-			v-for="project in projects"
-			:key="project._id"
-			class="mb-4"
-		>
-			<d-card-title>{{ project.title }}</d-card-title>
-			<markdown :content="project.description" />
-			<d-card-actions>
-				<nuxt-link class="btn btn-primary" :to="project.slug">View</nuxt-link>
-			</d-card-actions>
-		</d-card>
+		<div class="md:grid md:grid-cols-2 md:gap-4">
+			<d-card
+				v-for="project in projects"
+				:key="project._id"
+				class="mb-4"
+			>
+				<d-card-title>{{ project.title }}</d-card-title>
+				<markdown :content="project.description" />
+				<d-card-actions>
+					<nuxt-link class="btn btn-primary" :to="project.slug">View</nuxt-link>
+				</d-card-actions>
+			</d-card>
+		</div>
 	</section>
 </template>
 <script>

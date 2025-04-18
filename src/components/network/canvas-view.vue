@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<canvas ref="canvas"></canvas>
-		<slot></slot>
+		<p-canvas autosize></p-canvas>
 	</div>
 </template>
 <script>
@@ -9,7 +8,7 @@
 import Vue from 'vue'
 
 export default Vue.component('CanvasView', {
-	data() {
+	/*data() {
 		return {
 			provider: {
 				context: null,
@@ -30,7 +29,7 @@ export default Vue.component('CanvasView', {
 
 		this.$refs['canvas'].width = canvas.parentElement.clientWidth
 		this.$refs['canvas'].height = canvas.parentElement.clientHeight
-	},
+	},*/
 })
 
 </script>

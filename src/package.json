@@ -21,6 +21,8 @@
     "lodash": "^4.17.21",
     "marked": "^4.3.0",
     "nuxt": "^2.15.8",
+    "paper": "^0.12.18",
+    "paper-vueify": "^1.1.13",
     "pouchdb": "^7.3.0",
     "prosemirror-commands": "^1.5.2",
     "prosemirror-example-setup": "^1.2.2",

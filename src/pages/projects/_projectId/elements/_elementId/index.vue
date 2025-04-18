@@ -53,11 +53,10 @@
 					</d-tab-content>
 					<d-tab label="Network" group="element-view" />
 					<d-tab-content>
-						<p>See below...</p>
+						<network-view :element="element" />
 					</d-tab-content>
 				</d-tabs>
 			</d-card>
-			<network-view :element="element" />
 		</div>
 		<confirm-dialogue
 			v-if="showDeleteModal"

@@ -22,7 +22,18 @@
 			:rules="rules.value"
 			v-slot="{ error }"
 		>
-			<d-input v-model="value" bordered sm :error="error" @input="updateProperty" />
+			<d-toggle
+				v-if="inputType === 'toggle'"
+				v-model="value"
+				@input="updateProperty" />
+			<d-input
+				v-else
+				:type="inputType"
+				v-model="value"
+				bordered
+				sm
+				:error="error"
+				@input="updateProperty" />
 		</d-validator-control>
 		<span>
 			<d-button @click="deleteProperty" sm ghost class="mt-9">
@@ -64,25 +75,38 @@ export default Vue.component('PropertyEditor', {
 			return PROPERTY_TYPES
 		},
 
+		inputType() {
+			switch(this.type) {
+				case 'True/False':
+					return 'toggle'
+				case 'DateTime':
+					return 'datetime-local'
+				default:
+					return this.type.toLowerCase()
+			}
+		},
+
 		rules() {
-			const value = [required()]
+			let value = []
 
 			switch(this.type) {
 				case 'Number':
-					value.push(format(/^\d+(\.\d+)?$/, 'number'))
+					value = [required(), format(/^\d+(\.\d+)?$/, 'Numeric value')]
 					break
-				case 'Date':
-					value.push(format(/^\d{4}-\d{2}-\d{2}$/, 'yyyy-mm-dd'))
+				/*case 'Date':
+					value = [required(), format(/^\d{4}-\d{2}-\d{2}$/, 'yyyy-mm-dd')]
 					break
 				case 'DateTime':
-					value.push(format(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/, 'yyyy-mm-dd hh:mm'))
+					value = [required(), format(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/, 'yyyy-mm-dd hh:mm')]
 					break
 				case 'Time':
-					value.push(format(/^\d{2}:\d{2}$/, 'hh:mm'))
-					break
+					value = [required(), format(/^\d{2}:\d{2}$/, 'hh:mm')]
+					break*/
 				case 'True/False':
-					value.push(format(/^(true|false)$/, 'true OR false'))
+					value = []
 					break
+				default:
+					value = [required()]
 			}
 
 			return {

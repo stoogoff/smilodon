@@ -1,5 +1,6 @@
 <template>
-	<canvas-view style="width: 100%; height: 600px">
+	<p class="italic">Coming soon...</p>
+	<!-- canvas-view style="width: 100%; height: 600px">
 		<c-line
 			v-for="(obj, idx) in lines"
 			:key="`line_${idx}`"
@@ -18,14 +19,14 @@
 			:colour="obj.colour"
 			:text="obj.text"
 		/>
-	</canvas-view>
+	</canvas-view -->
 </template>
 <script>
 
 import Vue from 'vue'
 
 export default Vue.component('NetworkView', {
-	props: {
+	/*props: {
 		element: {
 			type: Object,
 			required: true,
@@ -67,7 +68,7 @@ export default Vue.component('NetworkView', {
 			}, ...rectangles
 		]
 	},
-	fetchOnServer: false,
+	fetchOnServer: false,*/
 
 	data() {
 		return {
