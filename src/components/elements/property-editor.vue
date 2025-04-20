@@ -1,7 +1,7 @@
 <template>
 	<div class="grid grid-cols-4 gap-2 border-b pt-1 pb-2">
 		<d-validator-control
-			label="Name"
+			:label="showLabels ? 'Name' : ''"
 			:value="name"
 			:rules="rules.name"
 			v-slot="{ error }"
@@ -9,7 +9,7 @@
 			<d-input v-model="name" bordered sm :error="error" @input="updateProperty" />
 		</d-validator-control>
 		<d-validator-control
-			label="Type"
+			:label="showLabels ? 'Type' : ''"
 			:value="type"
 			:rules="rules.type"
 			v-slot="{ error }"
@@ -17,7 +17,7 @@
 			<d-simple-select v-model="type" bordered sm :items="propertyTypes" @input="updateProperty" />
 		</d-validator-control>
 		<d-validator-control
-			label="Value"
+			:label="showLabels ? 'Value' : ''"
 			:value="value"
 			:rules="rules.value"
 			v-slot="{ error }"
@@ -36,7 +36,7 @@
 				@input="updateProperty" />
 		</d-validator-control>
 		<span>
-			<d-button @click="deleteProperty" sm ghost class="mt-9">
+			<d-button @click="deleteProperty" sm ghost :class="showLabels ? 'mt-9' : 'mt-4'">
 				<icon-view icon="trash" />
 			</d-button>
 		</span>
@@ -54,6 +54,10 @@ export default Vue.component('PropertyEditor', {
 			type: Object,
 			required: true,
 		},
+		showLabels: {
+			type: Boolean,
+			default: true,
+		}
 	},
 
 	data() {
@@ -93,15 +97,9 @@ export default Vue.component('PropertyEditor', {
 				case 'Number':
 					value = [required(), format(/^\d+(\.\d+)?$/, 'Numeric value')]
 					break
-				/*case 'Date':
-					value = [required(), format(/^\d{4}-\d{2}-\d{2}$/, 'yyyy-mm-dd')]
+				case 'Image URL':
+					value = [required(), format(/^http[s]?:\/\//, 'URL')]
 					break
-				case 'DateTime':
-					value = [required(), format(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/, 'yyyy-mm-dd hh:mm')]
-					break
-				case 'Time':
-					value = [required(), format(/^\d{2}:\d{2}$/, 'hh:mm')]
-					break*/
 				case 'True/False':
 					value = []
 					break

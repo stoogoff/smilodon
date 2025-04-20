@@ -36,7 +36,7 @@ export default {
 		{ src: '~/plugins/client.js', mode: 'client' },
 		{ src: '~/plugins/paper.js', mode: 'client' },
 		//{ src: '~/plugins/editor.js', mode: 'client' },
-		//'~/plugins/filters.js'
+		'~/plugins/filters.js'
 		//'~/plugins/mindmap.js',
 	],
 

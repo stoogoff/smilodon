@@ -39,14 +39,14 @@
 					</d-tab-content>
 					<d-tab label="Properties" group="element-view" />
 					<d-tab-content>
-						<dl v-if="element.properties.length" class="w-60">
+						<dl v-if="element.properties.length" class="grid grid-cols-4">
 							<div
 								v-for="property in element.properties"
-								class="grid grid-cols-2 gap-2 border-b last:border-b-0 py-1"
+								class="col-span-3 grid grid-cols-4 gap-2 border-b last:border-b-0 py-1"
 								:key="`dl_${property.id}`"
 							>
 								<dt class="font-bold">{{ property.name }}:</dt>
-								<dd>{{ property.value }}</dd>
+								<dd class="col-span-3"><property-view :property="property" /></dd>
 							</div>
 						</dl>
 						<p v-else><em>No properties set</em></p>

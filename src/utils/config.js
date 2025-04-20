@@ -34,9 +34,7 @@ export const PROPERTY_TYPES = [
 	'DateTime',
 	'Time',
 	'True/False',
-	// this will either need to be a URL to an external service or base64 encoded
-	// it'll eat up browser space if it's stored locally
-	'Image',
+	'Image URL',
 ]
 
 // default ids

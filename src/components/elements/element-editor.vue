@@ -11,13 +11,14 @@
 					<d-input v-model="title" :error="error" bordered />
 				</d-validator-control>
 				<editor label="Description" v-model="description" :link-search="searchElements" />
-				<d-textarea class="w-full h-64" bordered v-model="description" />
+				<!-- d-textarea class="w-full h-64" bordered v-model="description" / -->
 			</d-tab-content>
 			<d-tab label="Properties" group="element-editor" />
 			<d-tab-content>
 				<p><em>Use the buttons below to add custom properties.</em></p>
 				<property-editor
 					v-for="(property, index) in properties"
+					:show-labels="index === 0"
 					:key="property.id"
 					:property="property"
 					@update="updateProperty"

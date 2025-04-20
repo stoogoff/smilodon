@@ -3,7 +3,7 @@
 </template>
 <script>
 import Vue from 'vue'
-import { notNull } from 'vue-daisy-ui/utils/assert'
+import { isNull, notNull, isEmptyString } from 'vue-daisy-ui/utils/assert'
 import { unique, sortByProperty } from 'vue-daisy-ui/utils/list'
 import { ELEMENTS_UPDATED } from '~/utils/config'
 
@@ -22,6 +22,16 @@ export default Vue.component('ElementTable', {
 
 		categories.forEach(category => idMap[category._id] = category)
 
+		const buildCategoryPath = (id, output = []) => {
+			if(isEmptyString(id)) return output
+
+			const category = idMap[id]
+
+			if(isNull(category)) return [...output, 'Unknown']
+
+			return [...buildCategoryPath(category.parent, output), category.title]
+		}
+
 		// map elements to records
 		if(this.elements) {
 			this.records = this.elements.map(row => {
@@ -34,7 +44,7 @@ export default Vue.component('ElementTable', {
 					...properties,
 					...row,
 					tags: row.tags.join(', '),
-					category: row.category in idMap ? idMap[row.category].title : 'Unkown',
+					category: buildCategoryPath(row.category).join(' / '),
 				}
 			})
 		}
