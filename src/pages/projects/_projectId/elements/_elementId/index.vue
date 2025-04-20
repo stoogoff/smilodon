@@ -53,7 +53,8 @@
 					</d-tab-content>
 					<d-tab label="Network" group="element-view" />
 					<d-tab-content>
-						<network-view :element="element" />
+						<!-- network-view :element="element" / -->
+						<element-map :element="element" :linked="linked" />
 					</d-tab-content>
 				</d-tabs>
 			</d-card>
