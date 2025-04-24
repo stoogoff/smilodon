@@ -1,7 +1,7 @@
 <template>
 	<div class="fixed flex bg-base-100 shadow px-4 py-1 top-0 left-0 right-0 z-10">
 		<div class="flex-1">
-			<nuxt-link to="/" class="btn btn-ghost text-sm btn-sm"><icon-view icon="logo" /> Primordium</nuxt-link>
+			<nuxt-link to="/" class="btn btn-ghost text-sm btn-sm"><icon-view icon="logo" /> reticula</nuxt-link>
 		</div>
 		<div class="flex-none">
 			<popup-button y="top" x="right">

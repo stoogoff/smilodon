@@ -1,7 +1,7 @@
 
 const OG_TYPE = 'website'
-const BASE_URL = 'https://www.primordium.com'
-const BASE_TITLE = 'Primordium'
+const BASE_URL = 'https://reticu.la'
+const BASE_TITLE = 'reticula'
 const BASE_DESCRIPTION = ''
 const BASE_IMAGE = `${BASE_URL}/img/kickstarter-banner.png`
 
