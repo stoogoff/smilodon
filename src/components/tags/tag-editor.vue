@@ -1,10 +1,12 @@
 <template>
 	<div>
-		<tag-view
+		<d-badge class="mr-2 p-4" error
 			v-for="(tag, index) in tags"
 			:key="`${ slugify(tag) }_${ index }`"
-			:tag="tag"
-			editable @delete="deleteTag(tag, index)" />
+			@click="deleteTag(tag, index)"
+		>
+			{{ tag }} <icon-view md icon="trash" />
+		</d-badge>
 	</div>
 </template>
 <script>
@@ -26,8 +28,6 @@ export default Vue.component('TagEditor', {
 		},
 
 		deleteTag(tag, index) {
-			if(!this.editable) return
-
 			this.$emit('delete', tag, index)
 		}
 	},
