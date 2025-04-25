@@ -89,7 +89,7 @@ export default {
 		cache: process.env.NODE_ENV !== 'production',
 		extractCSS: process.env.NODE_ENV === 'production' ? { ignoreOrder: true } : false,
 		optimizeCSS: process.env.NODE_ENV === 'production',
-		transpile: ['vue-daisy-ui'],
+		transpile: ['vue-daisy-ui', 'vis-data', 'vis-network'],
 		extend(config, isDev, isClient) {
 			config.resolve.extensions.push('.mjs')
 			config.module.rules.push({
