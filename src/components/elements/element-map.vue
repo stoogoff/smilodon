@@ -1,14 +1,5 @@
 <template>
-	<div>
-		<d-join>
-			<d-button sm class="join-item" @click="toggleLayer('category')">category</d-button>
-			<d-button sm class="join-item" @click="toggleLayer('link')">link</d-button>
-			<d-button sm class="join-item" @click="toggleLayer('mention')">mention</d-button>
-			<d-button sm class="join-item" @click="toggleLayer('property')">property</d-button>
-			<d-button sm class="join-item" @click="toggleLayer('tag')">tag</d-button>
-		</d-join>
-		<div id="canvas"></div>
-	</div>
+	<div id="canvas"></div>
 </template>
 <script>
 
@@ -45,10 +36,7 @@ export default Vue.component('ElementMap', {
 		},
 	},
 
-	async mounted() {
-		const WIDTH = 1000
-		const HEIGHT = 500
-
+	async fetch() {
 		// create an array with nodes
 		const nodes = [
 			{
@@ -159,24 +147,8 @@ export default Vue.component('ElementMap', {
 				color: '#ccc',
 			},
 		})
-
-		//network.focus(this.element._id)
 	},
-
-	methods: {
-		toggleLayer(name) {
-			/*if(!(name in this.layers)) return
-
-			const layer = this.layers[name]
-
-			if(layer.isVisible()) {
-				layer.hide()
-			}
-			else {
-				layer.show()
-			}*/
-		}
-	},
+	fetchOnServer: false,
 })
 
 </script>

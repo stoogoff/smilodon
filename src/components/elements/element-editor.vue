@@ -21,6 +21,8 @@
 					:show-labels="index === 0"
 					:key="property.id"
 					:property="property"
+					:properties="existingPropertyNames"
+					:values="existingPropertyValues"
 					@update="updateProperty"
 					@delete="deleteProperty" />
 				<d-button @click="addProperty" sm class="mt-2">Add Property</d-button>
@@ -44,10 +46,8 @@
 				<div class="flex">
 					<div class="flex-grow">
 						<d-form-control label="Tag">
-							<!-- TODO add an autocomplete of all existing tags -->
-							<d-input v-model="currentTag" bordered />
+							<d-autocomplete v-model="currentTag" bordered :options="existingTags" />
 						</d-form-control>
-						<!-- div v-for="tag in existingTags" :key="`tag_${tag}`">{{ tag }}</div -->
 					</div>
 					<div class="mt-12 ml-2">
 						<d-button @click="addTag" sm :disabled="!canAddTag">Add</d-button>
@@ -148,7 +148,22 @@ export default Vue.component('ElementEditor', {
 
 	computed: {
 		existingTags() {
-			return new Set(this.elements.flatMap(({ tags }) => tags))
+			return Array.from(new Set(this.elements.flatMap(({ tags }) => tags)))
+		},
+
+		existingPropertyNames() {
+			return Array.from(new Set(this.elements.flatMap(({ properties }) => 
+				properties.map(({ name }) => name)
+			).sort()))
+		},
+
+		existingPropertyValues() {
+			return Array.from(new Set(this.elements
+				.flatMap(({ properties }) => 
+					properties
+						.filter(({ type }) => type === 'Text')
+						.map(({ value }) => value)
+				).sort()))
 		},
 
 		icons() {

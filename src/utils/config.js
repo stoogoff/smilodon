@@ -13,7 +13,7 @@ export const DEFAULT_ELEMENT = {
 export const DEFAULT_PROPERTY = {
 	name: '',
 	value: '',
-	type: '',
+	type: 'Text',
 }
 
 export const DEFAULT_CATEGORY = {

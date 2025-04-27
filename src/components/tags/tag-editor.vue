@@ -3,9 +3,10 @@
 		<d-badge class="mr-2 p-4" error
 			v-for="(tag, index) in tags"
 			:key="`${ slugify(tag) }_${ index }`"
-			@click="deleteTag(tag, index)"
 		>
-			{{ tag }} <icon-view md icon="trash" />
+			<span class="inline-block" @click="deleteTag(tag, index)">
+				{{ tag }} <icon-view md icon="trash" class="-mb-1" />
+			</span>
 		</d-badge>
 	</div>
 </template>

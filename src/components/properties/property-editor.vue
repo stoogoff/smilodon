@@ -6,7 +6,7 @@
 			:rules="rules.name"
 			v-slot="{ error }"
 		>
-			<d-input v-model="name" bordered sm :error="error" @input="updateProperty" />
+			<d-autocomplete v-model="name" :options="properties" bordered sm :error="error" @input="updateProperty" />
 		</d-validator-control>
 		<d-validator-control
 			:label="showLabels ? 'Type' : ''"
@@ -25,6 +25,14 @@
 			<d-toggle
 				v-if="inputType === 'toggle'"
 				v-model="value"
+				@input="updateProperty" />
+			<d-autocomplete
+				v-else-if="inputType === 'text'"
+				v-model="value"
+				bordered
+				sm
+				:error="error"
+				:options="values"
 				@input="updateProperty" />
 			<d-input
 				v-else
@@ -57,7 +65,19 @@ export default Vue.component('PropertyEditor', {
 		showLabels: {
 			type: Boolean,
 			default: true,
-		}
+		},
+		properties: {
+			type: Array,
+			default: [],
+		},
+		// TODO this would be better as an object with the key being the
+		// property name and the value being an array of options
+		// this would mean recommendations would be correct for the property
+		// and not just a random grab bag of everything
+		values: {
+			type: Array,
+			default: [],
+		},
 	},
 
 	data() {
