@@ -6,23 +6,7 @@
 import Vue from 'vue'
 import { DataSet } from 'vis-data/peer'
 import { Network } from 'vis-network/peer'
-import { getIcon } from '~/utils/icons'
-
-
-const section = (id, label, icon) => ({
-	id,
-	label,
-	image: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(getIcon(icon)),
-	shape: 'image',
-	size: 12,
-	color: 'white',
-	font: { size: 14, color: '#555' },
-})
-
-const link = (from, to) => ({
-	from,
-	to,
-})
+import { root, element, section, link } from '~/utils/network'
 
 export default Vue.component('ElementMap', {
 	props: {
@@ -34,29 +18,17 @@ export default Vue.component('ElementMap', {
 			type: Array,
 			required: true,
 		},
+		redraw: {
+			type: Number,
+			default: 0,
+		}
 	},
 
 	async fetch() {
 		// create an array with nodes
 		const nodes = [
-			{
-				id: this.element._id,
-				label: this.element.title,
-				shape: 'box',
-				color: { background: '#bbb', border: 'black' },
-				margin: 8,
-				font: { size: 16, color: '#222' },
-				x: 250,
-				y: 250,
-			},
-			...this.linked.map(link => ({
-				id: link._id,
-				label: link.title,
-				shape: 'box',
-				color: { background: '#ddd', border: '#bbb' },
-				margin: 6,
-				font: { size: 14, color: '#333' },
-			}))
+			root(this.element._id, this.element.title),
+			...this.linked.map(item => element(item._id, item.title))
 		]
 
 		// create an array with edges
@@ -94,7 +66,7 @@ export default Vue.component('ElementMap', {
 		if(this.linked.some(item => item.isMention)) {
 			nodes.push(section('mentions', 'Mentions', 'chat'))
 
-			edges = [...edges, { from: 'mentions', to: this.element._id }, ...this.linked
+			edges = [...edges, link('mentions', this.element._id), ...this.linked
 				.filter(item => item.isMention)
 				.map(item => link(item._id, 'mentions'))]
 		}
@@ -149,6 +121,12 @@ export default Vue.component('ElementMap', {
 		})
 	},
 	fetchOnServer: false,
+
+	watch: {
+		redraw() {
+			this.$fetch()
+		},
+	},
 })
 
 </script>

@@ -51,9 +51,9 @@
 						</dl>
 						<p v-else><em>No properties set</em></p>
 					</d-tab-content>
-					<d-tab label="Network" group="element-view" />
+					<d-tab label="Network" group="element-view" @activated="redrawNetwork" />
 					<d-tab-content>
-						<element-map :element="element" :linked="linked" />
+						<element-map :element="element" :linked="linked" :redraw="redraw" />
 					</d-tab-content>
 				</d-tabs>
 			</d-card>
@@ -90,6 +90,7 @@ export default {
 			element: null,
 			linked: [],
 			showDeleteModal: false,
+			redraw: 0,
 		}
 	},
 
@@ -100,6 +101,10 @@ export default {
 	},
 
 	methods: {
+		redrawNetwork() {
+			this.redraw++
+		},
+
 		closeDeleteModal() {
 			this.showDeleteModal = false
 		},
