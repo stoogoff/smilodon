@@ -16,10 +16,10 @@
 				bordered
 			/>
 		</d-form-control>
-		<div class="py-4 grid grid-cols-2 space-x-2">
-			<d-button :sm="sm" neutral @click="$emit('cancel')">Cancel</d-button>
-			<d-button :sm="sm" primary :disabled="!canSave" @click="save">Save</d-button>
-		</div>
+		<d-join class="grid grid-cols-2">
+			<d-button class="join-item" :sm="sm" @click="$emit('cancel')">Cancel</d-button>
+			<d-button class="join-item" :sm="sm" primary :disabled="!canSave" @click="save">Save</d-button>
+		</d-join>
 	</div>
 </template>
 <script>

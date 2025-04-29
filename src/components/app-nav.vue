@@ -3,7 +3,7 @@
 		<div class="flex-1">
 			<nuxt-link to="/" class="btn btn-ghost text-sm btn-sm"><icon-view icon="logo" /> reticula</nuxt-link>
 		</div>
-		<div class="flex-none">
+		<!-- div class="flex-none">
 			<popup-button y="top" x="right">
 				Theme: {{ selectedTheme }}
 				<template #popup>
@@ -16,7 +16,7 @@
 					</div>
 				</template>
 			</popup-button>
-		</div>
+		</div -->
 	</div>
 </template>
 <script>

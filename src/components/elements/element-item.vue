@@ -1,5 +1,5 @@
 <template>
-	<li :class="{ 'bg-base-300': isActive }">
+	<li :class="{ 'bg-info': isActive }">
 		<nuxt-link :to="element.slug">
 			<element-icon :element="element" :class="{ 'text-primary': isActive }" />
 			<span class="hover:link hover:link-primary">{{ element.title }}</span>

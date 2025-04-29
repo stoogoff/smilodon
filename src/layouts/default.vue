@@ -48,8 +48,9 @@ export default {
 		saveElement(element) {
 			this.addElement = false
 
-			if(element)
+			if(element) {
 				this.$router.push(element.slug)
+			}
 		},
 	},
 }

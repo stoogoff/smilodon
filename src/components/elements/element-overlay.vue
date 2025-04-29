@@ -1,11 +1,11 @@
 <template>
 	<d-screen-slide>
-		<d-navbar class="bg-primary">
+		<d-navbar class="bg-neutral">
 			<d-navbar-start>
-				<h1 class="text-md">Create Element</h1>
+				<h1 class="text-neutral-content">Create Element</h1>
 			</d-navbar-start>
 			<d-navbar-end>
-				<d-button sm @click="$emit('cancel')">
+				<d-button sm neutral @click="$emit('cancel')">
 					<icon-view icon="close" />
 					Close
 				</d-button>

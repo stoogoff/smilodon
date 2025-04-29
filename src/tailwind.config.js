@@ -18,83 +18,41 @@ const GREEN = new Colour('green', '#6EA131', '#88C540', '#ADD77B', '#B9DD8E', '#
 const COLOURS = [GREY, BLACK, BLUE, RED, YELLOW, GREEN]
 const COLOUR_MAP = {}
 
-COLOURS.forEach(({ name, ...rest }) => {
-	COLOUR_MAP['st-' + name] = rest
-})
-
 module.exports = {
 	content: [
 		'./node_modules/vue-daisy-ui/**/*.vue',
 	],
-	theme: {
-		/*extend: {
-			colors: COLOUR_MAP,
-		},*/
-	},
 	plugins: [require('daisyui')],
 	daisyui: {
-		themes: [/*{
+		themes: [{
 			storytella: {
 				// colours
-				'primary': BLUE.DEFAULT,
-				'primary-content': WHITE,
-				'secondary': YELLOW.DEFAULT,
-				'secondary-content': BLACK.DEFAULT,
-				'accent': RED.pale,
-				'accent-content': RED.DEFAULT,
-				'neutral': GREY.DEFAULT,
-				'neutral-content': BLACK.DEFAULT,
-				'base-100': WHITE,
-				'base-200': GREY.light,
-				'base-300': BLACK.DEFAULT,
-				'base-content': BLACK.light,
-				'info': BLUE.pale,
-				'info-content': BLUE.DEFAULT,
-				'success': GREEN.pale,
-				'success-content': GREEN.dark,
-				'warning': YELLOW.pale,
-				'warning-content': YELLOW.dark,
-				'error': RED.DEFAULT,
-				'error-content': WHITE,
+				'primary': '#08889E',
+				'primary-content': '#FFFFFF',
+				'secondary': '#EAA326',
+				'secondary-content': '#3D3D3D',
+				'accent': '#F9BDB2',
+				'accent-content': '#EF4223',
+				'neutral': '#232323',
+				'neutral-content': '#EAEAEB',
+				'base-100': '#FFFFFF',
+				'base-200': '#EAEAEB',
+				'base-300': '#898989',
+				'base-content': '#232323',
+				'info': '#ACD6E0',
+				'info-content': '#065E6D',
+				'success': '#D1E9B5',
+				'success-content': '#6EA131',
+				'warning': '#FFF8A4',
+				'warning-content': '#C98814',
+				'error': '#EF4223',
+				'error-content': '#FFFFFF',
 
 				// border radius
-				'--rounded-box': '0.5rem',
-				'--rounded-btn': '0.2rem',
+				'--rounded-box': '1rem',
+				'--rounded-btn': '0.5rem',
 			}
-		},*/
-			'light',
-			'dark',
-			'cupcake',
-			'bumblebee',
-			'emerald',
-			'corporate',
-			'synthwave',
-			'retro',
-			'cyberpunk',
-			'valentine',
-			'halloween',
-			'garden',
-			'forest',
-			'aqua',
-			'lofi',
-			'pastel',
-			'fantasy',
-			'wireframe',
-			'black',
-			'luxury',
-			'dracula',
-			'cmyk',
-			'autumn',
-			'business',
-			'acid',
-			'lemonade',
-			'night',
-			'coffee',
-			'winter',
-			'dim',
-			'nord',
-			'sunset',
-		],
-		darkTheme: 'dark',
+		}],
+		darkTheme: 'storytella',
 	}
 }

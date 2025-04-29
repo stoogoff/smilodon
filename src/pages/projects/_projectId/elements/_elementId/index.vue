@@ -21,7 +21,7 @@
 						Delete
 					</d-button>
 				</d-card-actions>
-				<d-alert warning v-if="hasUnsavedChanges">
+				<d-alert info v-if="hasUnsavedChanges">
 					<icon-view icon="alert" />
 					<div>This element has unsaved changes. You can <nuxt-link class="link" :to="`${ element.slug }/edit`">edit the element</nuxt-link> or <span class="link" @click="discardChanges">discard the changes</span>.</div>
 				</d-alert>

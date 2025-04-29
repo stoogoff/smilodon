@@ -1,6 +1,6 @@
 <template>
 	<li>
-		<div @click="toggleOpen" :class="{ 'bg-base-300': isActive }">
+		<div @click="toggleOpen" :class="{ 'bg-info': isActive }">
 			<icon-view :icon="icon" :class="{ 'text-primary': isActive }" />
 			<span @click.stop="viewCategory" class="hover:link hover:link-primary">{{ category.title }}</span>
 		</div>

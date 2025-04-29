@@ -1,6 +1,6 @@
 <template>
 	<ul class="menu menu-xs">
-		<li v-if="project" :class="{ 'bg-base-300': isActive }">
+		<li v-if="project" :class="{ 'bg-info': isActive }">
 			<nuxt-link :to="project.slug">
 				<icon-view icon="home" :class="{ 'text-primary': isActive }" />
 				<span class="hover:link hover:link-primary">{{ project.title }}</span>

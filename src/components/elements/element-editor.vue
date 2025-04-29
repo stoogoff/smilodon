@@ -58,12 +58,12 @@
 				</div>
 			</d-tab-content>
 		</d-tabs>
-		<div
+		<d-join
 			:class="overlay ? 'fixed bottom-0 left-0 right-0 p-2' : ''"
-			class="py-4 grid grid-cols-2 space-x-2">
-			<d-button neutral @click="$emit('cancel')">Cancel</d-button>
-			<d-button primary :disabled="!canSave" @click="save">Save</d-button>
-		</div>
+			class="py-4 grid grid-cols-2">
+			<d-button class="join-item" @click="$emit('cancel')">Cancel</d-button>
+			<d-button class="join-item" primary :disabled="!canSave" @click="save">Save</d-button>
+		</d-join>
 	</div>
 </template>
 <script>

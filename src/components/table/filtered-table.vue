@@ -29,9 +29,9 @@
 
 		<table class="table">
 			<thead>
-				<tr class="bg-base-200">
+				<tr class="bg-neutral">
 					<th
-						class="cursor-pointer uppercase hover:link-primary"
+						class="cursor-pointer uppercase text-neutral-content hover:text-base-100"
 						v-for="column in mutableColumns"
 						:key="`th_${ column.key }`"
 						v-if="!column.hidden"

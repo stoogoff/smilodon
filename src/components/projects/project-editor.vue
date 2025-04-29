@@ -10,10 +10,10 @@
 			<d-input bordered v-model="title" :error="error" />
 		</d-validator-control>
 		<editor label="Description" v-model="description" v-slot="{ editor }" />
-		<div class="py-4 grid grid-cols-2 space-x-2">
-			<d-button neutral @click="$emit('cancel')">Cancel</d-button>
-			<d-button primary :disabled="!canSave" @click="save">Save</d-button>
-		</div>
+		<d-join class="py-4 grid grid-cols-2">
+			<d-button class="join-item" @click="$emit('cancel')">Cancel</d-button>
+			<d-button class="join-item" primary :disabled="!canSave" @click="save">Save</d-button>
+		</d-join>
 	</div>
 </template>
 <script>
