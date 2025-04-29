@@ -103,9 +103,6 @@ export default Vue.component('ElementMap', {
 			})
 		}
 
-		console.log(this.linked)
-		console.log({ nodes, edges })
-
 		// create a network
 		const data = {
 			nodes: new DataSet(nodes),
@@ -113,7 +110,7 @@ export default Vue.component('ElementMap', {
 		}
 
 		const container = document.getElementById('canvas')
-		const network = new Network(container, data, {
+		this.network = new Network(container, data, {
 			height: '500px',
 			edges: {
 				color: '#ccc',
@@ -122,9 +119,21 @@ export default Vue.component('ElementMap', {
 	},
 	fetchOnServer: false,
 
+	data() {
+		return {
+			network: null
+		}
+	},
+
+	beforeDestroy() {
+		this.network.destroy()
+	},
+
 	watch: {
 		redraw() {
-			this.$fetch()
+			if(this.network) {
+				this.network.focus(this.element._id)
+			}
 		},
 	},
 })

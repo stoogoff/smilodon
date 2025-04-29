@@ -23,8 +23,6 @@ export const root = (id, label) => ({
 	color: { background: '#bbb', border: 'black' },
 	margin: 8,
 	font: { size: 16, color: '#222' },
-	x: 250,
-	y: 250,
 })
 
 export const element = (id, label) => ({
