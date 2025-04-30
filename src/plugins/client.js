@@ -1,8 +1,10 @@
 
 import PouchDB from 'pouchdb'
+import { local } from 'vue-daisy-ui/utils/storage'
 import element from '~/modules/db/element'
 import category from '~/modules/db/category'
 import project from '~/modules/db/project'
+import { DEMO_SAVED } from '~/utils/config'
 
 // seed data
 import projectData from '~/static/seed/projects'
@@ -17,7 +19,11 @@ export default ({ env }, inject) => {
 	inject('categories', category(database))
 	inject('projects', project(database))
 
-	database.bulkDocs(projectData)
-	database.bulkDocs(categoryData)
-	database.bulkDocs(elementData)
+	if(!local.has(DEMO_SAVED)) {
+		database.bulkDocs(projectData)
+		database.bulkDocs(categoryData)
+		database.bulkDocs(elementData)
+
+		local.set(DEMO_SAVED, true)
+	}
 }

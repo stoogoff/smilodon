@@ -16,7 +16,11 @@
 						<icon-view icon="edit" />
 						Edit
 					</nuxt-link>
-					<d-button outline sm @click="handleDownload">
+					<d-button outline sm @click="downloadJson">
+						<icon-view icon="download" />
+						JSON
+					</d-button>
+					<d-button outline sm @click="downloadArchive">
 						<icon-view icon="download" />
 						Download
 					</d-button>
@@ -109,7 +113,7 @@ export default {
 			this.$nuxt.$router.push('/projects')
 		},
 
-		async handleDownload() {
+		async downloadArchive() {
 			try {
 				const archive = await Archive.create(this.project._id)
 
@@ -119,6 +123,15 @@ export default {
 				console.error(err)
 				// TODO app message for errors
 			}
+		},
+
+		async downloadJson() {
+			download('projects.json', new Blob([JSON.stringify(this.project, null, 2)]))
+			download('elements.json', new Blob([JSON.stringify(this.elements, null, 2)]))
+
+			const categories = await this.$categories.allByProject(this.project._id)
+
+			download('categories.json', new Blob([JSON.stringify(categories, null, 2)]))
 		},
 	},
 }

@@ -54,6 +54,7 @@ export const TREE_STATE = 'tree-state'
 export const TREE_STATE_PROJECT = 'tree-state-project'
 export const DEFAULT_ELEMENT_ID = 'new-element'
 export const THEME = 'theme'
+export const DEMO_SAVED = 'demo-saved'
 
 // project file name for backup
 export const PROJECT_FILE_NAME = '_project.md'

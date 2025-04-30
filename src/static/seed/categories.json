@@ -1,20 +1,44 @@
 [
 	{
-		"_id": "category:seed-folder-1",
-		"project": "project:seed-1",
-		"title": "Seed Folder 1",
-		"parent": ""
+		"project": "project:demo-project",
+		"title": "Earth",
+		"parent": "category:moons",
+		"_id": "category:earth"
 	},
 	{
-		"_id": "category:seed-folder-2",
-		"project": "project:seed-1",
-		"title": "Seed Folder 2",
-		"parent": ""
+		"project": "project:demo-project",
+		"title": "Jupiter",
+		"parent": "category:moons",
+		"_id": "category:jupiter"
 	},
 	{
-		"_id": "category:seed-folder-3",
-		"project": "project:seed-1",
-		"title": "Seed Folder 3",
-		"parent": "category:seed-folder-1"
+		"project": "project:demo-project",
+		"title": "Mars",
+		"parent": "category:moons",
+		"_id": "category:mars"
+	},
+	{
+		"project": "project:demo-project",
+		"title": "Moons",
+		"parent": "",
+		"_id": "category:moons"
+	},
+	{
+		"project": "project:demo-project",
+		"title": "Planets",
+		"parent": "",
+		"_id": "category:solar-system"
+	},
+	{
+		"project": "project:demo-project",
+		"title": "Saturn",
+		"parent": "category:moons",
+		"_id": "category:saturn"
+	},
+	{
+		"project": "project:demo-project",
+		"title": "Uranus",
+		"parent": "category:moons",
+		"_id": "category:uranus"
 	}
 ]

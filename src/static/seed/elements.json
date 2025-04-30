@@ -1,110 +1,504 @@
 [
 	{
-		"_id": "element:seed-object-1",
-		"title": "Seed Element 1",
-		"project": "project:seed-1",
-		"description": "Lorum ipsum dolor sic amet",
-		"properties": [
-			{
-				"name": "Volume",
-				"value": 1,
-				"type": "Number"
-			}
-		],
+		"title": "Ariel",
+		"project": "project:demo-project",
+		"description": "Ariel is the fourth-largest moon of Uranus. Ariel orbits and rotates in the equatorial plane of Uranus, which is almost perpendicular to the orbit of Uranus, so the moon has an extreme seasonal cycle.\n\nIt was discovered on 24 October 1851 by William Lassell and named for a character in two different pieces of literature. As of 2019, much of the detailed knowledge of Ariel derives from a single flyby of Uranus performed by the space probe Voyager 2 in 1986, which managed to image around 35% of the moon's surface. There are no active plans at present to return to study the moon in more detail, although various concepts such as a Uranus Orbiter and Probe have been proposed.",
+		"properties": [],
 		"tags": [
-			"Monday"
+			"uranian"
 		],
-		"category": "category:seed-folder-1",
-		"icon": ""
+		"category": "category:uranus",
+		"icon": "",
+		"_id": "element:ariel"
 	},
 	{
-		"_id": "element:seed-object-2",
-		"title": "Seed Element 2",
-		"project": "project:seed-1",
-		"description": "Lorum ipsum dolor sic amet",
-		"properties": [
-			{
-				"name": "Volume",
-				"value": 2,
-				"type": "Number"
-			}
-		],
+		"title": "Deimos",
+		"project": "project:demo-project",
+		"description": "Deimos is the smaller and outer of the two natural satellites of Mars, the other being Phobos. Deimos has a mean radius of 6.2 km (3.9 mi) and takes 30.3 hours to orbit Mars. Deimos is 23,460 km (14,580 mi) from Mars, much farther than Mars's other moon, Phobos. It is named after Deimos, the Ancient Greek god and personification of dread and terror. ",
+		"properties": [],
 		"tags": [
-			"Monday", "Tuesday"
+			"martian"
 		],
-		"category": "category:seed-folder-1",
-		"icon": ""
+		"category": "category:mars",
+		"icon": "",
+		"_id": "element:deimos"
 	},
 	{
-		"_id": "element:seed-object-3",
-		"title": "Seed Element 3",
-		"project": "project:seed-1",
-		"description": "Lorum ipsum dolor sic amet",
+		"title": "Earth",
+		"project": "project:demo-project",
+		"description": "Earth is the third planet from the Sun and the only astronomical object known to harbor life. This is enabled by Earth being an ocean world, the only one in the Solar System sustaining liquid surface water. Almost all of Earth's water is contained in its global ocean, covering 70.8% of Earth's crust. The remaining 29.2% of Earth's crust is land, most of which is located in the form of continental landmasses within Earth's land hemisphere. Most of Earth's land is at least somewhat humid and covered by vegetation, while large sheets of ice at Earth's polar deserts retain more water than Earth's groundwater, lakes, rivers, and atmospheric water combined. Earth's crust consists of slowly moving tectonic plates, which interact to produce mountain ranges, volcanoes, and earthquakes. Earth has a liquid outer core that generates a magnetosphere capable of deflecting most of the destructive solar winds and cosmic radiation.",
 		"properties": [
 			{
-				"name": "Volume",
-				"value": 3,
+				"id": "upitcv",
+				"name": "Type",
+				"value": "Terrestrial",
+				"type": "Text"
+			},
+			{
+				"id": "np0h39",
+				"name": "Mean Radius",
+				"value": "6371",
+				"type": "Number"
+			},
+			{
+				"id": "8vorr8",
+				"name": "Surface Gravity",
+				"value": "1",
+				"type": "Number"
+			},
+			{
+				"id": "7yvyyg",
+				"name": "Order",
+				"value": "3",
 				"type": "Number"
 			}
 		],
 		"tags": [
-			"Monday", "Tuesday", "Wednesday"
+			"terran"
 		],
-		"category": "category:seed-folder-2",
-		"icon": ""
+		"category": "category:solar-system",
+		"icon": "",
+		"_id": "element:earth"
 	},
 	{
-		"_id": "element:seed-object-4",
-		"title": "Seed Element 4",
-		"project": "project:seed-1",
-		"description": "Lorum ipsum dolor sic amet",
-		"properties": [
-			{
-				"name": "Volume",
-				"value": 4,
-				"type": "Number"
-			}
-		],
+		"title": "Enceladus",
+		"project": "project:demo-project",
+		"description": "Enceladus is the sixth-largest moon of Saturn and the 18th-largest in the Solar System. It is about 500 kilometers (310 miles) in diameter, about a tenth of that of Saturn's largest moon, Titan. It is covered by clean, freshly deposited snow hundreds of meters thick, making it one of the most reflective bodies of the Solar System. Consequently, its surface temperature at noon reaches only −198 °C (75.1 K; −324.4 °F), far colder than a light-absorbing body would be. Despite its small size, Enceladus has a wide variety of surface features, ranging from old, heavily cratered regions to young, tectonically deformed terrain.",
+		"properties": [],
 		"tags": [
-			"Monday", "Tuesday", "Wednesday", "Thursday"
+			"saturnian"
 		],
-		"category": "category:seed-folder-2",
-		"icon": ""
+		"category": "category:saturn",
+		"icon": "",
+		"_id": "element:enceladus"
 	},
 	{
-		"_id": "element:seed-object-5",
-		"title": "Seed Element 5",
-		"project": "project:seed-1",
-		"description": "Lorum ipsum dolor sic amet",
-		"properties": [
-			{
-				"name": "Volume",
-				"value": 5,
-				"type": "Number"
-			}
-		],
-		"tags": [
-			"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
-		],
-		"category": "category:seed-folder-3",
-		"icon": ""
+		"title": "Galilean Moons",
+		"project": "project:demo-project",
+		"description": "The Galilean moons, or Galilean satellites, are the four largest moons of Jupiter. They are, in descending-size order, Ganymede, Callisto, Io, and Europa. They are the most readily visible Solar System objects after Saturn, the dimmest of the classical planets; though their closeness to bright Jupiter makes naked-eye observation very difficult, they are readily seen with common binoculars, even under night sky conditions of high light pollution. The invention of the telescope allowed astronomers to discover the moons in 1610. Through this, they became the first Solar System objects discovered since humans have started tracking the classical planets, and the first objects to be found to orbit any planet beyond Earth.",
+		"properties": [],
+		"tags": [],
+		"category": "category:jupiter",
+		"icon": "",
+		"_id": "element:galilean-moons"
 	},
 	{
-		"_id": "element:seed-object-6",
-		"title": "Seed Element 6",
-		"project": "project:seed-1",
-		"description": "Lorum ipsum dolor sic amet",
+		"title": "Iapetus",
+		"project": "project:demo-project",
+		"description": "Iapetus is the outermost of Saturn's large moons. With an estimated diameter of 1,469 km (913 mi), it is the third-largest moon of Saturn and the eleventh-largest in the Solar System. Named after the Titan Iapetus, the moon was discovered in 1671 by Giovanni Domenico Cassini.\n\nA relatively low-density body made up mostly of ice, Iapetus is home to several distinctive and unusual features, such as a striking difference in coloration between its leading hemisphere, which is dark, and its trailing hemisphere, which is bright, as well as a massive equatorial ridge running three-quarters of the way around the moon.",
+		"properties": [],
+		"tags": [
+			"saturnian"
+		],
+		"category": "category:saturn",
+		"icon": "",
+		"_id": "element:iapetus"
+	},
+	{
+		"title": "Jupiter",
+		"project": "project:demo-project",
+		"description": "Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass more than 2.5 times that of all the other planets in the Solar System combined and slightly less than one-thousandth the mass of the Sun. Its diameter is eleven times that of Earth and a tenth that of the Sun. Jupiter orbits the Sun at a distance of 5.20 AU (778.5 Gm), with an orbital period of 11.86 years. It is the third-brightest natural object in the Earth's night sky, after the Moon and Venus, and has been observed since prehistoric times. Its name derives from that of Jupiter, the chief deity of ancient Roman religion.",
 		"properties": [
 			{
-				"name": "Volume",
-				"value": 6,
+				"id": "8trlz4",
+				"name": "Type",
+				"value": "Gas giant",
+				"type": "Text"
+			},
+			{
+				"id": "d1u7pj",
+				"name": "Mean Radius",
+				"value": "69911",
+				"type": "Number"
+			},
+			{
+				"id": "2rmk93",
+				"name": "Surface Gravity",
+				"value": "2.6",
+				"type": "Number"
+			},
+			{
+				"id": "17u0fl",
+				"name": "Order",
+				"value": "5",
 				"type": "Number"
 			}
 		],
 		"tags": [
-			"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+			"jovian"
 		],
-		"category": "category:seed-folder-3",
-		"icon": ""
+		"category": "category:solar-system",
+		"icon": "",
+		"_id": "element:jupiter"
+	},
+	{
+		"title": "Mars",
+		"project": "project:demo-project",
+		"description": "Mars is the fourth planet from the Sun. It is also known as \"the Red Planet\", because of its orange-red appearance. Mars is a desert-like rocky planet with a tenuous carbon dioxide (CO2) atmosphere. At the average surface level the atmospheric pressure is a few thousands of Earth's, atmospheric temperature ranges from −153 °C (−243 °F) to 20 °C (68 °F) and cosmic radiation is high. Mars retains some water, in the ground as well as thinly in the atmosphere, forming cirrus clouds, frost, larger polar regions of permafrost and ice caps (with seasonal CO2 snow), but no liquid surface water. Its surface gravity is roughly a third of Earth's or double that of the Moon. It is half as wide as Earth or twice the Moon, with a diameter of 6,779 km (4,212 mi), and has a surface area the size of all the dry land of Earth.",
+		"properties": [
+			{
+				"id": "kdfq6m",
+				"name": "Type",
+				"value": "Terrestrial",
+				"type": "Text"
+			},
+			{
+				"id": "45ub7g",
+				"name": "Mean Radius",
+				"value": "3389",
+				"type": "Number"
+			},
+			{
+				"id": "nda2w5",
+				"name": "Surface Gravity",
+				"value": "0.4",
+				"type": "Number"
+			},
+			{
+				"id": "vrc1x4",
+				"name": "Order",
+				"value": "4",
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"martian"
+		],
+		"category": "category:solar-system",
+		"icon": "",
+		"_id": "element:mars"
+	},
+	{
+		"title": "Mercury",
+		"project": "project:demo-project",
+		"description": "Mercury is the first planet from the Sun. It is a rocky planet with a faint atmosphere. While it is the smallest and least massive planet of the Solar System, its surface gravity is sligtly higher than that of Mars. The surface of Mercury is similar to Earth's Moon, heavily cratered, with expansive rupes system, generated from thrust faults, and bright ray systems, formed by ejecta. Its largest crater, Caloris Planitia, has a diameter of 1,550 km (960 mi), which is about one-third the diameter of the planet (4,880 km or 3,030 mi). Being the most inferior orbiting planet it appears in Earth's sky, always close to the Sun, either as a \"morning star\" or an \"evening star\". It stays most of the time the closest to all other planets and is the planet with the highest delta-v needed to travel to from all other planets of the Solar System. ",
+		"properties": [
+			{
+				"id": "p6zq7f",
+				"name": "Type",
+				"value": "Terrestrial",
+				"type": "Text"
+			},
+			{
+				"id": "bop1tm",
+				"name": "Mean Radius",
+				"value": "2439",
+				"type": "Number"
+			},
+			{
+				"id": "t2j4dn",
+				"name": "Surface Gravity",
+				"value": "0.4",
+				"type": "Number"
+			},
+			{
+				"id": "ne7osh",
+				"name": "Order",
+				"value": "1",
+				"type": "Number"
+			}
+		],
+		"tags": [],
+		"category": "category:solar-system",
+		"icon": "",
+		"_id": "element:mercury"
+	},
+	{
+		"title": "Miranda",
+		"project": "project:demo-project",
+		"description": "Miranda, also designated Uranus V, is the smallest and innermost of Uranus's five round satellites. It was discovered by Gerard Kuiper on 16 February 1948 at McDonald Observatory in Texas, and named after Miranda from William Shakespeare's play The Tempest. Like the other large moons of Uranus, Miranda orbits close to its planet's equatorial plane. Because Uranus orbits the Sun on its side, Miranda's orbit is nearly perpendicular to the ecliptic and shares Uranus's extreme seasonal cycle.",
+		"properties": [],
+		"tags": [
+			"uranian"
+		],
+		"category": "category:uranus",
+		"icon": "",
+		"_id": "element:miranda"
+	},
+	{
+		"title": "Moons of Jupiter",
+		"project": "project:demo-project",
+		"description": "There are 95 moons of Jupiter with confirmed orbits as of 5 February 2024. This number does not include a number of meter-sized moonlets thought to be shed from the inner moons, nor hundreds of possible kilometer-sized outer irregular moons that were only briefly captured by telescopes. All together, Jupiter's moons form a satellite system called the Jovian system. The most massive of the moons are the four Galilean moons: Io, Europa, Ganymede, and Callisto, which were independently discovered in 1610 by Galileo Galilei and Simon Marius and were the first objects found to orbit a body that was neither Earth nor the Sun. Much more recently, beginning in 1892, dozens of far smaller Jovian moons have been detected and have received the names of lovers (or other sexual partners) or daughters of the Roman god Jupiter or his Greek equivalent Zeus. The Galilean moons are by far the largest and most massive objects to orbit Jupiter, with the remaining 91 known moons and the rings together comprising just 0.003% of the total orbiting mass.",
+		"properties": [],
+		"tags": [],
+		"category": "category:jupiter",
+		"icon": "",
+		"_id": "element:moons-of-jupiter"
+	},
+	{
+		"title": "Moons of Saturn",
+		"project": "project:demo-project",
+		"description": "The moons of Saturn are numerous and diverse, ranging from tiny moonlets only tens of meters across to the enormous Titan, which is larger than the planet Mercury. There are 274 moons with confirmed orbits, the most of any planet in the Solar System. This number does not include the many thousands of moonlets embedded within Saturn's dense rings, nor hundreds of possible kilometer-sized distant moons that have been observed on single occasions. Three moons are particularly notable. Titan is the second-largest moon in the Solar System (after Jupiter's Ganymede), with a nitrogen-rich Earth-like atmosphere and a landscape featuring river networks and hydrocarbon lakes. Enceladus emits jets of ice from its south-polar region and is covered in a deep layer of snow. Iapetus has contrasting black and white hemispheres as well as an extensive ridge of equatorial mountains among the tallest in the solar system.",
+		"properties": [],
+		"tags": [],
+		"category": "category:saturn",
+		"icon": "",
+		"_id": "element:moons-of-saturn"
+	},
+	{
+		"title": "Moons of Uranus",
+		"project": "project:demo-project",
+		"description": "Uranus, the seventh planet of the Solar System, has 28 confirmed moons. The 27 with names are named after characters that appear in, or are mentioned in, William Shakespeare's plays and Alexander Pope's poem The Rape of the Lock. Uranus's moons are divided into three groups: thirteen inner moons, five major moons, and ten irregular moons. The inner and major moons all have prograde orbits and are cumulatively classified as regular moons. In contrast, the orbits of the irregular moons are distant, highly inclined, and mostly retrograde.",
+		"properties": [],
+		"tags": [],
+		"category": "category:uranus",
+		"icon": "",
+		"_id": "element:moons-of-uranus"
+	},
+	{
+		"title": "Neptune",
+		"project": "project:demo-project",
+		"description": "Neptune is the eighth and farthest known planet from the Sun. It is the fourth-largest planet in the Solar System by diameter, the third-most-massive planet, and the densest giant planet. It is 17 times the mass of Earth. Compared to Uranus, its neighbouring ice giant, Neptune is slightly more massive, but denser and smaller. Being composed primarily of gases and liquids, it has no well-defined solid surface, and orbits the Sun once every 164.8 years at an orbital distance of 30.1 astronomical units (4.5 billion kilometres; 2.8 billion miles). It is named after the Roman god of the sea and has the astronomical symbol ♆, representing Neptune's trident.",
+		"properties": [
+			{
+				"id": "t1h7w0",
+				"name": "Type",
+				"value": "Ice giant",
+				"type": "Text"
+			},
+			{
+				"id": "ea5l9y",
+				"name": "Mean Radius",
+				"value": "24622",
+				"type": "Number"
+			},
+			{
+				"id": "r6swha",
+				"name": "Surface Gravity",
+				"value": "1.2",
+				"type": "Number"
+			},
+			{
+				"id": "2smnj1",
+				"name": "Order",
+				"value": "8",
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"ringed"
+		],
+		"category": "category:solar-system",
+		"icon": "",
+		"_id": "element:neptune"
+	},
+	{
+		"title": "Oberon",
+		"project": "project:demo-project",
+		"description": "Oberon, also designated Uranus IV, is the outermost and second-largest major moon of the planet Uranus. It is the second-most massive of the Uranian moons, and the tenth-largest moon in the Solar System. Discovered by William Herschel in 1787, Oberon is named after the mythical king of the fairies who appears as a character in Shakespeare's A Midsummer Night's Dream. Its orbit lies partially outside Uranus's magnetosphere.",
+		"properties": [],
+		"tags": [
+			"uranian"
+		],
+		"category": "category:uranus",
+		"icon": "",
+		"_id": "element:oberon"
+	},
+	{
+		"title": "Phobos",
+		"project": "project:demo-project",
+		"description": "Phobos is the innermost and larger of the two natural satellites of Mars, the other being Deimos. The two moons were discovered in 1877 by American astronomer Asaph Hall. Phobos is named after the Greek god of fear and panic, who is the son of Ares (Mars) and twin brother of Deimos.",
+		"properties": [],
+		"tags": [
+			"martian"
+		],
+		"category": "category:mars",
+		"icon": "",
+		"_id": "element:phobos"
+	},
+	{
+		"title": "Saturn",
+		"project": "project:demo-project",
+		"description": "Saturn is the sixth planet from the Sun and the second largest in the Solar System, after Jupiter. It is a gas giant, with an average radius of about nine times that of Earth. It has an eighth the average density of Earth, but is over 95 times more massive. Even though Saturn is almost as big as Jupiter, Saturn has less than a third its mass. Saturn orbits the Sun at a distance of 9.59 AU (1,434 million km), with an orbital period of 29.45 years.",
+		"properties": [
+			{
+				"id": "t8ohb8",
+				"name": "Type",
+				"value": "Gas giant",
+				"type": "Text"
+			},
+			{
+				"id": "2x9nq8",
+				"name": "Mean Radius",
+				"value": "58232",
+				"type": "Number"
+			},
+			{
+				"id": "jeuggr",
+				"name": "Surface Gravity",
+				"value": "1.1",
+				"type": "Number"
+			},
+			{
+				"id": "bfyxz5",
+				"name": "Order",
+				"value": "6",
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"ringed",
+			"saturnian"
+		],
+		"category": "category:solar-system",
+		"icon": "",
+		"_id": "element:saturn"
+	},
+	{
+		"title": "The Moon",
+		"project": "project:demo-project",
+		"description": "The Moon is Earth's only natural satellite. It orbits Earth at an average distance of 384399 km (238,854 mi; about 30 times Earth's diameter). The Moon's orbital period (lunar month) and rotation period (lunar day) are synchronized by Earth's gravitational pull at 29.5 Earth days, making the same side of the Moon always face Earth. The Moon's pull on Earth is the main driver of Earth's tides. ",
+		"properties": [
+			{
+				"id": "orhnkp",
+				"name": "Latin Name",
+				"value": "Luna",
+				"type": "Text"
+			},
+			{
+				"id": "v05gk6",
+				"name": "Mean Radius",
+				"value": "1737",
+				"type": "Number"
+			},
+			{
+				"id": "2970kb",
+				"name": "Surface Gravity",
+				"value": "0.2",
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"terran"
+		],
+		"category": "category:earth",
+		"icon": "",
+		"_id": "element:the-moon"
+	},
+	{
+		"title": "The Sun",
+		"project": "project:demo-project",
+		"description": "The Sun is the star at the centre of the Solar System. It is a massive, nearly perfect sphere of hot plasma, heated to incandescence by nuclear fusion reactions in its core, radiating the energy from its surface mainly as visible light and infrared radiation with 10% at ultraviolet energies. It is by far the most important source of energy for life on Earth. The Sun has been an object of veneration in many cultures. It has been a central subject for astronomical research since antiquity.\n\nThe Sun orbits the Galactic Center at a distance of 24,000 to 28,000 light-years. Its distance from Earth defines the astronomical unit, which is about 1.496×108 kilometres or about 8 light-minutes. Its diameter is about 1,391,400 km (864,600 mi), 109 times that of Earth. The Sun's mass is about 330,000 times that of Earth, making up about 99.86% of the total mass of the Solar System. Roughly three-quarters of the Sun's mass consists of hydrogen (\\~73%); the rest is mostly helium (\\~25%), with much smaller quantities of heavier elements, including oxygen, carbon, neon, and iron. ",
+		"properties": [
+			{
+				"id": "uuqpn5",
+				"name": "Latin Name",
+				"value": "Sol",
+				"type": "Text"
+			}
+		],
+		"tags": [],
+		"category": "",
+		"icon": "",
+		"_id": "element:the-sun"
+	},
+	{
+		"title": "Titan",
+		"project": "project:demo-project",
+		"description": "Titan is the largest moon of Saturn and the second-largest in the Solar System. It is the only moon known to have an atmosphere denser than the Earth's and is the only known object in space—other than Earth—on which there is clear evidence that stable bodies of liquid exist. Titan is one of seven gravitationally rounded moons of Saturn and the second-most distant among them. Frequently described as a planet-like moon, Titan is 50% larger in diameter than Earth's Moon and 80% more massive. It is the second-largest moon in the Solar System after Jupiter's Ganymede and is larger than Mercury; yet Titan is only 40% as massive as Mercury, because Mercury is mainly iron and rock while much of Titan is ice, which is less dense.",
+		"properties": [],
+		"tags": [
+			"saturnian"
+		],
+		"category": "category:saturn",
+		"icon": "",
+		"_id": "element:titan"
+	},
+	{
+		"title": "Titania",
+		"project": "project:demo-project",
+		"description": "Titania, also designated Uranus III, is the largest moon of Uranus. At a diameter of 1,578 km (981 mi) it is the eighth largest moon in the Solar System, with a surface area comparable to that of Australia. Discovered by William Herschel in 1787, it is named after the queen of the fairies in Shakespeare's A Midsummer Night's Dream. Its orbit lies inside Uranus's magnetosphere.",
+		"properties": [],
+		"tags": [
+			"uranian"
+		],
+		"category": "category:uranus",
+		"icon": "",
+		"_id": "element:titania"
+	},
+	{
+		"title": "Umbriel",
+		"project": "project:demo-project",
+		"description": "Umbriel is the third-largest moon of Uranus. It was discovered on October 24, 1851, by William Lassell at the same time as neighboring moon Ariel. It was named after a character in Alexander Pope's 1712 poem The Rape of the Lock. Umbriel consists mainly of ice with a substantial fraction of rock, and may be differentiated into a rocky core and an icy mantle. The surface is the darkest among Uranian moons, and appears to have been shaped primarily by impacts, but the presence of canyons suggests early internal processes, and the moon may have undergone an early endogenically driven resurfacing event that obliterated its older surface.",
+		"properties": [],
+		"tags": [
+			"uranian"
+		],
+		"category": "category:uranus",
+		"icon": "",
+		"_id": "element:umbriel"
+	},
+	{
+		"title": "Uranus",
+		"project": "project:demo-project",
+		"description": "Uranus is the seventh planet from the Sun. It is a gaseous cyan-coloured ice giant. Most of the planet is made of water, ammonia, and methane in a supercritical phase of matter, which astronomy calls \"ice\" or volatiles. The planet's atmosphere has a complex layered cloud structure and has the lowest minimum temperature (49 K (−224 °C; −371 °F)) of all the Solar System's planets. It has a marked axial tilt of 82.23° with a retrograde rotation period of 17 hours and 14 minutes. This means that in an 84-Earth-year orbital period around the Sun, its poles get around 42 years of continuous sunlight, followed by 42 years of continuous darkness.",
+		"properties": [
+			{
+				"id": "dp2pwe",
+				"name": "Type",
+				"value": "Ice giant",
+				"type": "Text"
+			},
+			{
+				"id": "fvy1mn",
+				"name": "Mean Radius",
+				"value": "25362",
+				"type": "Number"
+			},
+			{
+				"id": "2o3063",
+				"name": "Surface Gravity",
+				"value": "0.9",
+				"type": "Number"
+			},
+			{
+				"id": "80e6tr",
+				"name": "Order",
+				"value": "7",
+				"type": "Number"
+			}
+		],
+		"tags": [
+			"ringed",
+			"uranian"
+		],
+		"category": "category:solar-system",
+		"icon": "",
+		"_id": "element:uranus"
+	},
+	{
+		"title": "Venus",
+		"project": "project:demo-project",
+		"description": "Venus is the second planet from the Sun. It is often called Earth's \"twin\" or \"sister\" planet, being orbital neighbours as well as Venus having the most similar mass and size to Earth among the planets of the Solar System. While both are rocky planets, Venus has an atmosphere much thicker and denser than Earth and any other rocky body in the Solar System. Its atmosphere is composed of mostly carbon dioxide (CO2), with a global sulfuric acid cloud cover and no liquid water. At the mean surface level the atmosphere reaches a temperature of 737 K (464 °C; 867 °F) and a pressure 92 times greater than Earth's at sea level, turning the lowest layer of the carbon dioxide atmosphere into a supercritical fluid. Venus is the third brightest object in Earth's sky, after the Moon and the Sun, and, like Mercury, always appears relatively close to the Sun, either as a \"morning star\" or an \"evening star\", resulting from orbiting closer (inferior) to the Sun than Earth.",
+		"properties": [
+			{
+				"id": "ty9pso",
+				"name": "Type",
+				"value": "Terrestrial",
+				"type": "Text"
+			},
+			{
+				"id": "ihwrxb",
+				"name": "Mean Radius",
+				"value": "6051",
+				"type": "Number"
+			},
+			{
+				"id": "w2oa2i",
+				"name": "Surface Gravity",
+				"value": "0.9",
+				"type": "Number"
+			},
+			{
+				"id": "tv5l6r",
+				"name": "Order",
+				"value": "2",
+				"type": "Number"
+			}
+		],
+		"tags": [],
+		"category": "category:solar-system",
+		"icon": "",
+		"_id": "element:venus"
 	}
 ]

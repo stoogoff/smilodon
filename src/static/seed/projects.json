@@ -1,7 +1,7 @@
 [
 	{
-		"_id": "project:seed-1",
-		"title": "Test Seed Project",
-		"description": "Lorum ipsum dolor sic amet"
-	}	
+		"title": "Demo Project",
+		"description": "This is a demonstration project set up to show you how everything connects together. Keep it around as a reference and make changes to see how everything works and delete it when you no longer need it. As with all data in reticula, it’s saved locally to your browser so any changes are only visible to you.",
+		"_id": "project:demo-project"
+	}
 ]
