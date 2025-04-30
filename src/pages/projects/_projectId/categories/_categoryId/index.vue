@@ -1,6 +1,9 @@
 <template>
 	<section>
-		<loading-spinner v-if="category === null" />
+		<loading-spinner v-if="$fetchState.pending" />
+		<d-alert v-else-if="category === null" error>
+			Unable to load category.
+		</d-alert>
 		<div v-else>
 			<breadcrumb />
 			<d-card>
@@ -52,8 +55,12 @@ export default {
 	async fetch() {
 		const { params } = this.$nuxt.context
 
-		this.elements = await this.$elements.allByCategory(params.categoryId)
 		this.category = await this.$categories.byId(params.categoryId)
+
+		const descendants = await this.$categories.descendants(this.category)
+
+		this.elements = (await Promise.all([ ...descendants, this.category]
+			.map(category => this.$elements.allByCategory(category._id)))).flat()
 	},
 	fetchOnServer: false,
 

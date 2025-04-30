@@ -2,7 +2,7 @@
 	<div>
 		<div class="navbar bg-base-100 shadow px-4">
 			<div class="flex-1">
-				<nuxt-link to="/" class="btn btn-ghost"><icon-view icon="logo" lg /> Primordium</nuxt-link>
+				<nuxt-link to="/" class="btn btn-ghost"><icon-view icon="logo" lg /> reticula</nuxt-link>
 			</div>
 			<div class="flex-end">
 				<nuxt-link to="/projects" class="btn btn-ghost">

@@ -12,7 +12,7 @@
 			:primary="isLargest(tag)"
 			:secondary="isMedium(tag)"
 			:info="isLarge(tag) && !isLargest(tag)"
-			class="mr-1 mb-1 rounded"
+			class="mr-1 mb-1 p-2"
 		>{{ tag.title }}</d-badge>
 	</div>
 </template>

@@ -49,8 +49,9 @@ module.exports = {
 				'error-content': '#FFFFFF',
 
 				// border radius
-				'--rounded-box': '1rem',
+				'--rounded-box': '0.75rem',
 				'--rounded-btn': '0.5rem',
+				'--rounded-badge': '2rem',
 			}
 		}],
 		darkTheme: 'storytella',

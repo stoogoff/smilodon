@@ -59,7 +59,9 @@ export default db => {
 			.map(ent => {
 				const matchingProperties = intersectionWith(element.properties, ent.properties, (a, b) => a.name === b.name && a.value == b.value)
 				// match the title but not in the format used for a link title
-				const matcher = new RegExp('[^"]' + ent.title + '[^"][^)]', 'g')
+				const matcher = new RegExp('[^"]' + ent.title + '[^"][^)]', 'gi')
+
+				// TODO elements which mention this element
 
 				return {
 					...ent,

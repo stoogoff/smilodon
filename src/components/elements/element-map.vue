@@ -109,8 +109,8 @@ export default Vue.component('ElementMap', {
 			edges: new DataSet(edges),
 		}
 
-		const container = document.getElementById('canvas')
-		this.network = new Network(container, data, {
+		this.container = document.getElementById('canvas')
+		this.network = new Network(this.container, data, {
 			height: '500px',
 			edges: {
 				color: '#ccc',
@@ -121,18 +121,24 @@ export default Vue.component('ElementMap', {
 
 	data() {
 		return {
-			network: null
+			container: null,
+			network: null,
 		}
 	},
 
 	beforeDestroy() {
-		this.network.destroy()
+		if(this.network) {
+			this.network.destroy()
+		}
 	},
 
 	watch: {
 		redraw() {
 			if(this.network) {
 				this.network.focus(this.element._id)
+			}
+			else {
+				this.$fetch()
 			}
 		},
 	},
