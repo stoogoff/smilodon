@@ -1,27 +1,41 @@
 <template>
 	<section>
-		<h1>Projects</h1>
-		<div class="py-4">
-			<p>This will allow for CRUD actions for projects</p>
-			<nuxt-link class="btn btn-primary" to="/projects/create">Create Project</nuxt-link>
-		</div>
+		<h1 class="ml-8 mt-8 mb-4">Dashboard</h1>
+	 	<div class="md:grid md:grid-cols-2 md:gap-8">
+			<div>
+				<d-card class="mb-4">
+					<d-card-title>Projects</d-card-title>
+					<p>Use the button below to start working on a new project or use the plus icon in the sidebar on left.</p>
+					<nuxt-link class="btn btn-primary" to="/projects/create">Create New Project</nuxt-link>
+				</d-card>
 
-		<d-drop-zone @input="extractFiles" :accept="['application/zip']">
-			Drag a zip file or click to upload one.
-		</d-drop-zone>
+				<d-card>
+					<d-card-title>Backups</d-card-title>
+					<p>You can backup any project using the <strong>Download</strong> button on the project page. This will create a <code>.zip</code> archive with all of the categories and elements of the project and download it to your computer. If you extract the zip file by double clicking on it, all of your elements will be saved to your computer as text files with a <code>.md</code> extension.</p>
 
-		<div class="md:grid md:grid-cols-2 md:gap-4">
-			<d-card
-				v-for="project in projects"
-				:key="project._id"
-				class="mb-4"
-			>
-				<d-card-title>{{ project.title }}</d-card-title>
-				<markdown :content="project.description" />
-				<d-card-actions>
-					<nuxt-link class="btn btn-primary" :to="project.slug">View</nuxt-link>
-				</d-card-actions>
-			</d-card>
+					<p>You can make changes to the text files, zip everything back up and drag the file to the space below and <em>reticula</em> will merge any changes to your project with what it is stored, so you can view the tags, relationships and network that connects the project’s elements together.</p>
+
+					<d-drop-zone @input="extractFiles" :accept="['application/zip']">
+						Drag a zip file or click to upload one.
+					</d-drop-zone>
+				</d-card>
+			</div>
+
+			<div>
+				<d-card
+					v-for="project in projects"
+					:key="project._id"
+					class="mb-4"
+				>
+					<d-card-title>
+						<nuxt-link :to="project.slug" class="hover:text-primary">{{ project.title }}</nuxt-link>
+					</d-card-title>
+					<markdown :content="project.description" />
+					<d-card-actions>
+						<nuxt-link class="btn btn-primary" :to="project.slug">View</nuxt-link>
+					</d-card-actions>
+				</d-card>
+			</div>
 		</div>
 	</section>
 </template>
@@ -78,3 +92,13 @@ export default {
 }
 
 </script>
+<style scoped>
+
+p {
+	@apply mb-4;
+}
+code {
+	@apply inline-block px-1 py-0.5 bg-base-200 rounded border border-base-300;
+}
+
+</style>

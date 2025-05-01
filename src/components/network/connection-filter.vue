@@ -29,7 +29,7 @@
 							class="link-primary hover:underline"
 							:to="link.slug">
 							{{ link.title }}
-							<small v-if="link.hasMatchingProperty">({{ link.matchingProperties[0].name }}: {{ link.matchingProperties[0].value }})</small>
+							<small class="whitespace-nowrap" v-if="link.hasMatchingProperty">({{ link.matchingProperties[0].name }}: {{ link.matchingProperties[0].value }})</small>
 						</nuxt-link>
 					</td>
 					<td align="right">
