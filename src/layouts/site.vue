@@ -10,9 +10,18 @@
 				</nuxt-link>
 			</div>
 		</div>
-		<main class="max-w-screen-lg mx-auto mt-10">
+		<main class="mt-10">
 			<Nuxt />
 		</main>
+		<footer class="pt-8 pb-12 bg-base-100 border-t border-base-300">
+			<div class="site-container">
+				<a href="https://we-evolve.co.uk/" target="_blank"><img src="/img/we-evolve.png" width="300" /></a>
+				<div class="mt-1 ml-1 text-sm text-base-300">
+					<p class="mb-2">reticula software &copy; 2025 we evolve</p>
+					<p class="mb-2">All content is the property its respective author</p>
+				</div>
+			</div>
+		</footer>
 	</div>
 </template>
 <script>

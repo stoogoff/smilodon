@@ -16,10 +16,10 @@
 						<icon-view icon="edit" />
 						Edit
 					</nuxt-link>
-					<d-button outline sm @click="downloadJson">
+					<!--d-button outline sm @click="downloadJson">
 						<icon-view icon="download" />
 						JSON
-					</d-button>
+					</d-button-->
 					<d-button outline sm @click="downloadArchive">
 						<icon-view icon="download" />
 						Download

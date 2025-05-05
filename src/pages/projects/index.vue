@@ -5,15 +5,15 @@
 			<div>
 				<d-card class="mb-4">
 					<d-card-title>Projects</d-card-title>
-					<p>Use the button below to start working on a new project or use the plus icon in the sidebar on left.</p>
+					<p>Use the button below to start working on a new project or use the plus icon in the sidebar on the left.</p>
 					<nuxt-link class="btn btn-primary" to="/projects/create">Create New Project</nuxt-link>
 				</d-card>
 
 				<d-card>
 					<d-card-title>Backups</d-card-title>
-					<p>You can backup any project using the <strong>Download</strong> button on the project page. This will create a <code>.zip</code> archive with all of the categories and elements of the project and download it to your computer. If you extract the zip file by double clicking on it, all of your elements will be saved to your computer as text files with a <code>.md</code> extension.</p>
+					<p>You can backup any project using the <strong>Download</strong> button on the project page. This will create a <code>.zip</code> archive with all of the categories and elements of the project and download it to your computer. If you extract the zip file by double clicking on it, all of your elements will be saved to your computer as text files in folders matching the category structure used. The text files use <a href="https://www.markdownguide.org/" target="_blank" class="link text-primary">Markdown syntax</a> and have a <code>.md</code> extension.</p>
 
-					<p>You can make changes to the text files, zip everything back up and drag the file to the space below and <em>reticula</em> will merge any changes to your project with what it is stored, so you can view the tags, relationships and network that connects the project’s elements together.</p>
+					<p>You can open the files in any text editor and make any changes you need to, zip everything back up and drag the file to the space below. <em>reticula</em> will merge any changes to your project with what it is stored, so you can view the tags, relationships and network that connects the project’s elements together. If it can’t match the zip file to a project it will create a new one for you.</p>
 
 					<d-drop-zone @input="extractFiles" :accept="['application/zip']">
 						Drag a zip file or click to upload one.
@@ -22,7 +22,9 @@
 			</div>
 
 			<div>
+				<loading-spinner v-if="$fetchState.pending" />
 				<d-card
+					v-else
 					v-for="project in projects"
 					:key="project._id"
 					class="mb-4"
