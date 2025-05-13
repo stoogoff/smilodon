@@ -8,6 +8,8 @@ resource "bunnynet_storage_zone" "cdn" {
 	zone_tier            = "Standard"
 	region               = "UK"
 	replication_regions  = ["BR", "NY", "LA", "SG", "SYD"]
+	custom_404_file_path = "/index.html"
+	rewrite_404_to_200   = true
 }
 
 resource "bunnynet_pullzone" "cdn" {
