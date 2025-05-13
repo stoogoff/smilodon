@@ -2,7 +2,8 @@ import { meta, title, url, description } from './utils/meta'
 
 export default {
 	// Target: https://go.nuxtjs.dev/config-target
-	target: 'server',
+  target: 'static',
+  ssr: false,
 
 	env: {
 		cdn: process.env.CDN_URL,
